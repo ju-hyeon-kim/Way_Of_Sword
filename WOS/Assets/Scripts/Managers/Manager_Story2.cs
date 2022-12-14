@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -10,6 +11,7 @@ using static UnityEditor.PlayerSettings;
 public class Objects_Stroy2
 {
     public GameObject Player;
+    public GameObject BenderTalk_Window;
 }
 
 
@@ -18,9 +20,10 @@ public class Manager_Story2 : MonoBehaviour
     public Objects_Stroy2 Objects;
     float time = 0;
 
+
     enum STEP
     {
-        Start, Move
+        Start, Move, Talk_B1
     }
 
     [SerializeField]
@@ -36,6 +39,10 @@ public class Manager_Story2 : MonoBehaviour
                 break;
             case STEP.Move:
                 Objects.Player.GetComponent<Player_Story2>().Movement("Move_Door");
+                break;
+            case STEP.Talk_B1:
+                Objects.BenderTalk_Window.SetActive(true);
+                Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_S2>().NextTalk();
                 break;
         }
     }
@@ -53,12 +60,18 @@ public class Manager_Story2 : MonoBehaviour
                 }
                 break;
             case STEP.Move:
+                if (Objects.Player.GetComponent<Player_Story2>().isArrival)
+                {
+                    ChangeStep(STEP.Talk_B1);
+                }
                 break;
         }
     }
 
     private void Start()
     {
+        Objects.BenderTalk_Window.SetActive(false);
+
         ChangeStep(STEP.Start);
     }
 
