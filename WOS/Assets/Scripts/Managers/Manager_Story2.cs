@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SocialPlatforms.Impl;
 using static UnityEditor.PlayerSettings;
 
@@ -12,6 +13,8 @@ public class Objects_Stroy2
 {
     public GameObject Player;
     public GameObject BenderTalk_Window;
+    public GameObject PlayerTalk_Window;
+    public GameObject FadeOut;
 }
 
 
@@ -23,7 +26,7 @@ public class Manager_Story2 : MonoBehaviour
 
     enum STEP
     {
-        Start, Move, Talk_B1
+        Start, Move, Talk, End
     }
 
     [SerializeField]
@@ -40,10 +43,14 @@ public class Manager_Story2 : MonoBehaviour
             case STEP.Move:
                 Objects.Player.GetComponent<Player_Story2>().Movement("Move_Door");
                 break;
-            case STEP.Talk_B1:
+            case STEP.Talk:
                 Objects.BenderTalk_Window.SetActive(true);
                 Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_S2>().NextTalk();
                 break;
+            case STEP.End:
+                StartCoroutine(FadeOut_Anim());
+                break;
+
         }
     }
 
@@ -53,7 +60,7 @@ public class Manager_Story2 : MonoBehaviour
         {
             case STEP.Start:
                 time += Time.deltaTime;
-                if(time > 2.0f)
+                if(time > 1.0f)
                 {
                     time = 0;
                     ChangeStep(STEP.Move);
@@ -62,7 +69,13 @@ public class Manager_Story2 : MonoBehaviour
             case STEP.Move:
                 if (Objects.Player.GetComponent<Player_Story2>().isArrival)
                 {
-                    ChangeStep(STEP.Talk_B1);
+                    ChangeStep(STEP.Talk);
+                }
+                break;
+            case STEP.Talk:
+                if(Objects.PlayerTalk_Window.GetComponent<PlayerTalk_Window_S2>().SceneEnd == true)
+                {
+                    ChangeStep(STEP.End);
                 }
                 break;
         }
@@ -71,6 +84,7 @@ public class Manager_Story2 : MonoBehaviour
     private void Start()
     {
         Objects.BenderTalk_Window.SetActive(false);
+        Objects.PlayerTalk_Window.SetActive(false);
 
         ChangeStep(STEP.Start);
     }
@@ -78,5 +92,15 @@ public class Manager_Story2 : MonoBehaviour
     private void Update()
     {
         StateProcess();
+    }
+
+    IEnumerator FadeOut_Anim()
+    {
+        while (Objects.FadeOut.GetComponent<Image>().fillAmount < 1)
+        {
+            Objects.FadeOut.GetComponent<Image>().fillAmount += Time.deltaTime;
+            yield return null;
+        }
+        Manager_SceneChange.inst.ChangeScene("Tutorial");
     }
 }

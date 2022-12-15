@@ -2,26 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Authentication.ExtendedProtection;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-
-
-[System.Serializable]
-public class ReadyContent
-{
-    [TextArea]
-    public string Content;
-}
 
 public class BenderTalk_Window_S2 : MonoBehaviour
 {
     public ReadyContent[] ReadyContents;
     public TMP_Text Talk;
     public GameObject NextIcon;
-
+    public GameObject PlayerTalk_Window;
     public bool TalkEnd = false;
     public int Content_Num = 0;
-    string TextTemp = "";
 
+    string TextTemp = "";
     IEnumerator Coroutine;
 
     private void Start()
@@ -37,9 +30,11 @@ public class BenderTalk_Window_S2 : MonoBehaviour
             StopCoroutine(Coroutine);
             if (Input.anyKeyDown)
             {
-                Content_Num++;
-                // NextTalk()는 스탭이 넘어갈땐 실행 안되게
-                NextTalk();
+                    PlayerTalk_Window.SetActive(true);
+                    PlayerTalk_Window.GetComponent<PlayerTalk_Window_S2>().NextTalk();
+
+                    ++Content_Num;
+                    gameObject.SetActive(false);
             }
         }
     }

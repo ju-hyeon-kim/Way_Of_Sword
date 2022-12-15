@@ -59,10 +59,10 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Talk:
                 Objects.Player_Talk_Window.SetActive(true);
-                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().CoTalking();
+                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().CoTalking();
                 break;
             case STEP.Standup:
-                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().TalkEnd = false;
+                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().TalkEnd = false;
                 Objects.Player_Talk_Window.SetActive(false);
                 Player.SetTrigger("Standup");
                 break;
@@ -88,9 +88,9 @@ public class Manager_Story : MonoBehaviour
                 Player.gameObject.GetComponent<Player_Story>().PlayerTurn_rotdoor = true;
 
                 //캐릭터 혼잣말 "아...귀청이야..."
-                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().Content_Num = 3;
+                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Content_Num = 3;
                 Objects.Player_Talk_Window.SetActive(true);
-                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().CoTalking();
+                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().CoTalking();
                 break;
             case STEP.Event2:
                 //"빨랑 안나와?!"
@@ -101,8 +101,8 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Talk3:
                 //"할 수 없군..."
-                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().Content_Num = 4;
-                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().CoTalking();
+                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Content_Num = 4;
+                Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().CoTalking();
                 break;
             case STEP.Move2: //문으로 이동
                 //Player 대화창 제거
@@ -156,7 +156,7 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Talk:
                 {
-                    if(Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().Content_Num == 3)
+                    if(Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Content_Num == 3)
                     {
                         ChangeStep(STEP.Standup);
                     }
@@ -204,7 +204,7 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Talk2:
                 {
-                    if(Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().Step_Event2)
+                    if(Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Step_Event2)
                     {
                         ChangeStep(STEP.Event2);
                     }
@@ -223,7 +223,7 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Talk3:
                 {
-                    if (Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window>().Step_Move2)
+                    if (Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Step_Move2)
                     {
                         ChangeStep(STEP.Move2);
                     }
