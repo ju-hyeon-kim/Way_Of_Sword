@@ -70,7 +70,7 @@ public class Manager_Story : MonoBehaviour
                 Objects.GmTalk_Window.SetActive(true);
                 Objects.Sword_Zone_Circle.SetActive(true);
                 Bed.enabled = true;
-                Player.gameObject.GetComponent<Player_Story>().PlayerTurn = true;
+                Player.gameObject.GetComponent<Player_Story1>().PlayerTurn = true;
                 Sword.PlayerTurn = true;
                 Player.applyRootMotion = false;
                 Player.runtimeAnimatorController = Story1_2;
@@ -80,12 +80,12 @@ public class Manager_Story : MonoBehaviour
                 Objects.EventTalk_Window.SetActive(true);
 
                 //플레이어 움직임 막기
-                Player.gameObject.GetComponent<Player_Story>().PlayerTurn = false;
-                Player.gameObject.GetComponent<Player_Story>().StopMove();
+                Player.gameObject.GetComponent<Player_Story1>().PlayerTurn = false;
+                Player.gameObject.GetComponent<Player_Story1>().StopMove();
                 break;
             case STEP.Talk2:
                 //캐릭터가 문을 바라본다.
-                Player.gameObject.GetComponent<Player_Story>().PlayerTurn_rotdoor = true;
+                Player.gameObject.GetComponent<Player_Story1>().PlayerTurn_rotdoor = true;
 
                 //캐릭터 혼잣말 "아...귀청이야..."
                 Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Content_Num = 3;
@@ -114,7 +114,7 @@ public class Manager_Story : MonoBehaviour
                 //Door_Zone 생성
                 Objects.Door_Zone_Circle.SetActive(true);
                 //Player 움직임 제한 풀기
-                Player.gameObject.GetComponent<Player_Story>().PlayerTurn = true;
+                Player.gameObject.GetComponent<Player_Story1>().PlayerTurn = true;
                 break;
         }
     }
@@ -180,7 +180,7 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Move:
                 {
-                    if(Player.GetComponent<Player_Story>().Weapon_Back.activeSelf) // 검을 장착 했으면
+                    if(Player.GetComponent<Player_Story1>().Weapon_Back.activeSelf) // 검을 장착 했으면
                     {
                         time += Time.deltaTime;
                         if(time > 1.0f)

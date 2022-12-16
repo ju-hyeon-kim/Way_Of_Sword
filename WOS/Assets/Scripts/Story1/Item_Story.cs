@@ -9,7 +9,7 @@ public class Item_Story : MonoBehaviour
     public Material[] Original;
     public LayerMask PickMask;
     public Sword_Zone Sword_Zone;
-    public Player_Story Player;
+    public Player_Story1 Player;
 
     public bool PlayerTurn = false;
 
