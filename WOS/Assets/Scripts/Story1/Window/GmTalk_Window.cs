@@ -17,8 +17,8 @@ public class GmTalk_Window : MonoBehaviour
 
     public int Content_Num = 0;
 
-    private void Start()
+    public void NextTalk()
     {
-        Talk.text = ReadyContents[0].Content;
+        Talk.text = ReadyContents[Content_Num].Content;
     }
 }

@@ -6,22 +6,26 @@ using UnityEngine;
 
 public class Player_Tuto : MonoBehaviour
 {
+    public GameObject Dummy;
     public bool PlayerTurn = false;
-    public LayerMask pickMask = default;
-    public float MoveSpeed = 1.0f;
-    public float RotSpeed = 360.0f;
+    public LayerMask Mask_Ground = default;
+    public LayerMask Mask_Character = default;
+    float MoveSpeed = 3.0f;
+    float RotSpeed = 360.0f;
+    public float AttackRange = 2f;
 
     Coroutine moveCo = null;
     Coroutine rotCo = null;
 
     void Update()
     {
+        //¹«ºù
         if (PlayerTurn)
         {
             if (Input.GetMouseButtonDown(1))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, pickMask))
+                if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, Mask_Ground))
                 {
                     if (moveCo != null)
                     {
@@ -29,6 +33,25 @@ public class Player_Tuto : MonoBehaviour
                         moveCo = null;
                     }
                     moveCo = StartCoroutine(Moving(hit.point));
+                    if (rotCo != null)
+                    {
+                        StopCoroutine(rotCo);
+                        rotCo = null;
+                    }
+                    rotCo = StartCoroutine(Rotating(hit.point));
+                }
+            }
+            else if (Input.GetMouseButtonDown(0) && !GetComponent<Animator>().GetBool("isAttacking"))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, Mask_Character))
+                {
+                    if (moveCo != null)
+                    {
+                        StopCoroutine(moveCo);
+                        moveCo = null;
+                    }
+                    moveCo = StartCoroutine(Attaking(hit.point));
                     if (rotCo != null)
                     {
                         StopCoroutine(rotCo);
@@ -70,7 +93,7 @@ public class Player_Tuto : MonoBehaviour
         float dist = dir.magnitude;
         dir.Normalize();
 
-        GetComponent<Animator>().SetBool("Walk", true);
+        GetComponent<Animator>().SetBool("Run", true);
 
         while (dist > 0.0f)
         {
@@ -84,12 +107,32 @@ public class Player_Tuto : MonoBehaviour
             yield return null;
         }
 
-        GetComponent<Animator>().SetBool("Walk", false);
+        GetComponent<Animator>().SetBool("Run", false);
     }
 
-    public void StopMove()
+    IEnumerator Attaking(Vector3 pos)
     {
-        StopAllCoroutines();
-        GetComponent<Animator>().SetBool("Walk", false);
+        pos.y = transform.position.y;
+        Vector3 dir = pos - transform.position;
+        float dist = dir.magnitude;
+        dir.Normalize();
+
+        GetComponent<Animator>().SetBool("Run", true);
+
+        while (dist > AttackRange)
+        {
+            float delta = MoveSpeed * Time.deltaTime;
+            if (delta > dist)
+            {
+                delta = dist;
+            }
+            dist -= delta;
+            transform.Translate(dir * delta, Space.World);
+            yield return null;
+        }
+
+        GetComponent<Animator>().SetBool("Run", false);
+        GetComponent<Animator>().SetTrigger("Attack1");
+        Dummy.GetComponent<Dummy>().OnDamage();
     }
 }
