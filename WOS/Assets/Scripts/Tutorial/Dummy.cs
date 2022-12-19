@@ -14,11 +14,13 @@ public class Dummy : MonoBehaviour
 
     public void OnDamage()
     {
+        Debug.Log("함수");
         StartCoroutine(Damage_Anim());
     }
 
     IEnumerator Damage_Anim()
     {
+        Debug.Log("코루틴");
         GetComponent<Animator>().SetTrigger("Damage");
         PtoD = Player.position - transform.position;
         PtoD.Normalize();

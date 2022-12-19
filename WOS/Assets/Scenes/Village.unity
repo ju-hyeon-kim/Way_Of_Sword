@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2783,19 +2783,18 @@ Transform:
   m_Father: {fileID: 7641779012023043094}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -4.277, y: -12.537, z: 92.912}
---- !u!136 &1090692720347924614
-CapsuleCollider:
+--- !u!135 &1090692720347924614
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090692720347924612}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.18
-  m_Height: 1.8
-  m_Direction: 1
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.7
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!4 &1090692720655179732
 Transform:
@@ -8695,6 +8694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Dummy: {fileID: 1462242100521561975}
+  Weapon_Hand: {fileID: 1090692720347924612}
   PlayerTurn: 0
   ComboChk:
     m_PersistentCalls:

@@ -8,8 +8,10 @@ using UnityEngine.Events;
 public class Player_Tuto : MonoBehaviour
 {
     public GameObject Dummy;
+    public GameObject Weapon_Hand;
     public bool PlayerTurn = false;
     public UnityEvent<bool> ComboChk = default;
+    public UnityEvent Attack = default;
     public LayerMask Mask_Ground = default;
     public LayerMask Mask_Character = default;
     float MoveSpeed = 3.0f;
@@ -70,6 +72,16 @@ public class Player_Tuto : MonoBehaviour
                 if(Input.GetMouseButtonDown(0))
                 {
                     ++ClickCount;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, Mask_Character))
+                    {
+                        if (rotCo != null)
+                        {
+                            StopCoroutine(rotCo);
+                            rotCo = null;
+                        }
+                        rotCo = StartCoroutine(Rotating(hit.point));
+                    }
                 }
             }
         }
@@ -145,7 +157,6 @@ public class Player_Tuto : MonoBehaviour
 
         GetComponent<Animator>().SetBool("Run", false);
         GetComponent<Animator>().SetTrigger("ComboAttack");
-        Dummy.GetComponent<Dummy>().OnDamage();
     }
 
     public void ComboCheck(bool b)
@@ -177,6 +188,16 @@ public class Player_Tuto : MonoBehaviour
 
     public void Hit_Target()
     {
+        Collider[] list = Physics.OverlapSphere(Weapon_Hand.transform.position, 0.7f, Mask_Character);
 
+        foreach(Collider col in list)
+        {
+            col.GetComponent<Dummy>()?.OnDamage();
+        }
+    }
+
+    public void OnAttack()
+    {
+        Attack?.Invoke();
     }
 }
