@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player_Tuto : MonoBehaviour
 {
     public GameObject Dummy;
     public bool PlayerTurn = false;
+    public UnityEvent<bool> ComboChk = default;
     public LayerMask Mask_Ground = default;
     public LayerMask Mask_Character = default;
     float MoveSpeed = 3.0f;
     float RotSpeed = 360.0f;
     public float AttackRange = 2f;
+    bool isCombable = false;
+    int ClickCount = 0;
 
     Coroutine moveCo = null;
     Coroutine rotCo = null;
@@ -41,7 +45,7 @@ public class Player_Tuto : MonoBehaviour
                     rotCo = StartCoroutine(Rotating(hit.point));
                 }
             }
-            else if (Input.GetMouseButtonDown(0) && !GetComponent<Animator>().GetBool("isAttacking"))
+            else if (Input.GetMouseButtonDown(0) && !GetComponent<Animator>().GetBool("isC_Attacking"))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, Mask_Character))
@@ -58,6 +62,14 @@ public class Player_Tuto : MonoBehaviour
                         rotCo = null;
                     }
                     rotCo = StartCoroutine(Rotating(hit.point));
+                }
+            }
+
+            if(isCombable)
+            {
+                if(Input.GetMouseButtonDown(0))
+                {
+                    ++ClickCount;
                 }
             }
         }
@@ -132,7 +144,39 @@ public class Player_Tuto : MonoBehaviour
         }
 
         GetComponent<Animator>().SetBool("Run", false);
-        GetComponent<Animator>().SetTrigger("Attack1");
+        GetComponent<Animator>().SetTrigger("ComboAttack");
         Dummy.GetComponent<Dummy>().OnDamage();
+    }
+
+    public void ComboCheck(bool b)
+    {
+        if(b) // ComboCheckStart
+        {
+            isCombable = true;
+            ClickCount = 0;
+        }
+        else // ComboCheckEnd
+        {
+            isCombable = false;
+            if(ClickCount == 0)
+            {
+                GetComponent<Animator>().SetTrigger("ComboFail");
+            }
+        }
+    }
+
+    public void ComboCheckStart()
+    {
+        ComboChk?.Invoke(true); // 콤보체크에 저장된 함수가 널이 아니면 해당 함수를 실행한다.
+    }
+
+    public void ComboCheckEnd() 
+    {
+        ComboChk?.Invoke(false); // 콤보체크에 저장된 함수가 널이면 해당 함수를 실행하지 않는다.
+    }
+
+    public void Hit_Target()
+    {
+
     }
 }

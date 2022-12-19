@@ -19,8 +19,6 @@ public class Dummy : MonoBehaviour
 
     IEnumerator Damage_Anim()
     {
-        yield return new WaitForSeconds(0.5f);
-
         GetComponent<Animator>().SetTrigger("Damage");
         PtoD = Player.position - transform.position;
         PtoD.Normalize();

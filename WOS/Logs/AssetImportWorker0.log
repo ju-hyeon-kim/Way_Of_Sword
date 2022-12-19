@@ -1,0 +1,441 @@
+Using pre-set license
+Built from '2021.3/staging' branch; Version is '2021.3.1f1 (3b70a0754835) revision 3895456'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19044) 64bit Professional' Language: 'ko' Physical Memory: 16321 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity 2021.3.1f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/Atents/Desktop/WOS/WOS
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+56807
+Successfully changed project path to: C:/Users/Atents/Desktop/WOS/WOS
+C:/Users/Atents/Desktop/WOS/WOS
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Refreshing native plugins compatible for Editor in 105.03 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2021.3.1f1 (3b70a0754835)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity 2021.3.1f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Atents/Desktop/WOS/WOS/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 710 (ID=0x128b)
+    Vendor:   NVIDIA
+    VRAM:     984 MB
+    Driver:   30.0.14.7404
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity 2021.3.1f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity 2021.3.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity 2021.3.1f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56792
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity 2021.3.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.005397 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 102.23 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.695 seconds
+Domain Reload Profiling:
+	ReloadAssembly (695ms)
+		BeginReloadAssembly (79ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (499ms)
+			LoadAssemblies (76ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (112ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (30ms)
+			SetupLoadedEditorAssemblies (302ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (7ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (102ms)
+				BeforeProcessingInitializeOnLoad (2ms)
+				ProcessInitializeOnLoadAttributes (141ms)
+				ProcessInitializeOnLoadMethodAttributes (49ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.006378 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\Atents\Desktop\WOS\WOS\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Atents\Desktop\WOS\WOS\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.65 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.294 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1295ms)
+		BeginReloadAssembly (119ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (21ms)
+		EndReloadAssembly (1045ms)
+			LoadAssemblies (301ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (279ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (55ms)
+			SetupLoadedEditorAssemblies (364ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (5ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (88ms)
+				ProcessInitializeOnLoadAttributes (236ms)
+				ProcessInitializeOnLoadMethodAttributes (24ms)
+				AfterProcessingInitializeOnLoad (8ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 0.71 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3434 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 23 unused Assets / (84.1 KB). Loaded Objects now: 3917.
+Memory consumption went from 137.7 MB to 137.7 MB.
+Total: 3.014300 ms (FindLiveObjects: 0.315600 ms CreateObjectMapping: 0.237800 ms MarkObjects: 2.362000 ms  DeleteObjects: 0.097800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 351759.849090 seconds.
+  path: Assets/AttackState.cs
+  artifactKey: Guid(f435ec169fea3f64fba2952626ea2406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AttackState.cs using Guid(f435ec169fea3f64fba2952626ea2406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd26e185be149ec90940ba6bee571a78') in 0.041493 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.277515 seconds.
+  path: Assets/Ui
+  artifactKey: Guid(3eba41af3f6f78140a66c6a31bca0fdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Ui using Guid(3eba41af3f6f78140a66c6a31bca0fdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4cbf1cc2b7737deb9b4834e1f87a12d4') in 0.017828 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.435034 seconds.
+  path: Assets/Tools
+  artifactKey: Guid(62ca45853c7f32240b23c58a7e25a3d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tools using Guid(62ca45853c7f32240b23c58a7e25a3d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cef22e25a858359278ab0b3c49ecafcb') in 0.008165 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.439935 seconds.
+  path: Assets/Temp
+  artifactKey: Guid(e20d2df64d1d4af4cb229527be6afe2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Temp using Guid(e20d2df64d1d4af4cb229527be6afe2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2de4ef7ed60e5ee0f173422cc23bdd85') in 0.008403 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.600461 seconds.
+  path: Assets/SkyBox
+  artifactKey: Guid(32115a8ba9ab3fd45a333aac6e32d2e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SkyBox using Guid(32115a8ba9ab3fd45a333aac6e32d2e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfbb993f98a050d799b1dfe10bede860') in 0.008048 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.425021 seconds.
+  path: Assets/Scripts
+  artifactKey: Guid(f818fa8ed21064a45ab4e57781ad9ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts using Guid(f818fa8ed21064a45ab4e57781ad9ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '92c9da3270a7b997fcfc37227bb4d972') in 0.008466 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.769772 seconds.
+  path: Assets/Scenes
+  artifactKey: Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes using Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc172811d573b296104adb4d2728db37') in 0.008792 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.432861 seconds.
+  path: Assets/Model
+  artifactKey: Guid(62bcc2c0d82b7d048bdc65161728f5df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Model using Guid(62bcc2c0d82b7d048bdc65161728f5df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '026b6f547afe88373e33e0a6c6816f41') in 0.008311 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.417047 seconds.
+  path: Assets/Font
+  artifactKey: Guid(fc4b14cefe5f8f749a8a5103c263ab18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Font using Guid(fc4b14cefe5f8f749a8a5103c263ab18) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e4394d83c54b3f250d358d23ca4eb14') in 0.008412 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.473942 seconds.
+  path: Assets/Animation
+  artifactKey: Guid(3eb453bf2ea4e7e41bbf75012f8af96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation using Guid(3eb453bf2ea4e7e41bbf75012f8af96c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20ef514ebb29b1da1a2ab6ab86324e3b') in 0.011375 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005180 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\Atents\Desktop\WOS\WOS\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Atents\Desktop\WOS\WOS\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.79 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.117 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1118ms)
+		BeginReloadAssembly (150ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (37ms)
+		EndReloadAssembly (858ms)
+			LoadAssemblies (100ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (380ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (43ms)
+			SetupLoadedEditorAssemblies (302ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (13ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (69ms)
+				ProcessInitializeOnLoadAttributes (185ms)
+				ProcessInitializeOnLoadMethodAttributes (24ms)
+				AfterProcessingInitializeOnLoad (9ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.80 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3409 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 16 unused Assets / (51.2 KB). Loaded Objects now: 3920.
+Memory consumption went from 135.7 MB to 135.6 MB.
+Total: 2.610100 ms (FindLiveObjects: 0.302700 ms CreateObjectMapping: 0.184700 ms MarkObjects: 2.044900 ms  DeleteObjects: 0.076600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 4344.331752 seconds.
+  path: Assets/Scripts/Tutorial
+  artifactKey: Guid(4a4ca373e97dea24fbde92d9054f5f02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Tutorial using Guid(4a4ca373e97dea24fbde92d9054f5f02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf5d1c942aa9714f362314b33354f9d4') in 0.013327 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.860353 seconds.
+  path: Assets/Scripts/Tutorial/Player_Tuto.cs
+  artifactKey: Guid(780661fbad7e6b54a8aece3e2853142c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Tutorial/Player_Tuto.cs using Guid(780661fbad7e6b54a8aece3e2853142c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e90f40038eb08c5950b2d9e8889f52e') in 0.005424 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4988.631933 seconds.
+  path: Assets/Animation/Player
+  artifactKey: Guid(eb6db9e19f124b7488773a4f4c7146bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/Player using Guid(eb6db9e19f124b7488773a4f4c7146bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e95510f09ed38cb22a912ee45e70fff1') in 0.009562 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.327690 seconds.
+  path: Assets/Animation/Player/Tutorial
+  artifactKey: Guid(031654dfa961b4c4e996cf1c216b8670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/Player/Tutorial using Guid(031654dfa961b4c4e996cf1c216b8670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a8310fee5fd0d55a1a6cb2312c2ae81d') in 0.003537 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.420858 seconds.
+  path: Assets/Animation/Player/Tutorial/Maria WProp J J Ong@Two Hand Club Combo.fbx
+  artifactKey: Guid(82afc19f9f60a5642ba21c76545eb8a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/Player/Tutorial/Maria WProp J J Ong@Two Hand Club Combo.fbx using Guid(82afc19f9f60a5642ba21c76545eb8a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '370534f65340338db921223c0f4a970c') in 0.046247 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.316302 seconds.
+  path: Assets/Animation/Player/Tutorial/ComboAttack.fbx
+  artifactKey: Guid(82afc19f9f60a5642ba21c76545eb8a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animation/Player/Tutorial/ComboAttack.fbx using Guid(82afc19f9f60a5642ba21c76545eb8a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd381d9227bed2aec1ba7a591d4d6e3c2') in 0.012940 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 98.641896 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Combat/BlockingLoop.fbx
+  artifactKey: Guid(5cc53a90696edc1408fdda805eebb809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Combat/BlockingLoop.fbx using Guid(5cc53a90696edc1408fdda805eebb809) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55caea6d8b4484208395d73fd6dbcb30') in 0.068015 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.035813 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Combat/Death.fbx
+  artifactKey: Guid(2880a5c98f020b140b0fa0eaec60c639) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Combat/Death.fbx using Guid(2880a5c98f020b140b0fa0eaec60c639) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee47eaf07e32cd5a2ca6b43d7954e06a') in 0.203122 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/WalkBackward.fbx
+  artifactKey: Guid(8d55f6f9b242d5b41bfa11d806d6e5be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/WalkBackward.fbx using Guid(8d55f6f9b242d5b41bfa11d806d6e5be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fc38c0383e51179a953113fb249cf9e') in 0.220038 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000028 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/JumpWhileRunning.fbx
+  artifactKey: Guid(a37cdcae8238ca446a7296cf62413b0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/JumpWhileRunning.fbx using Guid(a37cdcae8238ca446a7296cf62413b0d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a0222a0d56c193378e59ff7ee40eb30') in 0.059997 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/RollBackward.fbx
+  artifactKey: Guid(bbe806054f2ac8943b83bcb37902197d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/RollBackward.fbx using Guid(bbe806054f2ac8943b83bcb37902197d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db64025594cfa41749bfc61b151aff21') in 0.105061 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/RunBackwardRight.fbx
+  artifactKey: Guid(c35656503bb14ff4e8dc54799cfe796d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/RunBackwardRight.fbx using Guid(c35656503bb14ff4e8dc54799cfe796d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bb892fa11427790fb2b7a1f023d1f97') in 0.111076 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Combat/SpellCast.fbx
+  artifactKey: Guid(6f0c27552a65e8a448a4eccc9851277b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Combat/SpellCast.fbx using Guid(6f0c27552a65e8a448a4eccc9851277b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95eb6ace02215ee54694d7499eb5115a') in 0.131436 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/Sprint.fbx
+  artifactKey: Guid(331325ad267979b4581ef577e6bb5edc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/Sprint.fbx using Guid(331325ad267979b4581ef577e6bb5edc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1f745097370344c8bc64e5fd7e6218bf') in 0.092036 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.002637 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/FallingLoop.fbx
+  artifactKey: Guid(15e216e1b12268b4cae1302c53cc43dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/FallingLoop.fbx using Guid(15e216e1b12268b4cae1302c53cc43dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de302600e62d99745d832903cbefd79a') in 0.077787 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Tools/MeshBaker/Examples/CharacterCustomization/paintwars_gameassets.fbx
+  artifactKey: Guid(33dc55d6aa48f95498362c733e434014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Tools/MeshBaker/Examples/CharacterCustomization/paintwars_gameassets.fbx using Guid(33dc55d6aa48f95498362c733e434014) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '93f2b5b0b9874f1a68d5b2e8d63a2088') in 0.787645 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Combat/PunchLeft.fbx
+  artifactKey: Guid(39da7618d46a72544b70c24a5e430ecf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Combat/PunchLeft.fbx using Guid(39da7618d46a72544b70c24a5e430ecf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eeaf55db449b88567ba1440924c66cf2') in 0.059077 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000032 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Combat/Buff.fbx
+  artifactKey: Guid(8f0e32dcca81a4e4f87c78bfe2b97005) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Combat/Buff.fbx using Guid(8f0e32dcca81a4e4f87c78bfe2b97005) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d84b9c79e6180457edbcf02b436d74c') in 0.050655 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/WalkForwardRight.fbx
+  artifactKey: Guid(eb0874454b91c5f43b57a378839d90d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/WalkForwardRight.fbx using Guid(eb0874454b91c5f43b57a378839d90d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f8d7f6105f1e096662a91346a4eb9f9') in 0.065634 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/RunForward.fbx
+  artifactKey: Guid(b09d851b76d92f144abcea300e30fa58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/RunForward.fbx using Guid(b09d851b76d92f144abcea300e30fa58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed8052c9b2faafe4aba032e219c927f6') in 0.054610 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/RollRight.fbx
+  artifactKey: Guid(6039ecfe1555ef843829d6a3df0418f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/RollRight.fbx using Guid(6039ecfe1555ef843829d6a3df0418f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '661dba1cccbb414c25ca64e43d79da35') in 0.081371 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/RunBackward.fbx
+  artifactKey: Guid(c4220332113c53f40b2f01986b4dece5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/RunBackward.fbx using Guid(c4220332113c53f40b2f01986b4dece5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d84c85986278440897fbbd50b27a0d9') in 0.053387 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/Idle.fbx
+  artifactKey: Guid(65aceb821688847449cbad8f6eb6241d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/Idle.fbx using Guid(65aceb821688847449cbad8f6eb6241d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e362c577dd7e6fb83af0a918cceba3e1') in 0.053365 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Combat/SpinAttack_TwoWeapons.fbx
+  artifactKey: Guid(fa9ccddb5938ff44a81ee06e2f6d1a58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Combat/SpinAttack_TwoWeapons.fbx using Guid(fa9ccddb5938ff44a81ee06e2f6d1a58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd843a5441731361896652b5d892973b5') in 0.076432 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Combat/SpinAttack_TwoHanded.fbx
+  artifactKey: Guid(83cb8742d5b5bec4f86b2e4a26822bef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Combat/SpinAttack_TwoHanded.fbx using Guid(83cb8742d5b5bec4f86b2e4a26822bef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '836d2f8d6d96310382eaaf5b6342acf3') in 0.071598 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000022 seconds.
+  path: Assets/Model/3D_Model/Character/Player/Player_fbx.fbx
+  artifactKey: Guid(25be610b134b050439d3103ce18bbbe6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Model/3D_Model/Character/Player/Player_fbx.fbx using Guid(25be610b134b050439d3103ce18bbbe6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10fd4f03f04482619577c09cda6a957c') in 0.128247 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/AssetStore/Blink/Art/Animations/Movement/WalkBackwardLeft.fbx
+  artifactKey: Guid(ccb2245d1ee5d744a95938cf855d04a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/AssetStore/Blink/Art/Animations/Movement/WalkBackwardLeft.fbx using Guid(ccb2245d1ee5d744a95938cf855d04a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '373815b98f57f3d9c0dd74aa6224442d') in 0.042465 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
