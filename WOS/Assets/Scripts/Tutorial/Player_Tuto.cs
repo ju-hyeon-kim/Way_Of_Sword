@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class Player_Tuto : MonoBehaviour
 {
+    public GameObject Smash_eff;
     public GameObject Skill_Range;
     public GameObject Skill_Point;
     public GameObject Dummy;
@@ -239,6 +240,11 @@ public class Player_Tuto : MonoBehaviour
         }
     }
 
+    public void OnSmash()
+    {
+        Instantiate(Smash_eff, Skill_Point.transform.position, Skill_Point.transform.rotation);
+    }
+
     IEnumerator Skilling()
     {
         while(true)
@@ -266,8 +272,8 @@ public class Player_Tuto : MonoBehaviour
                         StopCoroutine(moveCo);
                         moveCo = null;
                     }
-                    //클릭지점이 몸에 가려져있으면 돌지 않는다.
                     GetComponent<Animator>().SetTrigger("Skill");
+                    OnSmash();
                     Skill_Point.SetActive(false);
                     Skill_Range.SetActive(false);
                     StopCoroutine(skillCo);
