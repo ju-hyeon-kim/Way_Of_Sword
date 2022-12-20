@@ -15,19 +15,14 @@ public class BenderTalk_Window_T : MonoBehaviour
     public int Content_Num = 0;
     string TextTemp = "";
 
-    IEnumerator Coroutine;
-
-    private void Start()
-    {
-        Coroutine = Talking();
-    }
+    Coroutine co;
 
     private void Update()
     {
         if (TalkEnd == true)
         {
             TextTemp = "";
-            StopCoroutine(Coroutine);
+            StopCoroutine(co);
             if (Input.anyKeyDown)
             {
                 // 다음 스탭 넘어가기
@@ -53,6 +48,6 @@ public class BenderTalk_Window_T : MonoBehaviour
 
     public void NextTalk()
     {
-        StartCoroutine(Talking());
+        co = StartCoroutine(Talking());
     }
 }

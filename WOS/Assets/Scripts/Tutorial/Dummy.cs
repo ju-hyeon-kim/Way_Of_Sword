@@ -14,13 +14,15 @@ public class Dummy : MonoBehaviour
 
     public void OnDamage()
     {
-        Debug.Log("함수");
+        if (Manager_Tutorial.BasicAttack_end == false)
+        {
+            Manager_Tutorial.BasicAttack_end = true;
+        }
         StartCoroutine(Damage_Anim());
     }
 
     IEnumerator Damage_Anim()
     {
-        Debug.Log("코루틴");
         GetComponent<Animator>().SetTrigger("Damage");
         PtoD = Player.position - transform.position;
         PtoD.Normalize();
@@ -34,10 +36,6 @@ public class Dummy : MonoBehaviour
         }
 
         time = 0;
-        if(Manager_Tutorial.BasicAttack_end == false)
-        {
-            Manager_Tutorial.BasicAttack_end = true;
-        }
     }
 
 }
