@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Player_Tuto : MonoBehaviour
 {
+    public Transform Skill_rot;
     public GameObject Smash_eff;
     public GameObject Skill_Range;
     public GameObject Skill_Point;
     public GameObject Dummy;
     public GameObject Weapon_Hand;
-    public GameObject Skill_A;
     public bool PlayerTurn = false;
     public UnityEvent Attack = default;
     public LayerMask Mask_Ground = default;
@@ -23,11 +24,18 @@ public class Player_Tuto : MonoBehaviour
     public float AttackRange = 2f;
     bool isCombable = false;
     public bool ComboAttack_Success = false;
+    public bool SkillAttack_Start = false;
+    public bool SkillAttack_Success = false;
     int ClickCount = 0;
 
     Coroutine moveCo = null;
     Coroutine rotCo = null;
     Coroutine skillCo = null;
+
+    GameObject nowEffect;
+
+    float AP = 10;
+    float Skill_AP = 30;
 
     private void Start()
     {
@@ -89,8 +97,8 @@ public class Player_Tuto : MonoBehaviour
                     }
                 }
             }
-            //스킬
-            else if(Input.GetKeyDown(KeyCode.Q))
+            //스킬 사용 준비 ( 스킬 반경 활성화 )
+            if(Input.GetKeyDown(KeyCode.Q) && SkillAttack_Start)
             {
                 Skill_Range.SetActive(true);
                 skillCo = StartCoroutine(Skilling());
@@ -223,7 +231,17 @@ public class Player_Tuto : MonoBehaviour
 
         foreach(Collider col in list)
         {
-            col.GetComponent<Dummy>()?.OnDamage();
+            col.GetComponent<Dummy>()?.OnDamage(AP);
+        }
+    }
+
+    public void Hit_Target_Skill()
+    {
+        Collider[] list = Physics.OverlapSphere(Skill_Point.transform.position, 0.5f, Mask_Character);
+
+        foreach (Collider col in list)
+        {
+            col.GetComponent<Dummy>()?.OnDamage(Skill_AP);
         }
     }
 
@@ -240,10 +258,24 @@ public class Player_Tuto : MonoBehaviour
         }
     }
 
+    public void SkillAttackSuccess()
+    {
+        if (SkillAttack_Success == false)
+        {
+            SkillAttack_Success = true;
+        }
+    }
+
     public void OnSmash()
     {
-        Instantiate(Smash_eff, Skill_Point.transform.position, Skill_Point.transform.rotation);
+        nowEffect = Instantiate(Smash_eff, Skill_Point.transform.position, Skill_rot.rotation);
     }
+
+    public void RemoveEffect()
+    {
+        Destroy(nowEffect);
+    }
+
 
     IEnumerator Skilling()
     {
@@ -259,6 +291,7 @@ public class Player_Tuto : MonoBehaviour
                 Skill_Point.transform.position = hit.point;
                 if (Input.GetMouseButtonDown(0))
                 {
+
                     //클릭지점으로 회전
                     if (rotCo != null)
                     {
@@ -269,13 +302,14 @@ public class Player_Tuto : MonoBehaviour
                     //이동중이라면 이동중지
                     if (moveCo != null)
                     {
+                        GetComponent<Animator>().SetBool("Run", false);
                         StopCoroutine(moveCo);
                         moveCo = null;
                     }
                     GetComponent<Animator>().SetTrigger("Skill");
-                    OnSmash();
                     Skill_Point.SetActive(false);
                     Skill_Range.SetActive(false);
+
                     StopCoroutine(skillCo);
                     skillCo = null;
                 }

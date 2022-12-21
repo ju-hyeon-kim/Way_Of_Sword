@@ -16,6 +16,8 @@ public class Objects_Tuto
     public GameObject GMTalk_Window;
     public GameObject Zone_Circle;
     public GameObject FadeOut;
+    public GameObject HP_of_Dummy;
+    public GameObject Dummy;
 }
 
 
@@ -28,7 +30,7 @@ public class Manager_Tutorial : MonoBehaviour
 
     enum STEP
     {
-        Start, Talk1, BasicAttack, End, Talk2, ComboAttack, Talk3, SkillAttack
+        Start, Talk_B1, BasicAttack, End, Talk_B2, ComboAttack, Talk_B3, SkillAttack, Talk_B4, KillDummy, Talk_B5, Talk_P1
     }
 
     [SerializeField]
@@ -40,7 +42,7 @@ public class Manager_Tutorial : MonoBehaviour
 
         switch (NowStep)
         {
-            case STEP.Talk1:
+            case STEP.Talk_B1:
                 Objects.BenderTalk_Window.SetActive(true);
                 Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
                 break;
@@ -55,7 +57,7 @@ public class Manager_Tutorial : MonoBehaviour
                 //플레이어 턴 키기
                 Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = true;
                 break;
-            case STEP.Talk2:
+            case STEP.Talk_B2:
                 //벤더 Talk 키기
                 Objects.BenderTalk_Window.SetActive(true);
                 Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
@@ -65,7 +67,7 @@ public class Manager_Tutorial : MonoBehaviour
                 Objects.Zone_Circle.SetActive(false);
                 //플레이어 턴 끄기
                 Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = false;
-                Objects.Player.GetComponent<Animator>().SetTrigger("ComboFail"); // 아이들 상태로 바꾸기
+                //Objects.Player.GetComponent<Animator>().SetTrigger("ComboFail"); // 아이들 상태로 바꾸기
                 break;
             case STEP.ComboAttack:
                 //벤더 Talk 끄기
@@ -80,7 +82,7 @@ public class Manager_Tutorial : MonoBehaviour
                 //플레이어 턴 키기
                 Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = true;
                 break;
-            case STEP.Talk3:
+            case STEP.Talk_B3:
                 //벤더 Talk 키기
                 Objects.BenderTalk_Window.SetActive(true);
                 Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
@@ -90,9 +92,11 @@ public class Manager_Tutorial : MonoBehaviour
                 Objects.Zone_Circle.SetActive(false);
                 //플레이어 턴 끄기
                 Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = false;
-                Objects.Player.GetComponent<Animator>().SetTrigger("ComboFail"); // 아이들 상태로 바꾸기
+                //Objects.Player.GetComponent<Animator>().SetBool("Run", false); // 아이들 상태로 바꾸기
                 break;
             case STEP.SkillAttack:
+                //스킬 사용 가능
+                Objects.Player.GetComponent<Player_Tuto>().SkillAttack_Start = true;
                 //벤더 Talk 끄기
                 Objects.BenderTalk_Window.SetActive(false);
                 //GM TAlk 켜기
@@ -104,6 +108,48 @@ public class Manager_Tutorial : MonoBehaviour
                 Objects.Zone_Circle.SetActive(true);
                 //플레이어 턴 키기
                 Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = true;
+                break;
+            case STEP.Talk_B4:
+                //벤더 Talk 키기
+                Objects.BenderTalk_Window.SetActive(true);
+                Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
+                //GM TalK 끄기
+                Objects.GMTalk_Window.SetActive(false);
+                //더미 존 써클 끄기
+                Objects.Zone_Circle.SetActive(false);
+                //플레이어 턴 끄기
+                Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = false;
+                break;
+            case STEP.KillDummy:
+                //벤더 Talk 끄기
+                Objects.BenderTalk_Window.SetActive(false);
+                //GM TAlk 켜기
+                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Content_Num++;
+                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Talk.fontSize = 25;
+                Objects.GMTalk_Window.SetActive(true);
+                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().NextTalk();
+                //더미 존 써클 키기
+                Objects.Zone_Circle.SetActive(true);
+                //플레이어 턴 키기
+                Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = true;
+                //더미 체력 활성화
+                Objects.HP_of_Dummy.GetComponent<HP_of_Dummy>().HP_Bar.fillAmount = 1;
+                Objects.Dummy.GetComponent<Dummy>().maxHP = 100;
+                Objects.HP_of_Dummy.SetActive(true);
+                break;
+            case STEP.Talk_B5:
+                //벤더 Talk 키기
+                Objects.BenderTalk_Window.SetActive(true);
+                Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
+                //GM TalK 끄기
+                Objects.GMTalk_Window.SetActive(false);
+                //더미 존 써클 끄기
+                Objects.Zone_Circle.SetActive(false);
+                //플레이어 턴 끄기
+                Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = false;
+                break;
+            case STEP.Talk_P1:
+                Objects.BenderTalk_Window.SetActive(false);
                 break;
             case STEP.End:
                 StartCoroutine(FadeOut_Anim());
@@ -120,10 +166,10 @@ public class Manager_Tutorial : MonoBehaviour
                 if (time > 1.0f)
                 {
                     time = 0;
-                    ChangeStep(STEP.Talk1);
+                    ChangeStep(STEP.Talk_B1);
                 }
                 break;
-            case STEP.Talk1:
+            case STEP.Talk_B1:
                 if(Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 1)
                 {
                     ChangeStep(STEP.BasicAttack);
@@ -133,11 +179,11 @@ public class Manager_Tutorial : MonoBehaviour
                 {
                     if(BasicAttack_end)
                     {
-                        ChangeStep(STEP.Talk2);
+                        ChangeStep(STEP.Talk_B2);
                     }
                 }
                 break;
-            case STEP.Talk2:
+            case STEP.Talk_B2:
                 if (Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 2)
                 {
                     ChangeStep(STEP.ComboAttack);
@@ -147,13 +193,37 @@ public class Manager_Tutorial : MonoBehaviour
                 // 콤보공격이 실행되면 체인지 스탭
                 if(Objects.Player.GetComponent<Player_Tuto>().ComboAttack_Success == true)
                 {
-                    ChangeStep(STEP.Talk3);
+                    ChangeStep(STEP.Talk_B3);
                 }
                 break;
-            case STEP.Talk3:
+            case STEP.Talk_B3:
                 if (Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 3)
                 {
                     ChangeStep(STEP.SkillAttack);
+                }
+                break;
+            case STEP.SkillAttack:
+                if(Objects.Player.GetComponent<Player_Tuto>().SkillAttack_Success == true)
+                {
+                    ChangeStep(STEP.Talk_B4);
+                }
+                break;
+            case STEP.Talk_B4:
+                if (Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 4)
+                {
+                    ChangeStep(STEP.KillDummy);
+                }
+                break;
+            case STEP.KillDummy:
+                if (Objects.Dummy.GetComponent<Dummy>().isDead == true)
+                {
+                    ChangeStep(STEP.Talk_B5);
+                }
+                break;
+            case STEP.Talk_B5:
+                if (Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 5)
+                {
+                    ChangeStep(STEP.Talk_P1);
                 }
                 break;
         }
