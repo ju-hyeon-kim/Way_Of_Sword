@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Player_Tuto : MonoBehaviour
 {
@@ -24,8 +25,13 @@ public class Player_Tuto : MonoBehaviour
     public float AttackRange = 2f;
     bool isCombable = false;
     public bool ComboAttack_Success = false;
-    public bool SkillAttack_Start = false;
+    public bool SkillAttack_Start = true; // 수정
     public bool SkillAttack_Success = false;
+
+    public Image MP_Bar;
+    public Image Skill_Icon_Forward; // 쿨타임
+    public bool isSkillCool = false;
+    float CoolTime = 10.0f;
     int ClickCount = 0;
 
     Coroutine moveCo = null;
@@ -36,6 +42,9 @@ public class Player_Tuto : MonoBehaviour
 
     float AP = 10;
     float Skill_AP = 30;
+    float maxMP = 100;
+    float curMP = 100;
+    float Skill_MP = 10;
 
     private void Start()
     {
@@ -45,6 +54,7 @@ public class Player_Tuto : MonoBehaviour
 
     void Update()
     {
+
         //무빙
         if (PlayerTurn)
         {
@@ -98,11 +108,10 @@ public class Player_Tuto : MonoBehaviour
                 }
             }
             //스킬 사용 준비 ( 스킬 반경 활성화 )
-            if(Input.GetKeyDown(KeyCode.Q) && SkillAttack_Start)
+            if(Input.GetKeyDown(KeyCode.Q) && SkillAttack_Start && isSkillCool == false)
             {
                 Skill_Range.SetActive(true);
                 skillCo = StartCoroutine(Skilling());
-                
             }
 
             if(isCombable)
@@ -238,11 +247,12 @@ public class Player_Tuto : MonoBehaviour
     public void Hit_Target_Skill()
     {
         Collider[] list = Physics.OverlapSphere(Skill_Point.transform.position, 0.5f, Mask_Character);
-
         foreach (Collider col in list)
         {
             col.GetComponent<Dummy>()?.OnDamage(Skill_AP);
         }
+
+        
     }
 
     public void OnAttack()
@@ -291,6 +301,9 @@ public class Player_Tuto : MonoBehaviour
                 Skill_Point.transform.position = hit.point;
                 if (Input.GetMouseButtonDown(0))
                 {
+                    StartCoroutine(SkillCool());
+                    //-MP
+                    ChangeMP();
 
                     //클릭지점으로 회전
                     if (rotCo != null)
@@ -320,5 +333,28 @@ public class Player_Tuto : MonoBehaviour
             }
                 yield return null;
         }
+    }
+
+    IEnumerator SkillCool()
+    {
+        isSkillCool = true;
+        Skill_Icon_Forward.fillAmount = 0;
+        float temp = CoolTime;
+
+        while (temp > 0)
+        {
+            temp -= Time.deltaTime;
+            Skill_Icon_Forward.fillAmount = 1.0f - (temp/CoolTime);
+            yield return null;
+        }
+
+        isSkillCool = false;
+        Skill_Icon_Forward.fillAmount = 1;
+    }
+
+    public void ChangeMP()
+    {
+        curMP -= Skill_MP;
+        MP_Bar.fillAmount = (curMP / maxMP);
     }
 }

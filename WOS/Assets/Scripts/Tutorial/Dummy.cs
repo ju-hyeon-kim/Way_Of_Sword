@@ -11,6 +11,7 @@ public class Dummy : MonoBehaviour
     public HP_of_Dummy hp_of_dummy;
     public float maxHP = 100;
     public bool isDead = false;
+    public bool Step_KillDummy = false;
 
     Vector3 PtoD;
     float time = 0f;
@@ -39,12 +40,15 @@ public class Dummy : MonoBehaviour
         PtoD.Normalize();
 
         //-HP
-        nowHP = maxHP - AP;
-        maxHP = nowHP;
-        hp_of_dummy.HP_Bar.fillAmount = nowHP * 0.01f;
-        if (maxHP <= 0)
+        if(Step_KillDummy)
         {
-            OnDead();
+            nowHP = maxHP - AP;
+            maxHP = nowHP;
+            hp_of_dummy.HP_Bar.fillAmount = nowHP * 0.01f;
+            if (maxHP <= 0)
+            {
+                OnDead();
+            }
         }
 
         while (time < 1.5f)

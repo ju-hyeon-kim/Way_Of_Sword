@@ -13,6 +13,7 @@ public class Objects_Tuto
 {
     public GameObject Player;
     public GameObject BenderTalk_Window;
+    public GameObject PlayerTalk_Window;
     public GameObject GMTalk_Window;
     public GameObject Zone_Circle;
     public GameObject FadeOut;
@@ -30,7 +31,8 @@ public class Manager_Tutorial : MonoBehaviour
 
     enum STEP
     {
-        Start, Talk_B1, BasicAttack, End, Talk_B2, ComboAttack, Talk_B3, SkillAttack, Talk_B4, KillDummy, Talk_B5, Talk_P1
+        Start, Talk_B1, BasicAttack, End, Talk_B2, ComboAttack, Talk_B3, SkillAttack, Talk_B4, KillDummy, Talk_B5, 
+        Talk_P1, Talk_B6, Talk_P2
     }
 
     [SerializeField]
@@ -97,6 +99,7 @@ public class Manager_Tutorial : MonoBehaviour
             case STEP.SkillAttack:
                 //스킬 사용 가능
                 Objects.Player.GetComponent<Player_Tuto>().SkillAttack_Start = true;
+                //Objects.Player.GetComponent<Player_Tuto>().isSkillCool = false;
                 //벤더 Talk 끄기
                 Objects.BenderTalk_Window.SetActive(false);
                 //GM TAlk 켜기
@@ -132,9 +135,8 @@ public class Manager_Tutorial : MonoBehaviour
                 Objects.Zone_Circle.SetActive(true);
                 //플레이어 턴 키기
                 Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = true;
-                //더미 체력 활성화
-                Objects.HP_of_Dummy.GetComponent<HP_of_Dummy>().HP_Bar.fillAmount = 1;
-                Objects.Dummy.GetComponent<Dummy>().maxHP = 100;
+                //더미에 데미지 들어갈수 있게 설정
+                Objects.Dummy.GetComponent<Dummy>().Step_KillDummy = true;
                 Objects.HP_of_Dummy.SetActive(true);
                 break;
             case STEP.Talk_B5:
@@ -149,7 +151,25 @@ public class Manager_Tutorial : MonoBehaviour
                 Objects.Player.GetComponent<Player_Tuto>().PlayerTurn = false;
                 break;
             case STEP.Talk_P1:
+                //벤더 Talk 끄기
                 Objects.BenderTalk_Window.SetActive(false);
+                //P Talk 켜기
+                Objects.PlayerTalk_Window.SetActive(true);
+                Objects.PlayerTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
+                break;
+            case STEP.Talk_B6:
+                //P Talk 끄기
+                Objects.PlayerTalk_Window.SetActive(false);
+                //벤더 Talk 켜기
+                Objects.BenderTalk_Window.SetActive(true);
+                Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
+                break;
+            case STEP.Talk_P2:
+                //벤더 Talk 끄기
+                Objects.BenderTalk_Window.SetActive(false);
+                //P Talk 켜기
+                Objects.PlayerTalk_Window.SetActive(true);
+                Objects.PlayerTalk_Window.GetComponent<BenderTalk_Window_T>().NextTalk();
                 break;
             case STEP.End:
                 StartCoroutine(FadeOut_Anim());
@@ -226,12 +246,31 @@ public class Manager_Tutorial : MonoBehaviour
                     ChangeStep(STEP.Talk_P1);
                 }
                 break;
+            case STEP.Talk_P1:
+                if (Objects.PlayerTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 1)
+                {
+                    ChangeStep(STEP.Talk_B6);
+                }
+                break;
+            case STEP.Talk_B6:
+                if (Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 6)
+                {
+                    ChangeStep(STEP.Talk_P2);
+                }
+                break;
+            case STEP.Talk_P2:
+                if (Objects.PlayerTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 2)
+                {
+                    ChangeStep(STEP.End);
+                }
+                break;
         }
     }
 
     private void Start()
     {
         Objects.BenderTalk_Window.SetActive(false);
+        Objects.PlayerTalk_Window.SetActive(false);
         Objects.GMTalk_Window.SetActive(false);
         Objects.Zone_Circle.SetActive(false);
 
@@ -250,6 +289,6 @@ public class Manager_Tutorial : MonoBehaviour
             Objects.FadeOut.GetComponent<Image>().fillAmount += Time.deltaTime;
             yield return null;
         }
-        Manager_SceneChange.inst.ChangeScene("Tutorial");
+        Manager_SceneChange.inst.ChangeScene("Village");
     }
 }
