@@ -251,8 +251,6 @@ public class Player_Tuto : MonoBehaviour
         {
             col.GetComponent<Dummy>()?.OnDamage(Skill_AP);
         }
-
-        
     }
 
     public void OnAttack()
