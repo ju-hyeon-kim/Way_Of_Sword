@@ -11,14 +11,12 @@ public class MainCam_Controller : MonoBehaviour
 
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
-    Vector2 ZoomRange = new Vector2(1, 10);
 
     //Npc 대화 이벤트
     Vector3 SavePos;
     Vector3 SaveVec;
     GameObject SaveNpc;
     Vector3 RotDir;
-    
 
     private void Start()
     {
@@ -35,11 +33,10 @@ public class MainCam_Controller : MonoBehaviour
         {
             //줌
             myDist -= Input.GetAxis("Mouse ScrollWheel");
-            myDist = Mathf.Clamp(myDist, ZoomRange.x, ZoomRange.y);
+            myDist = Mathf.Clamp(myDist, 2.0f, 15.0f); // 줌 최소/최대 제한
+            
             transform.position = Cam_Target.position - myDir * myDist;
         }
-
-        
     }
 
     //Npc와 대화시 시점변경
@@ -92,6 +89,7 @@ public class MainCam_Controller : MonoBehaviour
             Talk_Ready = true;
         }
     }
+
     IEnumerator Rotating(Vector3 pos)
     {
         if (pos == SaveVec) // 원래 시점으로 돌아갈 때
