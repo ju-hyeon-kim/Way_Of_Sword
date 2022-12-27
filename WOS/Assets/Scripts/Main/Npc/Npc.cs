@@ -10,7 +10,7 @@ public class Npc : MonoBehaviour
 {
     public Npc_Data Datas;
 
-    public Manager_Cam manager_cam;
+    public MainCam_Controller MainCam;
     public Material OutLine;
     public Renderer[] RendererList;
     public GameObject NpcName_Label;
@@ -79,7 +79,7 @@ public class Npc : MonoBehaviour
         if (s == "대화")
         {
             //2.카메라 애니메이션
-            manager_cam.NpcView(transform);
+            MainCam.NpcView(transform);
         }
 
         //회전
@@ -110,7 +110,7 @@ public class Npc : MonoBehaviour
             bool b = true;
             while (b)
             {
-                if (manager_cam.Talk_Ready)
+                if (MainCam.Talk_Ready)
                 {
                     Connect_Window();
                     b = false;

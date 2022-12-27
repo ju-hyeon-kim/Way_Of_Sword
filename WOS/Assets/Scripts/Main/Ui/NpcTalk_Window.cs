@@ -10,7 +10,7 @@ public class NpcTalk_Window : MonoBehaviour
     public TMP_Text Name;
     public TMP_Text Talk;
     public Button ReturnButton;
-    public Manager_Cam Manager_Cam;
+    public MainCam_Controller MainCam;
 
     public string SaveText = "";
     string SaveString = "";
@@ -41,6 +41,6 @@ public class NpcTalk_Window : MonoBehaviour
         ReturnButton.gameObject.SetActive(false);
         this.gameObject.SetActive(false);
         // 카메라 시점 원래대로
-        Manager_Cam.ReturnView();
+        MainCam.ReturnView();
     }
 }
