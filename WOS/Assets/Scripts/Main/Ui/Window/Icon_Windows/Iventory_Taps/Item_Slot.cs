@@ -10,6 +10,9 @@ public class Item_Slot : MonoBehaviour, IDropHandler
     {
         Transform myItem = eventData.pointerDrag.transform;
 
+        //아이템이 슬롯위에 있음을 알려주는 코드
+        myItem.GetComponent<Item_2D>().isSlot= true;
+
         if (TypeDetect(eventData))
         {
             //아이템을 받는다.

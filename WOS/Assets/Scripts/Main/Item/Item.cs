@@ -6,6 +6,6 @@ public struct Item
 {
     public enum Type
     {
-        Equipment, Ingredient, Expendables
+        Equipment, Expendables, Ingredient
     }
 }
