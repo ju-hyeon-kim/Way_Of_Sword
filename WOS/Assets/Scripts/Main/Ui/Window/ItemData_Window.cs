@@ -35,15 +35,10 @@ public class ItemData_Window : MonoBehaviour // 싱글톤
     public TMP_Text Type;
     public TMP_Text AP;
     public TMP_Text Price;
-    public TMP_Text Document_Text;
+    public TMP_Text Explanation_Text;
 
     private void Start()
     {
         gameObject.SetActive(false);
-    }
-
-    public void SetData()
-    {
-        //아이템에 맞게 세팅
     }
 }

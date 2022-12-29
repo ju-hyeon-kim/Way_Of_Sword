@@ -6,30 +6,21 @@ using UnityEngine.UI;
 
 public class Item_Icon : Item_2D
 {
-    public Sprite myImage;
-    public Item.Type myType = default;
-    public string Name;
-    public float AP;
-    public float Price;
-    public string Document_Text;
+    public Item_Data Item_Data;
 
-    public override void GiveData()
+    public override void GiveData() // 아이템 정보 창에 데이터 건네주기
     {
-        ItemData_Window.Inst.Image.sprite = myImage;
-
-        string type;
-        switch(myType)
-        {
-            case Item.Type.Equipment:
-                type = "장비";
-                break;
-            case Item.Type.Expendables:
-                type = "소모품";
-                break;
-            case Item.Type.Ingredient:
-                type = "재료";
-                break;
-        }
-        //ItemData_Window.Inst.Image.type = myImage;
+        //이미지
+        ItemData_Window.Inst.Image.sprite = Item_Data.Image;
+        //이름
+        ItemData_Window.Inst.Name.text = Item_Data.Name;
+        //타입
+        ItemData_Window.Inst.Type.text = Item_Data.Type;
+        //AP
+        ItemData_Window.Inst.AP.text = $"공격력: {Item_Data.AP}";
+        //가격
+        ItemData_Window.Inst.Price.text = $"판매 가격: {Item_Data.Price} G";
+        //설명
+        ItemData_Window.Inst.Explanation_Text.text = Item_Data.Explanation_Text;
     }
 }

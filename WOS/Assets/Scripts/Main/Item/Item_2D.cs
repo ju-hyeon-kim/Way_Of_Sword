@@ -24,13 +24,11 @@ public class Item_2D : MonoBehaviour,
         //아이템 정보창 활성화
         ItemData_Window.Inst.gameObject.SetActive(true);
         size = ItemData_Window.Inst.GetComponent<RectTransform>().sizeDelta;
-        dragOffset = new Vector2(size.x * 0.5f, size.y * 0.5f);
-
+        dragOffset = new Vector2(size.x * 0.5f + 0.2f, size.y * 0.5f + 0.2f);
     }
 
-    public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 밖으로 빠져나갈 때
+    public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 안에 있을때
     {
-        
         ItemData_Window.Inst.transform.position = eventData.position + dragOffset;
     }
 

@@ -29,7 +29,7 @@ public class PlayerEquipment_Slot : Item_Slot
         }
 
         //아이템의 타입이 장비라면 true를 반환, 아니면 false를 반환
-        if (eventData.pointerDrag.transform.GetComponent<Item_Icon>().myType == (Item.Type)typeNum)
+        if (eventData.pointerDrag.transform.GetComponent<Item_Icon>().Item_Data.ItemType == (Item.Type)typeNum)
         {
             return true;
         }
