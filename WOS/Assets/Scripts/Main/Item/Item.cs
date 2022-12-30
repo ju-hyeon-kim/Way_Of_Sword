@@ -6,6 +6,11 @@ public struct Item
 {
     public enum Type
     {
-        Equipment, Expendables, Ingredient
+        Equipment, Obe, Expendables, Ingredient
+    }
+
+    public enum EquipmentType // 장비품이 아닐경우 None
+    {
+        None, Weapon, Necklace, Bracelet, Ring, Helmet, Top, Pants, Boots, 
     }
 }

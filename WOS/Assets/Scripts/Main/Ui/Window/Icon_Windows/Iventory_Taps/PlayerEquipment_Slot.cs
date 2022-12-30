@@ -5,7 +5,10 @@ using UnityEngine.EventSystems;
 
 public class PlayerEquipment_Slot : Item_Slot
 {
-    public PESlot_Type myType = default; // 인스펙터에서 정해줌
+    // 인스펙터에서 정해줌
+    public Item.Type ItmeType_slot = default; 
+    public Item.EquipmentType EquipmentType_slot = default;
+
 
     public override void DropEvent(PointerEventData eventData)
     {
@@ -17,19 +20,9 @@ public class PlayerEquipment_Slot : Item_Slot
 
     public override bool TypeDetect(PointerEventData eventData)
     {
-        int typeNum = 0;
-        switch (myType)
-        {
-            case PESlot_Type.Weapon:
-                typeNum = 0;
-                break;
-            case PESlot_Type.Helmet:
-                typeNum = 1;
-                break;
-        }
-
+        Item_Icon myItem = eventData.pointerDrag.transform.GetComponent<Item_Icon>();
         //아이템의 타입이 장비라면 true를 반환, 아니면 false를 반환
-        if (eventData.pointerDrag.transform.GetComponent<Item_Icon>().Item_Data.ItemType == (Item.Type)typeNum)
+        if (myItem.Item_Data.ItemType == ItmeType_slot && myItem.Item_Data.EquipmentType == EquipmentType_slot)
         {
             return true;
         }

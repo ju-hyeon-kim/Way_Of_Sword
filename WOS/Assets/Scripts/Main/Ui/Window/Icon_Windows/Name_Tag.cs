@@ -25,5 +25,6 @@ public class Name_Tag : MonoBehaviour
         GetComponent<Image>().color = Color.white;
         Tabs.GetChild(0).GetChild(0).GetComponent<Image>().color = UnshowColor; // 0번째 자식
         Tabs.GetChild(1).GetChild(0).GetComponent<Image>().color = UnshowColor; // 1번째 자식
+        Tabs.GetChild(2).GetChild(0).GetComponent<Image>().color = UnshowColor; // 2번째 자식
     }
 }
