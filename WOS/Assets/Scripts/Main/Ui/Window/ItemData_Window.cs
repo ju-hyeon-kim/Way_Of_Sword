@@ -4,6 +4,32 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct Public_Set
+{
+    public Image Image;
+    public TMP_Text Name;
+    public TMP_Text Type;
+    public TMP_Text Price;
+}
+
+[System.Serializable]
+public struct Equipment_Set
+{
+    public TMP_Text Strengthem;
+    public TMP_Text AP;
+    public TMP_Text Explanation_Text;
+}
+
+[System.Serializable]
+public struct Obe_Set
+{
+    public TMP_Text Strengthem;
+    public TMP_Text Obe_Skill;
+    public TMP_Text Skill_Name;
+    public TMP_Text Skill_Explanation;
+}
+
 public class ItemData_Window : MonoBehaviour // ΩÃ±€≈Ê
 {
     #region ΩÃ±€≈Ê ºº∆√ + Awake()
@@ -29,13 +55,16 @@ public class ItemData_Window : MonoBehaviour // ΩÃ±€≈Ê
         }
     }
     #endregion
+    public GameObject[] Type_Sets;
 
-    public Image Image;
-    public TMP_Text Name;
-    public TMP_Text Type;
-    public TMP_Text AP;
-    public TMP_Text Price;
-    public TMP_Text Explanation_Text;
+    // ∞¯≈Î Set
+    public Public_Set Public_Set;
+
+    // ¿Â∫Ò Set
+    public Equipment_Set Equipment_Set;
+
+    // ø¿∫Í Set
+    public Obe_Set Obe_Set;
 
     private void Start()
     {

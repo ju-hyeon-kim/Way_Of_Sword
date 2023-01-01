@@ -1,0 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Skill_Set : MonoBehaviour
+{
+    public GameObject[] Skill_Icons; // [0]: Q스킬, [1]: W스킬, [2]: E스킬, [3]: R스킬
+}
