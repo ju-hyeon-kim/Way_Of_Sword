@@ -11,4 +11,5 @@ public class Obe_Data : Item_Data
     public string Skill_Explanation;
 
     public Sprite Skill_Sprite;
+    public Skill_Data Skill_Data;
 }

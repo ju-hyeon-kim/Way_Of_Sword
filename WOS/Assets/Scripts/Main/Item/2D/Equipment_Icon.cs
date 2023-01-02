@@ -60,6 +60,20 @@ public class Equipment_Icon : Item_Icon
         ItemData_Window.Inst.Equipment_Set.AP.text = $"공격력: {Equipment_Data.AP}";
         //설명
         ItemData_Window.Inst.Equipment_Set.Explanation_Text.text = Equipment_Data.Explanation_Text;
+        //장착된 오브들
+        for(int i = 0; i<4; i++)
+        {
+            if(Equipment_Data.Equipped_Obes[i] != null)
+            {
+                ItemData_Window.Inst.Equipment_Set.Equipped_Obes.Obe_Icons[i].sprite = Equipment_Data.Equipped_Obes[i].Image;
+                ItemData_Window.Inst.Equipment_Set.Equipped_Obes.Obe_Icons[i].gameObject.SetActive(true);
+            }
+            else
+            {
+                ItemData_Window.Inst.Equipment_Set.Equipped_Obes.Obe_Icons[i].gameObject.SetActive(false);
+            }
+        }
+        
 
         //아이템 타입에 맞는 세팅 창을 활성화
         for (int i = 0; i < 4; i++)
@@ -69,14 +83,6 @@ public class Equipment_Icon : Item_Icon
             {
                 ItemData_Window.Inst.Type_Sets[i].SetActive(true);
             }
-        }
-    }
-
-    public void Change_Parents() // 장착 해제
-    {
-        if (Before_Parents.name == "Weapon")
-        {
-            Before_Parents.GetComponent<Weapon_Slot>().Equip_Control();
         }
     }
 }

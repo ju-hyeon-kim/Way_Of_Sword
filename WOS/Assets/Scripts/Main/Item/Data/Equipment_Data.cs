@@ -10,4 +10,5 @@ public class Equipment_Data : Item_Data
     public float AP;
     [TextArea]
     public string Explanation_Text;
+    public Obe_Data[] Equipped_Obes = new Obe_Data[4];
 }

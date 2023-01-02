@@ -8,6 +8,8 @@ public class SwordObe_Slot : Item_Slot
 {
     public Item.Type SlotType = default; // 인스펙터에서 정해줌
     public Transform mySkill_Slot;
+    public Transform myWeapon_Slot;
+    public int mySlotNum;
 
     public override bool TypeDetect(PointerEventData eventData)
     {
@@ -30,7 +32,14 @@ public class SwordObe_Slot : Item_Slot
         ED.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
         // 오브제는 슬롯의 0번째 자식으로 설정
         ED.SetAsFirstSibling();
+
+        // 무기의 Equipment_Data.Equipped_Obes 와 연동
+
+
+        //인벤토리로부터 오브를 받았을 때
         // 스킬셋(인터페이스)과 연동
         ED.GetComponent<Obe_Icon>().SkillSet_Conection();
+        // 무기와 연동
+        myWeapon_Slot.GetChild(1).GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[mySlotNum] = ED.GetComponent<Obe_Icon>().Obe_Data;
     }
 }

@@ -19,6 +19,7 @@ public struct Equipment_Set
     public TMP_Text Strengthem;
     public TMP_Text AP;
     public TMP_Text Explanation_Text;
+    public Equipped_Obes Equipped_Obes;
 }
 
 [System.Serializable]

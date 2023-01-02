@@ -28,9 +28,30 @@ public class Inven_Slot : Item_Slot
         // 오브제는 슬롯의 0번째 자식으로 설정
         myItem.transform.SetAsFirstSibling();
         // 오브 슬롯이라면
-        if(SlotType == Item.Type.Obe)
+        switch(SlotType)
         {
-            myItem.GetComponent<Obe_Icon>().SkillSet_Conection();
+            case Item.Type.Equipment:
+                {
+                    if(myItem.GetComponent<Equipment_Icon>().Before_Parents.name == "Weapon")
+                    {
+                        myItem.GetComponent<Equipment_Icon>().Before_Parents.GetComponent<Weapon_Slot>().Equip_Control(); //무기장착해제
+                    }
+                }
+                break;
+            case Item.Type.Obe:
+                {
+                    Obe_Icon myObe = myItem.GetComponent<Obe_Icon>();
+                    //스킬셋과 연동
+                    myObe.SkillSet_Conection();
+                    //장착되어 있던 무기와 연동
+                    if(myObe.Before_Parents.parent.name == "SwordObe_Slots")
+                    {
+                        //오브 장착 해제
+                        int Obe_Num = myObe.Before_Parents.GetComponent<SwordObe_Slot>().mySlotNum;
+                        myObe.Before_Parents.GetComponent<SwordObe_Slot>().myWeapon_Slot.GetChild(1).GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[Obe_Num] = null;
+                    }
+                }
+                break;
         }
     }
 }
