@@ -52,37 +52,26 @@ public class Obe_Icon : Item_Icon
         myType = Obe_Data.ItemType;
     }
 
-    public void SkillSet_Conection()
+    public void Give_Skill_Data()
     {
-        GameObject mySkill;
-        //나의 부모가 Sword_Slot이라면 스킬 세팅O 아니라면 스킬 세팅x
-        if (transform.parent.parent.name == "SwordObe_Slots")
+        Transform mySkill_Icon;
+
+        if (transform.parent.parent.name == "SwordObe_Slots") //나의 조부모가 SwordObe_Slot이라면 스킬을 장착
         {
-            mySkill = transform.parent.GetComponent<SwordObe_Slot>().mySkill_Slot.GetChild(0).gameObject;
-
-            mySkill.GetComponent<Image>().sprite = Obe_Data.Skill_Sprite;
-            mySkill.transform.GetChild(0).GetComponent<Image>().sprite = Obe_Data.Skill_Sprite; // forward
-
-            if (mySkill.activeSelf)
-            {
-                mySkill.SetActive(false);
-            }
-            else
-            {
-                mySkill.SetActive(true);
-            }
+            mySkill_Icon = transform.parent.GetComponent<SwordObe_Slot>().mySkill_Icon;
+            
+            //스킬 아이콘의 이미지 적용
+            mySkill_Icon.GetComponent<Image>().sprite = Obe_Data.Skill_Sprite;
+            mySkill_Icon.transform.GetChild(0).GetComponent<Image>().sprite = Obe_Data.Skill_Sprite; // forward
+            //스킬 데이타 적용
+            mySkill_Icon.GetComponent<Skill_Icon>().Skill_Data = Obe_Data.Skill_Data;
+            //스킬 아이콘 활성화
+            mySkill_Icon.gameObject.SetActive(true);
         }
-        else
+        else //나의 조부모가 SwordObe_Slot아니라면 스킬 장착해제
         {
-            mySkill = Before_Parents.GetComponent<SwordObe_Slot>().mySkill_Slot.GetChild(0).gameObject;
-            if (mySkill.activeSelf)
-            {
-                mySkill.SetActive(false);
-            }
-            else
-            {
-                mySkill.SetActive(true);
-            }
+            Debug.Log(Before_Parents.name);
+            Before_Parents.GetComponent<SwordObe_Slot>().mySkill_Icon.gameObject.SetActive(false);
         }
     }
 }

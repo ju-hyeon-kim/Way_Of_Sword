@@ -30,7 +30,7 @@ public class Inven_Slot : Item_Slot
         // 오브 슬롯이라면
         switch(SlotType)
         {
-            case Item.Type.Equipment:
+            case Item.Type.Equipment: //장비를 받았을 때
                 {
                     if(myItem.GetComponent<Equipment_Icon>().Before_Parents.name == "Weapon")
                     {
@@ -38,17 +38,20 @@ public class Inven_Slot : Item_Slot
                     }
                 }
                 break;
-            case Item.Type.Obe:
+            case Item.Type.Obe: //오브를 받았을 때
                 {
                     Obe_Icon myObe = myItem.GetComponent<Obe_Icon>();
-                    //스킬셋과 연동
-                    myObe.SkillSet_Conection();
+                    
                     //장착되어 있던 무기와 연동
-                    if(myObe.Before_Parents.parent.name == "SwordObe_Slots")
+                    if(myObe.Before_Parents.parent.name == "SwordObe_Slots")// 소드오브슬롯으로부터 받았을 때
                     {
+                        //스킬셋에 스킬데이터 건네주기
+                        myObe.Give_Skill_Data();
                         //오브 장착 해제
                         int Obe_Num = myObe.Before_Parents.GetComponent<SwordObe_Slot>().mySlotNum;
-                        myObe.Before_Parents.GetComponent<SwordObe_Slot>().myWeapon_Slot.GetChild(1).GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[Obe_Num] = null;
+                        Transform myWeapon = myObe.Before_Parents.GetComponent<SwordObe_Slot>().myWeapon_Slot.GetChild(1);
+
+                        myWeapon.GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[Obe_Num] = null;
                     }
                 }
                 break;
