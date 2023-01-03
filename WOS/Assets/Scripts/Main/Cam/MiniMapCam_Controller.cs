@@ -20,16 +20,16 @@ public class MiniMapCam_Controller : MonoBehaviour
     void Update()
     {
         transform.position = Cam_Target.position + myDir * myDist;
-        myDist = Mathf.Clamp(myDist, 5.0f, 28.0f);
+        myDist = Mathf.Clamp(myDist, 30.0f, 50.0f); // ÁÜ Á¦ÇÑ°ª
     }
 
     public void ZoomIn()
     {
-        myDist -= 2.0f;
+        myDist -= 3.0f;
     }
 
     public void ZoomOut()
     {
-        myDist += 2.0f;
+        myDist += 3.0f;
     }
 }
