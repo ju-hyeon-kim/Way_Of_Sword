@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class MiniMapCam_Controller : MonoBehaviour
 {
+    public Camera myCam;
     public Transform Cam_Target;
     public Transform[] Icons;
+    public GameObject Guild_Icon;
 
+    public bool Target_inScreen;
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
     float minZoom = 40.0f;
     float maxZoom = 80.0f;
+
+
 
     void Start()
     {
@@ -23,6 +28,8 @@ public class MiniMapCam_Controller : MonoBehaviour
     void Update()
     {
         transform.position = Cam_Target.position + myDir * myDist;
+
+        Target_inScreen = CheckTarget(Guild_Icon);
     }
 
     public void ZoomIn()
@@ -50,5 +57,13 @@ public class MiniMapCam_Controller : MonoBehaviour
                 Icons[i].localScale = new Vector3(Icons[i].localScale.x * 1.1f, Icons[i].localScale.y * 1.1f, 1);
             }
         }
+    }
+
+    public bool CheckTarget(GameObject target)
+    {
+        Vector3 ScreenPoint = myCam.WorldToViewportPoint(target.transform.position);
+        bool onScreen = ScreenPoint.z > 0 && ScreenPoint.x > 0 && ScreenPoint.x < 1 && ScreenPoint.y > 0 && ScreenPoint.y < 1;
+
+        return onScreen;
     }
 }
