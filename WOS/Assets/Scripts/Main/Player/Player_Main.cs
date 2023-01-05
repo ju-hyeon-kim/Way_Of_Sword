@@ -44,19 +44,7 @@ public class Player_Main : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this); // 씬전환 시 파괴되지 않음
-        // 예외처리 필요: 타이틀씬으로 이동시에는 파괴됨? 씬전화 생성되는 위치 설정
-
-        string s = SceneManager.GetActiveScene().name;
-        switch(s) // 현재 씬이 마을이나 길드라면 언배틀 상태
-        {
-            case "Village":
-                ChangeMode(Player_Mode.Unbattle);
-                break;
-            case "Guild":
-                ChangeMode(Player_Mode.Unbattle);
-                transform.position = SpawnPoint_Guild.Inst.transform.position;
-                break;
-        }
+        Manager_SceneChange.inst.player = this;
     }
 
     private void Update()

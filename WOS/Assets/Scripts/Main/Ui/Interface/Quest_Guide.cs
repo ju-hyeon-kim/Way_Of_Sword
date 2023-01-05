@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,9 +10,16 @@ public class Quest_Guide : MonoBehaviour
     public Transform Player;
     public Transform MiniMap_Camera;
 
-    void Update()
+    Coroutine CoGuiding;
+
+    private void Start()
     {
-        if(SceneManager.GetActiveScene().name != "Guild") //길드 씬이 아니라면 작동
+        StartGuiding();
+    }
+
+    IEnumerator Guiding()
+    {
+        while(true)
         {
             Vector3 dir = Target.position - Player.position;
             dir.y = 0;
@@ -24,8 +32,20 @@ public class Quest_Guide : MonoBehaviour
             {
                 rotDir = -rotDir;
             }
-
             transform.rotation = Quaternion.Euler(0, 0, Angle * rotDir);
+
+            yield return null;
         }
+    }
+
+    public void StartGuiding()
+    {
+        CoGuiding = StartCoroutine(Guiding());
+    }
+
+    public void StopGuiding()
+    {
+        StopCoroutine(CoGuiding);
+        gameObject.SetActive(false);
     }
 }

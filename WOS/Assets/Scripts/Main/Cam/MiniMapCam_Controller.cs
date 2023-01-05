@@ -19,7 +19,6 @@ public class MiniMapCam_Controller : MonoBehaviour
     void Start()
     {
         myDir = transform.position - Cam_Target.position;
-
         myDist = myDir.magnitude;
         myDir.Normalize();
     }
@@ -27,11 +26,7 @@ public class MiniMapCam_Controller : MonoBehaviour
     void Update()
     {
         transform.position = Cam_Target.position + myDir * myDist;
-
-        if(SceneManager.GetActiveScene().name == "Village")
-        {
-            Target_inScreen = CheckTarget(Guild_Icon);
-        }
+        Target_inScreen = CheckTarget(Guild_Icon);
     }
 
     public void ZoomIn()
