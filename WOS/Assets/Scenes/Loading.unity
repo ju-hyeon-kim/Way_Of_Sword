@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -392,7 +392,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127558907}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1127558909
 Camera:
   m_ObjectHideFlags: 0
@@ -533,7 +533,8 @@ MonoBehaviour:
   m_text: "\uC544\uBB34\uD0A4\uB098 \uB20C\uB7EC\uC8FC\uC138\uC694"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d0e74257d6897e4c97729fb85349b52, type: 2}
-  m_sharedMaterial: {fileID: 7843562615448606440, guid: 9d0e74257d6897e4c97729fb85349b52, type: 2}
+  m_sharedMaterial: {fileID: 7843562615448606440, guid: 9d0e74257d6897e4c97729fb85349b52,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -637,7 +638,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -737,7 +737,8 @@ MonoBehaviour:
   m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9d0e74257d6897e4c97729fb85349b52, type: 2}
-  m_sharedMaterial: {fileID: 7843562615448606440, guid: 9d0e74257d6897e4c97729fb85349b52, type: 2}
+  m_sharedMaterial: {fileID: -7646645195708220429, guid: 9d0e74257d6897e4c97729fb85349b52,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -885,7 +886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

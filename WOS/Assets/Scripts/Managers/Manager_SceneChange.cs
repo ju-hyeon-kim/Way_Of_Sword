@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Manager_SceneChange : Singleton<Manager_SceneChange>
 {
-
     public AsyncOperation ao;
     public bool LoadingChk = false; // 현재 로딩 중인지를 검사하는 불값
 
@@ -17,6 +16,8 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
 
     public void ChangeScene(string s)
     {
+        Scene scene = SceneManager.GetActiveScene(); // 현재 씬 가져오기
+
         if (!LoadingChk)
         {
             StartCoroutine(Loading(s));

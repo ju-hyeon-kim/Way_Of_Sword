@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MiniMapCam_Controller : MonoBehaviour
 {
@@ -15,8 +16,6 @@ public class MiniMapCam_Controller : MonoBehaviour
     float minZoom = 40.0f;
     float maxZoom = 80.0f;
 
-
-
     void Start()
     {
         myDir = transform.position - Cam_Target.position;
@@ -29,7 +28,10 @@ public class MiniMapCam_Controller : MonoBehaviour
     {
         transform.position = Cam_Target.position + myDir * myDist;
 
-        Target_inScreen = CheckTarget(Guild_Icon);
+        if(SceneManager.GetActiveScene().name == "Village")
+        {
+            Target_inScreen = CheckTarget(Guild_Icon);
+        }
     }
 
     public void ZoomIn()
@@ -43,7 +45,6 @@ public class MiniMapCam_Controller : MonoBehaviour
                 Icons[i].localScale = new Vector3(Icons[i].localScale.x * 0.9f, Icons[i].localScale.y * 0.9f, 1);
             }
         }
-        
     }
 
     public void ZoomOut()

@@ -8,6 +8,7 @@ public class MiniMap : MonoBehaviour
     public GameObject Quest_Guide;
     void Update()
     {
+        // 
         if(MiniMapCam_Controller.Target_inScreen)
         {
             Quest_Guide.SetActive(false);

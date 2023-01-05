@@ -6,6 +6,6 @@ public class Zone_Chicle_Guild : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("¾ÀÀüÈ¯");
+        Manager_SceneChange.inst.ChangeScene("Guild");
     }
 }
