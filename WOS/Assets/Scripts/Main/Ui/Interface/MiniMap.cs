@@ -17,7 +17,7 @@ public class MiniMap : MonoBehaviour
     {
         if(Update_Active)
         {
-            if(MiniMapCam_Controller.Target_inScreen)
+            if(!MiniMapCam_Controller.Target_inScreen)
             {
                 Quest_Guide.SetActive(true);
             }

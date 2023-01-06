@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class MiniMapCam_Controller : MonoBehaviour
 {
+    enum Section
+    {
+        None, Village, Guild
+    }
+    [SerializeField]
+    Section NowSection;
+
     public Camera myCam;
     public Transform Cam_Target;
-    public Transform[] Icons;
-    public GameObject Guild_Icon;
+    public List<Transform> Icons;
 
     public bool Target_inScreen;
     Vector3 myDir = Vector3.zero;
@@ -26,7 +33,41 @@ public class MiniMapCam_Controller : MonoBehaviour
     void Update()
     {
         transform.position = Cam_Target.position + myDir * myDist;
-        Target_inScreen = CheckTarget(Guild_Icon);
+
+        StateProcess();
+    }
+
+    void ChangeSection(Section s)
+    {
+        NowSection = s;
+
+        switch (NowSection)
+        {
+            case Section.Village:
+                break;
+            case Section.Guild:
+                //ÁÜ °Å¸® º¯°æ
+                myDist = 30.0f;
+                //ÁÜ Á¦ÇÑ°ª º¯°æ
+                minZoom = 20.0f;
+                maxZoom = 40.0f;
+                break;
+        }
+    }
+
+    void StateProcess()
+    {
+        switch (NowSection)
+        {
+            case Section.None:
+                ChangeSection(Section.Village);
+                break;
+            case Section.Village:
+                Target_inScreen = CheckTarget(Icons[1].gameObject);
+                break;
+            case Section.Guild:
+                break;
+        }
     }
 
     public void ZoomIn()
@@ -35,7 +76,7 @@ public class MiniMapCam_Controller : MonoBehaviour
         myDist = Mathf.Clamp(myDist, minZoom, maxZoom); // ÁÜ Á¦ÇÑ°ª
         if (myDist > minZoom + 1 && myDist < maxZoom - 1)
         {
-            for(int i = 0; i < Icons.Length; i++)
+            for (int i = 0; i < Icons.Count; i++)
             {
                 Icons[i].localScale = new Vector3(Icons[i].localScale.x * 0.9f, Icons[i].localScale.y * 0.9f, 1);
             }
@@ -48,7 +89,7 @@ public class MiniMapCam_Controller : MonoBehaviour
         myDist = Mathf.Clamp(myDist, minZoom, maxZoom); // ÁÜ Á¦ÇÑ°ª
         if (myDist > minZoom + 1 && myDist < maxZoom - 1)
         {
-            for (int i = 0; i < Icons.Length; i++)
+            for (int i = 0; i < Icons.Count; i++)
             {
                 Icons[i].localScale = new Vector3(Icons[i].localScale.x * 1.1f, Icons[i].localScale.y * 1.1f, 1);
             }

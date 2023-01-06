@@ -45,6 +45,7 @@ public class Player_Main : MonoBehaviour
     {
         DontDestroyOnLoad(this); // 씬전환 시 파괴되지 않음
         Manager_SceneChange.inst.player = this;
+        ChangeMode(Player_Mode.Unbattle);
     }
 
     private void Update()

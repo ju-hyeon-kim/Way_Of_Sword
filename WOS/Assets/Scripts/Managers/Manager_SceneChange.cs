@@ -11,6 +11,7 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
 
     public Player_Main player = null;
     public MiniMap MiniMap = null;
+    public Transform MainCam; 
 
     new private void Awake()
     {
