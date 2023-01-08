@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class Name_Tag : MonoBehaviour
 {
     public Transform myTab;
-    Color UnshowColor = Color.gray;
 
+    Color UnshowColor = Color.gray;
     Transform Tabs;
 
     private void Start()
@@ -22,9 +22,17 @@ public class Name_Tag : MonoBehaviour
         myTab.SetAsLastSibling();
 
         //형제들은 어둡게 만들고 자신은 밝게 만듬
-        GetComponent<Image>().color = Color.white;
-        Tabs.GetChild(0).GetChild(0).GetComponent<Image>().color = UnshowColor; // 0번째 자식
-        Tabs.GetChild(1).GetChild(0).GetComponent<Image>().color = UnshowColor; // 1번째 자식
-        Tabs.GetChild(2).GetChild(0).GetComponent<Image>().color = UnshowColor; // 2번째 자식
+        Name_Tag[] myTabs = Tabs.GetComponentsInChildren<Name_Tag>();
+        for(int i = 0; i < myTabs.Length; i++)
+        {
+            if (myTabs[i].transform.parent == myTab)
+            {
+                GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                myTabs[i].GetComponent<Image>().color = UnshowColor;
+            }
+        }
     }
 }

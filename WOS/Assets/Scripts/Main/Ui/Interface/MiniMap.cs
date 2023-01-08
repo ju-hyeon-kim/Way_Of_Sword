@@ -15,9 +15,9 @@ public class MiniMap : MonoBehaviour
 
     private void Update()
     {
-        if(Update_Active)
+        if (Update_Active)
         {
-            if(!MiniMapCam_Controller.Target_inScreen)
+            if (!MiniMapCam_Controller.Target_inScreen)
             {
                 Quest_Guide.SetActive(true);
             }
@@ -31,5 +31,4 @@ public class MiniMap : MonoBehaviour
             Quest_Guide.SetActive(false);
         }
     }
-
 }

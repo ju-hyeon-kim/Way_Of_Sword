@@ -22,6 +22,7 @@ public class MiniMapCam_Controller : MonoBehaviour
     float myDist = 0.0f;
     float minZoom = 40.0f;
     float maxZoom = 80.0f;
+    float Zoom_IncrementValue = 5.0f; // 줌 증감치
 
     void Start()
     {
@@ -46,11 +47,15 @@ public class MiniMapCam_Controller : MonoBehaviour
             case Section.Village:
                 break;
             case Section.Guild:
+                //플레이어 아이콘 사이즈 변경
+                Icons[0].localScale = new Vector3(2.0f, 2.0f, 1.0f);
                 //줌 거리 변경
-                myDist = 30.0f;
+                myDist = 15.0f;
                 //줌 제한값 변경
-                minZoom = 20.0f;
-                maxZoom = 40.0f;
+                minZoom = 10.0f;
+                maxZoom = 20.0f;
+                //줌 증감치 변경
+                Zoom_IncrementValue = 2.0f;
                 break;
         }
     }
@@ -63,7 +68,15 @@ public class MiniMapCam_Controller : MonoBehaviour
                 ChangeSection(Section.Village);
                 break;
             case Section.Village:
-                Target_inScreen = CheckTarget(Icons[1].gameObject);
+                if(Icons.Count > 1) //씬전환 시
+                {
+                    Target_inScreen = CheckTarget(Icons[1].gameObject);
+                }
+
+                if (SceneManager.GetActiveScene().name != "Village")
+                {
+                    ChangeSection(Section.Guild);
+                }
                 break;
             case Section.Guild:
                 break;
@@ -72,7 +85,7 @@ public class MiniMapCam_Controller : MonoBehaviour
 
     public void ZoomIn()
     {
-        myDist -= 5.0f;
+        myDist -= Zoom_IncrementValue;
         myDist = Mathf.Clamp(myDist, minZoom, maxZoom); // 줌 제한값
         if (myDist > minZoom + 1 && myDist < maxZoom - 1)
         {
@@ -85,7 +98,7 @@ public class MiniMapCam_Controller : MonoBehaviour
 
     public void ZoomOut()
     {
-        myDist += 5.0f;
+        myDist += Zoom_IncrementValue;
         myDist = Mathf.Clamp(myDist, minZoom, maxZoom); // 줌 제한값
         if (myDist > minZoom + 1 && myDist < maxZoom - 1)
         {

@@ -1,85 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using UnityEditor.MemoryProfiler;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.GraphicsBuffer;
 
 public class Npc : MonoBehaviour
 {
-    public Npc_Data Datas;
+    public Npc_IndividualData I_Data;
+    public Npc_CommonData C_Data;
 
-    public MainCam_Controller MainCam;
-    public Material OutLine;
-    public Renderer[] RendererList;
-    public GameObject NpcName_Label;
-    public Transform NameLabel_Zone;
-    public GameObject NpcTalk_Window;
-    public bool isEvent = false;
+    bool isTalking = false; //현재 대화중인 체크하는 bool 값
 
-    List<Material[]> Origin = new List<Material[]>();
-    Vector3 OrgForward;
-    
-    
-    private void Start()
+    #region 마우스 포지션과 상호작용하는 함수
+    private void OnMouseEnter() //마우스를 갖다 대었을 때
     {
-        OrgForward = Datas.myForward.position;
-
-        for (int i = 0; i < RendererList.Length; ++i)
+        if(!isTalking) // 대화중이 아니라면
         {
-            Origin.Add(RendererList[i].materials);
+            //아웃라인 켜기
+            Outline_Active();
+            //이름 라벨 켜기
+            C_Data.NpcName_Label_obj.SetActive(true);
+            C_Data.NpcName_Label_obj.GetComponentInChildren<TMP_Text>().text = I_Data.Name;
         }
     }
-
-    private void Update()
+    private void OnMouseOver() //마우스가 Npc를 가리키고 있는 동안
     {
-        if(!isEvent)
-        {
-            //마우스 포지션과 상호작용(아웃라인)
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, 1 << LayerMask.NameToLayer("Npc")))
-            {
-                //아웃라인 적용
-                for (int i = 0; i < RendererList.Length; ++i)
-                {
-                    Material[] Change = new Material[2];
-                    Change[0] = RendererList[i].materials[0];
-                    Change[1] = OutLine;
-                    RendererList[i].materials = Change;
-                }
-
-                //이름 라벨 켜기
-                NpcName_Label.SetActive(true);
-                NpcName_Label.GetComponentInChildren<TMP_Text>().text = Datas.Name;
-                NpcName_Label.transform.position = Camera.main.WorldToScreenPoint(NameLabel_Zone.position);
-            }
-            else
-            {
-                NameOutLine_false(); //아웃라인 해제 & 네임라벨 끄기
-            }
-        }
-        else // 이벤트 발생시
-        {
-            NameOutLine_false(); //아웃라인 해제 & 네임라벨 끄기
-        }
+        C_Data.NpcName_Label_obj.transform.position = Camera.main.WorldToScreenPoint(I_Data.NameLabel_Zone.position);
     }
-
-    public void Reaction(Vector3 p_pos) // 플레이어가 말을 걸면 리액션
+    private void OnMouseExit() //마우스가 빠져 나갈 때
     {
-        //0.마우스 포지션과 상호작용 중단
-        isEvent = true;
-        //1.플레이어 쪽으로 회전
-        StartCoroutine(Rotating(p_pos,"대화"));
+        Outline_Unactive(); //아웃라인 해제
+
+        //이름 라벨 끄기
+        C_Data.NpcName_Label_obj.SetActive(false);
     }
+    #endregion
 
     //유저를 바라본다(회전)
-    IEnumerator Rotating(Vector3 pos,string s)
+    IEnumerator Rotating(Vector3 pos,bool B) // B = true = 대화시작 // B = false = 대화 끝
     {
-        if (s == "대화")
+        if (B)
         {
             //2.카메라 애니메이션
-            MainCam.NpcView(transform);
+            C_Data.MainCam.NpcView(transform);
         }
 
         //회전
@@ -104,46 +65,98 @@ public class Npc : MonoBehaviour
             yield return null;
         }
 
-        if (s == "대화")
+        if (B)
         {
             //3. 대화
             bool b = true;
             while (b)
             {
-                if (MainCam.Talk_Ready)
+                if (C_Data.MainCam.Talk_Ready)
                 {
                     Connect_Window();
                     b = false;
                 }
                 yield return null;
             }
-            NpcTalk_Window.SetActive(true);
-            NpcTalk_Window.GetComponent<NpcTalk_Window>().OnTyping();
+            C_Data.NpcTalk_Window_obj.SetActive(true);
+            C_Data.NpcTalk_Window_obj.GetComponent<NpcTalk_Window>().Talking(I_Data.Name);
         }
     }
 
-    public void Connect_Window() // Talk_Widow와 Npc_Data를 연동
+    public void Child_Start_Setting() // 자식 스크립트의 Start()에서 공통으로 사용하는 세팅
     {
-        NpcTalk_Window temp = NpcTalk_Window.GetComponent<NpcTalk_Window>();
-        temp.Profile.sprite = Datas.Profile;
-        temp.Name.text = Datas.Name;
-        temp.SaveText = Datas.Talk;
+        C_Data.NpcName_Label_obj = NpcName_Label.Inst.gameObject;
+        C_Data.NpcTalk_Window_obj = NpcTalk_Window.Inst.gameObject;
+        C_Data.MainCam = Camera.main.transform.parent.GetComponent<MainCam_Controller>();
+        C_Data.OrgForward = I_Data.myForward.position;
+    }
+
+    public void Reaction(Vector3 p_pos) // 플레이어가 말을 걸면 리액션
+    {
+        //1.플레이어 쪽으로 회전
+        StartCoroutine(Rotating(p_pos, true));
+    }
+
+    public void Connect_Window() // NpcTalk_Widow와 Npc_Data를 연동
+    {
+        NpcTalk_Window temp = C_Data.NpcTalk_Window_obj.GetComponent<NpcTalk_Window>();
+        //이름 적용
+        temp.Name.text = I_Data.Name;
+        //프로필 적용 = 이름에 따라 해당 프로필만 활성화 나머지는 비활성화
+        int num = 0;
+        switch(I_Data.Name)
+        {
+            case "벤더":
+                break;
+            case "루시아":
+                num = 1;
+                break;
+        }
+        for(int i = 0; i < temp.Npc_Profiles.Length; i++)
+        {
+            if (i == num)
+            {
+                temp.Npc_Profiles[i].SetActive(true);
+            }
+            else
+            {
+                temp.Npc_Profiles[i].SetActive(false);
+            }
+        }
+        //인삿말 적용
+        temp.SaveText = I_Data.Greetings;
+        //NpcIcon 적용
+        temp.Npc_Icon = I_Data.Npc_Icon;
+    }
+
+    public void Talk_Start() //대화 시작
+    {
+        //마우스와 상호작용 해제
+        isTalking = true;
+        //아웃라인 해제
+        Outline_Unactive();
+        //이름 라벨 끄기
+        C_Data.NpcName_Label_obj.SetActive(false);
     }
 
     //플레이어와 대화 종료 시 원래 바라보고 있던 방향으로 돌아가기
-    public void ReturnForward()
+    public void Talk_End() //대화 끝
     {
-        StartCoroutine(Rotating(OrgForward, "원래의 방향을 바라봄"));
+        //마우스와 상호작용 작동
+        isTalking = false;
+        //원래 바라보던 방향으로 회전
+        StartCoroutine(Rotating(C_Data.OrgForward, false));
     }
 
-    void NameOutLine_false()
+
+    //버츄얼 함수들
+    public virtual void Outline_Active() // 아웃라인 적용
     {
-        //아웃라인 해제
-        for (int i = 0; i < RendererList.Length; ++i)
-        {
-            RendererList[i].materials = Origin[i];
-        }
-        //이름 라벨 끄기
-        NpcName_Label.SetActive(false);
+        // 자식이 재정의
+    }
+
+    public virtual void Outline_Unactive() // 아웃라인 해제
+    {
+        // 자식이 재정의
     }
 }

@@ -8,8 +8,6 @@ public class Quest : MonoBehaviour
 {
     public TMP_Text Progress;
 
-    public GameObject Target;
-
     bool Quest_Complete = false;
 
     private void Start()

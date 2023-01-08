@@ -40,7 +40,7 @@ public class MainCam_Controller : MonoBehaviour
         }
     }
 
-    //Npc와 대화시 시점변경
+    //Npc와 대화시작 -> 시점변경
     public void NpcView(Transform npc_pos)
     {
         isEvent = true;
@@ -53,14 +53,25 @@ public class MainCam_Controller : MonoBehaviour
         StartCoroutine(Rotating(npc_pos.position));
     }
 
+    //Npc와 대화끝 -> 원래 시점으로
     public void ReturnView()
     {
+        isEvent = false;
         StartCoroutine(Moving(SavePos,false));
         StartCoroutine(Rotating(SaveVec));
     }
 
     IEnumerator Moving(Vector3 pos,bool b)
     {
+        if (b)
+        {
+            SaveNpc.GetComponent<Npc>().Talk_Start();
+        }
+        else
+        {
+            SaveNpc.GetComponent<Npc>().Talk_End();
+        }
+
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
         dir.Normalize();
@@ -77,17 +88,14 @@ public class MainCam_Controller : MonoBehaviour
             yield return null;
         }
 
-        if(!b)
+        if(b)
         {
-            isEvent = false; // 이벤트의 끝을 알림
-            Cam_Target.GetComponentInParent<Player_Main>().isEvent = false; // 플레이어 조작 가능
-            SaveNpc.GetComponent<Npc>().isEvent = false; // Npc의 마우스 포지션과의 상호작용 활성화
-            SaveNpc.GetComponent<Npc>().ReturnForward(); // Npc가 원래의 방향을 바라봄
-            Talk_Ready = false;
+            Talk_Ready = true;
         }
         else
         {
-            Talk_Ready = true;
+            Cam_Target.GetComponentInParent<Player_Main>().isEvent = false; // 플레이어 조작 가능
+            Talk_Ready = false;
         }
     }
 
