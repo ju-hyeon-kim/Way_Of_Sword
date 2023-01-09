@@ -7,14 +7,14 @@ public class Equipment_Icon : Item_Icon
 {
     public Equipment_Data Equipment_Data;
 
-    string t = "";
-    int typenum = 0;
+    
     public override void GiveData() // 아이템 정보 창에 아이템 정보 건네주기
     {
         //이미지
         ItemData_Window.Inst.Public_Set.Image.sprite = Equipment_Data.Image;
         //이름
         ItemData_Window.Inst.Public_Set.Name.text = Equipment_Data.Name;
+
         //강화
         if (Equipment_Data.Strengthen > 0)
         {
@@ -27,7 +27,9 @@ public class Equipment_Icon : Item_Icon
         //가격
         ItemData_Window.Inst.Public_Set.Price.text = $"판매 가격: {Equipment_Data.Price} G";
 
+
         //타입
+        string t = "";
         switch (Equipment_Data.EquipmentType)
         {
             case Item.EquipmentType.Weapon:
@@ -79,7 +81,7 @@ public class Equipment_Icon : Item_Icon
         for (int i = 0; i < 4; i++)
         {
             ItemData_Window.Inst.Type_Sets[i].SetActive(false);
-            if (i == typenum)
+            if (i == (int)myType)
             {
                 ItemData_Window.Inst.Type_Sets[i].SetActive(true);
             }
