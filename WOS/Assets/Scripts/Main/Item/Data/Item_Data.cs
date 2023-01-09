@@ -9,5 +9,5 @@ public class Item_Data : ScriptableObject
     public Sprite Image;
     public string Name;
     public Item.Type ItemType;
-    public int Price;
+    public int Price; // Xp는 경험치 수치
 }
