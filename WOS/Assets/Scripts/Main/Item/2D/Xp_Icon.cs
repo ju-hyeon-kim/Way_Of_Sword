@@ -4,28 +4,35 @@ using System.Drawing;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Xp_Icon : Item_Icon
+public class Xp_Icon : Icon
 {
     public Xp_Data Xp_Data;
 
-    public override void GiveData()
+    public override void GiveData_DW()
     {
         //이미지
-        ItemData_Window.Inst.Public_Set.Image.sprite = Xp_Data.Image;
+        XpGoldData_Window.Inst.Image.sprite = Xp_Data.Image;
         //이름
-        ItemData_Window.Inst.Public_Set.Name.text = Xp_Data.Name;
+        XpGoldData_Window.Inst.Name.text = Xp_Data.Name;
         //수치
-
-        //아이템 데이타 윈도우 활성화 ( myType에 따라 Set를 정해줌 )
-        for (int i = 0; i < 4; i++)
-        {
-            ItemData_Window.Inst.Type_Sets[i].SetActive(false);
-            if (i == (int)myType)
-            {
-                ItemData_Window.Inst.Type_Sets[i].SetActive(true);
-            }
-        }
+        XpGoldData_Window.Inst.Price.text = $"{Xp_Data.Price}Xp";
     }
 
+    public override void Show_DataWindow()
+    {
+        XpGoldData_Window.Inst.gameObject.SetActive(true);
+        size = ItemData_Window.Inst.GetComponent<RectTransform>().sizeDelta;
+        dragOffset = new Vector2(size.x * 0.5f -1f, size.y * 0.5f - 80f);
+    }
+
+    public override void Updating_DataWindow(PointerEventData eventData)
+    {
+        XpGoldData_Window.Inst.transform.position = eventData.position + dragOffset;
+    }
+
+    public override void unShow_DataWindow()
+    {
+        XpGoldData_Window.Inst.gameObject.SetActive(false);
+    }
 
 }

@@ -75,7 +75,7 @@ public class NpcTalk_Window : MonoBehaviour
         SaveText = "";
         SaveString = "";
 
-        //버튼 활성화
+        //버튼 활성화 -> Npc가 컨트롤 하는걸로 바꾸기
         for(int i = 0; i < Buttons.Length; i++)
         {
             
@@ -86,7 +86,7 @@ public class NpcTalk_Window : MonoBehaviour
                     break;
                 case "루시아":
                     //루시아 버튼 세팅
-                    Lucia_Setting();
+                    //Lucia_Setting();
                     break;
             }
             Buttons[i].SetActive(true); // 돌아가기 버튼 활성화는 공통
@@ -128,7 +128,5 @@ public class NpcTalk_Window : MonoBehaviour
         XP_Readings.text = "(50/100)";
         //Npc아이콘 비활성화
         Npc_Icon.SetActive(false);
-        //퀘스트 서브 윈도우 적용
-        Quest_SubWindow.Quest_Remove(0);
     }
 }

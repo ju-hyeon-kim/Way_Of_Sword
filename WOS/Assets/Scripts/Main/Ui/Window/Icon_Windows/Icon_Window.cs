@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Icon_Window : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     Vector2 dragOffset = Vector2.zero;
     public void OnBeginDrag(PointerEventData eventData) //잡아서 들어올림
     {

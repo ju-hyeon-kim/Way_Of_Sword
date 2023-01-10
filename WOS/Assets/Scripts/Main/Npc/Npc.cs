@@ -73,13 +73,15 @@ public class Npc : MonoBehaviour
             {
                 if (C_Data.MainCam.Talk_Ready)
                 {
-                    Connect_Window();
+                    Connect_Window_Common();
+                    Connect_Window_Individual();
+
                     b = false;
                 }
                 yield return null;
             }
             C_Data.NpcTalk_Window_obj.SetActive(true);
-            C_Data.NpcTalk_Window_obj.GetComponent<NpcTalk_Window>().Talking(I_Data.Name);
+            C_Data.NpcTalk_Window_obj.GetComponent<NpcTalk_Window>().Talking(I_Data.Name); //인사
         }
     }
 
@@ -97,24 +99,16 @@ public class Npc : MonoBehaviour
         StartCoroutine(Rotating(p_pos, true));
     }
 
-    public void Connect_Window() // NpcTalk_Widow와 Npc_Data를 연동
+    public void Connect_Window_Common() // NpcTalk_Widow와 Npc_Data를 연동 (공통적인 요소들을)
     {
         NpcTalk_Window temp = C_Data.NpcTalk_Window_obj.GetComponent<NpcTalk_Window>();
         //이름 적용
         temp.Name.text = I_Data.Name;
+
         //프로필 적용 = 이름에 따라 해당 프로필만 활성화 나머지는 비활성화
-        int num = 0;
-        switch(I_Data.Name)
+        for (int i = 0; i < temp.Npc_Profiles.Length; i++)
         {
-            case "벤더":
-                break;
-            case "루시아":
-                num = 1;
-                break;
-        }
-        for(int i = 0; i < temp.Npc_Profiles.Length; i++)
-        {
-            if (i == num)
+            if (temp.Npc_Profiles[i].name == gameObject.name)
             {
                 temp.Npc_Profiles[i].SetActive(true);
             }
@@ -127,6 +121,10 @@ public class Npc : MonoBehaviour
         temp.SaveText = I_Data.Greetings;
         //NpcIcon 적용
         temp.Npc_Icon = I_Data.Npc_Icon;
+    }
+
+    public virtual void Connect_Window_Individual()
+    {
     }
 
     public void Talk_Start() //대화 시작
@@ -158,5 +156,10 @@ public class Npc : MonoBehaviour
     public virtual void Outline_Unactive() // 아웃라인 해제
     {
         // 자식이 재정의
+    }
+
+    public virtual void Event_Of_Child()
+    {
+
     }
 }

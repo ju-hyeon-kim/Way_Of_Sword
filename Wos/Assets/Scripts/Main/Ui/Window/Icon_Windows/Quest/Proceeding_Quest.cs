@@ -8,13 +8,16 @@ public class Proceeding_Quest : MonoBehaviour
 {
     public Quest_Data Quest_Data;
     public TMP_Text Quest_Name;
-    public TMP_Text Quest_Content;
+    public TMP_Text Quest_Explanation;
+    public TMP_Text Quest_Progress;
     public GameObject[] Reward_Slots;
 
-    private void Start()
+    public Quest_SubWindow Quest_SubWindow;
+
+    private void Awake()
     {
         Quest_Name.text = Quest_Data.Name;
-        Quest_Content.text = Quest_Data.Content;
+        Quest_Explanation.text = Quest_Data.Explanation;
 
         // 퀘스트 데이터의 보상을 보상슬롯에 전달
         for (int i = 0; i < Quest_Data.Reward.Count; i++)
@@ -26,6 +29,14 @@ public class Proceeding_Quest : MonoBehaviour
         {
             Reward_Slots[i].SetActive(false);
         }
-       
+        // 서브 윈도우와 연결
+        Conect_SubWindow();
+    }
+
+    void Conect_SubWindow()
+    {
+        Quest_SubWindow.Name.text = Quest_Data.Name;
+        Quest_SubWindow.Explanation.text = Quest_Data.Explanation;
+        Quest_SubWindow.Progress.text = Quest_Progress.text;
     }
 }

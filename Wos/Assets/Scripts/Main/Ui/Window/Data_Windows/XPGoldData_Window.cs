@@ -4,10 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class XPGoldData_Window : MonoBehaviour
+public class XpGoldData_Window : MonoBehaviour
 {
     #region ΩÃ±€≈Ê ºº∆√ + Awake()
-    private static XPGoldData_Window Instence = null;
+    private static XpGoldData_Window Instence = null;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class XPGoldData_Window : MonoBehaviour
         }
     }
 
-    public static XPGoldData_Window Inst
+    public static XpGoldData_Window Inst
     {
         get
         {
