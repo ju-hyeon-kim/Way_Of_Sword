@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3597,6 +3597,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159618594}
   m_CullTransparentMesh: 1
+--- !u!1 &160362065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160362067}
+  - component: {fileID: 160362068}
+  m_Layer: 0
+  m_Name: Manager_Quest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160362067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160362065}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &160362068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160362065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d8e169181db2942a69f3041664b5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestList:
+  - {fileID: 5733603613068574741, guid: eb843a070525fb348b1005821caf8343, type: 3}
+  - {fileID: 4784217209649745714, guid: 1e772ad873646ad43aac4a45701c527f, type: 3}
+  Proceeding_Quest: {fileID: 7384829904766330355}
+  Quest_SubWindow: {fileID: 1288784166}
 --- !u!1 &171042765
 GameObject:
   m_ObjectHideFlags: 0
@@ -4451,13 +4500,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226320806}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &226320808
 MonoBehaviour:
@@ -16323,42 +16372,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889166366}
   m_CullTransparentMesh: 1
---- !u!1 &892104956
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 892104957}
-  m_Layer: 5
-  m_Name: NowQuest_P
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &892104957
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 892104956}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7384829904766330359}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &892758650
 GameObject:
   m_ObjectHideFlags: 0
@@ -22279,7 +22292,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1201191700}
         m_TargetAssemblyTypeName: Quest_Complete, Assembly-CSharp
-        m_MethodName: On_ConfirmButton
+        m_MethodName: Confirm_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28260,6 +28273,7 @@ MonoBehaviour:
   Buttons:
   - {fileID: 2075984928}
   - {fileID: 770851057}
+  - {fileID: 73146871}
   Events:
   - {fileID: 1201191697}
   Name: {fileID: 856300342304660751}
@@ -28267,10 +28281,9 @@ MonoBehaviour:
   MainCam: {fileID: 33787032}
   Lock: {fileID: 904405850}
   Messages: {fileID: 907968850}
-  XP_Bar: {fileID: 1083980530}
-  XP_Readings: {fileID: 934103859}
   Npc_Icon: {fileID: 0}
   Quest_SubWindow: {fileID: 1288784166}
+  Proceeding_Quest: {fileID: 7384829904766330355}
   SaveText: 
 --- !u!1 &1548721521
 GameObject:
@@ -30554,7 +30567,7 @@ Transform:
   - {fileID: 932541110}
   - {fileID: 33787031}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1683391124
 MonoBehaviour:
@@ -37478,7 +37491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -37514,7 +37526,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2028547551
 GameObject:
@@ -47284,7 +47296,7 @@ RectTransform:
   m_Children:
   - {fileID: 3111288153612252392}
   m_Father: {fileID: 7384829904766330359}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -47553,7 +47565,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7384829904766330359}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -53517,8 +53529,6 @@ MonoBehaviour:
     NameLabel_Zone: {fileID: 1847383634}
     Npc_Icon: {fileID: 5884239694373874030}
   C_Data:
-    NpcName_Label_obj: {fileID: 0}
-    NpcTalk_Window_obj: {fileID: 0}
     MainCam: {fileID: 0}
     OrgForward: {x: 0, y: 0, z: 0}
   RendererList:
@@ -60123,17 +60133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2e0fc665a2daf49a03a96845cddbd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NowQuest_P: {fileID: 892104957}
-  NowQuest: {fileID: 4784217209649745714, guid: 1e772ad873646ad43aac4a45701c527f,
-    type: 3}
-  Quest_Name: {fileID: 3111288153910514314}
-  Quest_Explanation: {fileID: 3111288153560103131}
-  Quest_Progress: {fileID: 3111288152701456422}
+  Name: {fileID: 3111288153910514314}
+  Explanation: {fileID: 3111288153560103131}
+  Progress: {fileID: 3111288152701456422}
   Reward_Slots:
   - {fileID: 3111288152628710676}
   - {fileID: 3111288153766203594}
   - {fileID: 3111288152384974310}
-  Quest_SubWindow: {fileID: 1288784166}
 --- !u!1 &7384829904766330358
 GameObject:
   m_ObjectHideFlags: 0
@@ -60165,7 +60171,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 892104957}
   - {fileID: 7384829906418774613}
   - {fileID: 3111288153908667397}
   - {fileID: 3111288154027755763}
@@ -61308,7 +61313,7 @@ RectTransform:
   m_Children:
   - {fileID: 7384829906589500585}
   m_Father: {fileID: 7384829904766330359}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

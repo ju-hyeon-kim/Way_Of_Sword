@@ -16,9 +16,12 @@ public class Quest_Complete : MonoBehaviour
         Effect.SetActive(false);
     }
 
-    public void On_ConfirmButton()
+    public void Confirm_Button()
     {
-        gameObject.SetActive(false);
+        //보상 적용
+
         //루시아와의 대화로넘어감
+
+        gameObject.SetActive(false);
     }
 }

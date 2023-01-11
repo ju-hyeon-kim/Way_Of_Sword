@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Npc : MonoBehaviour
 {
@@ -17,20 +18,20 @@ public class Npc : MonoBehaviour
             //아웃라인 켜기
             Outline_Active();
             //이름 라벨 켜기
-            C_Data.NpcName_Label_obj.SetActive(true);
-            C_Data.NpcName_Label_obj.GetComponentInChildren<TMP_Text>().text = I_Data.Name;
+            NpcName_Label.Inst.gameObject.SetActive(true);
+            NpcName_Label.Inst.GetComponentInChildren<TMP_Text>().text = I_Data.Name;
         }
     }
     private void OnMouseOver() //마우스가 Npc를 가리키고 있는 동안
     {
-        C_Data.NpcName_Label_obj.transform.position = Camera.main.WorldToScreenPoint(I_Data.NameLabel_Zone.position);
+        NpcName_Label.Inst.transform.position = Camera.main.WorldToScreenPoint(I_Data.NameLabel_Zone.position);
     }
     private void OnMouseExit() //마우스가 빠져 나갈 때
     {
         Outline_Unactive(); //아웃라인 해제
 
         //이름 라벨 끄기
-        C_Data.NpcName_Label_obj.SetActive(false);
+        NpcName_Label.Inst.gameObject.SetActive(false);
     }
     #endregion
 
@@ -74,21 +75,18 @@ public class Npc : MonoBehaviour
                 if (C_Data.MainCam.Talk_Ready)
                 {
                     Connect_Window_Common();
-                    Connect_Window_Individual();
 
                     b = false;
                 }
                 yield return null;
             }
-            C_Data.NpcTalk_Window_obj.SetActive(true);
-            C_Data.NpcTalk_Window_obj.GetComponent<NpcTalk_Window>().Talking(I_Data.Name); //인사
+            NpcTalk_Window.Inst.gameObject.SetActive(true);
+            NpcTalk_Window.Inst.Talking(this); //인사
         }
     }
 
     public void Child_Start_Setting() // 자식 스크립트의 Start()에서 공통으로 사용하는 세팅
     {
-        C_Data.NpcName_Label_obj = NpcName_Label.Inst.gameObject;
-        C_Data.NpcTalk_Window_obj = NpcTalk_Window.Inst.gameObject;
         C_Data.MainCam = Camera.main.transform.parent.GetComponent<MainCam_Controller>();
         C_Data.OrgForward = I_Data.myForward.position;
     }
@@ -101,31 +99,28 @@ public class Npc : MonoBehaviour
 
     public void Connect_Window_Common() // NpcTalk_Widow와 Npc_Data를 연동 (공통적인 요소들을)
     {
-        NpcTalk_Window temp = C_Data.NpcTalk_Window_obj.GetComponent<NpcTalk_Window>();
         //이름 적용
-        temp.Name.text = I_Data.Name;
+        NpcTalk_Window.Inst.Name.text = I_Data.Name;
 
         //프로필 적용 = 이름에 따라 해당 프로필만 활성화 나머지는 비활성화
-        for (int i = 0; i < temp.Npc_Profiles.Length; i++)
+        for (int i = 0; i < NpcTalk_Window.Inst.Npc_Profiles.Length; i++)
         {
-            if (temp.Npc_Profiles[i].name == gameObject.name)
+            if (NpcTalk_Window.Inst.Npc_Profiles[i].name == gameObject.name)
             {
-                temp.Npc_Profiles[i].SetActive(true);
+                NpcTalk_Window.Inst.Npc_Profiles[i].SetActive(true);
             }
             else
             {
-                temp.Npc_Profiles[i].SetActive(false);
+                NpcTalk_Window.Inst.Npc_Profiles[i].SetActive(false);
             }
         }
         //인삿말 적용
-        temp.SaveText = I_Data.Greetings;
+        NpcTalk_Window.Inst.SaveText = I_Data.Greetings;
         //NpcIcon 적용
-        temp.Npc_Icon = I_Data.Npc_Icon;
+        NpcTalk_Window.Inst.Npc_Icon = I_Data.Npc_Icon;
     }
 
-    public virtual void Connect_Window_Individual()
-    {
-    }
+    
 
     public void Talk_Start() //대화 시작
     {
@@ -134,7 +129,7 @@ public class Npc : MonoBehaviour
         //아웃라인 해제
         Outline_Unactive();
         //이름 라벨 끄기
-        C_Data.NpcName_Label_obj.SetActive(false);
+        NpcTalk_Window.Inst.gameObject.SetActive(false);
     }
 
     //플레이어와 대화 종료 시 원래 바라보고 있던 방향으로 돌아가기
@@ -146,20 +141,34 @@ public class Npc : MonoBehaviour
         StartCoroutine(Rotating(C_Data.OrgForward, false));
     }
 
+    public virtual void Outline_Active() { } // 아웃라인 적용
+    public virtual void Outline_Unactive() { } // 아웃라인 해제
+    public virtual void Event_Of_Child() { } // 자식마다 다른 이벤트
 
-    //버츄얼 함수들
-    public virtual void Outline_Active() // 아웃라인 적용
+    public void Buttons_Setting(Proceeding_Quest PQ) //버튼들 연동
     {
-        // 자식이 재정의
+        Button0_Set(PQ);
+        Button1_Set(PQ);
+        Button2_Set();
     }
 
-    public virtual void Outline_Unactive() // 아웃라인 해제
+    public virtual void Button0_Set(Proceeding_Quest PQ) { } // 0번 버튼
+    public virtual void Button1_Set(Proceeding_Quest PQ) { } // 1번 버튼
+    public void Button2_Set() // 돌아가기 버튼
     {
-        // 자식이 재정의
+        NpcTalk_Window.Inst.Buttons[2].GetComponent<Button>().onClick.AddListener(Button2_OnClick);
+        NpcTalk_Window.Inst.Buttons[2].SetActive(true);
     }
 
-    public virtual void Event_Of_Child()
+    public void Button2_OnClick() // 돌아가기
     {
-
+        //버튼 비활성화
+        for (int i = 0; i < NpcTalk_Window.Inst.Buttons.Length; i++)
+        {
+            NpcTalk_Window.Inst.Buttons[i].SetActive(false);
+        }
+        NpcTalk_Window.Inst.gameObject.SetActive(false);
+        // 카메라 시점 원래대로
+        NpcTalk_Window.Inst.MainCam.ReturnView();
     }
 }

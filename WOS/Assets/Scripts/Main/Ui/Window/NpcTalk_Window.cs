@@ -39,14 +39,12 @@ public class NpcTalk_Window : MonoBehaviour
     public MainCam_Controller MainCam;
     public GameObject Lock;
     public GameObject Messages;
-    public Image XP_Bar;
-    public TMP_Text XP_Readings;
-    public GameObject Npc_Icon = null;
+    public GameObject Npc_Icon;
     public Quest_SubWindow Quest_SubWindow;
+    public Proceeding_Quest Proceeding_Quest;
 
     public string SaveText = "";
     string SaveString = "";
-    string Target_Npc = "";
 
     private void Start()
     {
@@ -57,13 +55,12 @@ public class NpcTalk_Window : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Talking(string Npc_Name)
+    public void Talking(Npc Target_Npc)
     {
-        Target_Npc = Npc_Name;
-        StartCoroutine(Typing());
+        StartCoroutine(Typing(Target_Npc));
     }
 
-    IEnumerator Typing()
+    IEnumerator Typing(Npc Target_Npc)
     {
         for (int i = 0; i < SaveText.Length; ++i)
         {
@@ -75,58 +72,7 @@ public class NpcTalk_Window : MonoBehaviour
         SaveText = "";
         SaveString = "";
 
-        //버튼 활성화 -> Npc가 컨트롤 하는걸로 바꾸기
-        for(int i = 0; i < Buttons.Length; i++)
-        {
-            
-            switch(Target_Npc)
-            {
-                case "벤더":
-                    i = 2; // 돌아가기 버튼만 활성화
-                    break;
-                case "루시아":
-                    //루시아 버튼 세팅
-                    //Lucia_Setting();
-                    break;
-            }
-            Buttons[i].SetActive(true); // 돌아가기 버튼 활성화는 공통
-        }
-    }
-
-    public void On_GobackButton()
-    {
-        //버튼 비활성화
-        for (int i = 0; i < Buttons.Length; i++)
-        {
-            Buttons[i].SetActive(false);
-        }
-        this.gameObject.SetActive(false);
-        // 카메라 시점 원래대로
-        MainCam.ReturnView();
-    }
-
-    void Lucia_Setting()
-    {
-        //0번 버튼
-        Buttons[0].transform.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 완료 1건";
-        Buttons[0].GetComponent<Button>().onClick.AddListener(QuestComplete_Button);
-        //1번 버튼
-        Buttons[1].GetComponent<Image>().color = Color.gray;
-        Buttons[1].transform.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 신청";
-        Lock.SetActive(true);
-    }
-
-    void QuestComplete_Button()
-    {
-        Events[0].SetActive(true);
-        //애니메이션
-        Events[0].GetComponent<Animator>().SetBool("Open", true);
-        //보상 적용
-        Messages.SetActive(true);
-        XP_Bar.fillAmount = 0;
-        XP_Bar.fillAmount += 50.0f * 0.01f;
-        XP_Readings.text = "(50/100)";
-        //Npc아이콘 비활성화
-        Npc_Icon.SetActive(false);
+        //버튼들 세팅
+        Target_Npc.Buttons_Setting(Proceeding_Quest);
     }
 }

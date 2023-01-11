@@ -9,4 +9,9 @@ public class Quest_Data : MonoBehaviour
     [Multiline]
     public string Explanation;
     public List<Item_Data> Reward;
+
+    public virtual void Start_Questing()
+    {
+
+    }
 }
