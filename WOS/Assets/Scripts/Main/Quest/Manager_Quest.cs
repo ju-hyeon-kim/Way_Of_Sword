@@ -38,7 +38,7 @@ public class Manager_Quest : MonoBehaviour // 진행중 퀘스트 윈도우, 서브 윈도우 
         // 퀘스트 데이터의 보상을 보상슬롯에 전달
         for (int i = 0; i < QD.Reward.Count; i++)
         {
-            Proceeding_Quest.Reward_Slots[i].transform.GetChild(i).GetComponent<Image>().sprite = QD.Reward[i].Image;
+            Instantiate(QD.Reward[i], Proceeding_Quest.Reward_Slots[i].transform.GetChild(0));
         }
         // 보상의 갯수에 맞게 보여지는 보상 슬롯의 갯수도 달라짐
         for (int i = QD.Reward.Count; i < Proceeding_Quest.Reward_Slots.Length; i++)

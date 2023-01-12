@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class Icon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler
 {
     public Item.Type myType;
+    public Item_Data Item_Data;
 
     protected Vector2 dragOffset = Vector2.zero;
     protected Vector2 size = Vector2.zero;

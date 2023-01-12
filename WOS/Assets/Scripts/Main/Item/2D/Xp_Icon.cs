@@ -6,16 +6,15 @@ using UnityEngine.EventSystems;
 
 public class Xp_Icon : Icon
 {
-    public Xp_Data Xp_Data;
 
     public override void GiveData_DW()
     {
         //이미지
-        XpGoldData_Window.Inst.Image.sprite = Xp_Data.Image;
+        XpGoldData_Window.Inst.Image.sprite = Item_Data.Image;
         //이름
-        XpGoldData_Window.Inst.Name.text = Xp_Data.Name;
+        XpGoldData_Window.Inst.Name.text = Item_Data.Name;
         //수치
-        XpGoldData_Window.Inst.Price.text = $"{Xp_Data.Price}Xp";
+        XpGoldData_Window.Inst.Price.text = $"{Item_Data.Price}Xp";
     }
 
     public override void Show_DataWindow()

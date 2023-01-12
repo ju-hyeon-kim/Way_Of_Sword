@@ -8,7 +8,7 @@ public class Quest_Data : MonoBehaviour
     public string Name;
     [Multiline]
     public string Explanation;
-    public List<Item_Data> Reward;
+    public List<GameObject> Reward;
 
     public virtual void Start_Questing()
     {
