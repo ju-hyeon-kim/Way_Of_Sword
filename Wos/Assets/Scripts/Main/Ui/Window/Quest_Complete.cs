@@ -9,6 +9,7 @@ public class Quest_Complete : MonoBehaviour
     public GameObject[] Q_Reword;
     public GameObject Effect;
     public Message_Window Message_Window;
+    public Status Status;
 
     private void Start()
     {
@@ -37,6 +38,7 @@ public class Quest_Complete : MonoBehaviour
                 {
                     price = Icon.Item_Data.Price;
                     //XP -> 스테이터스에 적용
+                    Status.Level.Get_Xp(price);
                 }
                 else if(ItemType == Item.Type.Gold)
                 {
