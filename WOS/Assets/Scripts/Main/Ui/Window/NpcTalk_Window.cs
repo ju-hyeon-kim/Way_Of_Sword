@@ -37,8 +37,6 @@ public class NpcTalk_Window : MonoBehaviour
     public TMP_Text Name;
     public TMP_Text Talk;
     public MainCam_Controller MainCam;
-    public GameObject Lock;
-    public GameObject Messages;
     public GameObject Npc_Icon;
     public Quest_SubWindow Quest_SubWindow;
     public Proceeding_Quest Proceeding_Quest;
@@ -74,5 +72,10 @@ public class NpcTalk_Window : MonoBehaviour
 
         //버튼들 세팅
         Target_Npc.Buttons_Setting(Proceeding_Quest);
+    }
+
+    public void Unlock_Button(int i)
+    {
+        Buttons[i].transform.GetChild(1).gameObject.SetActive(false);
     }
 }

@@ -10,6 +10,7 @@ public class Quest_Complete : MonoBehaviour
     public GameObject Effect;
     public Message_Window Message_Window;
     public Status Status;
+    public Proceeding_Quest Proceeding_Quest;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class Quest_Complete : MonoBehaviour
 
     public void Confirm_Button()
     {
-        //보상 적용1 (메시지)
+        //보상 적용
         for(int i = 0; i < 3; i++)
         {
             if (Q_Reword[i].transform.GetChild(0).childCount > 0)
@@ -52,6 +53,14 @@ public class Quest_Complete : MonoBehaviour
                 Message_Window.Get_Item(ItemName, price);
             }
         }
+
+        //PQ에 컴플리트 호출
+        Proceeding_Quest.Quest_Complete();
+
+        //퀘스트 신청 버튼 활성화
+        NpcTalk_Window.Inst.Unlock_Button(1);
+
+
         gameObject.SetActive(false);
     }
 }

@@ -10,6 +10,7 @@ public class Level : MonoBehaviour
     public TMP_Text Xp_Reading;
 
     public Image Xp_Bar;
+    public TMP_Text Nowlevel_ofXpBar;
     public TMP_Text Xp_Reading_ofXpBar;
 
     int nowXp = 0;
@@ -20,8 +21,9 @@ public class Level : MonoBehaviour
         nowXp += Xp;
         Xp_Reading.text = $"( {nowXp}/{maxXp} )";
 
-        //Main_Interface의 Xp_Bar와 연동
+        //Main_Interface의 Xp_Bar/NowLevel와 연동
         Xp_Bar.fillAmount = (nowXp % maxXp) * 0.01f;
+        Nowlevel_ofXpBar.text = Now_Level.text; // 레벨업 할때로 변경
         Xp_Reading_ofXpBar.text = $"( {nowXp}/{maxXp} )";
     }
 }

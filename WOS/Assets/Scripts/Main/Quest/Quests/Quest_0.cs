@@ -21,7 +21,8 @@ public class Quest_0 : Quest_Data
                 // 진행중 -> 완료 (+색깔->초록)
                 transform.parent.GetComponent<Manager_Quest>().Proceeding_Quest.Progress.text = "완료";
                 transform.parent.GetComponent<Manager_Quest>().Proceeding_Quest.Progress.color = Color.green;
-                transform.parent.GetComponent<Manager_Quest>().Update_SubWindow(GetComponent<Quest_Data>());
+                // 서브윈도우 업데이트
+                transform.parent.GetComponent<Manager_Quest>().Proceeding_Quest.Update_SubWindow(true);
                 Quest_Complete = true;
             }
             yield return null;

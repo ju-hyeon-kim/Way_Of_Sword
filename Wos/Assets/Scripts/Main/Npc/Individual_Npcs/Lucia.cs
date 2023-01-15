@@ -46,10 +46,11 @@ public class Lucia : Npc
     public override void Button1_Set(Proceeding_Quest PQ)
     {
         //1번 버튼
-        NpcTalk_Window.Inst.Buttons[1].GetComponent<Image>().color = Color.gray;
         NpcTalk_Window.Inst.Buttons[1].transform.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 신청";
         //Lock 활성화 -> 나중에 락이 풀리는 시기가 정해지면 아래 코드를 if문으로 조건 정해주기
         NpcTalk_Window.Inst.Buttons[1].transform.GetChild(1).gameObject.SetActive(true);
+        //온클릭 적용
+        NpcTalk_Window.Inst.Buttons[0].GetComponent<Button>().onClick.AddListener(QuestRequest_Btton);
         //버튼 활성화
         NpcTalk_Window.Inst.Buttons[1].SetActive(true);
     }
@@ -71,7 +72,6 @@ public class Lucia : Npc
                 QC.Q_Reword[i].SetActive(false);
             }
         }
-        
 
         //이벤트 활성화
         NpcTalk_Window.Inst.Events[0].SetActive(true);
@@ -83,5 +83,10 @@ public class Lucia : Npc
         // 0번 버튼 비활성화
         NpcTalk_Window.Inst.Buttons[0].GetComponent<Button>().onClick.RemoveListener(QuestComplete_Button);
         NpcTalk_Window.Inst.Buttons[0].GetComponent<Image>().color = Color.gray;
+    }
+
+    void QuestRequest_Btton()
+    {
+        //Quest 신청서 작성 윈도우 생성
     }
 }

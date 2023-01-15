@@ -11,6 +11,8 @@ public class Quest_SubWindow : MonoBehaviour
 
     public Animator Quest_List_Anim;
     public TMP_Text PnM_Btn_Text;
+    public GameObject[] isQuesting_Obj;
+
     bool List_Down = true; // 초기: 리스트는 내려가 있다.
 
     public void List_UpDown() // PnM 버튼 함수
