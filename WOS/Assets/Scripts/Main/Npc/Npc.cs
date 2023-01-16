@@ -101,7 +101,7 @@ public class Npc : MonoBehaviour
     public void Connect_Window_Common() // NpcTalk_Widow와 Npc_Data를 연동 (공통적인 요소들을)
     {
         //이름 적용
-        C_Data.NpcTalk_Window.Name.text = I_Data.Name;
+        C_Data.NpcTalk_Window.myTMP_Texts[0].text = I_Data.Name; // Npc의 이름 변경
 
         //프로필 적용 = 이름에 따라 해당 프로필만 활성화 나머지는 비활성화
         for (int i = 0; i < C_Data.NpcTalk_Window.Npc_Profiles.Length; i++)

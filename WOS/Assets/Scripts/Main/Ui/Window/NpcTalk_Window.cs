@@ -8,13 +8,13 @@ public class NpcTalk_Window : MonoBehaviour
 {
     public GameObject[] Npc_Profiles;
     public GameObject[] Buttons;
-    public GameObject[] Events;
+    public TMP_Text[] myTMP_Texts; // 0=Name,1=Talk
 
-    public TMP_Text Name;
-    public TMP_Text Talk;
+    public Event_Window Event_Window;
+
+    
     public MainCam_Controller MainCam;
     public GameObject Npc_Icon;
-    public Quest_SubWindow Quest_SubWindow;
     public Proceeding_Quest Proceeding_Quest;
 
     public string SaveText = "";
@@ -30,7 +30,7 @@ public class NpcTalk_Window : MonoBehaviour
         for (int i = 0; i < SaveText.Length; ++i)
         {
             SaveString += SaveText[i];
-            Talk.text = SaveString;
+            myTMP_Texts[1].text = SaveString;
             yield return new WaitForSeconds(0.1f); // 0.1초당 한 글자 타이핑
         }
         //Save strings 초기화

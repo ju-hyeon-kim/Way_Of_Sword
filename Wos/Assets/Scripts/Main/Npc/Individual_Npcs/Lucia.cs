@@ -9,7 +9,6 @@ public class Lucia : Npc
 {
     public GameObject Body_Outline;
     Proceeding_Quest PQ_Data;
-    
 
     private void Start()
     {
@@ -58,8 +57,11 @@ public class Lucia : Npc
 
     void QuestComplete_Button()
     {
+        
+
         //이벤트에게 퀘스트 정보전달
-        Quest_Complete QC = C_Data.NpcTalk_Window.Events[0].GetComponent<Quest_Complete>();
+        Quest_Complete QC = C_Data.NpcTalk_Window.Event_Window.Events[0].GetComponent<Quest_Complete>();
+
         QC.Q_Name.text = PQ_Data.Name.text;
         for(int i = 0; i < 3; i++) // 보상갯수에 맞게 보상슬롯 활성화
         {
@@ -75,8 +77,8 @@ public class Lucia : Npc
         }
 
         //이벤트 활성화
-        C_Data.NpcTalk_Window.Events[0].SetActive(true);
-        C_Data.NpcTalk_Window.Events[0].GetComponent<Animator>().SetBool("Open", true);
+        QC.gameObject.SetActive(true);
+        QC.transform.GetComponent<Animator>().SetBool("Open", true);
 
         //Npc아이콘 비활성화
         I_Data.Npc_Icon.SetActive(false);
@@ -88,6 +90,6 @@ public class Lucia : Npc
 
     void QuestRequest_Btton()
     {
-        C_Data.NpcTalk_Window.Events[1].SetActive(true); // 리퀘스트 윈도우 생성
+        C_Data.NpcTalk_Window.Event_Window.Events[1].SetActive(true); // 리퀘스트 윈도우 생성
     }
 }

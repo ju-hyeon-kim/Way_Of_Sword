@@ -57,4 +57,9 @@ public class Quest_SubWindow : MonoBehaviour
             PnM_Btn_Text.text = "-";
         }
     }
+
+    public void Quest_Complete()
+    {
+
+    }
 }

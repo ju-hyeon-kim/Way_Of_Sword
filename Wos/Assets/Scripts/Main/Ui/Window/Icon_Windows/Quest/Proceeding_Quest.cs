@@ -48,6 +48,5 @@ public class Proceeding_Quest : MonoBehaviour
     public void Quest_Complete()
     {
         Update_ProceedingQuest(NowQD, false);
-        Quest_List.Quest_Complete();
     }
 }

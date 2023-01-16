@@ -10,13 +10,8 @@ public class Quest_Complete : MonoBehaviour
     public GameObject Effect;
     public Message_Window Message_Window;
     public Status Status;
-    public Proceeding_Quest Proceeding_Quest;
     public NpcTalk_Window NpcTalk_Window;
-
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
+    public Manager_Quest Manager_Quest;
 
     public void Effect_Unactive()
     {
@@ -56,11 +51,13 @@ public class Quest_Complete : MonoBehaviour
         }
 
         //PQ에 컴플리트 호출
-        Proceeding_Quest.Quest_Complete();
+        Manager_Quest.Quest_Complete();
 
         //퀘스트 신청 버튼 활성화
         NpcTalk_Window.Unlock_Button(1);
 
+        //퀘스트 매니저의 다음 퀘스트를 퀘스트 신청 버튼에 연동
+        Manager_Quest.Give_Quest_To_Request();
 
         gameObject.SetActive(false);
     }
