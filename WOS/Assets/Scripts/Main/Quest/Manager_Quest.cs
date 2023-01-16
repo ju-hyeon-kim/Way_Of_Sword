@@ -5,12 +5,29 @@ using UnityEngine;
 public class Manager_Quest : MonoBehaviour
 {
     public Proceeding_Quest Proceeding_Quest;
+    public Quest_SubWindow Quest_SubWindow;
     public Quest_List Quest_List;
-    public Quest_Data NowQuest;
 
-    private void Awake()
+    public Quest_Data[] Quest_Prefabs;
+    Quest_Data NowQuest;
+
+
+    private void Start()
     {
-        DontDestroyOnLoad(this); // 씬전환 시 파괴되지 않음
+        Instantiate(Quest_Prefabs[0], transform);
+        NowQuest = transform.GetChild(0).GetComponent<Quest_Data>();
+
+        //Quest_SubWindow와 연동
+        Conect_SubWindow(true);
+
+        //'Proceeding_Quest'와 연동
+        Conect_Proceeding_Quest();
+
+        //Quest List의 Po_Qeusts[0] 활성화
+        Conect_Qeust_List(0);
+
+        //퀘스팅 실행
+        OnStart_Questing();
     }
 
     public void OnStart_Questing()
@@ -44,5 +61,10 @@ public class Manager_Quest : MonoBehaviour
                 QLQ.Q_Reword[i].SetActive(false);
             }
         }
+    }
+
+    public void Conect_SubWindow(bool isQuesting)
+    {
+        Quest_SubWindow.Update_Window(NowQuest, true, isQuesting); // 트루를 나중에 바꿔줌
     }
 }

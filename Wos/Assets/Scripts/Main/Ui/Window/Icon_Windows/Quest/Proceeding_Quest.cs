@@ -43,26 +43,6 @@ public class Proceeding_Quest : MonoBehaviour
             isQuesting_Obj[0].SetActive(true);
             isQuesting_Obj[1].SetActive(false);
         }
-        Update_SubWindow(b); // 서브 윈도우 업데이트
-    }
-
-    public void Update_SubWindow(bool b)
-    {
-        if(b)
-        {
-            Quest_SubWindow.isQuesting_Obj[0].SetActive(false);
-            Quest_SubWindow.isQuesting_Obj[1].SetActive(true);
-
-            Quest_SubWindow.Name.text = Name.text;
-            Quest_SubWindow.Explanation.text = Explanation.text;
-            Quest_SubWindow.Progress.text = Progress.text;
-            Quest_SubWindow.Progress.color = Progress.color;
-        }
-        else // 현재 진행중인 퀘스트가 없을 경우
-        {
-            Quest_SubWindow.isQuesting_Obj[0].SetActive(true);
-            Quest_SubWindow.isQuesting_Obj[1].SetActive(false);
-        }
     }
 
     public void Quest_Complete()

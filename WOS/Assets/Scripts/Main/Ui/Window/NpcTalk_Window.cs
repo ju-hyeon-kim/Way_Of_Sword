@@ -6,30 +6,6 @@ using UnityEngine.UI;
 
 public class NpcTalk_Window : MonoBehaviour
 {
-    #region 싱글톤 세팅 + Awake()
-    private static NpcTalk_Window Instence = null;
-
-    private void Awake()
-    {
-        if (Instence == null)
-        {
-            Instence = this;
-        }
-    }
-
-    public static NpcTalk_Window Inst
-    {
-        get
-        {
-            if (Instence == null) // 다른 오브젝트의 Awake()에서 Inst를 호출할 경우
-            {
-                return null;
-            }
-            return Instence;
-        }
-    }
-    #endregion
-
     public GameObject[] Npc_Profiles;
     public GameObject[] Buttons;
     public GameObject[] Events;
@@ -43,15 +19,6 @@ public class NpcTalk_Window : MonoBehaviour
 
     public string SaveText = "";
     string SaveString = "";
-
-    private void Start()
-    {
-        for(int i = 0; i < Buttons.Length; i++)
-        {
-            Buttons[i].SetActive(false);
-        }
-        gameObject.SetActive(false);
-    }
 
     public void Talking(Npc Target_Npc)
     {

@@ -36,7 +36,7 @@ public class Npc : MonoBehaviour
     #endregion
 
     //유저를 바라본다(회전)
-    IEnumerator Rotating(Vector3 pos,bool B) // B = true = 대화시작 // B = false = 대화 끝
+    IEnumerator Rotating(Vector3 pos, bool B) // B = true = 대화시작 // B = false = 대화 끝
     {
         if (B)
         {
@@ -80,8 +80,8 @@ public class Npc : MonoBehaviour
                 }
                 yield return null;
             }
-            NpcTalk_Window.Inst.gameObject.SetActive(true);
-            NpcTalk_Window.Inst.Talking(this); //인사
+            C_Data.NpcTalk_Window.gameObject.SetActive(true);
+            C_Data.NpcTalk_Window.Talking(this); //인사
         }
     }
 
@@ -91,33 +91,34 @@ public class Npc : MonoBehaviour
         C_Data.OrgForward = I_Data.myForward.position;
     }
 
-    public void Reaction(Vector3 p_pos) // 플레이어가 말을 걸면 리액션
+    public void Reaction(GameObject Player) // 플레이어가 말을 걸면 리액션
     {
-        //1.플레이어 쪽으로 회전
-        StartCoroutine(Rotating(p_pos, true));
+        C_Data.NpcTalk_Window = Player.GetComponent<Player_Main>().NpcTalk_Window;
+        //플레이어 쪽으로 회전
+        StartCoroutine(Rotating(Player.transform.position, true));
     }
 
     public void Connect_Window_Common() // NpcTalk_Widow와 Npc_Data를 연동 (공통적인 요소들을)
     {
         //이름 적용
-        NpcTalk_Window.Inst.Name.text = I_Data.Name;
+        C_Data.NpcTalk_Window.Name.text = I_Data.Name;
 
         //프로필 적용 = 이름에 따라 해당 프로필만 활성화 나머지는 비활성화
-        for (int i = 0; i < NpcTalk_Window.Inst.Npc_Profiles.Length; i++)
+        for (int i = 0; i < C_Data.NpcTalk_Window.Npc_Profiles.Length; i++)
         {
-            if (NpcTalk_Window.Inst.Npc_Profiles[i].name == gameObject.name)
+            if (C_Data.NpcTalk_Window.Npc_Profiles[i].name == gameObject.name)
             {
-                NpcTalk_Window.Inst.Npc_Profiles[i].SetActive(true);
+                C_Data.NpcTalk_Window.Npc_Profiles[i].SetActive(true);
             }
             else
             {
-                NpcTalk_Window.Inst.Npc_Profiles[i].SetActive(false);
+                C_Data.NpcTalk_Window.Npc_Profiles[i].SetActive(false);
             }
         }
         //인삿말 적용
-        NpcTalk_Window.Inst.SaveText = I_Data.Greetings;
+        C_Data.NpcTalk_Window.SaveText = I_Data.Greetings;
         //NpcIcon 적용
-        NpcTalk_Window.Inst.Npc_Icon = I_Data.Npc_Icon;
+        C_Data.NpcTalk_Window.Npc_Icon = I_Data.Npc_Icon;
     }
 
     
@@ -129,7 +130,7 @@ public class Npc : MonoBehaviour
         //아웃라인 해제
         Outline_Unactive();
         //이름 라벨 끄기
-        NpcTalk_Window.Inst.gameObject.SetActive(false);
+        NpcName_Label.Inst.gameObject.SetActive(false);
     }
 
     //플레이어와 대화 종료 시 원래 바라보고 있던 방향으로 돌아가기
@@ -156,19 +157,19 @@ public class Npc : MonoBehaviour
     public virtual void Button1_Set(Proceeding_Quest PQ) { } // 1번 버튼
     public void Button2_Set() // 돌아가기 버튼
     {
-        NpcTalk_Window.Inst.Buttons[2].GetComponent<Button>().onClick.AddListener(Button2_OnClick);
-        NpcTalk_Window.Inst.Buttons[2].SetActive(true);
+        C_Data.NpcTalk_Window.Buttons[2].GetComponent<Button>().onClick.AddListener(Button2_OnClick);
+        C_Data.NpcTalk_Window.Buttons[2].SetActive(true);
     }
 
     public void Button2_OnClick() // 돌아가기
     {
         //버튼 비활성화
-        for (int i = 0; i < NpcTalk_Window.Inst.Buttons.Length; i++)
+        for (int i = 0; i < C_Data.NpcTalk_Window.Buttons.Length; i++)
         {
-            NpcTalk_Window.Inst.Buttons[i].SetActive(false);
+            C_Data.NpcTalk_Window.Buttons[i].SetActive(false);
         }
-        NpcTalk_Window.Inst.gameObject.SetActive(false);
+        C_Data.NpcTalk_Window.gameObject.SetActive(false);
         // 카메라 시점 원래대로
-        NpcTalk_Window.Inst.MainCam.ReturnView();
+        C_Data.NpcTalk_Window.MainCam.ReturnView();
     }
 }

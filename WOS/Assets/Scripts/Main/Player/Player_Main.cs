@@ -17,6 +17,7 @@ public class Player_Main : MonoBehaviour
     public Transform Weapon_Back;
     public Transform Weapon_Hand;
     public bool isEvent = false; // 이벤트 발생 플레이어 조작 불가
+    public NpcTalk_Window NpcTalk_Window;
 
     GameObject myNpc;
     Coroutine moveCo = null;
@@ -43,8 +44,7 @@ public class Player_Main : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this); // 씬전환 시 파괴되지 않음
-        Manager_SceneChange.inst.player = this;
+        Manager_SceneChange.inst.player = this; //씬 전환시 플레이어의 위치 설정
         ChangeMode(Player_Mode.Unbattle);
     }
 
@@ -151,7 +151,7 @@ public class Player_Main : MonoBehaviour
         if (clicNpc && NpcTalking)
         {
             isEvent = true; // 플레이어의 조작 제한
-            myNpc.GetComponent<Npc>().Reaction(this.transform.position);
+            myNpc.GetComponent<Npc>().Reaction(gameObject);
         }
     }
 

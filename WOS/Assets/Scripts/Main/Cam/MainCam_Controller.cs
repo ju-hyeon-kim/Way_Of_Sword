@@ -9,6 +9,7 @@ public class MainCam_Controller : MonoBehaviour
     public Transform NpcTalk_View;
     public bool Talk_Ready = false;
     public bool isEvent = false;
+    public NpcTalk_Window NpcTalk_Window;
 
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
