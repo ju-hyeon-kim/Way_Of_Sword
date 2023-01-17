@@ -8,36 +8,50 @@ public class Quest_SubWindow : MonoBehaviour
     public TMP_Text Name;
     public TMP_Text Explanation;
     public TMP_Text Progress;
+    public TMP_Text Countig_Text;
 
     public Animator Quest_List_Anim;
     public TMP_Text PnM_Btn_Text;
-    public GameObject[] isQuesting_Obj;
+    public GameObject[] Q_Exist_Settings;
 
     bool List_Down = true; // 초기: 리스트는 내려가 있다.
 
-    public void Update_Window(Quest_Data QD, bool Quest_Exist, bool isQuesting)
+    public void Change_Quest(Quest_Data QD)
     {
-        isQuesting_Obj[0].SetActive(false); // 기본 세팅
-        isQuesting_Obj[1].SetActive(true); // '현재 진행중인 퀘스트가...' 세팅
+        Q_Exist_Settings[0].SetActive(false); // '현재 진행중인 퀘스트가...' 세팅
+        Q_Exist_Settings[1].SetActive(true); // 기본세팅
         Name.text = QD.Name;
         Explanation.text = QD.Explanation;
-
-        if (isQuesting) // 퀘스팅 코루틴이 구동중일 때
+        Progress.text = "진행중";
+        Progress.color = Color.white;
+        //Countig_Text
+        if (QD.isCounting())
         {
-            Progress.text = "진행중";
-            Progress.color = Color.white;
+            Countig_Text.text = $"({QD.Now_Count()}/{QD.Max_Count()})";
+            Countig_Text.gameObject.SetActive(true);
         }
-        else // 퀘스팅 코루틴 구동중지 => 퀘스트 완료 조건 충족 -> 퀘스트의 조건 충족 함수 구현 필요
+        else
         {
-            Progress.text = "완료";
-            Progress.color = Color.green;
+            Countig_Text.gameObject.SetActive(false);
         }
+    }
 
+    public void Complete_Quest() //퀘스트의 조건 충족 함수
+    {
+        Progress.text = "완료";
+        Progress.color = Color.green;
+    }
+
+    public void None_Quest()
+    {
+        // 현재 진행중인 퀘스트가 없습니다.
+        Q_Exist_Settings[0].SetActive(true);
+        Q_Exist_Settings[1].SetActive(false);
     }
 
     public void List_UpDown() // PnM 버튼 함수
     {
-        if(List_Down) // 리스트가 내려가있을 경우
+        if (List_Down) // 리스트가 내려가있을 경우
         {
             List_Down = false;
             Quest_List_Anim.SetBool("UpDown", true);
@@ -50,13 +64,4 @@ public class Quest_SubWindow : MonoBehaviour
             PnM_Btn_Text.text = "-";
         }
     }
-
-    public void Quest_Complete()
-    {
-        // 현재 진행중인 퀘스트가 없습니다.
-        isQuesting_Obj[0].SetActive(true);
-        isQuesting_Obj[1].SetActive(false);
-    }
-
-    //퀘스트의 조건 충족 함수 구현 필요
 }

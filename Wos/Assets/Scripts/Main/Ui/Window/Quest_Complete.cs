@@ -50,8 +50,8 @@ public class Quest_Complete : MonoBehaviour
             }
         }
 
-        //PQ에 컴플리트 호출
-        Manager_Quest.Quest_Complete();
+        //현재 퀘스트는 없음
+        Manager_Quest.None_Qeust();
 
         //퀘스트 신청 버튼의 Lock 해제
         NpcTalk_Window.Lock_or_Unlock_Button(1,false);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,15 +7,34 @@ using UnityEngine;
 
 public class Quest_1 : Quest_Data
 {
-    //bool Quest_Complete = false;
+    public Manager_Quest Manager_Quest;
+    int Nowkill_Count = 0;
+    int Maxkill_Count = 5;
 
-    public override void Start_Questing()
+    public override bool isCounting()
     {
-        //StartCoroutine(Questing());
+        return true;
     }
 
-    IEnumerator Questing()
+    public override int Now_Count()
     {
-        yield return null;
+        return Nowkill_Count;
+    }
+
+    public override int Max_Count()
+    {
+        return Maxkill_Count;
+    }
+
+    public override void Add_Count()
+    {
+        if(Nowkill_Count < Maxkill_Count)
+        {
+            ++Nowkill_Count;
+            if(Nowkill_Count == Maxkill_Count)
+            {
+                Manager_Quest.Complete_Quest();
+            }
+        }
     }
 }

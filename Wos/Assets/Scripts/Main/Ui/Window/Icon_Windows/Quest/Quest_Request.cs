@@ -15,7 +15,7 @@ public class Quest_Request : MonoBehaviour
 
     public void Accept_Button() // 수락 버튼
     {
-        Manager_Quest.Change_NowQuest();
+        Manager_Quest.Change_Quest();
         NpcTalk_Window.Lock_or_Unlock_Button(1, true); //퀘스트 신청 버튼 Lock 적용
         gameObject.SetActive(false);
     }

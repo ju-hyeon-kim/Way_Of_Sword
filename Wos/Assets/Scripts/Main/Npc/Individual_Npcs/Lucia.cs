@@ -35,7 +35,7 @@ public class Lucia : Npc
     public override void Button_0and1_Set(Proceeding_Quest PQ) // 퀘스트의 상태를 감지
     {
         nowPQ = PQ;
-        if (nowPQ.isQuesting_Obj[1].activeSelf == true)
+        if (nowPQ.Q_Exist_Settings[1].activeSelf == true)
         {
             if(nowPQ.Progress.text == "진행중")
             {
@@ -123,9 +123,9 @@ public class Lucia : Npc
         //Npc아이콘 비활성화
         I_Data.Npc_Icon.SetActive(false);
 
-        // 0번 버튼 비활성화
-        C_Data.NpcTalk_Window.Buttons[0].GetComponent<Button>().onClick.RemoveListener(QuestComplete_Button);
-        C_Data.NpcTalk_Window.Buttons[0].GetComponent<Image>().color = Color.gray;
+        // 0번 버튼 Lock 적용
+        C_Data.NpcTalk_Window.Lock_or_Unlock_Button(0, true);
+        C_Data.NpcTalk_Window.Buttons[0].transform.GetChild(0).GetComponent<TMP_Text>().text = "완료된 퀘스트 없음";
     }
 
     void QuestRequest_Btton()
