@@ -70,7 +70,7 @@ public class Manager_Quest : MonoBehaviour
     public void Conect_Proceeding_Quest()
     {
         //퀘스트의 정보를 진행중 퀘스트 윈도우에 전달
-        NowQuest = transform.GetChild(0).GetComponent<Quest_Data>();
+        //NowQuest = transform.GetChild(0).GetComponent<Quest_Data>();
         Proceeding_Quest.Update_ProceedingQuest(NowQuest, true);
     }
     
@@ -80,16 +80,22 @@ public class Manager_Quest : MonoBehaviour
         Quest_SubWindow.Update_Window(NowQuest, true, isQuesting); // 트루를 나중에 바꿔줌
     }
 
-    public void Give_Quest_To_Request()
+    public void Update_Systems() // 매니저가 관리하는 시스템들을 업데이트 
     {
-        ++Quest_Num;
-        Quest_Request.Input_Quest_Data(Quest_Prefabs[Quest_Num]);
+        //Proceeding_Quest.UpdateData();
+        //Quest_SubWindow.Quest_Complete();
+        Quest_List.Update_Data();
     }
 
     public void Quest_Complete()
     {
+        ++Quest_Num;
+
         Proceeding_Quest.Quest_Complete();
         Quest_SubWindow.Quest_Complete();
-        Quest_List.Quest_Complete();
+        Quest_List.Quest_Complete(Quest_Prefabs[Quest_Num]);
+
+        //퀘스트 신청서에 다음 퀘스트 정보 전달
+        Quest_Request.Input_Quest_Data(Quest_Prefabs[Quest_Num]);
     }
 }

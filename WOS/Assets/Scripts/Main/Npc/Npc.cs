@@ -96,6 +96,8 @@ public class Npc : MonoBehaviour
         C_Data.NpcTalk_Window = Player.GetComponent<Player_Main>().NpcTalk_Window;
         //플레이어 쪽으로 회전
         StartCoroutine(Rotating(Player.transform.position, true));
+
+        Child_Reaction(Player);
     }
 
     public void Connect_Window_Common() // NpcTalk_Widow와 Npc_Data를 연동 (공통적인 요소들을)
@@ -121,8 +123,6 @@ public class Npc : MonoBehaviour
         C_Data.NpcTalk_Window.Npc_Icon = I_Data.Npc_Icon;
     }
 
-    
-
     public void Talk_Start() //대화 시작
     {
         //마우스와 상호작용 해제
@@ -142,19 +142,18 @@ public class Npc : MonoBehaviour
         StartCoroutine(Rotating(C_Data.OrgForward, false));
     }
 
-    public virtual void Outline_Active() { } // 아웃라인 적용
-    public virtual void Outline_Unactive() { } // 아웃라인 해제
-    public virtual void Event_Of_Child() { } // 자식마다 다른 이벤트
+    public virtual void Outline_Active() {} // 아웃라인 적용
+    public virtual void Outline_Unactive() {} // 아웃라인 해제
+    public virtual void Child_Reaction(GameObject Player) {} // 자식마다 다른 리액션
 
     public void Buttons_Setting(Proceeding_Quest PQ) //버튼들 연동
     {
-        Button0_Set(PQ);
-        Button1_Set(PQ);
+        Button_0and1_Set(PQ);
         Button2_Set();
     }
 
-    public virtual void Button0_Set(Proceeding_Quest PQ) { } // 0번 버튼
-    public virtual void Button1_Set(Proceeding_Quest PQ) { } // 1번 버튼
+    public virtual void Button_0and1_Set(Proceeding_Quest PQ) { } // 퀘스트의 상태 감지
+
     public void Button2_Set() // 돌아가기 버튼
     {
         C_Data.NpcTalk_Window.Buttons[2].GetComponent<Button>().onClick.AddListener(Button2_OnClick);

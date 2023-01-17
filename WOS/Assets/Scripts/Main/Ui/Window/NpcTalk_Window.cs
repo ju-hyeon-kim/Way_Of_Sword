@@ -41,8 +41,8 @@ public class NpcTalk_Window : MonoBehaviour
         Target_Npc.Buttons_Setting(Proceeding_Quest);
     }
 
-    public void Unlock_Button(int i)
+    public void Lock_or_Unlock_Button(int i, bool b)
     {
-        Buttons[i].transform.GetChild(1).gameObject.SetActive(false);
+        Buttons[i].transform.GetChild(1).gameObject.SetActive(b);
     }
 }

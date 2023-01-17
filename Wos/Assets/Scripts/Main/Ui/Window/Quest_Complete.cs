@@ -53,11 +53,8 @@ public class Quest_Complete : MonoBehaviour
         //PQ에 컴플리트 호출
         Manager_Quest.Quest_Complete();
 
-        //퀘스트 신청 버튼 활성화
-        NpcTalk_Window.Unlock_Button(1);
-
-        //퀘스트 매니저의 다음 퀘스트를 퀘스트 신청 버튼에 연동
-        Manager_Quest.Give_Quest_To_Request();
+        //퀘스트 신청 버튼의 Lock 해제
+        NpcTalk_Window.Lock_or_Unlock_Button(1,false);
 
         gameObject.SetActive(false);
     }

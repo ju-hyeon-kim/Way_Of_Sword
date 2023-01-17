@@ -11,8 +11,6 @@ public class Proceeding_Quest : MonoBehaviour
     public TMP_Text Progress;
     public GameObject[] Reward_Slots;
     public GameObject[] isQuesting_Obj;
-    public Quest_SubWindow Quest_SubWindow;
-    public Quest_List Quest_List;
 
     Quest_Data NowQD;
 

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Lucia : Npc
 {
     public GameObject Body_Outline;
-    Proceeding_Quest PQ_Data;
+    Proceeding_Quest nowPQ;
 
     private void Start()
     {
@@ -25,49 +25,89 @@ public class Lucia : Npc
         Body_Outline.SetActive(false);
     }
 
-    public override void Button0_Set(Proceeding_Quest PQ)
+    enum Q_STATE
     {
-        PQ_Data = PQ; // -> QuestComplete_Button()함수가 사용할 수 있게 멤버변수로 값을 받아둠
-
-        if (PQ.Progress.text == "완료") //퀘스트가 완료 상태라면
-        {
-            //버튼에 온클릭 적용
-            C_Data.NpcTalk_Window.Buttons[0].GetComponent<Button>().onClick.AddListener(QuestComplete_Button);
-        }
-        else // 진행중 상태라면
-        {
-            C_Data.NpcTalk_Window.Buttons[0].GetComponent<Image>().color = Color.gray; // 회색으로 보이게
-        }
-
-        //버튼 활성화
-        C_Data.NpcTalk_Window.Buttons[0].transform.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 완료 보고";
-        C_Data.NpcTalk_Window.Buttons[0].SetActive(true);
+        Questing, Complete, None 
     }
-    public override void Button1_Set(Proceeding_Quest PQ)
+    
+    Q_STATE Q_state = Q_STATE.None;
+
+    public override void Button_0and1_Set(Proceeding_Quest PQ) // 퀘스트의 상태를 감지
     {
-        //1번 버튼
-        C_Data.NpcTalk_Window.Buttons[1].transform.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 신청";
-        //Lock 활성화 -> 나중에 락이 풀리는 시기가 정해지면 아래 코드를 if문으로 조건 정해주기
-        C_Data.NpcTalk_Window.Buttons[1].transform.GetChild(1).gameObject.SetActive(true);
+        nowPQ = PQ;
+        if (nowPQ.isQuesting_Obj[1].activeSelf == true)
+        {
+            if(nowPQ.Progress.text == "진행중")
+            {
+                //현재 퀘스트가 조건 불충족 상태일 때 -> 아직 퀘스트 진행중
+                Q_state = Q_STATE.Questing;
+            }
+            else
+            {
+                //현재 퀘스트가 조건 충족 상태일 때 -> 완료 보고를 하러 왔을 때
+                Q_state = Q_STATE.Complete;
+            }
+        }
+        else
+        {
+            //현재 퀘스트가 없을 때 -> 퀘스트를 신청 하러 왔을 때
+            Q_state = Q_STATE.None;
+        }
+        Button0_Set();
+        Button1_Set();
+    }
+
+    public void Button0_Set()
+    {
+        Transform myButton = C_Data.NpcTalk_Window.Buttons[0].transform;
+        // 버튼 이름
+        myButton.GetChild(0).GetComponent<TMP_Text>().text = "완료된 퀘스트 없음";
+        //Lock 활성화
+        myButton.GetChild(1).gameObject.SetActive(true);
         //온클릭 적용
-        C_Data.NpcTalk_Window.Buttons[1].GetComponent<Button>().onClick.AddListener(QuestRequest_Btton);
+        myButton.GetComponent<Button>().onClick.AddListener(QuestComplete_Button);
+
+        if(Q_state== Q_STATE.Complete) 
+        {
+            myButton.GetChild(1).gameObject.SetActive(false);
+            myButton.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 완료 보고";
+        }
+
         //버튼 활성화
-        C_Data.NpcTalk_Window.Buttons[1].SetActive(true);
+        myButton.gameObject.SetActive(true);
+    }
+
+    public void Button1_Set()
+    {
+        Transform myButton = C_Data.NpcTalk_Window.Buttons[1].transform;
+        // 버튼 이름
+        myButton.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 신청";
+        //Lock 활성화
+        myButton.GetChild(1).gameObject.SetActive(true);
+        //온클릭 적용
+        myButton.GetComponent<Button>().onClick.AddListener(QuestRequest_Btton);
+
+        if(Q_state == Q_STATE.None) // 현재 퀘스트가 없다면 = 새로운 퀘스트를 받으러 왔다면
+        {
+            //Lock 비활성화
+            myButton.GetChild(1).gameObject.SetActive(false);
+        }
+
+        //버튼 활성화
+        myButton.gameObject.SetActive(true);
     }
 
     void QuestComplete_Button()
     {
-        
-
         //이벤트에게 퀘스트 정보전달
         Quest_Complete QC = C_Data.NpcTalk_Window.Event_Window.Events[0].GetComponent<Quest_Complete>();
 
-        QC.Q_Name.text = PQ_Data.Name.text;
+        QC.Q_Name.text = nowPQ.Name.text;
         for(int i = 0; i < 3; i++) // 보상갯수에 맞게 보상슬롯 활성화
         {
-            if(PQ_Data.Reward_Slots[i].activeSelf == true)
+            if(nowPQ.Reward_Slots[i].activeSelf == true)
             {
-                Instantiate(PQ_Data.Reward_Slots[i].transform.GetChild(0).GetChild(0).gameObject, QC.Q_Reword[i].transform.GetChild(0));
+                Instantiate(nowPQ.Reward_Slots[i].transform.GetChild(0).GetChild(0).gameObject, QC.Q_Reword[i].transform.GetChild(0));
                 QC.Q_Reword[i].SetActive(true);
             }
             else

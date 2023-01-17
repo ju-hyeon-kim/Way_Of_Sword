@@ -35,14 +35,10 @@ public class QL_Quest : MonoBehaviour
             }
             else
             {
-                Instantiate(Quest_Data.Reward[i], Q_Reword[i].transform.GetChild(0)); // Icon_Area의 자식으로 아이템 오브젝트 생성
-                Q_Reword[i].transform.GetChild(1).gameObject.SetActive(false); // Hidden_text 비활성화
+                Instantiate(Quest_Data.Reward[i], Q_Reword[i].transform.GetChild(1)); // Icon_Area의 자식으로 아이템 오브젝트 생성
             }
         }
-        //"신청가능"
-        TMP_Text temp = State.transform.GetChild(0).GetComponent<TMP_Text>();
-        temp.text = "진행 가능";
-        temp.color = Color.green;
+        //"진행가능"
         State.SetActive(true);
 
         //Lock 해제
