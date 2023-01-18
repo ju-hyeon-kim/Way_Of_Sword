@@ -21,7 +21,9 @@ public class Quest_0 : Quest_Data
     {
         while (!Quest_Complete)
         {
-            if (SceneManager.GetActiveScene().name == "Guild")
+            
+
+            if (SceneManager.GetActiveScene().name == "Guild") // 퀘스트 완료 조건
             {
                 transform.parent.GetComponent<Manager_Quest>().Complete_Quest();
                 Quest_Complete = true;

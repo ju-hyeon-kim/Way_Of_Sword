@@ -10,8 +10,33 @@ public class Manager_Quest : MonoBehaviour
     public GameObject[] Quest_Prefabs;
     public Quest_Request Quest_Request;
     public int Quest_Num = 0;
-    Quest_Data NowQuest;
+    public Quest_Guide Quest_Guide;
+    public Transform[] Guide_Tartgets = new Transform[10]; // Guide_Tartgets[num] = Quest_num의 타겟
+    public Quest_Data NowQuest;
 
+    #region 싱글톤 세팅 + Awake()
+    private static Manager_Quest Instence = null;
+
+    private void Awake()
+    {
+        if (Instence == null)
+        {
+            Instence = this;
+        }
+    }
+
+    public static Manager_Quest Inst
+    {
+        get
+        {
+            if (Instence == null) // 다른 오브젝트의 Awake()에서 Inst를 호출할 경우
+            {
+                return null;
+            }
+            return Instence;
+        }
+    }
+    #endregion
 
     private void Start()
     {
@@ -32,12 +57,18 @@ public class Manager_Quest : MonoBehaviour
         Quest_SubWindow.Change_Quest(NowQuest);
 
         GetComponentInChildren<Quest_Data>().Start_Questing();
+
+        Quest_Guide.gameObject.SetActive(true);
+        Quest_Guide.StartGuiding();
     }
 
     public void Complete_Quest()
     {
         Proceeding_Quest.Complete_Quest();
         Quest_SubWindow.Complete_Quest();
+
+        Quest_Guide.StopGuiding();
+        Quest_Guide.gameObject.SetActive(false);
     }
 
     public void None_Qeust()

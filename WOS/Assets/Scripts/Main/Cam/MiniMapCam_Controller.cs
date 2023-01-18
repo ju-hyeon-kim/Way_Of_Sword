@@ -6,16 +6,10 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class MiniMapCam_Controller : MonoBehaviour
 {
-    enum Section
-    {
-        None, Village, Guild
-    }
-    [SerializeField]
-    Section NowSection;
 
     public Camera myCam;
     public Transform Cam_Target;
-    public List<Transform> Icons;
+    public Transform[] MiniMap_Icons = new Transform[10];
 
     public bool Target_inScreen;
     Vector3 myDir = Vector3.zero;
@@ -34,21 +28,18 @@ public class MiniMapCam_Controller : MonoBehaviour
     void Update()
     {
         transform.position = Cam_Target.position + myDir * myDist;
-
-        StateProcess();
     }
 
-    void ChangeSection(Section s)
+    public void ChangeView_Setting(string s)
     {
-        NowSection = s;
 
-        switch (NowSection)
+        switch (s)
         {
-            case Section.Village:
+            case "Village":
                 break;
-            case Section.Guild:
+            case "Guild":
                 //플레이어 아이콘 사이즈 변경
-                Icons[0].localScale = new Vector3(2.0f, 2.0f, 1.0f);
+                MiniMap_Icons[0].localScale = new Vector3(2.0f, 2.0f, 1.0f);
                 //줌 거리 변경
                 myDist = 15.0f;
                 //줌 제한값 변경
@@ -60,38 +51,15 @@ public class MiniMapCam_Controller : MonoBehaviour
         }
     }
 
-    void StateProcess()
-    {
-        switch (NowSection)
-        {
-            case Section.None:
-                ChangeSection(Section.Village);
-                break;
-            case Section.Village:
-                if(Icons.Count > 1) //씬전환 시
-                {
-                    Target_inScreen = CheckTarget(Icons[1].gameObject);
-                }
-
-                if (SceneManager.GetActiveScene().name != "Village")
-                {
-                    ChangeSection(Section.Guild);
-                }
-                break;
-            case Section.Guild:
-                break;
-        }
-    }
-
     public void ZoomIn()
     {
         myDist -= Zoom_IncrementValue;
         myDist = Mathf.Clamp(myDist, minZoom, maxZoom); // 줌 제한값
         if (myDist > minZoom + 1 && myDist < maxZoom - 1)
         {
-            for (int i = 0; i < Icons.Count; i++)
+            for (int i = 0; i < MiniMap_Icons.Length; i++)
             {
-                Icons[i].localScale = new Vector3(Icons[i].localScale.x * 0.9f, Icons[i].localScale.y * 0.9f, 1);
+                MiniMap_Icons[i].localScale = new Vector3(MiniMap_Icons[i].localScale.x * 0.9f, MiniMap_Icons[i].localScale.y * 0.9f, 1);
             }
         }
     }
@@ -102,18 +70,18 @@ public class MiniMapCam_Controller : MonoBehaviour
         myDist = Mathf.Clamp(myDist, minZoom, maxZoom); // 줌 제한값
         if (myDist > minZoom + 1 && myDist < maxZoom - 1)
         {
-            for (int i = 0; i < Icons.Count; i++)
+            for (int i = 0; i < MiniMap_Icons.Length; i++)
             {
-                Icons[i].localScale = new Vector3(Icons[i].localScale.x * 1.1f, Icons[i].localScale.y * 1.1f, 1);
+                MiniMap_Icons[i].localScale = new Vector3(MiniMap_Icons[i].localScale.x * 1.1f, MiniMap_Icons[i].localScale.y * 1.1f, 1);
             }
         }
     }
 
-    public bool CheckTarget(GameObject target)
+    /*public bool CheckTarget(GameObject target) // 캠화면에 타겟 오브젝트가 보일 때 트루를 반환
     {
         Vector3 ScreenPoint = myCam.WorldToViewportPoint(target.transform.position);
         bool onScreen = ScreenPoint.z > 0 && ScreenPoint.x > 0 && ScreenPoint.x < 1 && ScreenPoint.y > 0 && ScreenPoint.y < 1;
 
         return onScreen;
-    }
+    }*/
 }

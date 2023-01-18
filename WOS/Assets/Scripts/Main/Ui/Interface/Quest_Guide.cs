@@ -6,21 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class Quest_Guide : MonoBehaviour
 {
-    public Transform Target;
     public Transform Player;
     public Transform MiniMap_Camera;
+    public Manager_Quest Manager_Quest;
 
     Coroutine CoGuiding;
-
-    private void Start()
-    {
-        StartGuiding();
-    }
 
     IEnumerator Guiding()
     {
         while(true)
         {
+            int Q_Num = Manager_Quest.Inst.NowQuest.Quest_Number;
+            Transform Target = Manager_Quest.Inst.Guide_Tartgets[Q_Num];
+
             Vector3 dir = Target.position - Player.position;
             dir.y = 0;
             dir.Normalize();
@@ -46,6 +44,5 @@ public class Quest_Guide : MonoBehaviour
     public void StopGuiding()
     {
         StopCoroutine(CoGuiding);
-        gameObject.SetActive(false);
     }
 }
