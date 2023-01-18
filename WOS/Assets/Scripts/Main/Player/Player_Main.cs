@@ -16,6 +16,7 @@ public class Player_Main : MonoBehaviour
     public GameObject Skill_Range;
     public Transform Weapon_Back;
     public Transform Weapon_Hand;
+    public Transform Cam_Target;
     public bool isEvent = false; // 이벤트 발생 플레이어 조작 불가
     public NpcTalk_Window NpcTalk_Window;
 
@@ -41,7 +42,6 @@ public class Player_Main : MonoBehaviour
                 break;
         }
     }
-
     private void Awake()
     {
         Manager_SceneChange.inst.player = this; //씬 전환시 플레이어의 위치 설정
