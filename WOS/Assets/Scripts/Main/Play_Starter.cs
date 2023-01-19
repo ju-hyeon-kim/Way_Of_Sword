@@ -32,8 +32,10 @@ public class Play_Starter : MonoBehaviour
         }
     }
 
-    public void Call()
-    {
+    public void Start_Call(){}
 
+    private void Start()
+    {
+        transform.parent.GetComponent<Dont_Destroy_Data>().Start_Setting();
     }
 }

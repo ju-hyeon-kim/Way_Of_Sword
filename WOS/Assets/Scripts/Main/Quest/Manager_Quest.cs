@@ -38,6 +38,11 @@ public class Manager_Quest : MonoBehaviour
     }
     #endregion
 
+    public void Start_Setting()
+    {
+        Change_Quest();
+    }
+
     public void Change_Quest()
     {
         if (transform.childCount > 0) // 매니저에게 자식이 있다면 = 기존의 퀘스트가 생성되어있다면

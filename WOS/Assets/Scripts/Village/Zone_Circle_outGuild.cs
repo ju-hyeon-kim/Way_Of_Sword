@@ -6,6 +6,7 @@ public class Zone_Circle_outGuild : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        other.GetComponent<Player_Movement>().Stop_Movement();
         Manager_SceneChange.inst.ChangeScene("Guild");
     }
 }

@@ -20,29 +20,27 @@ public class MainCam_Controller : MonoBehaviour
     GameObject SaveNpc;
     Vector3 RotDir;
 
-    private void Start()
+    public void Start_Setting()
     {
-        
-    }
-
-    public void StartSetting()
-    {
-        myDir = Cam_Target.position - transform.position;
-        transform.rotation = Quaternion.LookRotation(myDir); // 타겟을 바라보게 회전
+        myDir = transform.position - Cam_Target.position;
+        transform.rotation = Quaternion.LookRotation(-myDir); // 타겟을 바라보게 회전
 
         myDist = myDir.magnitude;
         myDir.Normalize();
+
+        StartCoroutine(Follow_CamTarget());
     }
 
-    private void Update()
+    IEnumerator Follow_CamTarget()
     {
-        if(!isEvent)
+        while(!isEvent)
         {
             //줌
             myDist -= Input.GetAxis("Mouse ScrollWheel");
-            myDist = Mathf.Clamp(myDist, 2.0f, 15.0f); // 줌 최소/최대 제한
-            
-            transform.position = Cam_Target.position - myDir * myDist;
+            myDist = Mathf.Clamp(myDist, 2.0f, 15.0f); // 줌 최소,최대 제한
+
+            transform.position = Cam_Target.position + myDir * myDist;
+            yield return null;
         }
     }
 
@@ -100,6 +98,7 @@ public class MainCam_Controller : MonoBehaviour
         }
         else
         {
+            StartCoroutine(Follow_CamTarget());
             Cam_Target.GetComponentInParent<Player_Main>().isEvent = false; // 플레이어 조작 가능
             Talk_Ready = false;
         }

@@ -9,23 +9,21 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
     public AsyncOperation ao;
     public bool LoadingChk = false; // 현재 로딩 중인지를 검사하는 불값
     public Player_Main player = null;
-    public Transform Temp_Transform;
-    public MiniMapCam_Controller MiniMapCam_Controller;
 
     public void ChangeScene(string s)
     {
         //가이드 타겟을 TEMP로 설정
         for(int i = 0; i < Manager_Quest.Inst.Guide_Tartgets.Length; i++)
         {
-            Manager_Quest.Inst.Guide_Tartgets[i] = Temp_Transform;
+            Manager_Quest.Inst.Guide_Tartgets[i] = transform;
         }
 
-        //미니맵 캠 뷰 설정 변경
+        /*//미니맵 캠 뷰 설정 변경
         MiniMapCam_Controller.ChangeView_Setting(s);
         for (int i = 0; i < MiniMapCam_Controller.MiniMap_Icons.Length; i++)
         {
             MiniMapCam_Controller.MiniMap_Icons[i] = Temp_Transform;
-        }
+        }*/
 
         //로딩 코루틴
         if (!LoadingChk)
@@ -55,7 +53,7 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
                 if (Input.anyKeyDown)
                 {
                     ao.allowSceneActivation = true;
-                    Manager_Quest.Inst.NowQuest.Start_Questing();
+                    //Manager_Quest.Inst.NowQuest.Start_Questing();
                 }
             }
             yield return null;

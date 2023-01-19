@@ -23,11 +23,17 @@ public class MiniMapCam_Controller : MonoBehaviour
         myDir = transform.position - Cam_Target.position;
         myDist = myDir.magnitude;
         myDir.Normalize();
+
+        StartCoroutine(Following_CamTarget());
     }
 
-    void Update()
+    IEnumerator Following_CamTarget()
     {
-        transform.position = Cam_Target.position + myDir * myDist;
+        while (true)
+        {
+            transform.position = Cam_Target.position + myDir * myDist;
+            yield return null;
+        }
     }
 
     public void ChangeView_Setting(string s)
