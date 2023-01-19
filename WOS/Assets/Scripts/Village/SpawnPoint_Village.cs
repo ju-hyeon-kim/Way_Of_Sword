@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class SpawnPoint_Village : MonoBehaviour
 {
-    public GameObject Player;
-    public MainCam_Controller MainCam_Controller;
-    public MiniMapCam_Controller MiniMapCam_Controller;
+    public Transform[] Tartgets_inVillage = new Transform[10];
 
     private void Awake()
     {
-        //플레이어 소환
-        GameObject P = Instantiate(Player, transform.parent);
-        P.transform.position = transform.position;
+        Play_Starter.Inst.Call(); // Play_Starter가 없다면 Play_Starter 생성 => Village씬에 처음 왔을 때
+    }
 
-        Player_Main pm = P.GetComponent<Player_Main>();
-        MainCam_Controller.Cam_Target = pm.Cam_Target;
-        MiniMapCam_Controller.Cam_Target = pm.Cam_Target;
+    private void Start()
+    {
+        Manager_Quest.Inst.Guide_Tartgets = Tartgets_inVillage;
     }
 }

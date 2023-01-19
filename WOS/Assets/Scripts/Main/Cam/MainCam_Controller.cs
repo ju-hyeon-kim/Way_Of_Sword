@@ -22,6 +22,11 @@ public class MainCam_Controller : MonoBehaviour
 
     private void Start()
     {
+        
+    }
+
+    public void StartSetting()
+    {
         myDir = Cam_Target.position - transform.position;
         transform.rotation = Quaternion.LookRotation(myDir); // 타겟을 바라보게 회전
 

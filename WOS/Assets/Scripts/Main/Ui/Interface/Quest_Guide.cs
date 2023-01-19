@@ -8,7 +8,6 @@ public class Quest_Guide : MonoBehaviour
 {
     public Transform Player;
     public Transform MiniMap_Camera;
-    public Manager_Quest Manager_Quest;
 
     Coroutine CoGuiding;
 
@@ -17,6 +16,7 @@ public class Quest_Guide : MonoBehaviour
         while(true)
         {
             int Q_Num = Manager_Quest.Inst.NowQuest.Quest_Number;
+            Debug.Log(Manager_Quest.Inst.Guide_Tartgets[Q_Num]);
             Transform Target = Manager_Quest.Inst.Guide_Tartgets[Q_Num];
 
             Vector3 dir = Target.position - Player.position;

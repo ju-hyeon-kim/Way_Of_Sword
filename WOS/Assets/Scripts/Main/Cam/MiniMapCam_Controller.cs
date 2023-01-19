@@ -18,7 +18,7 @@ public class MiniMapCam_Controller : MonoBehaviour
     float maxZoom = 80.0f;
     float Zoom_IncrementValue = 5.0f; // ÁÜ Áõ°¨Ä¡
 
-    void Start()
+    public void StartSetting()
     {
         myDir = transform.position - Cam_Target.position;
         myDist = myDir.magnitude;
