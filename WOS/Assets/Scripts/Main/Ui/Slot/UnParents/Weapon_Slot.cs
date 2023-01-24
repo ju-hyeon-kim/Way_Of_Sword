@@ -73,7 +73,6 @@ public class Weapon_Slot : MonoBehaviour
             {
                 if (transform.GetChild(1).GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[i] != null)
                 {
-                    Debug.Log("무기안에 오브가 달려있어요");
                     SwordObe_Slots[i].transform.GetChild(0).GetComponent<Obe_Icon>().Obe_Data = transform.GetChild(1).GetComponentInChildren<Equipment_Icon>().Equipment_Data.Equipped_Obes[i];
                     SwordObe_Slots[i].transform.GetChild(0).gameObject.SetActive(true);
                 }

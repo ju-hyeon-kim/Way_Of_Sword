@@ -11,6 +11,6 @@ public class Zone_Circle_inGuild : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Manager_SceneChange.inst.ChangeScene("Village");
+        Manager_SceneChange.Inst.ChangeScene("Village");
     }
 }

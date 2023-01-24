@@ -20,6 +20,6 @@ public class Door_Zone : MonoBehaviour
             FadeOut.GetComponent<Image>().fillAmount += Time.deltaTime;
             yield return null;
         }
-        Manager_SceneChange.inst.ChangeScene("Story2");
+        Manager_SceneChange.Inst.ChangeScene("Story2");
     }
 }

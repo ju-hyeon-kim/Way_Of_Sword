@@ -6,6 +6,6 @@ public class Manager_Title : MonoBehaviour
 {
     public void NewGame()
     {
-        Manager_SceneChange.inst.ChangeScene("Story1");
+        Manager_SceneChange.Inst.ChangeScene("Story1");
     }
 }

@@ -101,6 +101,6 @@ public class Manager_Story2 : MonoBehaviour
             Objects.FadeOut.GetComponent<Image>().fillAmount += Time.deltaTime;
             yield return null;
         }
-        Manager_SceneChange.inst.ChangeScene("Tutorial");
+        Manager_SceneChange.Inst.ChangeScene("Tutorial");
     }
 }

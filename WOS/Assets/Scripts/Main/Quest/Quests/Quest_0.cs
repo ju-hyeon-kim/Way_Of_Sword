@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Quest_0 : Quest_Data
 {
-    bool Quest_Complete = false;
+    bool isComplete = false;
 
     public override bool isCounting()
     {
@@ -19,14 +19,24 @@ public class Quest_0 : Quest_Data
 
     IEnumerator Questing()
     {
-        while (!Quest_Complete)
+        while (Quest_isStart)
         {
-            
-
             if (SceneManager.GetActiveScene().name == "Guild") // 퀘스트 완료 조건
             {
-                transform.parent.GetComponent<Manager_Quest>().Complete_Quest();
-                Quest_Complete = true;
+                if(!isComplete)
+                {
+                    Manager_Quest.Inst.Complete_Quest();
+                    isComplete = true;
+                }
+            }
+            else
+            {
+                if(isComplete)
+                {
+                    //가이딩 다시 시작
+                    Manager_Quest.Inst.Quest_Guide.StartGuiding();
+                    isComplete = false;
+                }
             }
             yield return null;
         }

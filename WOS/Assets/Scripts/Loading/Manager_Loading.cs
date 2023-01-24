@@ -19,7 +19,7 @@ public class Manager_Loading : MonoBehaviour
 
     private void Update()
     {
-        if(Manager_SceneChange.inst.ao.progress >= 0.9f)
+        if(Manager_SceneChange.Inst.ao.progress >= 0.9f)
         {
             Loading_Text.GetComponent<Animator>().SetTrigger("None");
             Loading_Text.text = Loading_Texts[1];

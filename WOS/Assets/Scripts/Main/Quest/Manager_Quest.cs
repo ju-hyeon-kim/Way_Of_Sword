@@ -56,19 +56,17 @@ public class Manager_Quest : MonoBehaviour
         Proceeding_Quest.Change_Quest(NowQuest);
         Quest_SubWindow.Change_Quest(NowQuest);
 
+        GetComponentInChildren<Quest_Data>().Quest_isStart = true;
         GetComponentInChildren<Quest_Data>().Start_Questing();
 
-        Quest_Guide.gameObject.SetActive(true);
-        Quest_Guide.StartGuiding();
+        Quest_Guide.Change_Quest();
     }
 
     public void Complete_Quest()
     {
         Proceeding_Quest.Complete_Quest();
         Quest_SubWindow.Complete_Quest();
-
-        Quest_Guide.StopGuiding();
-        Quest_Guide.gameObject.SetActive(false);
+        Quest_Guide.Complete_Quest();
     }
 
     public void None_Qeust()

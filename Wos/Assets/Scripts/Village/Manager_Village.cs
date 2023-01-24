@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Manager_Village : MonoBehaviour
 {
-    public Transform[] Guide_Tartgets = new Transform[10];
+    public Transform[] Guide_Tartgets;
+    public Transform[] Minimap_Icons;
 
     private void Awake()
     {
@@ -14,6 +15,6 @@ public class Manager_Village : MonoBehaviour
     private void Start()
     {
         Manager_Quest.Inst.Guide_Tartgets = Guide_Tartgets;
-
+        Manager_SceneChange.Inst.MiniMapCam_Controller.MiniMap_Icons = Minimap_Icons;
     }
 }

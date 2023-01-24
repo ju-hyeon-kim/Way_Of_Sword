@@ -37,7 +37,7 @@ public class Player_Main : Player_Movement
     }
     private void Awake()
     {
-        Manager_SceneChange.inst.player = this; //씬 전환시 플레이어의 위치 설정
+        Manager_SceneChange.Inst.player = this; //씬 전환시 플레이어의 위치 설정
         ChangeMode(Player_Mode.Unbattle);
     }
 }

@@ -4,12 +4,33 @@ using UnityEngine;
 
 public class Dont_Destroy_Data : MonoBehaviour
 {
-    public Manager_Cams Manager_Cams;
+    #region 싱글톤 세팅 + Awake()
+    private static Dont_Destroy_Data Instence = null;
 
-    void Awake()
+    private void Awake()
     {
-        DontDestroyOnLoad(this); // 씬전환 시 파괴되지 않음
+        if (Instence == null)
+        {
+            Instence = this;
+        }
+        DontDestroyOnLoad(this);
     }
+
+    public static Dont_Destroy_Data Inst
+    {
+        get
+        {
+            if (Instence == null) // 다른 오브젝트의 Awake()에서 Inst를 호출할 경우
+            {
+                return null;
+            }
+            return Instence;
+        }
+    }
+    #endregion
+
+    public Manager_Cams Manager_Cams;
+    public Map_Window Map_Window;
 
     public void Start_Setting()
     {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Quest_List : MonoBehaviour
@@ -9,10 +10,11 @@ public class Quest_List : MonoBehaviour
 
     public void Change_Quest(Quest_Data QD)
     {
-        QL_Quest QLQ = QL_Quests[0];
+        QL_Quest QLQ = QL_Quests[QD.Quest_Number];
         QLQ.Q_Name.text = QD.Name;
         QLQ.Q_Name.fontSize = 20f;
         QLQ.State.SetActive(true);
+        QLQ.State.transform.GetChild(0).GetComponent<TMP_Text>().text = "ม๘วเม฿";
 
         for (int i = 0; i < QLQ.Q_Reword.Length; i++)
         {

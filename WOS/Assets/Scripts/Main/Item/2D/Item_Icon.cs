@@ -9,6 +9,7 @@ public class Item_Icon : MonoBehaviour,
     IPointerEnterHandler, IPointerExitHandler,IPointerMoveHandler, IPointerDownHandler, IPointerUpHandler, // 포인터 핸들러
     IBeginDragHandler, IDragHandler, IEndDragHandler // 드래그 핸들러
 {
+    public Transform Canvas;
     public Transform Before_Parents; // 전에 있던 부모 오브젝트
     public int Before_ChildNum = 0; // 전에 있던 부모의 몇번째 자식이었는지 저장
     public bool isSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
@@ -64,7 +65,7 @@ public class Item_Icon : MonoBehaviour,
         Before_ChildNum = transform.GetSiblingIndex();
 
         //들어올린 오브젝트는 최상위 오브젝트(root = Canvus)의 가장 마지막 자식이 됨
-        transform.SetParent(transform.root);
+        transform.SetParent(Canvas);
 
         GetComponent<Image>().raycastTarget = false;
         dragOffset = (Vector2)transform.position - eventData.position; // 마우스 포지션 = 잡은 지점

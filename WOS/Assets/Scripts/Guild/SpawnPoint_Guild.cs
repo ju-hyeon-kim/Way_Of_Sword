@@ -6,6 +6,7 @@ public class SpawnPoint_Guild : MonoBehaviour
 {
     private void Start()
     {
-        //Manager_SceneChange.inst.player.transform.position = transform.position;
+        Manager_SceneChange.Inst.player.transform.position = transform.position;
+        Manager_SceneChange.Inst.Before_Place = "Guild";
     }
 }
