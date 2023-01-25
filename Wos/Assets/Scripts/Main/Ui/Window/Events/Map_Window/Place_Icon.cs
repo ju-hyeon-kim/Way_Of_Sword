@@ -8,13 +8,14 @@ public class Place_Icon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
 {
     public Animator myLabel_Image;
     public GameObject myLock;
-    public GameObject Question_Window;
+    public Question_Window Question_Window;
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if(myLock.activeSelf == false)
         {
-            Question_Window.SetActive(true);
+            Question_Window.Place_Check(gameObject.name);
+            Question_Window.transform.parent.gameObject.SetActive(true);
         }
     }
 
@@ -27,6 +28,4 @@ public class Place_Icon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         myLabel_Image.SetBool("Open", false);
     }
-
-
 }

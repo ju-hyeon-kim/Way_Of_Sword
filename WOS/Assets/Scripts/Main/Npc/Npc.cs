@@ -88,7 +88,6 @@ public class Npc : MonoBehaviour
     public void Child_Start_Setting() // 자식 스크립트의 Start()에서 공통으로 사용하는 세팅
     {
         C_Data.MainCam = Camera.main.transform.parent.GetComponent<MainCam_Controller>();
-        C_Data.OrgForward = I_Data.myForward.position;
     }
 
     public void Reaction(GameObject Player) // 플레이어가 말을 걸면 리액션
@@ -139,7 +138,7 @@ public class Npc : MonoBehaviour
         //마우스와 상호작용 작동
         isTalking = false;
         //원래 바라보던 방향으로 회전
-        StartCoroutine(Rotating(C_Data.OrgForward, false));
+        StartCoroutine(Rotating(I_Data.myForward.position, false));
     }
 
     public virtual void Outline_Active() {} // 아웃라인 적용
@@ -156,6 +155,7 @@ public class Npc : MonoBehaviour
 
     public void Button2_Set() // 돌아가기 버튼
     {
+        C_Data.NpcTalk_Window.Buttons[2].GetComponent<Button>().onClick.RemoveAllListeners();
         C_Data.NpcTalk_Window.Buttons[2].GetComponent<Button>().onClick.AddListener(Button2_OnClick);
         C_Data.NpcTalk_Window.Buttons[2].SetActive(true);
     }

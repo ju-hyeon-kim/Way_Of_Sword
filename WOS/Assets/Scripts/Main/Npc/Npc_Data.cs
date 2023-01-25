@@ -18,5 +18,4 @@ public class Npc_CommonData // Npc들 다 똑같이 사용하는 '공통 데이타'
 {
     public NpcTalk_Window NpcTalk_Window;
     public MainCam_Controller MainCam;
-    public Vector3 OrgForward;
 }
