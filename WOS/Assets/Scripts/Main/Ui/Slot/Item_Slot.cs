@@ -11,7 +11,7 @@ public class Item_Slot : MonoBehaviour, IDropHandler
         Transform myItem = eventData.pointerDrag.transform;
 
         //아이템이 슬롯위에 있음을 알려주는 코드
-        myItem.GetComponent<Item_Icon>().isSlot= true;
+        myItem.GetComponent<Item_2D>().isSlot= true;
 
         if (TypeDetect(eventData))
         {
@@ -23,8 +23,8 @@ public class Item_Slot : MonoBehaviour, IDropHandler
         else
         {
             //아이템을 받지 않는다.
-            myItem.SetParent(myItem.GetComponent<Item_Icon>().Before_Parents);
-            myItem.SetSiblingIndex(myItem.GetComponent<Item_Icon>().Before_ChildNum);
+            myItem.SetParent(myItem.GetComponent<Item_2D>().Before_Parents);
+            myItem.SetSiblingIndex(myItem.GetComponent<Item_2D>().Before_ChildNum);
             myItem.localPosition = Vector3.zero;
         }
     }

@@ -5,12 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Inven_Slot : Item_Slot
 {
-    public Item.Type SlotType = default; // 인스펙터에서 정해줌
+    public Item_Types.ItemType SlotType = default; // 인스펙터에서 정해줌
 
     public override bool TypeDetect(PointerEventData eventData)
     {
         //아이템의 타입이 슬롯 타입과 같다면 true를 반환, 아니면 false를 반환
-        if (eventData.pointerDrag.transform.GetComponent<Item_Icon>().myType == SlotType)
+        if (eventData.pointerDrag.transform.GetComponent<Item_2D>().myType == SlotType)
         {
             return true;
         }
@@ -30,17 +30,17 @@ public class Inven_Slot : Item_Slot
         // 오브 슬롯이라면
         switch(SlotType)
         {
-            case Item.Type.Equipment: //장비를 받았을 때
+            case Item_Types.ItemType.Equipment: //장비를 받았을 때
                 {
-                    if(myItem.GetComponent<Equipment_Icon>().Before_Parents.name == "Weapon")
+                    if(myItem.GetComponent<Equipment_2D>().Before_Parents.name == "Weapon")
                     {
-                        myItem.GetComponent<Equipment_Icon>().Before_Parents.GetComponent<Weapon_Slot>().Equip_Control(); //무기장착해제
+                        myItem.GetComponent<Equipment_2D>().Before_Parents.GetComponent<Weapon_Slot>().Equip_Control(); //무기장착해제
                     }
                 }
                 break;
-            case Item.Type.Obe: //오브를 받았을 때
+            case Item_Types.ItemType.Obe: //오브를 받았을 때
                 {
-                    Obe_Icon myObe = myItem.GetComponent<Obe_Icon>();
+                    Obe_2D myObe = myItem.GetComponent<Obe_2D>();
                     
                     //장착되어 있던 무기와 연동
                     if(myObe.Before_Parents.parent.name == "SwordObe_Slots")// 소드오브슬롯으로부터 받았을 때
@@ -51,7 +51,7 @@ public class Inven_Slot : Item_Slot
                         int Obe_Num = myObe.Before_Parents.GetComponent<SwordObe_Slot>().mySlotNum;
                         Transform myWeapon = myObe.Before_Parents.GetComponent<SwordObe_Slot>().myWeapon_Slot.GetChild(1);
 
-                        myWeapon.GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[Obe_Num] = null;
+                        myWeapon.GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[Obe_Num] = null;
                     }
                 }
                 break;

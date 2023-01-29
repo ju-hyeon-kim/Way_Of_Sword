@@ -25,21 +25,21 @@ public class Quest_Complete : MonoBehaviour
         {
             if (Q_Reword[i].transform.GetChild(0).childCount > 0)
             {
-                Icon Icon = Q_Reword[i].transform.GetChild(0).GetChild(0).GetComponent<Icon>(); // Icon 컴포넌트 저장
-                string ItemName = Icon.Item_Data.Name; // 아이템의 이름 가져오기
+                Item_2D Icon = Q_Reword[i].transform.GetChild(0).GetChild(0).GetComponent<Item_2D>(); // Icon 컴포넌트 저장
+                string ItemName = Icon.myData.Name; // 아이템의 이름 가져오기
 
                 // 아이템의 타입을 검사하여 Xp나 골드라면 price가 수량을 나타냄 다른 타입의 아이템이라면 1로 수량을 나타냄
-                Item.Type ItemType = Icon.Item_Data.ItemType; 
+                Item_Types.ItemType ItemType = Icon.myData.ItemType; 
                 int price = 1;
-                if(ItemType == Item.Type.Xp)
+                if(ItemType == Item_Types.ItemType.Xp)
                 {
-                    price = Icon.Item_Data.Price;
+                    price = Icon.myData.Price;
                     //XP -> 스테이터스에 적용
                     Status.Level.Get_Xp(price);
                 }
-                else if(ItemType == Item.Type.Gold)
+                else if(ItemType == Item_Types.ItemType.Gold)
                 {
-                    price = Icon.Item_Data.Price;
+                    price = Icon.myData.Price;
                     //Gold -> 보유골드에 적용
                 }
                 else // 아이템타입이 XP나 골드가 아님

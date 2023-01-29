@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SwordObe_Slot : Item_Slot
 {
-    public Item.Type SlotType = default; // 인스펙터에서 정해줌
+    public Item_Types.ItemType SlotType = default; // 인스펙터에서 정해줌
     public Transform mySkill_Icon;
     public Transform myWeapon_Slot;
     public Skill_Set mySkill_Set;
@@ -16,7 +16,7 @@ public class SwordObe_Slot : Item_Slot
     {
         //아이템의 타입이 오브라면 true를 반환, 아니면 false를 반환
 
-        if (eventData.pointerDrag.transform.GetComponent<Item_Icon>().myType == SlotType)
+        if (eventData.pointerDrag.transform.GetComponent<Item_2D>().myType == SlotType)
         {
             return true;
         }
@@ -35,9 +35,9 @@ public class SwordObe_Slot : Item_Slot
         // 오브제는 슬롯의 0번째 자식으로 설정
         ED.SetAsFirstSibling();
         // 스킬셋에 스킬 데이터 건네주기
-        ED.GetComponent<Obe_Icon>().Give_Skill_Data();
+        ED.GetComponent<Obe_2D>().Give_Skill_Data();
         // 무기의 '장착된 오브들(Equipped_Obes)'과 연동
-        myWeapon_Slot.GetChild(1).GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[mySlotNum] = ED.GetComponent<Obe_Icon>().Obe_Data;
+        //myWeapon_Slot.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[mySlotNum] = ED.GetComponent<Obe_2D>().Obe_Data;
 
         // 현재 소드아이콘 윈도우의 상황에 맞게 '장착된 오브들(Equipped_Obes)' 세팅 = 다른 소드오브슬롯에서 오브를 받았을 때
         // + 스킬셋도 세팅
@@ -45,7 +45,7 @@ public class SwordObe_Slot : Item_Slot
         {
             if (transform.parent.GetChild(i).childCount == 0) //소드오브슬롯의 자식이 없다면
             {
-                myWeapon_Slot.GetChild(1).GetComponent<Equipment_Icon>().Equipment_Data.Equipped_Obes[i] = null;
+                myWeapon_Slot.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] = null;
                 mySkill_Set.Skill_Icons[i].SetActive(false);
             }
         }
