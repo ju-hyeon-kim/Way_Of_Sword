@@ -7,11 +7,6 @@ using UnityEngine.UI;
 
 public class Icon_Window : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
-
     Vector2 dragOffset = Vector2.zero;
     public void OnBeginDrag(PointerEventData eventData) //잡아서 들어올림
     {

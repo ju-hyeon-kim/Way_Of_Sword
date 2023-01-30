@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,6 +9,9 @@ public class Inven_Slot : Item_Slot
 {
     public ItemType SlotType = default; // 인스펙터에서 정해줌
     public bool isEmpty = true;
+    public TMP_Text myQuantity_Text;
+
+    int Quantity = 0;
 
     public override bool TypeDetect(PointerEventData eventData)
     {
@@ -62,8 +66,11 @@ public class Inven_Slot : Item_Slot
 
     public void Put_Item(Item_2D item)
     {
-        Debug.Log(gameObject.name);
         GameObject Obj = Instantiate(item.gameObject, transform) as GameObject;
         Obj.transform.SetAsFirstSibling(); // 첫번째 자식으로 변경
+
+        Quantity++;
+        myQuantity_Text.text = $"{Quantity}";
+        myQuantity_Text.transform.parent.gameObject.SetActive(true);
     }
 }
