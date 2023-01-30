@@ -46,11 +46,11 @@ public class Weapon_Slot : MonoBehaviour
             //검에 달려있는 오브의 상황에 맞게 스킬 세팅
             for (int i = 0; i < 4; i++)
             {
-                if(transform.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] != null)
+                /*if(transform.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] != null)
                 {
                     Skill_Set.Skill_Icons[i].GetComponent<Skill_Icon>().Skill_Data = transform.GetChild(1).GetComponentInChildren<Equipment_2D>().Equipment_Data.Equipped_Obes[i].Skill_Data;
                     Skill_Set.Skill_Icons[i].SetActive(true);
-                }
+                }*/
             }
         }
     }
@@ -71,11 +71,11 @@ public class Weapon_Slot : MonoBehaviour
         {
             for (int i = 0; i < 4; i++)
             {
-                if (transform.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] != null)
+                /*if (transform.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] != null)
                 {
                     //SwordObe_Slots[i].transform.GetChild(0).GetComponent<Obe_2D>().Obe_Data = transform.GetChild(1).GetComponentInChildren<Equipment_2D>().Equipment_Data.Equipped_Obes[i];
                     SwordObe_Slots[i].transform.GetChild(0).gameObject.SetActive(true);
-                }
+                }*/
             }
         }
     }

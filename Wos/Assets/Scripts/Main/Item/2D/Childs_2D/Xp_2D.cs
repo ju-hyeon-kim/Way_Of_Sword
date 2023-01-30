@@ -10,7 +10,7 @@ public class Xp_2D : Item_2D
     public override void GiveData_DW()
     {
         //이미지
-        XpGoldData_Window.Inst.Image.sprite = myData.Image;
+        //XpGoldData_Window.Inst.Image.sprite = myData.Image;
         //이름
         XpGoldData_Window.Inst.Name.text = myData.Name;
         //수치

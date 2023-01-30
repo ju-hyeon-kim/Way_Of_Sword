@@ -11,7 +11,7 @@ public class Obe_2D : Item_2D
     public override void GiveData_DW() // 아이템 정보 창에 아이템 정보 건네주기
     {
         //이미지
-        ItemData_Window.Inst.Public_Set.Image.sprite = myData.Image;
+        //ItemData_Window.Inst.Public_Set.Image.sprite = myData.Image;
         //이름
         //ItemData_Window.Inst.Public_Set.Name.text = myData.Name;
         //강화

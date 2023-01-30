@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Inven_Slot : Item_Slot
 {
-    public Item_Types.ItemType SlotType = default; // 인스펙터에서 정해줌
+    public ItemType SlotType = default; // 인스펙터에서 정해줌
+    public bool isEmpty = true;
 
     public override bool TypeDetect(PointerEventData eventData)
     {
@@ -30,7 +32,7 @@ public class Inven_Slot : Item_Slot
         // 오브 슬롯이라면
         switch(SlotType)
         {
-            case Item_Types.ItemType.Equipment: //장비를 받았을 때
+            case ItemType.Equipment: //장비를 받았을 때
                 {
                     if(myItem.GetComponent<Equipment_2D>().Before_Parents.name == "Weapon")
                     {
@@ -38,7 +40,7 @@ public class Inven_Slot : Item_Slot
                     }
                 }
                 break;
-            case Item_Types.ItemType.Obe: //오브를 받았을 때
+            case ItemType.Obe: //오브를 받았을 때
                 {
                     Obe_2D myObe = myItem.GetComponent<Obe_2D>();
                     
@@ -51,10 +53,17 @@ public class Inven_Slot : Item_Slot
                         int Obe_Num = myObe.Before_Parents.GetComponent<SwordObe_Slot>().mySlotNum;
                         Transform myWeapon = myObe.Before_Parents.GetComponent<SwordObe_Slot>().myWeapon_Slot.GetChild(1);
 
-                        myWeapon.GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[Obe_Num] = null;
+                        myWeapon.GetComponent<Item_2D>().myData.GetComponent<Equipment_Data>().Equipped_Obes[Obe_Num] = null;
                     }
                 }
                 break;
         }
+    }
+
+    public void Put_Item(Item_2D item)
+    {
+        Debug.Log(gameObject.name);
+        GameObject Obj = Instantiate(item.gameObject, transform) as GameObject;
+        Obj.transform.SetAsFirstSibling(); // 첫번째 자식으로 변경
     }
 }

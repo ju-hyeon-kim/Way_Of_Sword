@@ -29,15 +29,15 @@ public class Quest_Complete : MonoBehaviour
                 string ItemName = Icon.myData.Name; // 아이템의 이름 가져오기
 
                 // 아이템의 타입을 검사하여 Xp나 골드라면 price가 수량을 나타냄 다른 타입의 아이템이라면 1로 수량을 나타냄
-                Item_Types.ItemType ItemType = Icon.myData.ItemType; 
+                ItemType ItemType = Icon.myData.ItemType; 
                 int price = 1;
-                if(ItemType == Item_Types.ItemType.Xp)
+                if(ItemType == ItemType.Xp)
                 {
                     price = Icon.myData.Price;
                     //XP -> 스테이터스에 적용
                     Status.Level.Get_Xp(price);
                 }
-                else if(ItemType == Item_Types.ItemType.Gold)
+                else if(ItemType == ItemType.Gold)
                 {
                     price = Icon.myData.Price;
                     //Gold -> 보유골드에 적용

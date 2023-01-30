@@ -19,7 +19,7 @@ public class Item_2D : MonoBehaviour,
     protected Vector2 dragOffset = Vector2.zero;
     protected Vector2 size = Vector2.zero;
 
-    public Item_Types.ItemType myType;
+    public ItemType myType;
 
     private void Start()
     {

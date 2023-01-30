@@ -6,7 +6,7 @@ using UnityEngine;
 public class Equipment_Data : Item_Data
 {
     public int Strengthen;
-    public Item_Types.EquipmentType EquipmentType;
+    public EquipmentType EquipmentType;
     public float AP;
     [TextArea]
     public string Explanation_Text;

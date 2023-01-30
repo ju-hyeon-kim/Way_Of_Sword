@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Item_3D : MonoBehaviour
 {
-    public GameObject myItem2D;
+    public Item_2D myItem2D;
     public GameObject myName_Label;
 
     ItemName_Label myLabel;
+    DropZone DropZone;
 
     public void OnDrop()
     {
@@ -37,7 +38,8 @@ public class Item_3D : MonoBehaviour
         if(other.gameObject.name == "DropZone")
         {
             myLabel.gameObject.SetActive(true);
-            //myLabel.Drop_Possible();
+            DropZone = other.GetComponent<DropZone>();
+            DropZone.DropItems.Add(this);
         }
     }
 
@@ -46,7 +48,13 @@ public class Item_3D : MonoBehaviour
         if (other.gameObject.name == "DropZone")
         {
             myLabel.gameObject.SetActive(false);
-            //myLabel.Drop_Impossible();
+            DropZone.DropItems.Remove(this);
         }
+    }
+
+    public void Pickup()
+    {
+        Destroy(myLabel.gameObject);
+        Destroy(this.gameObject);
     }
 }

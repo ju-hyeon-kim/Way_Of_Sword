@@ -11,8 +11,19 @@ public enum Player_Mode
 
 public class Player_Main : Player_Movement
 {
-    public Player_Mode NowMode = Player_Mode.None;
+    #region 상속구조
+    /*
+     * Character_Property
+     * ->
+     * Character_Movement, IBattle
+     * ->
+     * Player_Movement
+     * ->
+     * Player_Main
+     */
+    #endregion
 
+    public Player_Mode NowMode = Player_Mode.None;
 
     public GameObject Skill_Range;
     public Transform Weapon_Back;

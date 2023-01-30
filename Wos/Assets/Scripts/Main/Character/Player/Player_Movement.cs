@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player_Movement : Character_Movement, IBattle
 {
+    public DropZone myDropZone;
+
     public bool isEvent = false; // 이벤트 발생시 플레이어 조작 불가
     public Transform Weapon_Hand;
 
@@ -64,6 +66,12 @@ public class Player_Movement : Character_Movement, IBattle
                     ++ClickCount;
                     base.MoveToPos(myEnemy.transform.position, null, false, true);
                 }
+            }
+
+            //아이템 줍기 - Z키
+            if(Input.GetKeyDown(KeyCode.Z))
+            {
+                myDropZone.Pickup_Item();
             }
         }
     }

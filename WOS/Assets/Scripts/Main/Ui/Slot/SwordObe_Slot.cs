@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SwordObe_Slot : Item_Slot
 {
-    public Item_Types.ItemType SlotType = default; // 인스펙터에서 정해줌
+    public ItemType SlotType = default; // 인스펙터에서 정해줌
     public Transform mySkill_Icon;
     public Transform myWeapon_Slot;
     public Skill_Set mySkill_Set;
@@ -45,7 +45,7 @@ public class SwordObe_Slot : Item_Slot
         {
             if (transform.parent.GetChild(i).childCount == 0) //소드오브슬롯의 자식이 없다면
             {
-                myWeapon_Slot.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] = null;
+                //myWeapon_Slot.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] = null;
                 mySkill_Set.Skill_Icons[i].SetActive(false);
             }
         }

@@ -26,14 +26,4 @@ public class ItemName_Label : MonoBehaviour
         isSetting = true;
         Org_Color = GetComponent<Image>().color;
     }
-
-    public void Drop_Possible()
-    {
-        GetComponent<Image>().color = DropPossible_Color;
-    }
-
-    public void Drop_Impossible()
-    {
-        GetComponent<Image>().color = Org_Color;
-    }
 }
