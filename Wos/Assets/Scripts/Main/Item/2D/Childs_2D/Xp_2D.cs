@@ -6,8 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Xp_2D : Item_2D
 {
-
-    public override void GiveData_DW()
+   /* public override void GiveData_DW()
     {
         //¿ÃπÃ¡ˆ
         //XpGoldData_Window.Inst.Image.sprite = myData.Image;
@@ -32,6 +31,6 @@ public class Xp_2D : Item_2D
     public override void unShow_DataWindow()
     {
         XpGoldData_Window.Inst.gameObject.SetActive(false);
-    }
+    }*/
 
 }

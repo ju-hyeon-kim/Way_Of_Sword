@@ -31,6 +31,7 @@ public class Dont_Destroy_Data : MonoBehaviour
 
     public Manager_Cams Manager_Cams;
     public Map_Window Map_Window;
+    public ItemData_Windows ItemData_Windows;
     public Transform Player;
     public Transform Battle_Window;
     public Transform Rabel_Windows;

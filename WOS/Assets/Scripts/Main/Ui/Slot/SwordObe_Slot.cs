@@ -12,9 +12,9 @@ public class SwordObe_Slot : Item_Slot
     public Skill_Set mySkill_Set;
     public int mySlotNum;
 
-    public override bool TypeDetect(PointerEventData eventData)
+    /*public override bool TypeDetect(PointerEventData eventData)
     {
-        //아이템의 타입이 오브라면 true를 반환, 아니면 false를 반환
+        *//*//아이템의 타입이 오브라면 true를 반환, 아니면 false를 반환
 
         if (eventData.pointerDrag.transform.GetComponent<Item_2D>().myType == SlotType)
         {
@@ -23,8 +23,8 @@ public class SwordObe_Slot : Item_Slot
         else
         {
             return false;
-        }
-    }
+        }*//*
+    }*/
 
     public override void DropEvent(PointerEventData eventData) //오브를 받았을 때
     {

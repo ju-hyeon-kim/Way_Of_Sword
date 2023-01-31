@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class Item_2D : MonoBehaviour, 
     IPointerEnterHandler, IPointerExitHandler,IPointerMoveHandler, // 포인터 핸들러
     IBeginDragHandler, IDragHandler, IEndDragHandler // 드래그 핸들러
-{
+{    
     public Item_Data myData;
+    ItemData_Window myData_Window;
 
     public Transform Canvas;
     public Transform Before_Parents; // 전에 있던 부모 오브젝트
@@ -19,31 +20,19 @@ public class Item_2D : MonoBehaviour,
     protected Vector2 dragOffset = Vector2.zero;
     protected Vector2 size = Vector2.zero;
 
-    public ItemType myType;
-
-    private void Start()
-    {
-        myType_Set();
-    }
-
     public void OnPointerEnter(PointerEventData eventData) // 마우스 포지션이 아이콘 안으로 들어왔을때
     {
-        // Data Window에게 Data를 전달
-        GiveData_DW();
-
-        // Data Window 활성화
-        Show_DataWindow();
+        myData_Window = Dont_Destroy_Data.Inst.ItemData_Windows.Show_DataWindow(this);
     }
 
     public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 안에 있을때
     {
-        Updating_DataWindow(eventData); // 데이타 윈도우의 포지션을 마우스 포지션에 맞게 계속 업데이트해줌
+        myData_Window.Updating_Position(eventData);
     }
 
     public void OnPointerExit(PointerEventData eventData) // 마우스 포지션이 아이콘 밖으로 빠져나갈 때
     {
-        //아이템 정보창 비활성화
-        unShow_DataWindow();
+        myData_Window.gameObject.SetActive(false);
     }
 
     public void OnBeginDrag(PointerEventData eventData) // 아이템을 들어올림
@@ -77,26 +66,5 @@ public class Item_2D : MonoBehaviour,
             transform.SetSiblingIndex(Before_ChildNum);
             transform.localPosition = Vector3.zero;
         }
-    }
-
-    public virtual void myType_Set()
-    {
-        //자식 스크립트 나의 타입을 정해줌
-    }
-
-    public virtual void GiveData_DW()
-    {
-    }
-
-    public virtual void Show_DataWindow()
-    {
-    }
-
-    public virtual void Updating_DataWindow(PointerEventData eventData)
-    {
-    }
-
-    public virtual void unShow_DataWindow()
-    {
     }
 }

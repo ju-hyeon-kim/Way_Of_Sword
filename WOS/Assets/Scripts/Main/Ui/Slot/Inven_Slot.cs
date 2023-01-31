@@ -14,9 +14,9 @@ public class Inven_Slot : Item_Slot
     Item_2D myItem;
     int Quantity = 0;
 
-    public override bool TypeDetect(PointerEventData eventData)
-    {
-        //아이템의 타입이 슬롯 타입과 같다면 true를 반환, 아니면 false를 반환
+    //public override bool TypeDetect(PointerEventData eventData)
+    
+        /*//아이템의 타입이 슬롯 타입과 같다면 true를 반환, 아니면 false를 반환
         if (eventData.pointerDrag.transform.GetComponent<Item_2D>().myType == SlotType)
         {
             return true;
@@ -24,8 +24,8 @@ public class Inven_Slot : Item_Slot
         else
         {
             return false;
-        }
-    }
+        }*/
+    
 
     public override void DropEvent(PointerEventData eventData)
     {
