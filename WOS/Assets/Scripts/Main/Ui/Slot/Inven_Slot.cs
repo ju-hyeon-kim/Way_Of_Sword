@@ -11,6 +11,7 @@ public class Inven_Slot : Item_Slot
     public bool isEmpty = true;
     public TMP_Text myQuantity_Text;
 
+    Item_2D myItem;
     int Quantity = 0;
 
     public override bool TypeDetect(PointerEventData eventData)
@@ -64,7 +65,7 @@ public class Inven_Slot : Item_Slot
         }
     }
 
-    public void Put_Item(Item_2D item)
+    public void Put_NewItem(Item_2D item)
     {
         GameObject Obj = Instantiate(item.gameObject, transform) as GameObject;
         Obj.transform.SetAsFirstSibling(); // 첫번째 자식으로 변경
@@ -72,5 +73,18 @@ public class Inven_Slot : Item_Slot
         Quantity++;
         myQuantity_Text.text = $"{Quantity}";
         myQuantity_Text.transform.parent.gameObject.SetActive(true);
+        myItem = Obj.GetComponent<Item_2D>();
+        isEmpty = false;
+    }
+
+    public void Put_SameItem()
+    {
+        Quantity++;
+        myQuantity_Text.text = $"{Quantity}";
+    }
+
+    public string Get_myItemName()
+    {
+        return myItem.myData.Name;
     }
 }

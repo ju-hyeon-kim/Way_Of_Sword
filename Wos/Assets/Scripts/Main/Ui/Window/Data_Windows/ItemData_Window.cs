@@ -31,6 +31,12 @@ public struct Obe_Set
     public TMP_Text Skill_Explanation;
 }
 
+[System.Serializable]
+public struct Ingredient_Set
+{
+    public TMP_Text Explanation_Text;
+}
+
 public class ItemData_Window : MonoBehaviour // ΩÃ±€≈Ê
 {
     #region ΩÃ±€≈Ê ºº∆√ + Awake()
@@ -61,11 +67,10 @@ public class ItemData_Window : MonoBehaviour // ΩÃ±€≈Ê
     // ∞¯≈Î Set
     public Public_Set Public_Set;
 
-    // ¿Â∫Ò Set
-    public Equipment_Set Equipment_Set;
-
-    // ø¿∫Í Set
-    public Obe_Set Obe_Set;
+    
+    public Equipment_Set Equipment_Set; // ¿Â∫Ò Set
+    public Obe_Set Obe_Set; // ø¿∫Í Set
+    public Ingredient_Set Ingredient_Set; // ¿Á∑· set
 
     private void Start()
     {

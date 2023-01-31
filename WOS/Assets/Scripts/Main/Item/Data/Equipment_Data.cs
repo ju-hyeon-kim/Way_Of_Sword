@@ -9,6 +9,6 @@ public class Equipment_Data : Item_Data
     public EquipmentType EquipmentType;
     public float AP;
     [TextArea]
-    public string Explanation_Text;
+    public string Explanation;
     public Obe_Data[] Equipped_Obes = new Obe_Data[4];
 }

@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Equipment_2D : Item_2D
 {
-    
     public override void GiveData_DW() // 아이템 정보 창에 아이템 정보 건네주기
     {
-        Equipment_Data edata = myData.GetComponent<Equipment_Data>();
+        Equipment_Data edata = myData.GetComponent<Equipment_Data>(); // 스크럽터블 오브젝트는 컴포넌트를 갖고있지않기에  해당 문구 사용불가
 
         //이미지
-        //ItemData_Window.Inst.Public_Set.Image.sprite = edata.Image;
+        ItemData_Window.Inst.Public_Set.Image.sprite = GetComponent<Image>().sprite;
         //이름
         ItemData_Window.Inst.Public_Set.Name.text = edata.Name;
 
@@ -61,7 +61,7 @@ public class Equipment_2D : Item_2D
         //AP
         ItemData_Window.Inst.Equipment_Set.AP.text = $"공격력: {edata.AP}";
         //설명
-        ItemData_Window.Inst.Equipment_Set.Explanation_Text.text = edata.Explanation_Text;
+        ItemData_Window.Inst.Equipment_Set.Explanation_Text.text = edata.Explanation;
         //장착된 오브들
         for(int i = 0; i<4; i++)
         {
