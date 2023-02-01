@@ -107,7 +107,8 @@ public class Lucia : Npc
         {
             if(nowPQ.Reward_Slots[i].activeSelf == true)
             {
-                Instantiate(nowPQ.Reward_Slots[i].transform.GetChild(0).GetChild(0).gameObject, QC.Q_Reword[i].transform.GetChild(0));
+                GameObject Obj = Instantiate(nowPQ.Reward_Slots[i].transform.GetChild(0).gameObject, QC.Q_Reword[i].transform) as GameObject;
+                Obj.transform.SetAsFirstSibling();
                 QC.Q_Reword[i].SetActive(true);
             }
             else

@@ -23,7 +23,8 @@ public class Proceeding_Quest : MonoBehaviour
         // 퀘스트 데이터의 보상을 보상슬롯에 전달
         for (int i = 0; i < QD.Reward.Count; i++)
         {
-            Instantiate(QD.Reward[i], Reward_Slots[i].transform.GetChild(0));
+            GameObject Obj = Instantiate(QD.Reward[i], Reward_Slots[i].transform) as GameObject;
+            Obj.transform.SetAsFirstSibling();
         }
         // 보상의 갯수에 맞게 보여지는 보상 슬롯의 갯수도 달라짐
         for (int i = QD.Reward.Count; i < Reward_Slots.Length; i++)
