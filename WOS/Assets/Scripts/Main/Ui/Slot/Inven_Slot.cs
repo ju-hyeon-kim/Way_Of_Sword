@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
 
 public class Inven_Slot : Item_Slot
 {
@@ -29,13 +30,23 @@ public class Inven_Slot : Item_Slot
 
     public override void DropEvent(PointerEventData eventData)
     {
+        Debug.Log("드랍이벤트" + gameObject.name);
+
         Transform myItem = eventData.pointerDrag.transform;
+
         // 아이템이 떨궈졌을 때 아이콘의 크기가 슬롯에 맞게 줄어듬
         myItem.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
         // 오브제는 슬롯의 0번째 자식으로 설정
         myItem.transform.SetAsFirstSibling();
-        // 오브 슬롯이라면
-        switch(SlotType)
+        // 수량 가져오기
+        Quantity = myItem.GetComponent<Item_2D>().Before_Parents.GetComponent<Inven_Slot>().Quantity;
+        myQuantity_Text.text = Quantity.ToString();
+        myQuantity_Text.transform.parent.gameObject.SetActive(true);
+        myItem.GetComponent<Item_2D>().Before_Parents.GetComponent<Inven_Slot>().isNone_Item();
+
+
+        // 타입별로 다른 작동
+        switch (SlotType)
         {
             case ItemType.Equipment: //장비를 받았을 때
                 {
@@ -86,5 +97,11 @@ public class Inven_Slot : Item_Slot
     public string Get_myItemName()
     {
         return myItem.myData.Name;
+    }
+
+    public void isNone_Item() // 아이템이 없을 때
+    {
+        Quantity = 0;
+        myQuantity_Text.transform.parent.gameObject.SetActive(false);
     }
 }

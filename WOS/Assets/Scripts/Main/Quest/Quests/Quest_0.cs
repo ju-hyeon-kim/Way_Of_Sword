@@ -19,13 +19,14 @@ public class Quest_0 : Quest_Data
 
     IEnumerator Questing()
     {
+        Manager_Quest MQ = Dont_Destroy_Data.Inst.Manager_Quest;
         while (Quest_isStart)
         {
             if (SceneManager.GetActiveScene().name == "Guild") // 퀘스트 완료 조건
             {
                 if(!isComplete)
                 {
-                    Manager_Quest.Inst.Complete_Quest();
+                    MQ.Complete_Quest();
                     isComplete = true;
                 }
             }
@@ -34,7 +35,7 @@ public class Quest_0 : Quest_Data
                 if(isComplete)
                 {
                     //가이딩 다시 시작
-                    Manager_Quest.Inst.Quest_Guide.StartGuiding();
+                    MQ.Quest_Guide.StartGuiding();
                     isComplete = false;
                 }
             }

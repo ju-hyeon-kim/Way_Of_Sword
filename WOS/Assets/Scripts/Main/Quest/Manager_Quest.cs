@@ -14,30 +14,6 @@ public class Manager_Quest : MonoBehaviour
     public Transform[] Guide_Tartgets = new Transform[10]; // Guide_Tartgets[num] = Quest_num의 타겟
     public Quest_Data NowQuest;
 
-    #region 싱글톤 세팅 + Awake()
-    private static Manager_Quest Instence = null;
-
-    private void Awake()
-    {
-        if (Instence == null)
-        {
-            Instence = this;
-        }
-    }
-
-    public static Manager_Quest Inst
-    {
-        get
-        {
-            if (Instence == null) // 다른 오브젝트의 Awake()에서 Inst를 호출할 경우
-            {
-                return null;
-            }
-            return Instence;
-        }
-    }
-    #endregion
-
     public void Start_Setting()
     {
         Change_Quest();

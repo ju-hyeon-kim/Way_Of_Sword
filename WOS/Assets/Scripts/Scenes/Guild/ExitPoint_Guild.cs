@@ -9,7 +9,7 @@ public class ExitPoint_Guild : MonoBehaviour
     {
         if(Manager_SceneChange.Inst.Before_Place == "Guild")
         {
-            Manager_SceneChange.Inst.player.transform.position = transform.position;
+            Dont_Destroy_Data.Inst.Player.position = transform.position;
         }
     }
 }

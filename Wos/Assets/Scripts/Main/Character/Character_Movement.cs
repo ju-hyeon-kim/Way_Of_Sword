@@ -105,7 +105,7 @@ public class Character_Movement : Character_Property
                 delta = Angle;
             }
             Angle -= delta;
-            transform.Rotate(Vector3.up * rotDir * delta, Space.World);
+            transform.Rotate(Vector3.up * rotDir * delta);
             yield return null;
         }
 

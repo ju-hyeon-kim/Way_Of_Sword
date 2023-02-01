@@ -8,16 +8,16 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
 {
     public AsyncOperation ao;
     public bool LoadingChk = false; // 현재 로딩 중인지를 검사하는 불값
-    public Player_Main player; // 자동 바인딩
     public MiniMapCam_Controller MiniMapCam_Controller; // 자동 바인딩
     public string Before_Place = "";
 
     public void ChangeScene(string s)
     {
         //가이드 타겟을 TEMP로 설정
-        for(int i = 0; i < Manager_Quest.Inst.Guide_Tartgets.Length; i++)
+        Transform[] GuideTargets = Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets;
+        for (int i = 0; i < GuideTargets.Length; i++)
         {
-            Manager_Quest.Inst.Guide_Tartgets[i] = transform;
+            GuideTargets[i] = transform;
         }
 
         //미니맵 아이콘 설정 변경

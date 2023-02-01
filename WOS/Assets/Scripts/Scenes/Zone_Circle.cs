@@ -8,7 +8,8 @@ public class Zone_Circle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<Player_Movement>().Stop_Movement();
+        //플레이어보다 드랍존이 먼저 닿는다.
+        //other.GetComponent<Player_Movement>().Stop_Movement();
         Manager_SceneChange.Inst.ChangeScene(NextSceneName);
     }
 }

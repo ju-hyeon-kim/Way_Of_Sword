@@ -13,10 +13,11 @@ public class Quest_Guide : MonoBehaviour
 
     IEnumerator Guiding()
     {
-        int Q_Num = Manager_Quest.Inst.NowQuest.Quest_Number;
+        Manager_Quest MQ = Dont_Destroy_Data.Inst.Manager_Quest;
+        int Q_Num = MQ.NowQuest.Quest_Number;
         while (true)
         {
-            Transform Target = Manager_Quest.Inst.Guide_Tartgets[Q_Num];
+            Transform Target = MQ.Guide_Tartgets[Q_Num];
 
             if (MiniMapCam_Controller.Target_inScreen(Target.gameObject) == false)
             {

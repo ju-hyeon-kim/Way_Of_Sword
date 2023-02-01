@@ -16,9 +16,13 @@ public class Monster : Monster_Movement, IBattle
     HpBar_Monster myHpBar_clone;
     Transform myTarget = null;
 
+    //for Dead
+    float DownSpeed = 0.05f; // 죽고나서 내려가는 속도
+    float DeadTime = 15.0f; // 죽고나서 부활되기까지 걸리는 시간
+
     public enum STATE
     {
-        Create, Idle, Roaming, Battle, Dead
+        Create, Idle, Roaming, Battle, Dead, Resurrection
     }
 
     public STATE myState = STATE.Create;
@@ -48,13 +52,21 @@ public class Monster : Monster_Movement, IBattle
                 myHpBar_clone.StartSetting(this);
                 break;
             case STATE.Dead:
-                // AI_Perception 꺼버리기
+                // 퀘스트에 접근하여 연관된 퀘스트가 있는지 검사
+                Check_Quest();
+                // AI_Perception 끄기
                 myAI.enabled = false;
+                // 콜라이더 끄기
+                myColl.enabled = false;
+                // 리지드바디 키네메틱 켜기
+                myRigid.isKinematic = true;
 
                 StopAllCoroutines();
                 myAnim.SetTrigger("Dead");
                 myHpBar_clone.gameObject.SetActive(false);
                 OnDropItem();
+                break;
+            case STATE.Resurrection:
                 break;
         }
     }
@@ -72,6 +84,15 @@ public class Monster : Monster_Movement, IBattle
             case STATE.Battle:
                 break;
             case STATE.Dead:
+                if( DeadTime > 0)
+                {
+                    DeadTime -= Time.deltaTime;
+                    transform.Translate(Vector3.down * (Time.deltaTime * DownSpeed));
+                }
+                else
+                {
+                    ChangeState(STATE.Resurrection);
+                }
                 break;
         }
     }
@@ -142,4 +163,6 @@ public class Monster : Monster_Movement, IBattle
             dropitem.GetComponent<Item_3D>().OnDrop();
         }
     }
+
+    public virtual void Check_Quest(){}
 }

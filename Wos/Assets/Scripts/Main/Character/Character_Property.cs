@@ -29,4 +29,18 @@ public class Character_Property : MonoBehaviour
             return _rigid;
         }
     }
+
+    Collider _coll = null;
+    protected Collider myColl
+    {
+        get
+        {
+            if (_coll == null)
+            {
+                _coll = GetComponent<Collider>();
+            }
+            return _coll;
+        }
+    }
+
 }

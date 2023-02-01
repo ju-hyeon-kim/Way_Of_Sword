@@ -30,8 +30,10 @@ public class Dont_Destroy_Data : MonoBehaviour
     #endregion
 
     public Manager_Cams Manager_Cams;
+    public Manager_Quest Manager_Quest;
     public Map_Window Map_Window;
     public ItemData_Windows ItemData_Windows;
+    public Transform Canvas;
     public Transform Player;
     public Transform Battle_Window;
     public Transform Rabel_Windows;
@@ -39,6 +41,6 @@ public class Dont_Destroy_Data : MonoBehaviour
     public void Start_Setting()
     {
         Manager_Cams.Start_Setting();
-        Manager_Quest.Inst.Start_Setting();
+        Manager_Quest.Start_Setting();
     }
 }

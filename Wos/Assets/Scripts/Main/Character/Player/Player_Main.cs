@@ -28,6 +28,7 @@ public class Player_Main : Player_Movement
     public GameObject Skill_Range;
     public Transform Weapon_Back;
     public Transform Cam_Target;
+    public GameObject DropZone;
     
     public NpcTalk_Window NpcTalk_Window;
 
@@ -43,17 +44,15 @@ public class Player_Main : Player_Movement
                 Weapon_Back.GetChild(0).localRotation = Quaternion.identity;
                 //Skill_Range 비활성화
                 Skill_Range.SetActive(false);
+                //DropZone 비활성화
+                DropZone.SetActive(false);
                 break;
             case Player_Mode.Battle:
                 Weapon_Back.GetChild(0).SetParent(Weapon_Hand);
                 Weapon_Hand.GetChild(1).localPosition = Vector3.zero;
                 Weapon_Hand.GetChild(1).localRotation = Quaternion.identity;
+                DropZone.SetActive(true);
                 break;
         }
-    }
-    private void Awake()
-    {
-        Manager_SceneChange.Inst.player = this; //씬 전환시 플레이어의 위치 설정
-        Change_Mode(Player_Mode.Unbattle);
     }
 }
