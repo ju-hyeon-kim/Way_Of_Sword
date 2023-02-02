@@ -10,14 +10,6 @@ public class AI_Perception : MonoBehaviour
     public LayerMask enemyMask = default;
     public Transform myTarget = null;
 
-    void Start()
-    {  
-    }
-
-    void Update()
-    {
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (myTarget != null) return;

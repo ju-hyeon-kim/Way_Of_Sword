@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Quest_0 : Quest_Data
 {
     bool isComplete = false;
+    Manager_Quest MQ;
 
     public override bool isCounting()
     {
@@ -14,12 +15,12 @@ public class Quest_0 : Quest_Data
 
     public override void Start_Questing()
     {
+        MQ = Dont_Destroy_Data.Inst.Manager_Quest;
         StartCoroutine(Questing());
     }
 
     IEnumerator Questing()
     {
-        Manager_Quest MQ = Dont_Destroy_Data.Inst.Manager_Quest;
         while (Quest_isStart)
         {
             if (SceneManager.GetActiveScene().name == "Guild") // 퀘스트 완료 조건

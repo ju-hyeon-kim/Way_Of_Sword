@@ -7,9 +7,15 @@ using UnityEngine;
 
 public class Quest_1 : Quest_Data
 {
-    public Manager_Quest Manager_Quest;
+    Manager_Quest MQ;
     int Nowkill_Count = 0;
     int Maxkill_Count = 5;
+
+    public override void Start_Questing()
+    {
+        MQ = Dont_Destroy_Data.Inst.Manager_Quest;
+        Debug.Log("MQ가 저장되었어요");
+    }
 
     public override bool isCounting()
     {
@@ -31,9 +37,10 @@ public class Quest_1 : Quest_Data
         if(Nowkill_Count < Maxkill_Count)
         {
             ++Nowkill_Count;
+            MQ.Add_KillCount(Nowkill_Count);
             if(Nowkill_Count == Maxkill_Count)
             {
-                Manager_Quest.Complete_Quest();
+                MQ.Complete_Quest();
             }
         }
     }

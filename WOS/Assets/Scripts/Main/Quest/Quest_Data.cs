@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Quest_Data : MonoBehaviour
 {
-    public bool Quest_isStart = false; // true로 바뀌는 시점: 체인지 스타트 함수 발동 시 & 완료 보고했을 때
+    public bool Quest_isStart = false; // true로 바뀌는 시점: 체인지 퀘스트 함수 발동 시 & 완료 보고했을 때
     public int Quest_Number;
     public string Name;
     [Multiline]

@@ -32,8 +32,8 @@ public class Manager_Quest : MonoBehaviour
         Proceeding_Quest.Change_Quest(NowQuest);
         Quest_SubWindow.Change_Quest(NowQuest);
 
-        GetComponentInChildren<Quest_Data>().Quest_isStart = true;
-        GetComponentInChildren<Quest_Data>().Start_Questing();
+        NowQuest.GetComponent<Quest_Data>().Quest_isStart = true;
+        NowQuest.GetComponent<Quest_Data>().Start_Questing();
 
         Quest_Guide.Change_Quest();
     }
@@ -55,5 +55,11 @@ public class Manager_Quest : MonoBehaviour
 
         //퀘스트 신청서에 다음 퀘스트 정보 전달
         Quest_Request.Input_Quest_Data(Quest_Prefabs[Quest_Num].GetComponent<Quest_Data>());
+    }
+
+    public void Add_KillCount(int count)
+    {
+        Proceeding_Quest.Add_KillCount(count);
+        Quest_SubWindow.Add_KillCount(count);
     }
 }

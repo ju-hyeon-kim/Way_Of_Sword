@@ -7,6 +7,7 @@ public class Monster : Monster_Movement, IBattle
     public Monster_Data myData;
     public Collider myAI;
     public GameObject[] DropItems;
+    public GameObject myIcon;
 
     public Transform[] Roaming_Zone; // 0=U 1=D 2=R 3=L // 매니저에게 값을 받음
     Vector3 Roaming_Pos = Vector3.zero;
@@ -60,6 +61,8 @@ public class Monster : Monster_Movement, IBattle
                 myColl.enabled = false;
                 // 리지드바디 키네메틱 켜기
                 myRigid.isKinematic = true;
+                // 미니맵 아이콘 비활성화
+                myIcon.SetActive(false);
 
                 StopAllCoroutines();
                 myAnim.SetTrigger("Dead");

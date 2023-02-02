@@ -752,7 +752,7 @@ GameObject:
   - component: {fileID: 981495876}
   - component: {fileID: 981495877}
   m_Layer: 0
-  m_Name: SpawnPoint_Guild
+  m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -782,7 +782,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 981495875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c4aa0e369b42d45a4928450ad02477, type: 3}
+  m_Script: {fileID: 11500000, guid: 62d888a611c0b80418deb60e5df91290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1339603567
@@ -1385,7 +1385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -6617,7 +6616,7 @@ GameObject:
   - component: {fileID: 6082835266182634470}
   - component: {fileID: 6082835266182634492}
   m_Layer: 0
-  m_Name: Zone_Circle_inGuild
+  m_Name: TeleportPoint_inGuild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6749,10 +6748,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6082835266182634467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d5f2f8f6568b764b98748043faa4681, type: 3}
+  m_Script: {fileID: 11500000, guid: 2558fc719952ffa4ebd18a0761676bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSceneName: Village
+  myDestination: Village
 --- !u!4 &6116099605994392295
 Transform:
   m_ObjectHideFlags: 0

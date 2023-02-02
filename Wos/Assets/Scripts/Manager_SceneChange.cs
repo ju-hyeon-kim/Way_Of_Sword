@@ -20,17 +20,17 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
             GuideTargets[i] = transform;
         }
 
+        //로딩 코루틴
+        if (!LoadingChk)
+        {
+            StartCoroutine(Loading(s));
+        }
+
         //미니맵 아이콘 설정 변경
         MiniMapCam_Controller.ChangeView_Setting(s);
         for (int i = 0; i < MiniMapCam_Controller.MiniMap_Icons.Length; i++)
         {
             MiniMapCam_Controller.MiniMap_Icons[i] = transform;
-        }
-
-        //로딩 코루틴
-        if (!LoadingChk)
-        {
-            StartCoroutine(Loading(s));
         }
     }
 

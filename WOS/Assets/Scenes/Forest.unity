@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Guide_Tartgets:
   - {fileID: 8986960947414405099}
+  - {fileID: 8986960947414405099}
   Beatle: {fileID: 2447627714544534366, guid: 5a62983766a2503448562ee9e94ffe35, type: 3}
   SpawnPoint_Monster: {fileID: 930649184}
   Beatle_Zone:
@@ -504,7 +505,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1374332131}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5368ab41e6bf3074f9d8e3e48a5aeac6, type: 3}
+  m_Script: {fileID: 11500000, guid: 62d888a611c0b80418deb60e5df91290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1620071619
@@ -829,11 +830,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8986960947414405099}
+  - component: {fileID: 8986960947414405103}
   - component: {fileID: 8986960947414405102}
   - component: {fileID: 8986960947414405101}
   - component: {fileID: 8986960947414405100}
   m_Layer: 0
-  m_Name: ExitPoint_Village
+  m_Name: Teleport_Ponit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -972,3 +974,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8986960947414405103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8986960947414405098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2558fc719952ffa4ebd18a0761676bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDestination: Village

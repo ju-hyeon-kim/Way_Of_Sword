@@ -9,7 +9,7 @@ public class MiniMapCam_Controller : MonoBehaviour
 
     public Camera myCam;
     public Transform Cam_Target;
-    public Transform Player_Icon; // [0]은 항상 플레이어 아이콘
+    public Transform Player_Icon;
     public Transform[] MiniMap_Icons = new Transform[10]; // [0]은 항상 플레이어 아이콘
 
     Vector3 myDir = Vector3.zero;

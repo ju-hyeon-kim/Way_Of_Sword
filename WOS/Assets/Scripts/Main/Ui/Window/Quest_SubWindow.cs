@@ -15,19 +15,21 @@ public class Quest_SubWindow : MonoBehaviour
     public GameObject[] Q_Exist_Settings;
 
     bool List_Down = true; // 초기: 리스트는 내려가 있다.
+    Quest_Data nowQD;
 
     public void Change_Quest(Quest_Data QD)
     {
+        nowQD = QD;
         Q_Exist_Settings[0].SetActive(false); // '현재 진행중인 퀘스트가...' 세팅
         Q_Exist_Settings[1].SetActive(true); // 기본세팅
-        Name.text = QD.Name;
-        Explanation.text = QD.Explanation;
+        Name.text = nowQD.Name;
+        Explanation.text = nowQD.Explanation;
         Progress.text = "진행중";
         Progress.color = Color.white;
         //Countig_Text
-        if (QD.isCounting())
+        if (nowQD.isCounting())
         {
-            Countig_Text.text = $"({QD.Now_Count()}/{QD.Max_Count()})";
+            Countig_Text.text = $"({nowQD.Now_Count()}/{nowQD.Max_Count()})";
             Countig_Text.gameObject.SetActive(true);
         }
         else
@@ -63,5 +65,10 @@ public class Quest_SubWindow : MonoBehaviour
             Quest_List_Anim.SetBool("UpDown", false);
             PnM_Btn_Text.text = "-";
         }
+    }
+
+    public void Add_KillCount(int count)
+    {
+        Countig_Text.text = $"({count}/{nowQD.Max_Count()})";
     }
 }
