@@ -29,7 +29,7 @@ public class Player_Main : Player_Movement
     public Transform Weapon_Back;
     public Transform Cam_Target;
     public GameObject DropZone;
-    
+    public Transform myWeapon;
     public NpcTalk_Window NpcTalk_Window;
 
     public void Change_Mode(Player_Mode pm)
@@ -39,20 +39,19 @@ public class Player_Main : Player_Movement
             NowMode = pm;
             switch (pm)
             {
-                case Player_Mode.Unbattle: // 언배틀 모드일 경우
-                                           //무기의 위치는 손 -> 등 뒤로 이동 (예외처리?: 만약 이미 무기가 등 뒤에 있다면?) 
-                    Weapon_Hand.GetChild(0).SetParent(Weapon_Back);
-                    Weapon_Back.GetChild(0).localPosition = Vector3.zero;
-                    Weapon_Back.GetChild(0).localRotation = Quaternion.identity;
+                case Player_Mode.Unbattle:
+                    myWeapon.SetParent(Weapon_Back);
+                    myWeapon.localPosition = Vector3.zero;
+                    myWeapon.localRotation = Quaternion.identity;
                     //Skill_Range 비활성화
                     Skill_Range.SetActive(false);
                     //DropZone 비활성화
                     DropZone.SetActive(false);
                     break;
                 case Player_Mode.Battle:
-                    Weapon_Back.GetChild(0).SetParent(Weapon_Hand);
-                    Weapon_Hand.GetChild(1).localPosition = Vector3.zero;
-                    Weapon_Hand.GetChild(1).localRotation = Quaternion.identity;
+                    myWeapon.SetParent(Weapon_Hand);
+                    myWeapon.localPosition = Vector3.zero;
+                    myWeapon.localRotation = Quaternion.identity;
                     DropZone.SetActive(true);
                     break;
             }

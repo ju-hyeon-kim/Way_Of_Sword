@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class Place_Icon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public Animator myLabel_Image;
     public GameObject myLock;
-    public Question_Window Question_Window;
+    public TeleportQuestion_Window TQ_Window;
+    public NowPos_Icon NowPos_Icon;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if(myLock.activeSelf == false)
+        if (SceneManager.GetActiveScene().name != gameObject.name && myLock.activeSelf == false)
         {
-            Question_Window.Place_Check(gameObject.name);
-            Question_Window.transform.parent.gameObject.SetActive(true);
+            NowPos_Icon.ChangePos(this.transform);
+            TQ_Window.Place_Check(this.gameObject);
+            TQ_Window.gameObject.SetActive(true);
         }
     }
 

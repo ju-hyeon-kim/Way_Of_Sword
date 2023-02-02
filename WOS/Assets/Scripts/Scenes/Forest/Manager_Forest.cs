@@ -10,7 +10,6 @@ public class Manager_Forest : MonoBehaviour
     public GameObject Beatle;
     public Transform SpawnPoint_Monster;
     public Transform[] Beatle_Zone; // 비틀의 로밍 제한 구역
-    public AnimatorController  Player_Battle;
 
     int NomalMonster_Count = 5; // 비틀 생성 갯수
 
@@ -22,11 +21,7 @@ public class Manager_Forest : MonoBehaviour
     void Start()
     {
         Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
-
-        Dont_Destroy_Data.Inst.Map_Window.gameObject.SetActive(false);
         Dont_Destroy_Data.Inst.Player.GetComponent<Player_Main>().Change_Mode(Player_Mode.Battle);
-        Dont_Destroy_Data.Inst.Player.GetComponent<Animator>().runtimeAnimatorController = Player_Battle;
-        Time.timeScale = 1.0f;
 
         for (int i = 0; i < NomalMonster_Count; i++)
         {
