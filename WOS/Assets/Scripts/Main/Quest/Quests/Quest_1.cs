@@ -14,7 +14,6 @@ public class Quest_1 : Quest_Data
     public override void Start_Questing()
     {
         MQ = Dont_Destroy_Data.Inst.Manager_Quest;
-        Debug.Log("MQ가 저장되었어요");
     }
 
     public override bool isCounting()

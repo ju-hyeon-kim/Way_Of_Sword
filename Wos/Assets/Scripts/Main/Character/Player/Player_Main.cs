@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,6 +32,7 @@ public class Player_Main : Player_Movement
     public GameObject DropZone;
     public Transform myWeapon;
     public NpcTalk_Window NpcTalk_Window;
+    public AnimatorController[] AnimSet; // 0=Unbattle 1=Battle
 
     public void Change_Mode(Player_Mode pm)
     {
@@ -47,12 +49,15 @@ public class Player_Main : Player_Movement
                     Skill_Range.SetActive(false);
                     //DropZone 비활성화
                     DropZone.SetActive(false);
+
+                    myAnim.runtimeAnimatorController = AnimSet[0];
                     break;
                 case Player_Mode.Battle:
                     myWeapon.SetParent(Weapon_Hand);
                     myWeapon.localPosition = Vector3.zero;
                     myWeapon.localRotation = Quaternion.identity;
                     DropZone.SetActive(true);
+                    myAnim.runtimeAnimatorController = AnimSet[1];
                     break;
             }
         }

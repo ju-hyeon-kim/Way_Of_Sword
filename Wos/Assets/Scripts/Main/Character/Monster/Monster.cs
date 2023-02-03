@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Monster : Monster_Movement, IBattle
 {
+    public DamageZone myDamageZone;
     public Monster_Data myData;
     public Collider myAI;
     public GameObject[] DropItems;
@@ -145,6 +146,7 @@ public class Monster : Monster_Movement, IBattle
         {
             myAnim.SetTrigger("Damage");
             myHpBar_clone.GetComponent<HpBar_Monster>().OnDmage(dmg);
+            myDamageZone.OnDamage(dmg);
         }
     }
 
