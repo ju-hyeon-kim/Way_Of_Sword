@@ -22,4 +22,14 @@ public class AnimEvent : MonoBehaviour
     {
         ComboCheck?.Invoke(false);
     }
+
+    public void Plus_PageNum()
+    {
+        transform.parent.GetComponent<SaveLode_Window>().Plus_PageNum();
+    }
+
+    public void Minus_PageNum()
+    {
+        transform.parent.GetComponent<SaveLode_Window>().Minus_PageNum();
+    }
 }

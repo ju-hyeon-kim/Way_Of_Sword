@@ -48,9 +48,9 @@ public class Player_Movement : Character_Movement, IBattle
                     {
                         isNpc = false;
                         myEnemy = hit.collider.gameObject;
-                        base.MoveToPos(hit.point,() => GetComponent<Animator>().SetTrigger("ComboAttack"));
+                        base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
                     }
-                    else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Npc"))
+                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Npc"))
                     {
                         isNpc = true;
                         myNpc = hit.collider.gameObject;
@@ -59,9 +59,9 @@ public class Player_Movement : Character_Movement, IBattle
                 }
             }
 
-            if(isComboable)
+            if (isComboable)
             {
-                if(Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     ++ClickCount;
                     base.MoveToPos(myEnemy.transform.position, null, false, true);
@@ -69,7 +69,7 @@ public class Player_Movement : Character_Movement, IBattle
             }
 
             //아이템 줍기 - Z키
-            if(Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 myDropZone.Pickup_Item();
             }
@@ -77,7 +77,7 @@ public class Player_Movement : Character_Movement, IBattle
     }
     public override void P_MoveEnd_NpcAction()
     {
-        if(isNpc)
+        if (isNpc)
         {
             move_end = true;
             NpcEvent();
@@ -86,7 +86,7 @@ public class Player_Movement : Character_Movement, IBattle
 
     public override void P_RotEnd_NpcAction()
     {
-        if(isNpc)
+        if (isNpc)
         {
             rot_end = true;
             NpcEvent();
@@ -95,7 +95,7 @@ public class Player_Movement : Character_Movement, IBattle
 
     public void NpcEvent()
     {
-        if(move_end && rot_end)
+        if (move_end && rot_end)
         {
             isEvent = true; // 플레이어의 조작 제한
             myNpc.GetComponent<Npc>().Reaction(gameObject);
@@ -108,6 +108,11 @@ public class Player_Movement : Character_Movement, IBattle
     {
         StopAllCoroutines(); // 무빙 코루틴만 멈추기
         GetComponent<Animator>().SetBool("Move", false);
+    }
+
+    public void Uncontrol_Player()
+    {
+        isEvent = true;
     }
 
     public void OnDamage(float dmg)
@@ -124,7 +129,7 @@ public class Player_Movement : Character_Movement, IBattle
 
         foreach (Collider col in list)
         {
-            col.GetComponent<Monster>()?.OnDamage(Ap);
+            col.GetComponent<NormalMonster>()?.OnDamage(Ap);
         }
     }
 

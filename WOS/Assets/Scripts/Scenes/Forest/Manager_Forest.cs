@@ -10,6 +10,7 @@ public class Manager_Forest : MonoBehaviour
     public GameObject Beatle;
     public Transform SpawnPoint_Monster;
     public Transform[] Beatle_Zone; // 비틀의 로밍 제한 구역
+    public GameObject BZ_MagicCicle;
 
     int NomalMonster_Count = 5; // 비틀 생성 갯수
 
@@ -20,6 +21,7 @@ public class Manager_Forest : MonoBehaviour
 
     void Start()
     {
+        Dont_Destroy_Data.Inst.myPlaceManager = this.transform;
         Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
         Dont_Destroy_Data.Inst.Player.GetComponent<Player_Main>().Change_Mode(Player_Mode.Battle);
 
@@ -28,14 +30,23 @@ public class Manager_Forest : MonoBehaviour
             //몬스터 소환
             GameObject Beatle_Obj = Instantiate(Beatle, SpawnPoint_Monster);
             //랜덤한 위치로 이동시켜줌 (Beatle_Zone안에서)
-            Vector3 pos = Vector3.zero;
-            pos.x = Random.Range(Beatle_Zone[2].position.x, Beatle_Zone[3].position.x);
-            pos.z = Random.Range(Beatle_Zone[0].position.z, Beatle_Zone[1].position.z);
-            pos.y = SpawnPoint_Monster.position.y;
-            Beatle_Obj.transform.position = pos;
+            RandomPos_Monster(Beatle_Obj.transform);
 
             //소환한 몬스터에게 로밍구역 값을 전달
-            Beatle_Obj.GetComponent<Monster>().Roaming_Zone = Beatle_Zone;
+            Beatle_Obj.GetComponent<NormalMonster>().Roaming_Zone = Beatle_Zone;
+            //되살아 날때 RandomPos_Monster를 통해 새로운 위치를 할당받기위해서
+            Beatle_Obj.GetComponent<NormalMonster>().myManager = this.transform; 
         }
+
+        Dont_Destroy_Data.Inst.Battle_Window.GetComponent<Battle_Window>().BossEmergence.gameObject.SetActive(true);
+    }
+
+    public void RandomPos_Monster(Transform monster)
+    {
+        Vector3 pos = Vector3.zero;
+        pos.x = Random.Range(Beatle_Zone[2].position.x, Beatle_Zone[3].position.x);
+        pos.z = Random.Range(Beatle_Zone[0].position.z, Beatle_Zone[1].position.z);
+        pos.y = SpawnPoint_Monster.position.y;
+        monster.position = pos;
     }
 }

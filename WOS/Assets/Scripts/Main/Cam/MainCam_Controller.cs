@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainCam_Controller : MonoBehaviour
 {
     public Transform Cam_Target;
-    public Transform NpcTalk_View;
+    public Transform ChangeViewPos;
     public bool Talk_Ready = false;
     public bool isEvent = false;
     public NpcTalk_Window NpcTalk_Window;
@@ -45,16 +45,17 @@ public class MainCam_Controller : MonoBehaviour
     }
 
     //Npc와 대화시작 -> 시점변경
-    public void NpcView(Transform npc_pos)
+    //보스몹 클로즈업
+    public void ChangeView(Transform target)
     {
         isEvent = true;
         // 시점 변경 전 카메라의 위치와 방향벡터 저장
-        SaveNpc = npc_pos.gameObject;
+        SaveNpc = target.gameObject;
         SavePos = transform.position;
         SaveVec = transform.forward;
         // 카메라 시점 변경
-        StartCoroutine(Moving(NpcTalk_View.position,true));
-        StartCoroutine(Rotating(npc_pos.position));
+        StartCoroutine(Moving(ChangeViewPos.position,true));
+        StartCoroutine(Rotating(target.position));
     }
 
     //Npc와 대화끝 -> 원래 시점으로
@@ -69,7 +70,10 @@ public class MainCam_Controller : MonoBehaviour
     {
         if (b)
         {
-            SaveNpc.GetComponent<Npc>().Talk_Start();
+            if(SaveNpc.TryGetComponent<Npc>(out Npc componet))
+            {
+                componet.Talk_Start();
+            }
         }
         else
         {
@@ -113,8 +117,8 @@ public class MainCam_Controller : MonoBehaviour
         }
         else // Npc와 대화 시 시점 변경
         {
-            pos.y = NpcTalk_View.position.y;
-            RotDir = (pos - NpcTalk_View.position).normalized; // 토크뷰에서 Npc를 바라보는 방향의 벡터 정규화
+            pos.y = ChangeViewPos.position.y;
+            RotDir = (pos - ChangeViewPos.position).normalized; // 토크뷰에서 Npc를 바라보는 방향의 벡터 정규화
         }
 
         while (transform.rotation != Quaternion.LookRotation(RotDir))

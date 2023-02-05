@@ -29,6 +29,7 @@ public class Dont_Destroy_Data : MonoBehaviour
     }
     #endregion
 
+    public Transform myPlaceManager; // 씬이동시 각매니저가 알아서 값으로 들어감
     public Manager_Cams Manager_Cams;
     public Manager_Quest Manager_Quest;
     public Map_Window Map_Window;
@@ -40,6 +41,9 @@ public class Dont_Destroy_Data : MonoBehaviour
 
     public void Start_Setting()
     {
+        Manager_SaveLode.Inst.JsonReady();
+        Manager_SaveLode.Inst.JsonLoad();
+
         Manager_Cams.Start_Setting();
         Manager_Quest.Start_Setting();
     }

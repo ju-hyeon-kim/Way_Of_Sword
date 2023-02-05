@@ -41,7 +41,7 @@ public class Npc : MonoBehaviour
         if (B)
         {
             //2.카메라 애니메이션
-            C_Data.MainCam.NpcView(transform);
+            C_Data.MainCam.ChangeView(transform);
         }
 
         //회전

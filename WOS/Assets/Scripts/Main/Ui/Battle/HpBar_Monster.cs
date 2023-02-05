@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class HpBar_Monster : MonoBehaviour
 {
-    public Monster myMonster;
+    public NormalMonster myMonster;
     public Transform myHpZone;
     public Image HP_Bar;
 
@@ -20,7 +20,7 @@ public class HpBar_Monster : MonoBehaviour
         transform.position = pos;
     }
 
-    public void StartSetting(Monster monster)
+    public void StartSetting(NormalMonster monster)
     {
         myMonster = monster;
         MaxHp = monster.myData.MaxHp;
