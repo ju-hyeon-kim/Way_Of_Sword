@@ -36,7 +36,7 @@ public class Dont_Destroy_Data : MonoBehaviour
     public ItemData_Windows ItemData_Windows;
     public Transform Canvas;
     public Transform Player;
-    public Transform Battle_Window;
+    public Battle_Window Battle_Window;
     public Transform Rabel_Windows;
 
     public void Start_Setting()

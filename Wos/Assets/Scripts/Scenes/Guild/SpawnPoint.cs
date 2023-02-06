@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SpawnPoint : MonoBehaviour
+public class SpawnPoint : MonoBehaviour // test중 원래 포지션.z 값 = 8
 {
     public string myPlace;
 

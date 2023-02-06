@@ -8,7 +8,9 @@ public class Manager_Forest : MonoBehaviour
 {
     public Transform[] Guide_Tartgets;
     public GameObject Beatle;
-    public Transform SpawnPoint_Monster;
+    public GameObject BeatleKing;
+    public Transform SpawnPoint_Beatle;
+    public Transform SpawnPoint_BeatleKing;
     public Transform[] Beatle_Zone; // 비틀의 로밍 제한 구역
     public GameObject BZ_MagicCicle;
 
@@ -28,7 +30,7 @@ public class Manager_Forest : MonoBehaviour
         for (int i = 0; i < NomalMonster_Count; i++)
         {
             //몬스터 소환
-            GameObject Beatle_Obj = Instantiate(Beatle, SpawnPoint_Monster);
+            GameObject Beatle_Obj = Instantiate(Beatle, SpawnPoint_Beatle);
             //랜덤한 위치로 이동시켜줌 (Beatle_Zone안에서)
             RandomPos_Monster(Beatle_Obj.transform);
 
@@ -46,7 +48,13 @@ public class Manager_Forest : MonoBehaviour
         Vector3 pos = Vector3.zero;
         pos.x = Random.Range(Beatle_Zone[2].position.x, Beatle_Zone[3].position.x);
         pos.z = Random.Range(Beatle_Zone[0].position.z, Beatle_Zone[1].position.z);
-        pos.y = SpawnPoint_Monster.position.y;
+        pos.y = SpawnPoint_Beatle.position.y;
         monster.position = pos;
+    }
+
+    public void Spawn_BeatleKing()
+    {
+        GameObject Beatle_Obj = Instantiate(BeatleKing, SpawnPoint_BeatleKing);
+        Beatle_Obj.transform.localPosition = Vector3.zero;
     }
 }

@@ -6,7 +6,9 @@ public class BossMonster : Character_Movement
 {
     public Collider myAI;
     public Transform CamView;
+
     Transform myTarget = null;
+    bool FinishAppear = false;
 
     public enum STATE
     {
@@ -29,6 +31,7 @@ public class BossMonster : Character_Movement
                 myAnim.SetTrigger("Howl");
                 break;
             case STATE.Battle:
+                Dont_Destroy_Data.Inst.Battle_Window.HpBar_Boss.gameObject.SetActive(true);
                 break;
             case STATE.Dead:
                 break;
@@ -62,11 +65,19 @@ public class BossMonster : Character_Movement
 
     public void FindTarget(Transform target)
     {
-        myTarget = target;
-        target.GetComponent<Player_Movement>().Stop_Movement();
-        target.GetComponent<Player_Movement>().Uncontrol_Player();
+        if(FinishAppear == false)
+        {
+            myTarget = target;
+            target.GetComponent<Player_Movement>().Stop_Movement();
+            target.GetComponent<Player_Movement>().Uncontrol_Player();
 
-        Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ChangeViewPos = CamView;
-        Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ChangeView(this.transform);
+            Dont_Destroy_Data.Inst.Battle_Window.GetComponent<Battle_Window>().BossEmergence.gameObject.SetActive(false);
+            MainCam_Controller mainCam = Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller;
+            mainCam.Function = ChangeState;
+            mainCam.ChangeViewPos = CamView;
+            mainCam.ChangeView(this.transform);
+
+            FinishAppear = true;
+        }
     }
 }

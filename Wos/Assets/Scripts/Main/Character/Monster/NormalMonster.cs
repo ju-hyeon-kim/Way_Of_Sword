@@ -53,7 +53,7 @@ public class NormalMonster : Character_Movement, IBattle
                 break;
             case STATE.Battle:
                 AttackTarget(myTarget, AttackRange, myData.Ad);
-                GameObject hpbar = Instantiate(myHpBar, Dont_Destroy_Data.Inst.Battle_Window) as GameObject;
+                GameObject hpbar = Instantiate(myHpBar, Dont_Destroy_Data.Inst.Battle_Window.transform) as GameObject;
                 myHpBar_clone = hpbar.GetComponent<HpBar_Monster>();
                 myHpBar_clone.myHpZone = HpZone;
                 myHpBar_clone.StartSetting(this);

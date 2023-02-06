@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class MainCam_Controller : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MainCam_Controller : MonoBehaviour
     public GameObject[] Unactive_Uis;
     public Animator Boss_Introduce;
     public Animator Battle_Start;
+    public UnityAction<BossMonster.STATE> Function;
 
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
@@ -59,10 +61,7 @@ public class MainCam_Controller : MonoBehaviour
         SaveNpc = target.gameObject;
         if (SaveNpc.TryGetComponent<BossMonster>(out BossMonster componet))
         {
-            for (int i = 0; i < 2; i++)
-            {
-                Unactive_Uis[i].SetActive(false);
-            }
+            Uis_OnOff(false);
         }
         SavePos = transform.position;
         SaveVec = transform.forward;
@@ -74,26 +73,30 @@ public class MainCam_Controller : MonoBehaviour
     //Npc와 대화끝 -> 원래 시점으로
     public void ReturnView()
     {
-        Debug.Log("리턴뷰");
-
         isEvent = false;
-        StartCoroutine(Moving(SavePos,false));
+        StartCoroutine(Moving(SavePos,false)); //null오류
         StartCoroutine(Rotating(SaveVec));
+
+        Function(BossMonster.STATE.Battle);
+
+        Uis_OnOff(true);
     }
 
     IEnumerator Moving(Vector3 pos,bool b)
     {
-        if (b)
+        if (SaveNpc.TryGetComponent<Npc>(out Npc componet))
         {
-            if(SaveNpc.TryGetComponent<Npc>(out Npc componet))
+            if (b)
             {
                 componet.Talk_Start();
             }
+            else
+            {
+                componet.Talk_End();
+            }
         }
-        else
-        {
-            SaveNpc.GetComponent<Npc>().Talk_End();
-        }
+
+        
 
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
@@ -114,6 +117,9 @@ public class MainCam_Controller : MonoBehaviour
         if(b)
         {
             Talk_Ready = true;
+
+            MovFinish = true;
+            ViewChangeFinish();
         }
         else
         {
@@ -122,8 +128,7 @@ public class MainCam_Controller : MonoBehaviour
             Talk_Ready = false;
         }
 
-        MovFinish = true;
-        ViewChangeFinish();
+        
     }
 
     IEnumerator Rotating(Vector3 pos)
@@ -158,6 +163,8 @@ public class MainCam_Controller : MonoBehaviour
                 Boss_Introduce.SetBool("Show", true);
                 componet.ChangeState(BossMonster.STATE.Appear);
                 StartCoroutine(TimeChecking(2.0f));
+                MovFinish = false;
+                RotFinish = false;
             }
         }
     }
@@ -168,5 +175,13 @@ public class MainCam_Controller : MonoBehaviour
         Boss_Introduce.SetBool("Show", false);
         Battle_Start.gameObject.SetActive(true);
         Battle_Start.SetTrigger("Show");
+    }
+
+    void Uis_OnOff(bool b)
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            Unactive_Uis[i].SetActive(b);
+        }
     }
 }

@@ -8,4 +8,5 @@ public class Battle_Window : MonoBehaviour
     public Transform RecycleBin_Hp;
 
     public BossEmergence BossEmergence;
+    public HpBar_Boss HpBar_Boss;
 }
