@@ -10,6 +10,9 @@ public class MainCam_Controller : MonoBehaviour
     public bool Talk_Ready = false;
     public bool isEvent = false;
     public NpcTalk_Window NpcTalk_Window;
+    public GameObject[] Unactive_Uis;
+    public Animator Boss_Introduce;
+    public Animator Battle_Start;
 
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
@@ -19,6 +22,9 @@ public class MainCam_Controller : MonoBehaviour
     Vector3 SaveVec;
     GameObject SaveNpc;
     Vector3 RotDir;
+
+    bool MovFinish = false;
+    bool RotFinish = false;
 
     public void Start_Setting()
     {
@@ -51,6 +57,13 @@ public class MainCam_Controller : MonoBehaviour
         isEvent = true;
         // 시점 변경 전 카메라의 위치와 방향벡터 저장
         SaveNpc = target.gameObject;
+        if (SaveNpc.TryGetComponent<BossMonster>(out BossMonster componet))
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                Unactive_Uis[i].SetActive(false);
+            }
+        }
         SavePos = transform.position;
         SaveVec = transform.forward;
         // 카메라 시점 변경
@@ -61,6 +74,8 @@ public class MainCam_Controller : MonoBehaviour
     //Npc와 대화끝 -> 원래 시점으로
     public void ReturnView()
     {
+        Debug.Log("리턴뷰");
+
         isEvent = false;
         StartCoroutine(Moving(SavePos,false));
         StartCoroutine(Rotating(SaveVec));
@@ -106,6 +121,9 @@ public class MainCam_Controller : MonoBehaviour
             Cam_Target.GetComponentInParent<Player_Main>().isEvent = false; // 플레이어 조작 가능
             Talk_Ready = false;
         }
+
+        MovFinish = true;
+        ViewChangeFinish();
     }
 
     IEnumerator Rotating(Vector3 pos)
@@ -126,5 +144,29 @@ public class MainCam_Controller : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(RotDir), Time.deltaTime * 2.0f); // 회전 속도 조절
             yield return null;
         }
+
+        RotFinish = true;
+        ViewChangeFinish();
+    }
+
+    void ViewChangeFinish()
+    {
+        if(MovFinish && RotFinish)
+        {
+            if (SaveNpc.TryGetComponent<BossMonster>(out BossMonster componet))
+            {
+                Boss_Introduce.SetBool("Show", true);
+                componet.ChangeState(BossMonster.STATE.Appear);
+                StartCoroutine(TimeChecking(2.0f));
+            }
+        }
+    }
+
+    IEnumerator TimeChecking(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Boss_Introduce.SetBool("Show", false);
+        Battle_Start.gameObject.SetActive(true);
+        Battle_Start.SetTrigger("Show");
     }
 }

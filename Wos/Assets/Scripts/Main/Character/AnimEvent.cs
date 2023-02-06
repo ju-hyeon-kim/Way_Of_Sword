@@ -32,4 +32,10 @@ public class AnimEvent : MonoBehaviour
     {
         transform.parent.GetComponent<SaveLode_Window>().Minus_PageNum();
     }
+
+    public void BattleStart_UnActive()
+    {
+        Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ReturnView();
+        gameObject.SetActive(false);
+    }
 }

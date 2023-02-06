@@ -15,7 +15,7 @@ public class BossMonster : Character_Movement
 
     public STATE myState = STATE.Create;
 
-    void ChangeState(STATE s)
+    public void ChangeState(STATE s)
     {
         if (myState == s) return;
         myState = s;
@@ -25,8 +25,8 @@ public class BossMonster : Character_Movement
                 break;
             case STATE.Idle:
                 break;
-            case STATE.Appear:
-                //myAnim.SetTrigger("Howl");
+            case STATE.Appear: // 카메라의 시점변경이 끝나면 ChangeState()가 호출되어 Appear로 State가 변경됨
+                myAnim.SetTrigger("Howl");
                 break;
             case STATE.Battle:
                 break;
@@ -68,6 +68,5 @@ public class BossMonster : Character_Movement
 
         Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ChangeViewPos = CamView;
         Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ChangeView(this.transform);
-        //ChangeState(STATE.Appear);
     }
 }
