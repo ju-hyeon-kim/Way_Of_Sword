@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMonster : Character_Movement
+public class BossMonster : Monster_Movement
 {
-    public Monster_Data myData;
-    public Collider myAI;
     public Transform CamView;
-
-    Transform myTarget = null;
     bool FinishAppear = false;
 
     public enum STATE
@@ -54,16 +50,6 @@ public class BossMonster : Character_Movement
             case STATE.Dead:
                 break;
         }
-    }
-
-    void Start()
-    {
-        ChangeState(STATE.Idle);
-    }
-
-    private void Update()
-    {
-        StateProcess();
     }
 
     public void FindTarget(Transform target)
