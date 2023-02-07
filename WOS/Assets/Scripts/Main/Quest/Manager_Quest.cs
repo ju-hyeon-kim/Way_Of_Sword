@@ -14,8 +14,9 @@ public class Manager_Quest : MonoBehaviour
     public Transform[] Guide_Tartgets = new Transform[10]; // Guide_Tartgets[num] = Quest_numÀÇ Å¸°Ù
     public Quest_Data NowQuest;
 
-    public void Start_Setting()
+    public void Start_Setting(Transform PlaceManager)
     {
+        Guide_Tartgets = PlaceManager.GetComponent<Manager_Place>().Guide_Tartgets;
         Change_Quest();
     }
 

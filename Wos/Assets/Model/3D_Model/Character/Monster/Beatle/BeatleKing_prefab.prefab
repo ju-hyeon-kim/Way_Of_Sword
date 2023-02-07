@@ -1828,14 +1828,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4341147195433013360}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.29883623, y: -0.64085644, z: 0.64085644, w: 0.29883623}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1420760144196995623}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 130}
 --- !u!212 &2984611342430046964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2158,8 +2158,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a5f0cfb2a58434e9278c8fb110ba83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: 1
+  AttackRange: 8
   MoveSpeed: 3
+  myData: {fileID: 11400000, guid: 181468b9669567b458368b35ab0d3598, type: 2}
   myAI: {fileID: 8430236770907516170}
   CamView: {fileID: 5781080453391739679}
   myState: 0

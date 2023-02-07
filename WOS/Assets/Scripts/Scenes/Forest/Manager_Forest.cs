@@ -4,11 +4,11 @@ using UnityEditor.Animations;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
-public class Manager_Forest : MonoBehaviour
+public class Manager_Forest : Manager_Place
 {
-    public Transform[] Guide_Tartgets;
     public GameObject Beatle;
     public GameObject BeatleKing;
+    public SpawnPoint SpawnPoint_Player;
     public Transform SpawnPoint_Beatle;
     public Transform SpawnPoint_BeatleKing;
     public Transform[] Beatle_Zone; // 비틀의 로밍 제한 구역
@@ -18,15 +18,11 @@ public class Manager_Forest : MonoBehaviour
 
     private void Awake()
     {
-        Play_Starter.Inst.Start_Call();
+        Play_Starter.Inst.Start_Call(this.transform);
     }
 
     void Start()
     {
-        Dont_Destroy_Data.Inst.myPlaceManager = this.transform;
-        Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
-        Dont_Destroy_Data.Inst.Player.GetComponent<Player_Main>().Change_Mode(Player_Mode.Battle);
-
         for (int i = 0; i < NomalMonster_Count; i++)
         {
             //몬스터 소환
@@ -37,10 +33,15 @@ public class Manager_Forest : MonoBehaviour
             //소환한 몬스터에게 로밍구역 값을 전달
             Beatle_Obj.GetComponent<NormalMonster>().Roaming_Zone = Beatle_Zone;
             //되살아 날때 RandomPos_Monster를 통해 새로운 위치를 할당받기위해서
-            Beatle_Obj.GetComponent<NormalMonster>().myManager = this.transform; 
+            Beatle_Obj.GetComponent<NormalMonster>().myManager = this.transform;
         }
 
+        SpawnPoint_Player.PlayerPosSetting();
+        Dont_Destroy_Data.Inst.myPlaceManager = this.transform;
+        Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
+        Dont_Destroy_Data.Inst.Player.GetComponent<Player_Main>().Change_Mode(Player_Mode.Battle);
         Dont_Destroy_Data.Inst.Battle_Window.GetComponent<Battle_Window>().BossEmergence.gameObject.SetActive(true);
+        
     }
 
     public void RandomPos_Monster(Transform monster)

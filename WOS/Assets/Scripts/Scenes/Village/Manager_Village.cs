@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Manager_Village : MonoBehaviour
+public class Manager_Village : Manager_Place
 {
-    public Transform[] Guide_Tartgets;
     public Transform[] Minimap_Icons;
 
     private void Awake()
     {
-        Play_Starter.Inst.Start_Call(); // Play_Starter가 없다면 Play_Starter 생성 => Village씬에 처음 왔을 때
+        Play_Starter.Inst.Start_Call(this.transform); // Play_Starter가 없다면 Play_Starter 생성 => Village씬에 처음 왔을 때
     }
 
     private void Start()

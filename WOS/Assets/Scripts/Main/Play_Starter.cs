@@ -32,10 +32,8 @@ public class Play_Starter : MonoBehaviour
         }
     }
 
-    public void Start_Call(){}
-
-    private void Start()
+    public void Start_Call(Transform PlaceManager)
     {
-        transform.parent.GetComponent<Dont_Destroy_Data>().Start_Setting();
+        transform.parent.GetComponent<Dont_Destroy_Data>().Start_Setting(PlaceManager);
     }
 }

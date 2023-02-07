@@ -39,12 +39,14 @@ public class Dont_Destroy_Data : MonoBehaviour
     public Battle_Window Battle_Window;
     public Transform Rabel_Windows;
 
-    public void Start_Setting()
+    public void Start_Setting(Transform PlaceManager)
     {
+        myPlaceManager = PlaceManager;
+
         Manager_SaveLode.Inst.JsonReady();
         Manager_SaveLode.Inst.JsonLoad();
 
         Manager_Cams.Start_Setting();
-        Manager_Quest.Start_Setting();
+        Manager_Quest.Start_Setting(PlaceManager);
     }
 }

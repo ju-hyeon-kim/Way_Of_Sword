@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BossMonster : Character_Movement
 {
+    public Monster_Data myData;
     public Collider myAI;
     public Transform CamView;
 
@@ -32,6 +33,8 @@ public class BossMonster : Character_Movement
                 break;
             case STATE.Battle:
                 Dont_Destroy_Data.Inst.Battle_Window.HpBar_Boss.gameObject.SetActive(true);
+                Debug.Log("배틀스테이트" + myTarget);
+                AttackTarget(myTarget, AttackRange, myData.Ad);
                 break;
             case STATE.Dead:
                 break;
@@ -67,6 +70,9 @@ public class BossMonster : Character_Movement
     {
         if(FinishAppear == false)
         {
+            // 보스존 출입문이 닫힘
+
+
             myTarget = target;
             target.GetComponent<Player_Movement>().Stop_Movement();
             target.GetComponent<Player_Movement>().Uncontrol_Player();
