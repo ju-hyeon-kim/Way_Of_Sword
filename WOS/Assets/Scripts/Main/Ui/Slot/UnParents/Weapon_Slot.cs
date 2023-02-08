@@ -39,7 +39,7 @@ public class Weapon_Slot : MonoBehaviour
             //스킬셋 전부 비활성화
             for (int i = 0; i < 4; i++)
             {
-                Skill_Set.Skill_Icons[i].SetActive(false);
+                //Skill_Set.Skill_Icons[i].SetActive(false);
             }
         }
         else  //검 장착

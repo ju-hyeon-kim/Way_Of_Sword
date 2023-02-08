@@ -46,7 +46,7 @@ public class SwordObe_Slot : Item_Slot
             if (transform.parent.GetChild(i).childCount == 0) //소드오브슬롯의 자식이 없다면
             {
                 //myWeapon_Slot.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] = null;
-                mySkill_Set.Skill_Icons[i].SetActive(false);
+                //mySkill_Set.Slots[i].gameObject.SetActive(false);
             }
         }
     }

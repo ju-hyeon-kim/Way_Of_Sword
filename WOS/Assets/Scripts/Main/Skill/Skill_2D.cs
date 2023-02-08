@@ -15,9 +15,9 @@ public class Skill_2D : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerEnter(PointerEventData eventData) // 마우스 포지션이 아이콘 안으로 들어왔을때
     {
-        SDwindow = this.transform.parent.GetComponent<Skill_Slot>().SkillData_Window;
-        SDwindow.Data_Setting(this);
-        SDwindow.gameObject.SetActive(true);
+        //SDwindow = this.transform.parent.GetComponent<Skill_Slot>().SkillData_Window;
+        //SDwindow.Data_Setting(this);
+        //SDwindow.gameObject.SetActive(true);
     }
 
     public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 안에 있을때

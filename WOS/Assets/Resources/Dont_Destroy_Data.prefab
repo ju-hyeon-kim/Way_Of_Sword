@@ -2907,7 +2907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4007330144881268427}
   m_Layer: 3
-  m_Name: myRanges
+  m_Name: Ranges
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13235,6 +13235,37 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1596230554923534753
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8664298989067317354}
+  m_Layer: 3
+  m_Name: NonePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8664298989067317354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596230554923534753}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2774588361149047800}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604633377571910499
 GameObject:
   m_ObjectHideFlags: 0
@@ -17192,7 +17223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a955d9acb86530e4fba8c1f594affbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillData_Window: {fileID: 1768782278130373141}
 --- !u!222 &1768782276994083614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36935,11 +36965,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6c453d26da4f14ab0233bb8e1f8d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Skill_Icons:
-  - {fileID: 1768782278578058247}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Slots:
+  - {fileID: 3100270766980038422}
+  - {fileID: 2907754573211220929}
+  - {fileID: 5224823638667148214}
+  - {fileID: 4587981816035800736}
 --- !u!1 &1768782278113798866
 GameObject:
   m_ObjectHideFlags: 0
@@ -47889,7 +47919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a955d9acb86530e4fba8c1f594affbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillData_Window: {fileID: 1768782278130373141}
 --- !u!222 &1768782278679838861
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52068,7 +52097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a955d9acb86530e4fba8c1f594affbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillData_Window: {fileID: 1768782278130373141}
 --- !u!222 &1768782278937769044
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -52635,7 +52663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a955d9acb86530e4fba8c1f594affbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillData_Window: {fileID: 1768782278130373141}
 --- !u!222 &1768782278966490448
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59449,6 +59476,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3248162789043393022}
+  - component: {fileID: 8755196720016195884}
   - component: {fileID: 3248162789043393019}
   - component: {fileID: 3248162789043393016}
   - component: {fileID: 3248162789043393017}
@@ -59468,12 +59496,24 @@ Transform:
   m_GameObject: {fileID: 3248162789043393023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 0.01, z: 3}
+  m_LocalScale: {x: 1, y: 0.01, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4007330144881268427}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8755196720016195884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3248162789043393023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 936ffb3c0c37d6049ad7a1e657d02b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &3248162789043393019
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -61454,6 +61494,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3763519310376101174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2774588361149047800}
+  - component: {fileID: 5244254123900627413}
+  m_Layer: 3
+  m_Name: SkillPoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2774588361149047800
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763519310376101174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8664298989067317354}
+  m_Father: {fileID: 6422646444300816848}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5244254123900627413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3763519310376101174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3564c51fb05a3ce49aca5c4015bd98f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPoints:
+  - {fileID: 1596230554923534753}
+  - {fileID: 1596230554923534753}
+  - {fileID: 1596230554923534753}
+  - {fileID: 1596230554923534753}
 --- !u!1 &3769845317580898755
 GameObject:
   m_ObjectHideFlags: 0
@@ -77163,6 +77253,7 @@ Transform:
   - {fileID: 3248162787956316657}
   - {fileID: 4007330144881268427}
   - {fileID: 7119942078024300584}
+  - {fileID: 2774588361149047800}
   m_Father: {fileID: 1768782277592172526}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77184,7 +77275,9 @@ MonoBehaviour:
   TargetMask:
     serializedVersion: 2
     m_Bits: 8320
-  SkillRange: {fileID: 3248162789043393023}
+  SkillRange: {fileID: 8755196720016195884}
+  SkillPoints: {fileID: 5244254123900627413}
+  Skill_Set: {fileID: 1768782278104555364}
   DropRange: {fileID: 5479995463717672782}
   Ap: 10
   Parents_of_Weapon:
@@ -80348,7 +80441,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7119942078024300584}
   m_Layer: 3
-  m_Name: myCamTargets
+  m_Name: CamTargets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
