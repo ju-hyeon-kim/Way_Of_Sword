@@ -5,16 +5,17 @@ using UnityEngine;
 
 public class Weapon_Slot : MonoBehaviour
 {
-    public Player_Main Player;
+    public Player Player;
     public Skill_Set Skill_Set;
     public SwordObe_Slot[] SwordObe_Slots = new SwordObe_Slot[4];
 
     public void Equip_Control() //장착 or 장착 해제
     {
-        if (Player.Weapon_Back.GetChild(0).gameObject.activeSelf)
+        Transform Weapon_Back = Player.Parents_of_Weapon[0].GetChild(0);
+        if (Weapon_Back.gameObject.activeSelf)
         {
             //3D상에서 무기 장착 해제
-            Player.Weapon_Back.GetChild(0).gameObject.SetActive(false);
+            Weapon_Back.gameObject.SetActive(false);
             // 스킬셋 전부 비활성화
             Skill_Setting(false);
             // 소드 윈도우와 연동
@@ -23,7 +24,7 @@ public class Weapon_Slot : MonoBehaviour
         else
         {
             //3D상에서 무기 장착
-            Player.Weapon_Back.GetChild(0).gameObject.SetActive(true);
+            Weapon_Back.gameObject.SetActive(true);
             // 오브가 장착된 상황에 맞게 스킬셋 활성화
             Skill_Setting(true);
             // 소드 윈도우와 연동

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Character_Movement : Character_Property
+public class Character_Movement : Character_Property // 이동,회전,드랍
 {
+    [Header("-----Character_Movement-----")]
     public float AttackRange = 1.0f;
     public float MoveSpeed = 3.0f;
-    float RotSpeed = 360.0f;
 
+    float RotSpeed = 360.0f;
     protected Coroutine moveCo = null;
     Coroutine rotCo = null;
 

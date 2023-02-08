@@ -92,7 +92,7 @@ public class Npc : MonoBehaviour
 
     public void Reaction(GameObject Player) // 플레이어가 말을 걸면 리액션
     {
-        C_Data.NpcTalk_Window = Player.GetComponent<Player_Main>().NpcTalk_Window;
+        C_Data.NpcTalk_Window = Dont_Destroy_Data.Inst.NpcTalk_Window;
         //플레이어 쪽으로 회전
         StartCoroutine(Rotating(Player.transform.position, true));
 

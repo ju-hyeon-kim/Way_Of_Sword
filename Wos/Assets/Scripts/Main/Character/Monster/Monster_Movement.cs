@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Monster_Movement : Character_Movement, IBattle
 {
-    public DamageZone myDamageZone;
+    public DamageText_Zone DamageText_Zone;
     public Monster_Data myData;
     public Collider myAI;
     public GameObject[] DropItems;
@@ -22,12 +22,12 @@ public class Monster_Movement : Character_Movement, IBattle
 
     public enum STATE
     {
-        Create, Idle, Roaming, Battle, Dead, Resurrection
+        Create, Idle, Roaming, Appear, Battle, Dead, Resurrection
     }
 
     public STATE myState = STATE.Create;
 
-    void ChangeState(STATE s)
+    public  void ChangeState(STATE s)
     {
         if (myState == s) return;
         myState = s;
@@ -37,21 +37,24 @@ public class Monster_Movement : Character_Movement, IBattle
                 break;
             case STATE.Idle:
                 Check_HpBar();
-                StartCoroutine(DelayRoaming(2.0f));
                 break;
-            case STATE.Roaming:
+            case STATE.Roaming: //nomal monster만 사용
+
                 Roaming_Pos.x = Random.Range(Roaming_Zone[2].position.x, Roaming_Zone[3].position.x);
                 Roaming_Pos.z = Random.Range(Roaming_Zone[0].position.z, Roaming_Zone[1].position.z);
                 Roaming_Pos.y = 0.5f;
                 base.MoveToPos(Roaming_Pos, () => ChangeState(STATE.Idle));
                 break;
+            case STATE.Appear: //boss monster만 사용
+                myAnim.SetTrigger("Howl");
+                break;
             case STATE.Battle:
                 AttackTarget(myTarget, AttackRange, myData.Ad);
-                //HpBar연동
                 Conect_HpBar();
                 break;
             case STATE.Dead:
                 StopAllCoroutines();
+
                 Unactive_HpBar();
                 // 퀘스트에 접근하여 연관된 퀘스트가 있는지 검사
                 Check_Quest();
@@ -95,12 +98,6 @@ public class Monster_Movement : Character_Movement, IBattle
         }
     }
 
-    IEnumerator DelayRoaming(float t)
-    {
-        yield return new WaitForSeconds(t);
-        ChangeState(STATE.Roaming);
-    }
-
     void Start()
     {
         ChangeState(STATE.Idle);
@@ -109,13 +106,6 @@ public class Monster_Movement : Character_Movement, IBattle
     void Update()
     {
         StateProcess();
-    }
-
-    public void FindTarget(Transform target)
-    {
-        myTarget = target;
-        StopAllCoroutines();
-        ChangeState(STATE.Battle);
     }
 
     public void LostTarget()
@@ -139,7 +129,7 @@ public class Monster_Movement : Character_Movement, IBattle
         if (myState != STATE.Dead)
         {
             myAnim.SetTrigger("Damage");
-            myDamageZone.OnDamage(dmg);
+            DamageText_Zone.OnDamage(dmg);
             Ondamge_HpBar(dmg);
         }
     }
@@ -182,7 +172,7 @@ public class Monster_Movement : Character_Movement, IBattle
         // 미니맵 아이콘
         myIcon.SetActive(b);
     }
-
+    public virtual void FindTarget(Transform target) { }
     public virtual void Check_HpBar() { }
     public virtual void Conect_HpBar() { }
     public virtual void Ondamge_HpBar(float dmg) { }

@@ -7,57 +7,11 @@ public class BossMonster : Monster_Movement
     public Transform CamView;
     bool FinishAppear = false;
 
-    public enum STATE
-    {
-        Create, Idle, Appear, Battle, Dead
-    }
-
-    public STATE myState = STATE.Create;
-
-    public void ChangeState(STATE s)
-    {
-        if (myState == s) return;
-        myState = s;
-        switch (myState)
-        {
-            case STATE.Create:
-                break;
-            case STATE.Idle:
-                break;
-            case STATE.Appear: // 카메라의 시점변경이 끝나면 ChangeState()가 호출되어 Appear로 State가 변경됨
-                myAnim.SetTrigger("Howl");
-                break;
-            case STATE.Battle:
-                Dont_Destroy_Data.Inst.Battle_Window.HpBar_Boss.gameObject.SetActive(true);
-                Debug.Log("배틀스테이트" + myTarget);
-                AttackTarget(myTarget, AttackRange, myData.Ad);
-                break;
-            case STATE.Dead:
-                break;
-        }
-    }
-
-    void StateProcess()
-    {
-        switch (myState)
-        {
-            case STATE.Create:
-                break;
-            case STATE.Idle:
-                break;
-            case STATE.Battle:
-                break;
-            case STATE.Dead:
-                break;
-        }
-    }
-
-    public void FindTarget(Transform target)
+    public override void FindTarget(Transform target)
     {
         if(FinishAppear == false)
         {
             // 보스존 출입문이 닫힘
-
 
             myTarget = target;
             target.GetComponent<Player_Movement>().Stop_Movement();
@@ -71,5 +25,10 @@ public class BossMonster : Monster_Movement
 
             FinishAppear = true;
         }
+    }
+
+    public override void Conect_HpBar()
+    {
+        Dont_Destroy_Data.Inst.Battle_Window.HpBar_Boss.gameObject.SetActive(true);
     }
 }

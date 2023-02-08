@@ -8,7 +8,7 @@ public class Item_3D : MonoBehaviour
     public GameObject myName_Label;
 
     ItemName_Label myLabel;
-    DropZone DropZone;
+    DropRange DropZone;
 
     public void OnDrop()
     {
@@ -38,7 +38,7 @@ public class Item_3D : MonoBehaviour
         if(other.gameObject.name == "DropZone")
         {
             myLabel.gameObject.SetActive(true);
-            DropZone = other.GetComponent<DropZone>();
+            DropZone = other.GetComponent<DropRange>();
             DropZone.DropItems.Add(this);
         }
     }

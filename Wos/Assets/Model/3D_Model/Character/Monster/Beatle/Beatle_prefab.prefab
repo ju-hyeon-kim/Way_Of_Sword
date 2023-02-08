@@ -240,17 +240,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackRange: 2
   MoveSpeed: 2
-  myDamageZone: {fileID: 3997059041653557565}
+  DamageText_Zone: {fileID: 3173940659490256900}
   myData: {fileID: 11400000, guid: 181468b9669567b458368b35ab0d3598, type: 2}
   myAI: {fileID: 3536847666532143520}
   DropItems:
   - {fileID: 3129200342344496425, guid: 3e29573f06c0a7e4fa986fff41de17af, type: 3}
   - {fileID: 1538421454515366, guid: b20d368476d6f41d7922c75ef0db5ff9, type: 3}
   myIcon: {fileID: 8779070127758273754}
+  myManager: {fileID: 0}
   Roaming_Zone: []
   HpZone: {fileID: 3743688500648159213}
-  myHpBar: {fileID: 5078598573667621307, guid: 83f14f9ff6120fb46beed5c55bcfc01e, type: 3}
   myState: 0
+  myHpBar: {fileID: 5078598573667621307, guid: 83f14f9ff6120fb46beed5c55bcfc01e, type: 3}
 --- !u!95 &8609941030233543933
 Animator:
   serializedVersion: 4
@@ -370,9 +371,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8593346748780644376}
-  - component: {fileID: 3997059041653557565}
+  - component: {fileID: 3173940659490256900}
   m_Layer: 0
-  m_Name: DamageZone
+  m_Name: DamageText_Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,7 +403,7 @@ Transform:
   m_Father: {fileID: 6223080000050214541}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3997059041653557565
+--- !u!114 &3173940659490256900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -411,7 +412,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5176238049228098669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc9fabeabc8e224b9865c96c1986853, type: 3}
+  m_Script: {fileID: 11500000, guid: a8aa83bcc035fa8459e5fc57fdc576b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myPoints:

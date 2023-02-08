@@ -13,6 +13,7 @@ public class NormalMonster : Monster_Movement
         {
             myHpBar_clone.gameObject.SetActive(false);
         }
+        StartCoroutine(DelayRoaming(2.0f)); // 2초후 로밍상태로 변경
     }
 
     public override void Conect_HpBar()
@@ -31,5 +32,18 @@ public class NormalMonster : Monster_Movement
     public override void Unactive_HpBar()
     {
         myHpBar_clone.gameObject.SetActive(false);
+    }
+
+    public override void FindTarget(Transform target)
+    {
+        myTarget = target;
+        StopAllCoroutines();
+        ChangeState(STATE.Battle);
+    }
+
+    IEnumerator DelayRoaming(float t)
+    {
+        yield return new WaitForSeconds(t);
+        ChangeState(STATE.Roaming);
     }
 }

@@ -29,15 +29,22 @@ public class Dont_Destroy_Data : MonoBehaviour
     }
     #endregion
 
-    public Transform myPlaceManager; // 씬이동시 각매니저가 알아서 값으로 들어감
-    public Manager_Cams Manager_Cams;
-    public Manager_Quest Manager_Quest;
+    [Header("-----Windows-----")]
     public Map_Window Map_Window;
     public ItemData_Windows ItemData_Windows;
-    public Transform Canvas;
-    public Transform Player;
+    public Inventory_Window Inventory_Window;
+    public NpcTalk_Window NpcTalk_Window;
     public Battle_Window Battle_Window;
     public Transform Rabel_Windows;
+
+    [Header("-----Etc-----")]
+    public Manager_Cams Manager_Cams;
+    public Manager_Quest Manager_Quest;
+    public Transform Canvas;
+    public Transform Player;
+
+    [HideInInspector]
+    public Transform myPlaceManager; // 씬이동시 각매니저가 알아서 값으로 들어감
 
     public void Start_Setting(Transform PlaceManager)
     {

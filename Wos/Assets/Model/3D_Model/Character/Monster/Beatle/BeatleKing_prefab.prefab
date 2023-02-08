@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3650990815748404402}
-  - component: {fileID: 8256003695091103127}
+  - component: {fileID: 382181591777562906}
   m_Layer: 0
-  m_Name: DamageZone
+  m_Name: DamageText_Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 1420760144196995623}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8256003695091103127
+--- !u!114 &382181591777562906
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 161828936847438023}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc9fabeabc8e224b9865c96c1986853, type: 3}
+  m_Script: {fileID: 11500000, guid: a8aa83bcc035fa8459e5fc57fdc576b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myPoints:
@@ -2160,10 +2160,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackRange: 8
   MoveSpeed: 3
+  DamageText_Zone: {fileID: 382181591777562906}
   myData: {fileID: 11400000, guid: 181468b9669567b458368b35ab0d3598, type: 2}
   myAI: {fileID: 8430236770907516170}
-  CamView: {fileID: 5781080453391739679}
+  DropItems: []
+  myIcon: {fileID: 4341147195433013360}
+  myManager: {fileID: 0}
+  Roaming_Zone: []
+  HpZone: {fileID: 0}
   myState: 0
+  CamView: {fileID: 5781080453391739679}
 --- !u!95 &3645655260473600087
 Animator:
   serializedVersion: 4

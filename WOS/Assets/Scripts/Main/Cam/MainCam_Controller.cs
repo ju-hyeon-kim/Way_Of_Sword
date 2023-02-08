@@ -124,7 +124,7 @@ public class MainCam_Controller : MonoBehaviour
         else
         {
             StartCoroutine(Follow_CamTarget());
-            Cam_Target.GetComponentInParent<Player_Main>().isEvent = false; // 플레이어 조작 가능
+            Cam_Target.GetComponentInParent<Player>().isEvent = false; // 플레이어 조작 가능
             Talk_Ready = false;
         }
 
@@ -161,7 +161,7 @@ public class MainCam_Controller : MonoBehaviour
             if (SaveNpc.TryGetComponent<BossMonster>(out BossMonster componet))
             {
                 Boss_Introduce.SetBool("Show", true);
-                componet.ChangeState(BossMonster.STATE.Appear);
+                componet.ChangeState(Monster_Movement.STATE.Appear);
                 StartCoroutine(TimeChecking(2.0f));
                 MovFinish = false;
                 RotFinish = false;

@@ -2897,6 +2897,39 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &227160815837802849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4007330144881268427}
+  m_Layer: 3
+  m_Name: myRanges
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4007330144881268427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227160815837802849}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3248162789043393022}
+  - {fileID: 3247136987959655106}
+  m_Father: {fileID: 6422646444300816848}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &245212678211822587
 GameObject:
   m_ObjectHideFlags: 0
@@ -20231,7 +20264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29f1f6e9a6151c24ab7f79b5b63802ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 5938561554231954293}
+  Player: {fileID: 0}
   Skill_Set: {fileID: 1768782278104555364}
   SwordObe_Slots:
   - {fileID: 1768782278684958219}
@@ -27564,15 +27597,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a7ba7ee239e63478e00ac0288f55f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlaceManager: {fileID: 0}
-  Manager_Cams: {fileID: 4283046764656514232}
-  Manager_Quest: {fileID: 1768782278647220528}
   Map_Window: {fileID: 1709317154080471724}
   ItemData_Windows: {fileID: 1768782278015719153}
-  Canvas: {fileID: 1768782278679037847}
-  Player: {fileID: 6422646444300816848}
+  Inventory_Window: {fileID: 6026312449911513431}
+  NpcTalk_Window: {fileID: 1768782277282842282}
   Battle_Window: {fileID: 4923545526601396584}
   Rabel_Windows: {fileID: 1768782278818420892}
+  Manager_Cams: {fileID: 4283046764656514232}
+  Manager_Quest: {fileID: 1768782278647220528}
+  Canvas: {fileID: 1768782278679037847}
+  Player: {fileID: 6422646444300816848}
+  myPlaceManager: {fileID: 0}
 --- !u!1 &1768782277598942791
 GameObject:
   m_ObjectHideFlags: 0
@@ -59275,7 +59310,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
 --- !u!212 &3248162787956316656
 SpriteRenderer:
@@ -59384,7 +59419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3248162788223843909}
   m_Layer: 0
-  m_Name: NpcTalk_View
+  m_Name: CamTarget_NpcTalk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59397,13 +59432,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3248162788223843962}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 1.5, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 5
+  m_Father: {fileID: 7119942078024300584}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3248162789043393023
 GameObject:
@@ -59418,7 +59453,7 @@ GameObject:
   - component: {fileID: 3248162789043393016}
   - component: {fileID: 3248162789043393017}
   m_Layer: 0
-  m_Name: Skill_Range
+  m_Name: SkillRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59431,13 +59466,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3248162789043393023}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.009, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 0.01, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 3
+  m_Father: {fileID: 4007330144881268427}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3248162789043393019
 MeshFilter:
@@ -59513,7 +59548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3248162789098826464}
   m_Layer: 0
-  m_Name: Cam_Target
+  m_Name: CamTarget_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59526,13 +59561,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3248162789098826465}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 2
+  m_Father: {fileID: 7119942078024300584}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3248162789361428153
 GameObject:
@@ -59563,7 +59598,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &3251017105791105617
 GameObject:
@@ -77098,7 +77133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6422646444300816848}
-  - component: {fileID: 5938561554231954293}
+  - component: {fileID: 4217464644783054326}
   - component: {fileID: 8797254267219517002}
   - component: {fileID: 6422646444300816863}
   - component: {fileID: 5938561554231954295}
@@ -77124,16 +77159,14 @@ Transform:
   m_Children:
   - {fileID: 3693134654019663935}
   - {fileID: 1545157044333949252}
-  - {fileID: 3248162789098826464}
-  - {fileID: 3248162789043393022}
   - {fileID: 3248162789361428152}
-  - {fileID: 3248162788223843909}
   - {fileID: 3248162787956316657}
-  - {fileID: 3247136987959655106}
+  - {fileID: 4007330144881268427}
+  - {fileID: 7119942078024300584}
   m_Father: {fileID: 1768782277592172526}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5938561554231954293
+--- !u!114 &4217464644783054326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77142,25 +77175,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 5938561554231954282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c5c5e663e356254da34f1cbd923438f, type: 3}
+  m_Script: {fileID: 11500000, guid: d8f1212c6d37cd649bf581202cbbfdd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: 3
+  AttackRange: 1
   MoveSpeed: 3
-  myDropZone: {fileID: 3175949732692729389}
   isEvent: 0
-  Weapon_Hand: {fileID: 2463787411045696864}
-  Ap: 10
   TargetMask:
     serializedVersion: 2
     m_Bits: 8320
-  NowMode: 0
-  Skill_Range: {fileID: 3248162789043393023}
-  Weapon_Back: {fileID: 2463787410212098609}
-  Cam_Target: {fileID: 3248162789098826464}
-  DropZone: {fileID: 8237447076541332541}
+  SkillRange: {fileID: 3248162789043393023}
+  DropRange: {fileID: 5479995463717672782}
+  Ap: 10
+  Parents_of_Weapon:
+  - {fileID: 2463787410212098609}
+  - {fileID: 2463787411045696864}
+  CamTarget_Main: {fileID: 3248162789098826464}
   myWeapon: {fileID: 4500329417111771920}
-  NpcTalk_Window: {fileID: 1768782277282842282}
   AnimSet:
   - {fileID: 9100000, guid: e354c6e9eda7d0b458052c56c0e5b33f, type: 2}
   - {fileID: 9100000, guid: 5aa11a2b28fcc9644b72c75903306998, type: 2}
@@ -77194,7 +77225,7 @@ MonoBehaviour:
   ComboCheck:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5938561554231954293}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Player_Movement, Assembly-CSharp
         m_MethodName: ComboCheck
         m_Mode: 0
@@ -80307,6 +80338,39 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6432480947442003002
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7119942078024300584}
+  m_Layer: 3
+  m_Name: myCamTargets
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7119942078024300584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6432480947442003002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3248162789098826464}
+  - {fileID: 3248162788223843909}
+  m_Father: {fileID: 6422646444300816848}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6435059946036472810
 GameObject:
   m_ObjectHideFlags: 0
@@ -90059,12 +90123,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3247136987959655106}
-  - component: {fileID: 3175949732692729389}
+  - component: {fileID: 5479995463717672782}
   - component: {fileID: 587557281196628886}
   - component: {fileID: 6519047993225389563}
   - component: {fileID: 8510079026793160055}
   m_Layer: 0
-  m_Name: DropZone
+  m_Name: DropRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90077,15 +90141,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8237447076541332541}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.009, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 0.2, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 7
+  m_Father: {fileID: 4007330144881268427}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3175949732692729389
+--- !u!114 &5479995463717672782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90094,11 +90158,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8237447076541332541}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e9154f678247bb44a4383ab2da386ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b8f73ab7e9c2734db7018f8b43482a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DropItems: []
-  Inventory_Window: {fileID: 6026312449911513431}
 --- !u!33 &587557281196628886
 MeshFilter:
   m_ObjectHideFlags: 0
