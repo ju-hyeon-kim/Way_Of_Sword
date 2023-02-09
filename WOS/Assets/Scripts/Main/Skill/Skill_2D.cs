@@ -22,11 +22,11 @@ public class Skill_2D : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 안에 있을때
     {
-        SDwindow.Updating_Position(eventData);
+        //SDwindow.Updating_Position(eventData);
     }
 
     public void OnPointerExit(PointerEventData eventData) // 마우스 포지션이 아이콘 밖으로 빠져나갈 때
     {
-        SDwindow.gameObject.SetActive(false);
+        //SDwindow.gameObject.SetActive(false);
     }
 }

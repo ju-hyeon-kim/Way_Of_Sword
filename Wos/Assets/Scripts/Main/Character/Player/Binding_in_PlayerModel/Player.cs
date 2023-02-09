@@ -37,7 +37,7 @@ public class Player : Player_Battle //장비착용, Npc상호작용
         myAnim.runtimeAnimatorController = AnimSet[Convert.ToInt32(b)];
         if(b == false)
         {
-            SkillRange.gameObject.SetActive(false);
+            //SkillRange.gameObject.SetActive(false);
         }
     }
 

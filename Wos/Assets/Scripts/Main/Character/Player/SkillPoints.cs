@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class SkillPoints : MonoBehaviour
 {
@@ -26,14 +27,17 @@ public class SkillPoints : MonoBehaviour
         }
     }
 
-    public void SP_OnOff(int i,bool b)
+    public void SP_OnOff(int i, bool b, Vector3 pos = default)
     {
-        myPoints[i].SetActive(b);
-    }
+        if(b != myPoints[i].activeSelf)
+        {
+            myPoints[i].SetActive(b);
+        }
 
-    public void PosUpdating(int i, Vector3 pos)
-    {
-        pos += new Vector3(0, 0.01f, 0); // 높이 조정
-        myPoints[i].transform.position = pos;
+        if(b == true)
+        {
+            pos += new Vector3(0, 0.01f, 0); // 높이 조정
+            myPoints[i].transform.position = pos;
+        }
     }
 }

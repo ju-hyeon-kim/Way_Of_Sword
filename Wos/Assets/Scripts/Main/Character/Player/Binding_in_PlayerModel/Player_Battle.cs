@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Player_Battle : Player_Movement, IBattle
 {
     [Header("-----Player_Battle-----")]
-    public SkillRange SkillRange;
-    public SkillPoints SkillPoints;
-    public Skill_Set Skill_Set;
+    public Manager_Skill Manager_Skill;
     public DropRange DropRange;
     
     public float Ap = 10;
-    GameObject myEnemy;
+    Transform myTarget;
     bool isComboable = false;
+    Vector3 EffectPos = Vector3.zero;
+    int SkillNum = 0;
     int ClickCount = 0;
-    GameObject SkillEffct;
-    Vector3 EffectPos;
-    
+    bool isSkilling = true;
+
 
     public override void Click_MouseLeftButton()
     {
@@ -29,8 +30,8 @@ public class Player_Battle : Player_Movement, IBattle
             //몬스터를 클릭할 경우 -> 몬스터에게 이동 후 콤보어택
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Monster") && !myAnim.GetBool("isAttacking"))
             {
-                myEnemy = hit.collider.gameObject;
-                if(!SkillRange.gameObject.activeSelf) // Skill Range가 켜져있을 경우 기본 공격 불가
+                myTarget = hit.collider.transform;
+                if(Manager_Skill.GetRangeActive()) // Skill Range가 켜져있을 경우 기본 공격 불가
                 {
                     base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
                 }
@@ -68,6 +69,7 @@ public class Player_Battle : Player_Movement, IBattle
         }
 
     }
+
     public void Hit_Target()
     {
         Transform Weapon_Hand = GetComponent<Player>().Parents_of_Weapon[1];
@@ -84,70 +86,60 @@ public class Player_Battle : Player_Movement, IBattle
     public override void Rot_inComboAttak()
     {
         ++ClickCount;
-        base.MoveToPos(myEnemy.transform.position, null, false, true);
+        base.MoveToPos(myTarget.position, null, false, true);
     }
-
-    public override void Pickup_Item()
-    {
-        DropRange.Pickup_Item();
-    }
-
-    public virtual void MoveToNpc(RaycastHit hit) { }
 
     #region for Skill
     public override void OnSkillRange(int i)
     {
-        //SkillRange, SkillPoint data 가져오기
-        Skill_Set.Slots[i].OnSkillRange(SkillRange, SkillPoints, i);
-        SkillRange.gameObject.SetActive(true);
-
+        Manager_Skill.OnSkillRange(i);
         StartCoroutine(Skilling(i));
     }
 
     IEnumerator Skilling(int i)
     {
-        bool isSkilling = true;
+        isSkilling = true;
         while (isSkilling)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f,1 << LayerMask.NameToLayer("SkillRange")))
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f,1 << LayerMask.NameToLayer("SkillRange"))) // 마우스 포지션이 SkillRange를 감지했으면
             {
-                SkillPoints.SP_OnOff(i, true);
-                //히트 포지션에 따라 스킬포인트의 포지션을 업데이트
-                SkillPoints.PosUpdating(i, hit.point);
+                Manager_Skill.MouseOnSkillRange(i, hit.point);
 
-                if(Input.GetMouseButtonDown(0)) // 좌클릭 = 스킬발동
+                if (Input.GetMouseButtonDown(0)) // 좌클릭 = 스킬발동
                 {
-                    //생성할 이펙트와 이펙트의 생성위치 설정
-                    SkillEffct = Skill_Set.Slots[i].nowSkill.Effect;
+                    //스킬이펙트 생성위치 설정
                     EffectPos = hit.point;
+                    SkillNum = i;
 
-                    //SkillRange, SkillPoint unActive
-                    SkillRange.gameObject.SetActive(false);
-                    SkillPoints.SP_OnOff(i, false);
+                    //이동중이라면 이동 멈춤
+                    GetComponent<Player_Movement>().Stop_Movement();
 
                     //끝나면 스킬 발동
-                    isJustMove = false;
-                    Vector3 vec = hit.point - transform.position;
-                    AttackRange = vec.magnitude;
-                    base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("Qskill"));
+                    base.MoveToPos(hit.point, null, false, true); // 회전만 적용
+                    myAnim.SetTrigger("Qskill");
+
+                    StopSkilling(i);
                 }
             }
             else // SkillRange의 범위를 벗어 났을 때
             {
-                SkillPoints.SP_OnOff(i, false);
+                Manager_Skill.UnActive_Point(i);
             }
 
             if (Input.GetMouseButtonDown(1)) // SkillRanger가 활성화된 상태에서 우클릭 했을 때 = 스킬 취소
             {
-                SkillRange.gameObject.SetActive(false);
-                SkillPoints.SP_OnOff(i, false);
-                isSkilling = false;
+                StopSkilling(i);
             }
-
             yield return null;
         }
+    }
+
+    void StopSkilling(int i)
+    {
+        Manager_Skill.UnActive_RangeAndPoint(i);
+        isSkilling = false;
     }
 
     public void ChangeMP()
@@ -159,11 +151,21 @@ public class Player_Battle : Player_Movement, IBattle
     {
         yield return null;
     }
+
+    public void OnSkillEffct()
+    {
+        Manager_Skill.OnSkillEffect(SkillNum, EffectPos);
+    }
     #endregion
 
-    public void OnSkillEffect()
+    #region for Npc
+    public virtual void MoveToNpc(RaycastHit hit) { }
+    #endregion
+
+    #region for ItmeDrop
+    public override void Pickup_Item()
     {
-        GameObject obj = Instantiate(SkillEffct, transform.root) as GameObject;
-        obj.transform.position = EffectPos;
+        DropRange.Pickup_Item();
     }
+    #endregion
 }
