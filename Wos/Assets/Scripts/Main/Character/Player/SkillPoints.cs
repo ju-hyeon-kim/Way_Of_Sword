@@ -26,8 +26,14 @@ public class SkillPoints : MonoBehaviour
         }
     }
 
-    public void OnSkill(int i)
+    public void SP_OnOff(int i,bool b)
     {
-        myPoints[i].SetActive(true);
+        myPoints[i].SetActive(b);
+    }
+
+    public void PosUpdating(int i, Vector3 pos)
+    {
+        pos += new Vector3(0, 0.01f, 0); // 높이 조정
+        myPoints[i].transform.position = pos;
     }
 }

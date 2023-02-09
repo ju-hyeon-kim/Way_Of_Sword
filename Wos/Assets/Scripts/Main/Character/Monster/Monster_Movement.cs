@@ -172,6 +172,64 @@ public class Monster_Movement : Character_Movement, IBattle
         // 미니맵 아이콘
         myIcon.SetActive(b);
     }
+
+    protected void AttackTarget(Transform target, float AttackRange, float AttackDelay)
+    {
+        StopAllCoroutines();
+        StartCoroutine(AttackingPlayer(target, AttackRange, AttackDelay));
+    }
+
+    IEnumerator AttackingPlayer(Transform target, float AttackRange, float AttackDelay) //몬스터만 사용
+    {
+        float playTime = 0.0f;
+        float delta = 0.0f;
+        while (target != null)
+        {
+            if (!myAnim.GetBool("isAttacking")) playTime += Time.deltaTime;
+            //이동
+            Vector3 dir = target.position - transform.position;
+            float dist = dir.magnitude;
+            dir.Normalize();
+            if (dist > AttackRange)
+            {
+                myAnim.SetBool("Move", true);
+                delta = MoveSpeed * Time.deltaTime;
+                if (delta > dist)
+                {
+                    delta = dist;
+                }
+                transform.Translate(dir * delta, Space.World);
+            }
+            else
+            {
+                myAnim.SetBool("Move", false);
+                if (playTime >= AttackDelay)
+                {
+                    //공격
+                    playTime = 0.0f;
+                    myAnim.SetTrigger("Attack");
+                }
+            }
+
+            //회전
+            delta = RotSpeed * Time.deltaTime;
+            float Angle = Vector3.Angle(dir, transform.forward);
+            float rotDir = 1.0f;
+            if (Vector3.Dot(transform.right, dir) < 0.0f)
+            {
+                rotDir = -rotDir;
+            }
+            if (delta > Angle)
+            {
+                delta = Angle;
+            }
+            transform.Rotate(Vector3.up * delta * rotDir, Space.World);
+
+            yield return null;
+        }
+        myAnim.SetBool("Move", false);
+    }
+
     public virtual void FindTarget(Transform target) { }
     public virtual void Check_HpBar() { }
     public virtual void Conect_HpBar() { }

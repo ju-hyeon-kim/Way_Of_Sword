@@ -13,7 +13,6 @@ public class DamageText_Zone : MonoBehaviour
 
     public void OnDamage(float dmg)
     {
-        Debug.Log("데미지 텍스트존의 온데미지");
         Battle_Window BW = Dont_Destroy_Data.Inst.Battle_Window;
 
         //쓰레기 통안에 쓰레기가 없다면 생성

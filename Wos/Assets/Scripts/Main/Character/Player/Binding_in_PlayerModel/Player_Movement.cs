@@ -18,7 +18,8 @@ public class Player_Movement : Character_Movement
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, 1 << LayerMask.NameToLayer("Ground")))
                 {
-                    Move_To_Target = false;
+                    isJustMove = false;
+                    // 현재 Skilling 코루틴이 작동중이라면  MoveToPos 실행 불가
                     base.MoveToPos(hit.point);
                 }
             }
@@ -32,19 +33,19 @@ public class Player_Movement : Character_Movement
             //스킬
             if(Input.GetKeyDown(KeyCode.Q))
             {
-                OnSkill(0);
+                OnSkillRange(0);
             }
             if (Input.GetKeyDown(KeyCode.W))
             {
-                OnSkill(1);
+                OnSkillRange(1);
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-                OnSkill(2);
+                OnSkillRange(2);
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                OnSkill(3);
+                OnSkillRange(3);
             }
 
 
@@ -79,6 +80,6 @@ public class Player_Movement : Character_Movement
     public virtual void Rot_inComboAttak() { }
     public virtual void ComboCheck(bool b) { }
     public virtual void Click_MouseLeftButton() { }
-    public virtual void OnSkill(int i) { }
+    public virtual void OnSkillRange(int i) { }
     public virtual void Pickup_Item() { }
 }

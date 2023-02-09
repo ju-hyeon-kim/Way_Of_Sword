@@ -42,5 +42,4 @@ public class Character_Property : MonoBehaviour
             return _coll;
         }
     }
-
 }
