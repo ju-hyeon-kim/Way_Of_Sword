@@ -16,22 +16,25 @@ public class NormalMonster : Monster_Movement
         StartCoroutine(DelayRoaming(2.0f)); // 2초후 로밍상태로 변경
     }
 
-    public override void Conect_HpBar()
+    public override void isActive_HpBar(bool b)
     {
-        GameObject hpbar = Instantiate(myHpBar, Dont_Destroy_Data.Inst.Battle_Window.transform) as GameObject;
-        myHpBar_clone = hpbar.GetComponent<HpBar_Monster>();
-        myHpBar_clone.myHpZone = HpZone;
-        myHpBar_clone.StartSetting(this);
+        if(b)
+        {
+            GameObject hpbar = Instantiate(myHpBar, Dont_Destroy_Data.Inst.Battle_Window.transform) as GameObject;
+            myHpBar_clone = hpbar.GetComponent<HpBar_Monster>();
+            myHpBar_clone.myHpZone = HpZone;
+            myHpBar_clone.StartSetting(this, myStat.MaxHp());
+        }
+        else
+        {
+            myHpBar_clone.gameObject.SetActive(false);
+        }
+        
     }
 
     public override void Ondamge_HpBar(float dmg)
     {
         myHpBar_clone.GetComponent<HpBar_Monster>().OnDmage(dmg);
-    }
-
-    public override void Unactive_HpBar()
-    {
-        myHpBar_clone.gameObject.SetActive(false);
     }
 
     public override void FindTarget(Transform target)

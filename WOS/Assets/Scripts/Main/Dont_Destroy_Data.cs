@@ -35,13 +35,14 @@ public class Dont_Destroy_Data : MonoBehaviour
     public Inventory_Window Inventory_Window;
     public NpcTalk_Window NpcTalk_Window;
     public Battle_Window Battle_Window;
-    public Transform Rabel_Windows;
+    public Transform Label_Windows;
 
     [Header("-----Etc-----")]
     public Manager_Cams Manager_Cams;
     public Manager_Quest Manager_Quest;
     public Transform Canvas;
     public Transform Player;
+    public Transform Unactive_Area;
 
     [HideInInspector]
     public Transform myPlaceManager; // 씬이동시 각매니저가 알아서 값으로 들어감

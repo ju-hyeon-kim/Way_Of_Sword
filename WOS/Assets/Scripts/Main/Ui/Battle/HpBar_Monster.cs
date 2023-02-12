@@ -20,11 +20,11 @@ public class HpBar_Monster : MonoBehaviour
         transform.position = pos;
     }
 
-    public void StartSetting(NormalMonster monster)
+    public void StartSetting(NormalMonster monster, float maxhp)
     {
         myMonster = monster;
-        MaxHp = monster.myData.MaxHp;
-        NowHp = monster.myData.MaxHp;
+        MaxHp = maxhp;
+        NowHp = MaxHp;
     }
 
     public void OnDmage(float dmg)

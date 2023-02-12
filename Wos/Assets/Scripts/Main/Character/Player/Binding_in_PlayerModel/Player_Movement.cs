@@ -5,12 +5,11 @@ using UnityEngine;
 public class Player_Movement : Character_Movement
 {
     [Header("-----Player_Movement-----")]
-    public bool isEvent = false; // 이벤트 발생시 플레이어 조작 불가
+    public bool ControlPossible = true;
     public LayerMask TargetMask;
-
     void Update()
     {
-        if (!isEvent)
+        if (ControlPossible)
         {
             //우클릭 - 무빙
             if (Input.GetMouseButtonDown(1))
@@ -18,7 +17,6 @@ public class Player_Movement : Character_Movement
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, 1 << LayerMask.NameToLayer("Ground")))
                 {
-                    isJustMove = false;
                     // 현재 Skilling 코루틴이 작동중이라면  MoveToPos 실행 불가
                     base.MoveToPos(hit.point);
                 }
@@ -73,7 +71,7 @@ public class Player_Movement : Character_Movement
 
     public void Uncontrol_Player()
     {
-        isEvent = true;
+        ControlPossible = false;
     }
 
     public virtual bool Get_isComboable() { return true; }

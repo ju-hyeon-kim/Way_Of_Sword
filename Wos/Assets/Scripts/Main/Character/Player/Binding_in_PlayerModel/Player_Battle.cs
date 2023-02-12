@@ -8,17 +8,17 @@ using UnityEngine.UI;
 public class Player_Battle : Player_Movement, IBattle
 {
     [Header("-----Player_Battle-----")]
-    public Manager_Skill Manager_Skill;
+    public Player_Interface myInterface;
+    public DamageText_Zone DamageText_Zone;
     public DropRange DropRange;
-    
-    public float Ap = 10;
-    Transform myTarget;
+    public Transform ComboAttack_Point;
+
+    protected Transform myTarget; // Battle = monster, unBattle = Npc
     bool isComboable = false;
     Vector3 EffectPos = Vector3.zero;
     int SkillNum = 0;
     int ClickCount = 0;
     bool isSkilling = true;
-
 
     public override void Click_MouseLeftButton()
     {
@@ -26,13 +26,14 @@ public class Player_Battle : Player_Movement, IBattle
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 1000.0f, TargetMask))
         {
-            isJustMove = true;
             //몬스터를 클릭할 경우 -> 몬스터에게 이동 후 콤보어택
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Monster") && !myAnim.GetBool("isAttacking"))
             {
+                //c
                 myTarget = hit.collider.transform;
-                if(Manager_Skill.GetRangeActive()) // Skill Range가 켜져있을 경우 기본 공격 불가
+                if(!myInterface.GetRangeActive()) // Skill Range가 꺼져있을 경우만 기본 공격 가능
                 {
+
                     base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
                 }
             }
@@ -63,21 +64,24 @@ public class Player_Battle : Player_Movement, IBattle
 
     public void OnDamage(float dmg)
     {
+        DamageText_Zone.OnDamage(dmg, true);
+
         if (myAnim.GetBool("isIdle")) // 공격중에는 Damage 애니 작동불가, 단, 체력은 깎임
         {
             myAnim.SetTrigger("Damage");
         }
 
+        myInterface.OnDamage(dmg);
     }
 
     public void Hit_Target()
     {
-        Transform Weapon_Hand = GetComponent<Player>().Parents_of_Weapon[1];
-        Collider[] list = Physics.OverlapSphere(Weapon_Hand.GetChild(1).position, 1f, 1 << LayerMask.NameToLayer("Monster"));
+        float radius = 1.3f;
+        Collider[] list = Physics.OverlapSphere(ComboAttack_Point.position, radius, 1 << LayerMask.NameToLayer("Monster"));
 
         foreach (Collider col in list)
         {
-            col.GetComponent<Monster_Movement>().OnDamage(Ap);
+            col.GetComponent<Monster_Movement>().OnDamage(myStat.Ap());
         }
     }
 
@@ -89,11 +93,22 @@ public class Player_Battle : Player_Movement, IBattle
         base.MoveToPos(myTarget.position, null, false, true);
     }
 
+    public void Get_XP(float xp)
+    {
+        myInterface.Get_Xp(xp);
+    }
+
     #region for Skill
     public override void OnSkillRange(int i)
     {
-        Manager_Skill.OnSkillRange(i);
-        StartCoroutine(Skilling(i));
+        if(GetComponent<Player>().nowMode == Mode.BATTLE) // 배틀모드라면
+        {
+            if (myInterface.isPossibeSkill(i)) // 쿨타임이 아니라면
+            {
+                myInterface.OnSkillRange(i);
+                StartCoroutine(Skilling(i));
+            }
+        }
     }
 
     IEnumerator Skilling(int i)
@@ -105,7 +120,7 @@ public class Player_Battle : Player_Movement, IBattle
 
             if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f,1 << LayerMask.NameToLayer("SkillRange"))) // 마우스 포지션이 SkillRange를 감지했으면
             {
-                Manager_Skill.MouseOnSkillRange(i, hit.point);
+                myInterface.MouseOnSkillRange(i, hit.point);
 
                 if (Input.GetMouseButtonDown(0)) // 좌클릭 = 스킬발동
                 {
@@ -125,7 +140,7 @@ public class Player_Battle : Player_Movement, IBattle
             }
             else // SkillRange의 범위를 벗어 났을 때
             {
-                Manager_Skill.UnActive_Point(i);
+                myInterface.UnActive_Point(i);
             }
 
             if (Input.GetMouseButtonDown(1)) // SkillRanger가 활성화된 상태에서 우클릭 했을 때 = 스킬 취소
@@ -138,23 +153,13 @@ public class Player_Battle : Player_Movement, IBattle
 
     void StopSkilling(int i)
     {
-        Manager_Skill.UnActive_RangeAndPoint(i);
+        myInterface.UnActive_RangeAndPoint(i);
         isSkilling = false;
-    }
-
-    public void ChangeMP()
-    {
-
-    }
-
-    IEnumerator SkillCool()
-    {
-        yield return null;
     }
 
     public void OnSkillEffct()
     {
-        Manager_Skill.OnSkillEffect(SkillNum, EffectPos);
+        myInterface.OnSkillEffect(SkillNum, EffectPos);
     }
     #endregion
 

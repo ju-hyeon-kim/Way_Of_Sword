@@ -7,14 +7,9 @@ using UnityEngine.Events;
 public class Character_Movement : Character_Property // 이동,회전,드랍
 {
     [Header("-----Character_Movement-----")]
-    public float AttackRange = 1.0f;
-    public float MoveSpeed = 3.0f;
-
     protected float RotSpeed = 360.0f;
     protected Coroutine moveCo = null;
     Coroutine rotCo = null;
-    
-    protected bool isJustMove = true;
 
     protected void MoveToPos(Vector3 pos, UnityAction Action_AfterMoving = null, bool isMov = true, bool isRot = true)
     // bool isMov(isRot)는 이동(회전)을 할지 말지 결정
@@ -52,14 +47,14 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         myAnim.SetBool("Move", true);
 
         float range = 0.0f;
-        if (!isJustMove)
+        if (Action_AfterMoving != null)
         {
-            range = AttackRange;
+            range = myStat.Arange();
         }
 
         while (dist > range)
         {
-            float delta = MoveSpeed * Time.deltaTime;
+            float delta = myStat.Mspeed() * Time.deltaTime;
             if (delta > dist)
             {
                 delta = dist;
@@ -70,11 +65,6 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         }
 
         myAnim.SetBool("Move", false);
-
-        if (isJustMove)
-        {
-            P_MoveEnd_NpcAction();
-        }
 
         Action_AfterMoving?.Invoke();
         /*Action_AM이 널이 아니라면 실행 ( ChildAction = 자식에 따라 다르게 실행되는 함수 )
@@ -104,11 +94,6 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
             Angle -= delta;
             transform.Rotate(Vector3.up * rotDir * delta);
             yield return null;
-        }
-
-        if (isJustMove)
-        {
-            P_RotEnd_NpcAction();
         }
     }
 

@@ -11,7 +11,7 @@ public class DamageText_Zone : MonoBehaviour
 
     GameObject TextObj;
 
-    public void OnDamage(float dmg)
+    public void OnDamage(float dmg, bool isPlayer)
     {
         Battle_Window BW = Dont_Destroy_Data.Inst.Battle_Window;
 
@@ -28,6 +28,6 @@ public class DamageText_Zone : MonoBehaviour
 
         int rnd = Random.Range(0, myPoints.Length-1);
         TextObj.GetComponent<DamageText>().myDamageZone = myPoints[rnd];
-        TextObj.GetComponent<DamageText>().ShowDamage(dmg);
+        TextObj.GetComponent<DamageText>().ShowDamage(dmg, isPlayer);
     }
 }

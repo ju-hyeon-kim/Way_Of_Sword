@@ -39,7 +39,7 @@ public class Manager_Forest : Manager_Place
         SpawnPoint_Player.PlayerPosSetting();
         Dont_Destroy_Data.Inst.myPlaceManager = this.transform;
         Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
-        Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(true);
+        Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(Mode.BATTLE);
         Dont_Destroy_Data.Inst.Battle_Window.GetComponent<Battle_Window>().BossEmergence.gameObject.SetActive(true);
         
     }

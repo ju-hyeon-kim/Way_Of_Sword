@@ -14,7 +14,7 @@ public class Manager_Village : Manager_Place
     private void Start()
     {
         Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
-        Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(false);
+        Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(Mode.UNBATTLE);
         Manager_SceneChange.Inst.MiniMapCam_Controller.MiniMap_Icons = Minimap_Icons;
     }
 }

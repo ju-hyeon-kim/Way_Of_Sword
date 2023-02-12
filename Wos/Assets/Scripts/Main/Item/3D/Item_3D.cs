@@ -9,6 +9,7 @@ public class Item_3D : MonoBehaviour
 
     ItemName_Label myLabel;
     DropRange DropZone;
+    bool isOnGround = false;
 
     public void OnDrop()
     {
@@ -17,7 +18,7 @@ public class Item_3D : MonoBehaviour
         GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
 
         // 이름 라벨 생성 -> 위치값 전달, 이름 전달(세팅)
-        GameObject Obj = Instantiate(myName_Label, Dont_Destroy_Data.Inst.Rabel_Windows) as GameObject;
+        GameObject Obj = Instantiate(myName_Label, Dont_Destroy_Data.Inst.Unactive_Area) as GameObject;
         myLabel = Obj.GetComponent<ItemName_Label>();
         myLabel.myNameZone = this.transform;
         string myName = myItem2D.GetComponent<Item_2D>().myData.Name;
@@ -28,6 +29,7 @@ public class Item_3D : MonoBehaviour
     {
         if (target.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            isOnGround = true;
             GetComponent<Rigidbody>().isKinematic = true;
             GetComponent<Collider>().isTrigger = true;
         }
@@ -35,20 +37,27 @@ public class Item_3D : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // 플레이어의 드랍존에 닿았을 때
     {
-        if(other.gameObject.name == "DropZone")
+        if(isOnGround)
         {
-            myLabel.gameObject.SetActive(true);
-            DropZone = other.GetComponent<DropRange>();
-            DropZone.DropItems.Add(this);
+            if (other.gameObject.name == "DropRange")
+            {
+                myLabel.transform.SetParent(Dont_Destroy_Data.Inst.Label_Windows);
+                DropZone = other.GetComponent<DropRange>();
+                DropZone.DropItems.Add(this);
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "DropZone")
+        if (isOnGround)
         {
-            myLabel.gameObject.SetActive(false);
-            DropZone.DropItems.Remove(this);
+            if (other.gameObject.name == "DropRange")
+            {
+                myLabel.transform.SetParent(Dont_Destroy_Data.Inst.Unactive_Area);
+                DropZone = other.GetComponent<DropRange>();
+                DropZone.DropItems.Remove(this);
+            }
         }
     }
 

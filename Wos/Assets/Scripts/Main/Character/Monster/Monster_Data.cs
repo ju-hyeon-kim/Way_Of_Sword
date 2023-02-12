@@ -5,9 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Monster_Data", menuName = "ScriptableObjects/Monster_Data", order = 1)]
 public class Monster_Data : ScriptableObject
 {
-    public string Name;
+    public float Arange;
+    public float Aspeed;
+    public float Mspeed;
     public float MaxHp;
-    public float Ap; //AttackPoint
-    public float Ad; //AttackDelay
-    public float Ar; //AttackRange
+    public float Ap;
+    public float Xp;
 }

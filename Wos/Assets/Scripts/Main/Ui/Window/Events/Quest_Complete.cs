@@ -35,7 +35,6 @@ public class Quest_Complete : MonoBehaviour
                 {
                     price = Icon.myData.Price;
                     //XP -> 스테이터스에 적용
-                    Status.Level.Get_Xp(price);
                 }
                 else if(ItemType == ItemType.Gold)
                 {

@@ -9,7 +9,10 @@ public class Skill_Data : ScriptableObject
     public string Name;
     [Multiline]
     public string Explanation;
+    public float Dist;
     public float Range;
+    public float CoolTime;
+    public float Mp;
     public GameObject Effect;
     public SkillPoint SkillPoint;
 }

@@ -9,39 +9,52 @@ public class Inventory_Tab : Icon_Window
 
     public void Put_Item(Item_2D item)
     {
+        bool isEmptyAllSlot = false;
+        bool isNoneSameItem = false;
+        bool isFullAllSlot = false;
+
         for (int i = 0; i < mySlots.Length; i++)
         {
-            if (!mySlots[i].isEmpty) // 비어 있지 않으면
+            if (!mySlots[i].isEmpty) // 비어있지않으면
             {
-                // 같은 아이템인지 확인
-                if (mySlots[i].Get_myItemName() == item.myData.Name)
+                isEmptyAllSlot = false;
+                if (mySlots[i].Get_myItemName() == item.myData.Name) // 같은 아이템이 있다면
                 {
+                    isNoneSameItem = false;
                     mySlots[i].Put_SameItem();
                     break;
                 }
-                // 같은 아이템이 없으면
-                for (int j = 0; j < mySlots.Length; j++) // 비어있는 슬롯중에 가장 첫 슬롯에 넣는다.
+                else // 같은 아이템이 아니라면
                 {
-                    if(mySlots[j].isEmpty)
-                    {
-                        mySlots[j].Put_NewItem(item);
-                        break;
-                    }
+                    isNoneSameItem = true;
                 }
-                break;
             }
-
-            
-            //전부 비어있으면
-            for (int j = 0; j < mySlots.Length; j++) // 비어있는 슬롯중에 가장 첫 슬롯에 넣는다.
+            else // 비어있으면
             {
-                if (mySlots[j].isEmpty)
+                isEmptyAllSlot = true;
+            }
+        }
+
+        if(isEmptyAllSlot || isNoneSameItem) // 슬롯이 전부 비어있거나 같은 이름의 아이템이 없다면
+        {
+            for (int i = 0; i < mySlots.Length; i++) // 비어있는 슬롯중에 가장 첫 슬롯에 넣는다.
+            {
+                if (mySlots[i].isEmpty)
                 {
-                    mySlots[j].Put_NewItem(item);
+                    isFullAllSlot = false;
+                    mySlots[i].Put_NewItem(item);
                     break;
                 }
+                else
+                {
+                    isFullAllSlot = true;
+                }
             }
-            break;
+        }
+
+        if(isFullAllSlot)
+        {
+            Debug.Log("인벤토리가 가득 찼습니다.");
         }
     }
 }

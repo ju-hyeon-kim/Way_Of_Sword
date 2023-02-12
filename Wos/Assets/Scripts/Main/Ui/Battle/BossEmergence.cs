@@ -11,7 +11,7 @@ public class BossEmergence : MonoBehaviour
     public TMP_Text Hunting_Count;
     public Animator BE_Massage;
 
-    int Hcount = 9; // Test후 0으로 수정필요
+    int Hcount = 0; // Test후 0으로 수정필요
 
     public void Plus_Hunting_Count()
     {

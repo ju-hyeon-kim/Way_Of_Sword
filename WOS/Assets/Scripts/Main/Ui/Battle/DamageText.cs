@@ -2,26 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DamageText : MonoBehaviour
 {
     public Transform myDamageZone;
+    public Color OrangeColor;
 
-    public void ShowDamage(float dmg)
+    public void ShowDamage(float dmg,bool isPlayer)
     {
-        StartCoroutine(ShowingDamage(dmg));
+        if(isPlayer)
+        {
+            Vector3 pos = Camera.main.WorldToScreenPoint(myDamageZone.position);
+            transform.position = pos;
+
+            GetComponent<TMP_Text>().color = Color.red;
+            GetComponent<TMP_Text>().fontSize = 30.0f;
+        }
+        else
+        {
+            GetComponent<TMP_Text>().color = OrangeColor;
+            GetComponent<TMP_Text>().fontSize = 40.0f;
+        }
+
+        StartCoroutine(ShowingDamage(dmg, isPlayer));
     }
 
-    IEnumerator ShowingDamage(float dmg)
+    IEnumerator ShowingDamage(float dmg ,bool isPlayer)
     {
         GetComponent<TMP_Text>().text = dmg.ToString();
 
         float time = 1.0f;
         while (time > 0)
         {
+            if(isPlayer)
+            {
+                transform.position -= Vector3.down * 0.5f;
+            }
+            else
+            {
+                Vector3 pos = Camera.main.WorldToScreenPoint(myDamageZone.position);
+                transform.position = pos;
+            }
             time -= Time.deltaTime;
-            Vector3 pos = Camera.main.WorldToScreenPoint(myDamageZone.position);
-            transform.position = pos;
             yield return null;
         }
 

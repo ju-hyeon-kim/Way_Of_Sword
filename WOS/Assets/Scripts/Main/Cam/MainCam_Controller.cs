@@ -124,7 +124,7 @@ public class MainCam_Controller : MonoBehaviour
         else
         {
             StartCoroutine(Follow_CamTarget());
-            Cam_Target.GetComponentInParent<Player>().isEvent = false; // 플레이어 조작 가능
+            Cam_Target.GetComponentInParent<Player>().ControlPossible = true; // 플레이어 조작 가능
             Talk_Ready = false;
         }
 

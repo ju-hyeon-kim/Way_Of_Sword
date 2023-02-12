@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class ItemName_Label : MonoBehaviour
 {
     public Transform myNameZone = null;
-    public Color DropPossible_Color;
-    Color Org_Color;
     bool isSetting = false;
 
     void Update()
@@ -24,6 +22,5 @@ public class ItemName_Label : MonoBehaviour
     {
         transform.GetChild(0).GetComponent<TMP_Text>().text = name;
         isSetting = true;
-        Org_Color = GetComponent<Image>().color;
     }
 }

@@ -42,4 +42,17 @@ public class Character_Property : MonoBehaviour
             return _coll;
         }
     }
+
+    Character_Stat _stat = null;
+    protected Character_Stat myStat
+    {
+        get
+        {
+            if (_stat == null)
+            {
+                _stat = GetComponent<Character_Stat>();
+            }
+            return _stat;
+        }
+    }
 }

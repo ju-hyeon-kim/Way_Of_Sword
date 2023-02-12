@@ -6,7 +6,12 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : Player_Battle //장비착용, Npc상호작용
+public enum Mode
+{
+    NONE, UNBATTLE, BATTLE, DEAD
+}
+
+public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
 {
     #region 상속구조
     /*
@@ -25,25 +30,43 @@ public class Player : Player_Battle //장비착용, Npc상호작용
     public Transform CamTarget_Main;
     public Transform myWeapon;
     public AnimatorController[] AnimSet; // 0=Unbattle 1=Battle
+    public Mode nowMode = Mode.NONE;
+    public Player_Dead Player_Dead;
 
-    GameObject myNpc;
+    public void Change_Mode(Mode mode) // false(0) = 언배틀모드, true(1) = 배틀모드
+    {
+        nowMode = mode;
+        
+        switch(nowMode)
+        {
+            case Mode.UNBATTLE:
+                UnBattle_Or_Battle_Setting(false);
+                break;
+            case Mode.BATTLE:
+                UnBattle_Or_Battle_Setting(true);
+                break;
+            case Mode.DEAD:
+                ControlPossible = false;
+                myAnim.SetTrigger("Dead");
+                Player_Dead.gameObject.SetActive(true);
+                Player_Dead.OnDead();
+                break;
+        }
 
-    public void Change_Mode(bool b) // false(0) = 언배틀모드, true(1) = 배틀모드
+    }
+
+    void UnBattle_Or_Battle_Setting(bool b)
     {
         myWeapon.SetParent(Parents_of_Weapon[Convert.ToInt32(b)]);
         myWeapon.localPosition = Vector3.zero;
         myWeapon.localRotation = Quaternion.identity;
         DropRange.gameObject.SetActive(b);
         myAnim.runtimeAnimatorController = AnimSet[Convert.ToInt32(b)];
-        if(b == false)
-        {
-            //SkillRange.gameObject.SetActive(false);
-        }
     }
 
     public override void MoveToNpc(RaycastHit hit)
     {
-        myNpc = hit.collider.gameObject;
+        myTarget = hit.collider.transform;
         base.MoveToPos(hit.point);
     }
 

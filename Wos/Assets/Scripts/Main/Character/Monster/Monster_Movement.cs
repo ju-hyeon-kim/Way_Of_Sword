@@ -5,7 +5,6 @@ using UnityEngine;
 public class Monster_Movement : Character_Movement, IBattle
 {
     public DamageText_Zone DamageText_Zone;
-    public Monster_Data myData;
     public Collider myAI;
     public GameObject[] DropItems;
     public GameObject myIcon;
@@ -39,7 +38,6 @@ public class Monster_Movement : Character_Movement, IBattle
                 Check_HpBar();
                 break;
             case STATE.Roaming: //nomal monster만 사용
-
                 Roaming_Pos.x = Random.Range(Roaming_Zone[2].position.x, Roaming_Zone[3].position.x);
                 Roaming_Pos.z = Random.Range(Roaming_Zone[0].position.z, Roaming_Zone[1].position.z);
                 Roaming_Pos.y = 0.5f;
@@ -49,18 +47,18 @@ public class Monster_Movement : Character_Movement, IBattle
                 myAnim.SetTrigger("Howl");
                 break;
             case STATE.Battle:
-                AttackTarget(myTarget, AttackRange, myData.Ad);
-                Conect_HpBar();
+                AttackTarget(myTarget, myStat.Arange(), myStat.Aspeed());
+                isActive_HpBar(true);
                 break;
             case STATE.Dead:
                 StopAllCoroutines();
-
-                Unactive_HpBar();
+                
+                GiveXp_toPlayer();
+                //HpBar 비활성화
+                isActive_HpBar(false);
                 // 퀘스트에 접근하여 연관된 퀘스트가 있는지 검사
                 Check_Quest();
-
                 Dead_Or_Resurrection(false);
-
                 // 아이템 드랍
                 OnDropItem();
                 // 헌팅카운트 적용
@@ -71,9 +69,7 @@ public class Monster_Movement : Character_Movement, IBattle
             case STATE.Resurrection:
                 // 몬스터의 위치가 랜덤한 곳으로 전송됨
                 RandomPos();
-
                 Dead_Or_Resurrection(true);
-
                 ChangeState(STATE.Idle);
                 break;
         }
@@ -119,9 +115,9 @@ public class Monster_Movement : Character_Movement, IBattle
         }
     }
 
-    public void AttackTarget()
+    public void Attack_AnimEvent()
     {
-        myTarget.GetComponent<IBattle>()?.OnDamage(myData.Ap); // 공격력 전달
+        myTarget.GetComponent<IBattle>()?.OnDamage(myStat.Ap()); // 공격력 전달
     }
 
     public void OnDamage(float dmg)
@@ -129,7 +125,7 @@ public class Monster_Movement : Character_Movement, IBattle
         if (myState != STATE.Dead)
         {
             myAnim.SetTrigger("Damage");
-            DamageText_Zone.OnDamage(dmg);
+            DamageText_Zone.OnDamage(dmg, false);
             Ondamge_HpBar(dmg);
         }
     }
@@ -176,12 +172,12 @@ public class Monster_Movement : Character_Movement, IBattle
     protected void AttackTarget(Transform target, float AttackRange, float AttackDelay)
     {
         StopAllCoroutines();
-        StartCoroutine(AttackingPlayer(target, AttackRange, AttackDelay));
+        StartCoroutine(Attacking(target, AttackRange, AttackDelay));
     }
 
-    IEnumerator AttackingPlayer(Transform target, float AttackRange, float AttackDelay) //몬스터만 사용
+    IEnumerator Attacking(Transform target, float AttackRange, float AttackDelay) //몬스터만 사용
     {
-        float playTime = 0.0f;
+        float playTime = AttackDelay; // 처음에 바로 공격
         float delta = 0.0f;
         while (target != null)
         {
@@ -193,7 +189,7 @@ public class Monster_Movement : Character_Movement, IBattle
             if (dist > AttackRange)
             {
                 myAnim.SetBool("Move", true);
-                delta = MoveSpeed * Time.deltaTime;
+                delta = myStat.Mspeed() * Time.deltaTime;
                 if (delta > dist)
                 {
                     delta = dist;
@@ -225,16 +221,26 @@ public class Monster_Movement : Character_Movement, IBattle
             }
             transform.Rotate(Vector3.up * delta * rotDir, Space.World);
 
+            if(target.GetComponent<Player>().nowMode == Mode.DEAD)
+            {
+                target = null;
+                ChangeState(STATE.Roaming);
+            }
+
             yield return null;
         }
         myAnim.SetBool("Move", false);
     }
 
+    void GiveXp_toPlayer()
+    {
+        myTarget.GetComponent<Player>().Get_XP(myStat.Xp());
+    }
+
     public virtual void FindTarget(Transform target) { }
     public virtual void Check_HpBar() { }
-    public virtual void Conect_HpBar() { }
+    public virtual void isActive_HpBar(bool b) { }
     public virtual void Ondamge_HpBar(float dmg) { }
-    public virtual void Unactive_HpBar() { }
     public virtual void RandomPos() { }
     public virtual void Check_Quest() { }
 }
