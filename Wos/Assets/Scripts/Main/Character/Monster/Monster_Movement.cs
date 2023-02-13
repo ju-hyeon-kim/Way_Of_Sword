@@ -47,7 +47,7 @@ public class Monster_Movement : Character_Movement, IBattle
                 myAnim.SetTrigger("Howl");
                 break;
             case STATE.Battle:
-                AttackTarget(myTarget, myStat.Arange(), myStat.Aspeed());
+                AttackTarget(myTarget, myStat.arange(), myStat.aspeed());
                 isActive_HpBar(true);
                 break;
             case STATE.Dead:
@@ -117,7 +117,7 @@ public class Monster_Movement : Character_Movement, IBattle
 
     public void Attack_AnimEvent()
     {
-        myTarget.GetComponent<IBattle>()?.OnDamage(myStat.Ap()); // 공격력 전달
+        myTarget.GetComponent<IBattle>()?.OnDamage(myStat.ap()); // 공격력 전달
     }
 
     public void OnDamage(float dmg)
@@ -189,7 +189,7 @@ public class Monster_Movement : Character_Movement, IBattle
             if (dist > AttackRange)
             {
                 myAnim.SetBool("Move", true);
-                delta = myStat.Mspeed() * Time.deltaTime;
+                delta = myStat.mspeed() * Time.deltaTime;
                 if (delta > dist)
                 {
                     delta = dist;
@@ -234,7 +234,7 @@ public class Monster_Movement : Character_Movement, IBattle
 
     void GiveXp_toPlayer()
     {
-        myTarget.GetComponent<Player>().Get_XP(myStat.Xp());
+        myTarget.GetComponent<Player>().Get_XP(myStat.xp());
     }
 
     public virtual void FindTarget(Transform target) { }

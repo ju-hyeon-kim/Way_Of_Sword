@@ -11,9 +11,4 @@ public class Mp_Interface : Xp_Interface
     {
         Mp_Set.UseMp(skillmp);
     }
-
-    protected float CurMp()
-    {
-        return Mp_Set.Get_CurMp();
-    }
 }

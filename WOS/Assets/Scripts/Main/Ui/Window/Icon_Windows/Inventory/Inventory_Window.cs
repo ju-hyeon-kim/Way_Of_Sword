@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory_Window : MonoBehaviour
+public class Inventory_Window : Icon_Window
 {
     public Inventory_Tab[] myTabs;
     public Manager_Player Manager_Player;

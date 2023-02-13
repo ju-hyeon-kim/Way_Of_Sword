@@ -81,7 +81,7 @@ public class Player_Battle : Player_Movement, IBattle
 
         foreach (Collider col in list)
         {
-            col.GetComponent<Monster_Movement>().OnDamage(myStat.Ap());
+            col.GetComponent<Monster_Movement>().OnDamage(myStat.ap());
         }
     }
 
@@ -103,7 +103,7 @@ public class Player_Battle : Player_Movement, IBattle
     {
         if(GetComponent<Player>().nowMode == Mode.BATTLE) // 배틀모드라면
         {
-            if (myInterface.isPossibeSkill(i)) // 쿨타임이 아니라면
+            if (myInterface.isPossibeSkill(i, myStat.curmp())) // 쿨타임이 아니고 사용 가능한 마나가 있을 경우
             {
                 myInterface.OnSkillRange(i);
                 StartCoroutine(Skilling(i));

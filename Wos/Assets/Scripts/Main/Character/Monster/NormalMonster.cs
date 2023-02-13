@@ -23,7 +23,7 @@ public class NormalMonster : Monster_Movement
             GameObject hpbar = Instantiate(myHpBar, Dont_Destroy_Data.Inst.Battle_Window.transform) as GameObject;
             myHpBar_clone = hpbar.GetComponent<HpBar_Monster>();
             myHpBar_clone.myHpZone = HpZone;
-            myHpBar_clone.StartSetting(this, myStat.MaxHp());
+            myHpBar_clone.StartSetting(this, myStat.maxhp());
         }
         else
         {

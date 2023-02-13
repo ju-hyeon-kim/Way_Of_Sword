@@ -49,12 +49,12 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         float range = 0.0f;
         if (Action_AfterMoving != null)
         {
-            range = myStat.Arange();
+            range = myStat.arange();
         }
 
         while (dist > range)
         {
-            float delta = myStat.Mspeed() * Time.deltaTime;
+            float delta = myStat.mspeed() * Time.deltaTime;
             if (delta > dist)
             {
                 delta = dist;
@@ -96,7 +96,6 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
             yield return null;
         }
     }
-
     public virtual void P_MoveEnd_NpcAction() { }  // P - Npc를 클릭했다면 Npc의 리액션 발생
     public virtual void P_RotEnd_NpcAction() { }  // P - Npc를 클릭했다면 Npc의 리액션 발생
 }

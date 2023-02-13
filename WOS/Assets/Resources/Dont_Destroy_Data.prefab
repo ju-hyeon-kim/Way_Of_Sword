@@ -5107,7 +5107,7 @@ GameObject:
   - component: {fileID: 27137187972263988}
   - component: {fileID: 9093472061457722476}
   m_Layer: 5
-  m_Name: Total_AP
+  m_Name: Hp_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8214,7 +8214,7 @@ GameObject:
   - component: {fileID: 2181558725690400413}
   - component: {fileID: 5413299833063493452}
   m_Layer: 5
-  m_Name: Total_Mp
+  m_Name: Mp_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11726,7 +11726,7 @@ GameObject:
   - component: {fileID: 1409020999636009166}
   - component: {fileID: 1409020999636009167}
   m_Layer: 5
-  m_Name: Total_AP
+  m_Name: Ap_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13386,7 +13386,7 @@ GameObject:
   - component: {fileID: 5972154915249410666}
   - component: {fileID: 6738080042999869081}
   m_Layer: 5
-  m_Name: Total_AP
+  m_Name: Speed_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19705,11 +19705,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6502657ceb05764da6791c01d5be7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Stat: {fileID: 4057890403996977743}
   XpBar: {fileID: 1768782276954714373}
   NowLevel: {fileID: 1768782278507975228}
   NowHp: {fileID: 1768782278748864708}
-  LevelUp_Eff: {fileID: 5669355344236558452}
-  LevelUp_Event: {fileID: 3497782743546751134}
 --- !u!222 &1768782277123735736
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35941,6 +35940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a493d31cd5e46e34f8fc4d13f6bda387, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Stat: {fileID: 4057890403996977743}
   HpBar: {fileID: 1768782278127605579}
   NowHp: {fileID: 1758306436901547213}
 --- !u!222 &1768782277994470750
@@ -49307,6 +49307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a8c7fdcacc61845a7756bdeb82d014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Stat: {fileID: 4057890403996977743}
   MpBar: {fileID: 1768782277031605408}
   NowMp: {fileID: 5340763212079603752}
 --- !u!222 &1768782278716014513
@@ -55812,6 +55813,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3467ffa21d82b5a4dab66a48c87d03b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Level: {fileID: 8235422413249673318}
+  Speed: {fileID: 6738080042999869081}
+  Ap: {fileID: 1409020999636009167}
+  Dp: {fileID: 5886892717530373503}
+  Hp: {fileID: 9093472061457722476}
+  Mp: {fileID: 5413299833063493452}
 --- !u!222 &2220109373707719374
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -59996,12 +60003,12 @@ GameObject:
   - component: {fileID: 3248162787956316657}
   - component: {fileID: 3248162787956316656}
   m_Layer: 11
-  m_Name: MiniMap_Icon_Player
+  m_Name: MiniMapIcon_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3248162787956316657
 Transform:
   m_ObjectHideFlags: 0
@@ -85112,7 +85119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 719239659638376170}
   m_Layer: 5
-  m_Name: MaxMp
+  m_Name: Mp_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92574,7 +92581,7 @@ GameObject:
   - component: {fileID: 8996040383110341864}
   - component: {fileID: 6230696586529169343}
   m_Layer: 5
-  m_Name: Now_Level
+  m_Name: Level_Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92628,7 +92635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lv.1
+  m_text: Level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fc4e19b4bc29d8e4f8c6736705ffe9d8, type: 2}
   m_sharedMaterial: {fileID: -8421810056311075637, guid: fc4e19b4bc29d8e4f8c6736705ffe9d8,
@@ -94068,7 +94075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2164876855990404578}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Level_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94107,7 +94114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5286744215912556107}
   m_Layer: 5
-  m_Name: Status_Set
+  m_Name: Status_Sets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94149,7 +94156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5286744216796409765}
   m_Layer: 5
-  m_Name: Ap
+  m_Name: Ap_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97934,7 +97941,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ae36bed73919f4bba80f977ce01100, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myStatus: {fileID: 2220109373707719371}
+  LevelUp_Eff: {fileID: 5669355344236558452}
+  LevelUp_Event: {fileID: 3497782743546751134}
+  Status_Tap: {fileID: 2220109373707719371}
 --- !u!114 &8797254267219517002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99023,7 +99032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9156471386059562594}
   m_Layer: 5
-  m_Name: MaxHp
+  m_Name: Hp_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100665,7 +100674,7 @@ GameObject:
   - component: {fileID: 3763813166315395437}
   - component: {fileID: 5886892717530373503}
   m_Layer: 5
-  m_Name: Total_Dp
+  m_Name: Dp_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114577,7 +114586,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4229268915594558247}
   m_Layer: 5
-  m_Name: Speed
+  m_Name: Speed_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117151,7 +117160,7 @@ GameObject:
   - component: {fileID: 4007602510390806288}
   - component: {fileID: 8235422413249673318}
   m_Layer: 5
-  m_Name: Xp_Reading
+  m_Name: Level_txt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117205,7 +117214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (0/100)
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 17219f0a642b5864487795aebae50717, type: 2}
   m_sharedMaterial: {fileID: -8421810056311075637, guid: 17219f0a642b5864487795aebae50717,
@@ -117233,8 +117242,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -119278,7 +119287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5578937261449189198}
   m_Layer: 5
-  m_Name: Dp
+  m_Name: Dp_Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

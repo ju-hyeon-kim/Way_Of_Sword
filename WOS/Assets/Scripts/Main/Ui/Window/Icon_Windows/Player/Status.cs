@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class Status : MonoBehaviour
 {
-    //바뀌는 능력치
-    int Level = 1;
-    float Speed = 3.0f;
-    float Ap = 10.0f;
-    float Dp = 10.0f;
-    float maxHp = 100.0f;
-    float maxMp = 100.0f;
+    public TMP_Text Level;
+    public TMP_Text Speed;
+    public TMP_Text Ap;
+    public TMP_Text Dp;
+    public TMP_Text Hp;
+    public TMP_Text Mp;
 
-    //고정된 능력치
 
-    public float MaxHp()
+    public void Update_Status(Player_Stat Stat) // 레벨업 했을 경우 or 아이템을 착용,해제 했을 경우
     {
-        return maxHp;
+
     }
 }

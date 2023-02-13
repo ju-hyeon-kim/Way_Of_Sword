@@ -2,36 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster_Stat : MonoBehaviour
+public class Monster_Stat : Character_Stat
 {
     public Monster_Data myData;
 
-    public float Ap()
+    public override float ap()
     {
         return myData.Ap;
     }
 
-    public float Arange()
+    public override float arange()
     {
         return myData.Arange;
     }
 
-    public float Mspeed()
+    public override float mspeed()
     {
         return myData.Mspeed;
     }
 
-    public float MaxHp()
+    public override float maxhp()
     {
         return myData.MaxHp;
     }
 
-    public float Aspeed()
+    public override float aspeed()
     {
         return myData.Aspeed;
     }
 
-    public float Xp()
+    public override float xp()
     {
         return myData.Xp;
     }

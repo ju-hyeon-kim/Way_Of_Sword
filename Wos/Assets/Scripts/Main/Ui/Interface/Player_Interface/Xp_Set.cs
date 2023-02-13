@@ -6,40 +6,26 @@ using UnityEngine.UI;
 
 public class Xp_Set : MonoBehaviour
 {
+    public Player_Stat Stat;
+
     public Image XpBar;
     public TMP_Text NowLevel;
     public TMP_Text NowHp;
-    public ParticleSystem LevelUp_Eff;
-    public GameObject LevelUp_Event;
-
-    float Level = 1;
-    float MaxXp = 20; // 100으로 고정
-    float CurXp = 0;
 
     public void Get_Xp(float xp)
     {
-        CurXp += xp;
-        if(CurXp >= MaxXp)
+        Stat.CurXp += xp;
+        if(Stat.CurXp >= Stat.MaxHp)
         {
-            CurXp -= MaxXp;
-            LevelUp();
+            Stat.CurXp -= Stat.MaxHp;
+            Stat.Level_Up();
         }
-        Update_XpUi();
+        Update_Ui();
     }
 
-    void LevelUp()
+    void Update_Ui()
     {
-        MaxXp += 20.0f;
-        Level++;
-        NowLevel.text = $"Lv.{Level}";
-
-        LevelUp_Eff.Play();
-        LevelUp_Event.SetActive(true);
-    }
-
-    void Update_XpUi()
-    {
-        XpBar.fillAmount = CurXp / MaxXp;
-        NowHp.text = $"({CurXp} / {MaxXp})";
+        XpBar.fillAmount = Stat.CurXp / Stat.MaxHp;
+        NowHp.text = $"({Stat.CurXp} / {Stat.CurXp})";
     }
 }

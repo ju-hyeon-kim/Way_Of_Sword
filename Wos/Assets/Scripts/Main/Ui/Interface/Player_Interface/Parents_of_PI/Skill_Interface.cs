@@ -53,10 +53,10 @@ public class Skill_Interface : Hp_Interface
         Skill_Set.Slots[i].OnSkillCool();
     }
 
-    public bool isPossibeSkill(int i)
+    public bool isPossibeSkill(int i, float CurMp)
     {
         bool isCoolTime = Skill_Set.Slots[i].Get_isCoolTime();
-        bool MpisSuffice = CurMp() >= Skill_Set.Slots[i].nowSkill.myData.Mp;
+        bool MpisSuffice = CurMp >= Skill_Set.Slots[i].nowSkill.myData.Mp;
         return !isCoolTime && MpisSuffice; // 마나가 충분 하거나 쿨타임이 아니어야 true를 반환함 
     }
 }
