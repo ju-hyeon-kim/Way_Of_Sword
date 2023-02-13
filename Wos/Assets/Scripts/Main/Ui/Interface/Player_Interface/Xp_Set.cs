@@ -15,9 +15,9 @@ public class Xp_Set : MonoBehaviour
     public void Get_Xp(float xp)
     {
         Stat.CurXp += xp;
-        if(Stat.CurXp >= Stat.MaxHp)
+        if(Stat.CurXp >= Stat.MaxXp)
         {
-            Stat.CurXp -= Stat.MaxHp;
+            Stat.CurXp -= Stat.MaxXp;
             Stat.Level_Up();
         }
         Update_Ui();
@@ -25,7 +25,7 @@ public class Xp_Set : MonoBehaviour
 
     void Update_Ui()
     {
-        XpBar.fillAmount = Stat.CurXp / Stat.MaxHp;
-        NowHp.text = $"({Stat.CurXp} / {Stat.CurXp})";
+        XpBar.fillAmount = Stat.CurXp / Stat.MaxXp;
+        NowHp.text = $"({Stat.CurXp} / {Stat.MaxXp})";
     }
 }

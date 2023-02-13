@@ -10,15 +10,34 @@ public class Player_Stat : Character_Stat
     public Status Status_Tap;
 
     //바뀌는 능력치
+
+    //Level
     int _Level = 1;
-    float _Mspeed = 3.0f;
-    float _Ap = 10.0f;
-    float _Dp = 10.0f;
-    float _MaxHp = 100.0f;
+
+    //Mspeed
+    float _PlayerMspeed = 2.0f;
+    float _AddMspeed = 0.0f;
+
+    //Ap
+    float _PlayerAp = 10.0f;
+    float _AddAp = 0.0f;
+
+    //Dp
+    float _PlayerDp = 10.0f;
+    float _AddDp = 0.0f; 
+
+    //Hp
+    float _PlayerHp = 100.0f;
+    float _AddHp = 0.0f;
     float _CurHp = 100.0f;
-    float _MaxMp = 100.0f;
+
+    //Mp
+    float _PlayerMp = 100.0f;
+    float _AddMp = 0.0f;
     float _CurMp = 100.0f;
-    float _MaxXp = 100.0f;
+
+    //Xp
+    float _MaxXp = 20.0f; // 초기값은 100
     float _CurXp = 0.0f;
 
     //고정된 능력치
@@ -26,60 +45,94 @@ public class Player_Stat : Character_Stat
     float _Aspeed = 3.0f;
 
     #region 프로퍼티
-    //바뀌는 능력치
+    //Level
     public int Level
     {
         get { return _Level; }
         set { _Level = value; }
     }
 
-    public float Mspeed
+    //Mspeed
+    public float TotalMspeed { get { return _PlayerMspeed + _AddMspeed; } }
+    public float PlayerMspeed
     {
-        get { return _Mspeed; }
-        set { _Mspeed = value; }
+        get { return _PlayerMspeed; }
+        set { _PlayerMspeed = value; }
+    }
+    public float AddMspeed
+    {
+        get { return _AddMspeed; }
+        set { _AddMspeed = value; }
     }
 
-    public float Ap
+    //Ap
+    public float TotalAp { get { return _PlayerAp + _AddAp; } }
+    public float PlayerAp 
+    { 
+        get { return _PlayerAp;  } 
+        set { _PlayerAp = value; }
+    }
+    public float AddAp
     {
-        get { return _Ap; }
-        set { _Ap = value; }
+        get { return _AddAp; }
+        set { _AddAp = value; }
     }
 
-    public float Dp
+    //Dp
+    public float TotalDp { get { return _PlayerDp + _AddDp; } }
+    public float PlayerDp
     {
-        get { return _Dp; }
-        set { _Dp = value; }
+        get { return _PlayerDp; }
+        set { _PlayerDp = value; }
+    }
+    public float AddDp
+    {
+        get { return _AddDp; }
+        set { _AddDp = value; }
     }
 
-    public float MaxHp
+    //Hp
+    public float MaxHp { get { return _PlayerHp + _AddHp; } }
+    public float PlayerHp
     {
-        get { return _MaxHp; }
-        set { _MaxHp = value; }
+        get { return _PlayerHp; }
+        set { _PlayerHp = value; }
     }
-
+    public float AddHp
+    {
+        get { return _AddHp; }
+        set { _AddHp = value; }
+    }
     public float CurHp
     {
         get { return _CurHp; }
         set { _CurHp = value; }
     }
 
-    public float MaxMp
+    //Mp
+    public float MaxMp { get { return _PlayerMp + _AddMp; } }
+    public float PlayerMp
     {
-        get { return _MaxMp; }
-        set { _MaxMp = value; }
+        get { return _PlayerMp; }
+        set { _PlayerMp = value; }
     }
-
+    public float AddMp
+    {
+        get { return _AddMp; }
+        set { _AddMp = value; }
+    }
     public float CurMp
     {
         get { return _CurMp; }
         set { _CurMp = value; }
     }
+
+    //Xp
     public float MaxXp
     {
         get { return _MaxXp; }
         set { _MaxXp = value; }
     }
-
     public float CurXp
     {
         get { return _CurXp; }
@@ -99,17 +152,17 @@ public class Player_Stat : Character_Stat
     #endregion
 
     #region 오버라이드
-    public override float ap() { return _Ap; }
+    public override float ap() { return TotalAp; }
 
-    public override float dp() { return _Dp; }
+    public override float dp() { return TotalDp; }
+
+    public override float maxhp() { return MaxHp; }
+
+    public override float maxmp() { return MaxMp; }
+
+    public override float mspeed() { return TotalMspeed; }
 
     public override float arange() { return _Arange; }
-
-    public override float mspeed() { return _Mspeed; }
-
-    public override float maxhp() { return _MaxHp; }
-
-    public override float maxmp() { return _MaxMp; }
 
     public override float curmp() {  return _CurMp; }
 
@@ -122,14 +175,13 @@ public class Player_Stat : Character_Stat
         LevelUp_Event.SetActive(true);
 
         ++Level;
-        Mspeed += 0.1f;
-        Ap += 5f;
-        Dp += 5f;
-        MaxHp += 30.0f;
-        MaxMp += 30.0f;
+        PlayerMspeed += 0.1f;
+        PlayerAp += 5f;
+        PlayerDp += 5f;
+        PlayerHp += 30.0f;
+        PlayerMp += 30.0f;
         MaxXp += 50.0f;
 
         Status_Tap.Update_Status(this);
-
     }
 }

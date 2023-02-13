@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Item_3D : MonoBehaviour
 {
@@ -11,9 +12,8 @@ public class Item_3D : MonoBehaviour
     DropRange DropZone;
     bool isOnGround = false;
 
-    public void OnDrop()
+    public void OnDrop() // Drop시 공중에 뿌려지는 효과
     {
-        // Drop시 공중에 뿌려지는 효과
         // 충격량은 1로 고정 -> 각 아이템의 Mass값을 변경
         GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
 
