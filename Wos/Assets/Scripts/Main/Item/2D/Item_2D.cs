@@ -10,6 +10,7 @@ public class Item_2D : MonoBehaviour,
     IBeginDragHandler, IDragHandler, IEndDragHandler // 드래그 핸들러
 {    
     public Item_Data myData;
+
     ItemData_Window myData_Window;
 
     public Transform Before_Parents; // 전에 있던 부모 오브젝트

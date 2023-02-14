@@ -6,6 +6,8 @@ public class Skill_Slot : MonoBehaviour
 {
     public SkillData_Window SkillData_Window;
     public Skill_2D nowSkill;
+    public Player_Stat P_Stat;
+
 
     public void OnSkillRange(SkillRange skillrange, SkillPoints skillpoints, int key)
     {
@@ -33,7 +35,7 @@ public class Skill_Slot : MonoBehaviour
 
             bin.UsedEffects[i] = obj.GetComponent<Skill_Effect>();
         }
-        bin.UsedEffects[i].Hit_Target();
+        bin.UsedEffects[i].Hit_Skill(Get_SkillAp() + P_Stat.TotalAp_Attack);
     }
 
     public void OnSkillCool()
@@ -44,5 +46,10 @@ public class Skill_Slot : MonoBehaviour
     public bool Get_isCoolTime()
     {
         return nowSkill.Get_isCoolTime();
+    }
+
+    public float Get_SkillAp()
+    {
+        return nowSkill.myData.Ap;
     }
 }

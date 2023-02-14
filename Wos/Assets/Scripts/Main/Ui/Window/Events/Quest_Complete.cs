@@ -9,7 +9,7 @@ public class Quest_Complete : MonoBehaviour
     public GameObject[] Q_Reword;
     public GameObject Effect;
     public Message_Window Message_Window;
-    public Status Status;
+    public Status_Tap Status;
     public NpcTalk_Window NpcTalk_Window;
     public Manager_Quest Manager_Quest;
 

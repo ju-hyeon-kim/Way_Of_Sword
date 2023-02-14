@@ -12,6 +12,7 @@ public class Skill_Data : ScriptableObject
     public float Dist;
     public float Range;
     public float CoolTime;
+    public float Ap;
     public float Mp;
     public GameObject Effect;
     public SkillPoint SkillPoint;

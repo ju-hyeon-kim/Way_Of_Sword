@@ -40,7 +40,7 @@ public class Player_Battle : Player_Movement, IBattle
             //Npc를 클릭할 경우 -> Npc에게 이동
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Npc"))
             {
-                MoveToNpc(hit);
+                base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
             }
         }
     }
@@ -62,7 +62,7 @@ public class Player_Battle : Player_Movement, IBattle
         }
     }
 
-    public void OnDamage(float dmg)
+    public void OnDamage(float dmg) // ib
     {
         DamageText_Zone.OnDamage(dmg, true);
 
@@ -74,14 +74,14 @@ public class Player_Battle : Player_Movement, IBattle
         myInterface.OnDamage(dmg);
     }
 
-    public void Hit_Target()
+    public void Hit_Attack()
     {
         float radius = 1.3f;
         Collider[] list = Physics.OverlapSphere(ComboAttack_Point.position, radius, 1 << LayerMask.NameToLayer("Monster"));
 
         foreach (Collider col in list)
         {
-            col.GetComponent<Monster_Movement>().OnDamage(myStat.ap());
+            col.GetComponent<Monster_Movement>().OnDamage( myStat.ap() );
         }
     }
 
@@ -159,7 +159,7 @@ public class Player_Battle : Player_Movement, IBattle
 
     public void OnSkillEffct()
     {
-        myInterface.OnSkillEffect(SkillNum, EffectPos);
+        myInterface.OnSkillEffect(SkillNum, EffectPos); // 스킬의 공격력을 어떻게 가져올까
     }
     #endregion
 

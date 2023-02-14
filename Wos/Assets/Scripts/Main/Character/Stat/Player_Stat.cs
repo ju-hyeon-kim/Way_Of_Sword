@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player_Stat : Character_Stat
 {
     public ParticleSystem LevelUp_Eff;
     public GameObject LevelUp_Event;
-    public Status Status_Tap;
+
+    public Status_Tap Status_Tap;
+    public Equipment_Tap Equipment_Tap;
+    public Skill_Set Skill_Set;
+
+    private void Start() 
+    {
+        Status_Tap.Update_Status(this); // Status_Tap 초기 세팅
+    }
 
     //바뀌는 능력치
 
@@ -15,12 +25,11 @@ public class Player_Stat : Character_Stat
     int _Level = 1;
 
     //Mspeed
-    float _PlayerMspeed = 2.0f;
+    float _PlayerMspeed = 3.0f;
     float _AddMspeed = 0.0f;
 
     //Ap
     float _PlayerAp = 10.0f;
-    float _AddAp = 0.0f;
 
     //Dp
     float _PlayerDp = 10.0f;
@@ -66,17 +75,13 @@ public class Player_Stat : Character_Stat
     }
 
     //Ap
-    public float TotalAp { get { return _PlayerAp + _AddAp; } }
-    public float PlayerAp 
+    public float TotalAp_Attack { get { return PlayerAp + AddAp; } }
+    public float PlayerAp
     { 
         get { return _PlayerAp;  } 
         set { _PlayerAp = value; }
     }
-    public float AddAp
-    {
-        get { return _AddAp; }
-        set { _AddAp = value; }
-    }
+    public float AddAp { get { return Equipment_Tap.AddAp(); } }
 
     //Dp
     public float TotalDp { get { return _PlayerDp + _AddDp; } }
@@ -152,7 +157,7 @@ public class Player_Stat : Character_Stat
     #endregion
 
     #region 오버라이드
-    public override float ap() { return TotalAp; }
+    public override float ap() { return TotalAp_Attack; }
 
     public override float dp() { return TotalDp; }
 

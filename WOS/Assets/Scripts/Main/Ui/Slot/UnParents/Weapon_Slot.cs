@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Weapon_Slot : MonoBehaviour
+public class Weapon_Slot : Equipment_Slot
 {
     public Player Player;
     public Skill_Set Skill_Set;
     public SwordObe_Slot[] SwordObe_Slots = new SwordObe_Slot[4];
+    public Equipment_2D myItem;
+
+    bool isEmpty = false;
 
     public void Equip_Control() //¿Â¬¯ or ¿Â¬¯ «ÿ¡¶
     {
@@ -78,6 +81,19 @@ public class Weapon_Slot : MonoBehaviour
                     SwordObe_Slots[i].transform.GetChild(0).gameObject.SetActive(true);
                 }*/
             }
+        }
+    }
+
+    public float Get_WeaponAp()
+    {
+        if(!isEmpty)
+        {
+            Equipment_Data weaponData = (Equipment_Data)myItem.myData;
+            return weaponData.AP;
+        }
+        else
+        {
+            return 0;
         }
     }
 }

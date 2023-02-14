@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-public class AttackState : StateMachineBehaviour
+namespace wos 
 {
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class AttackState : StateMachineBehaviour
     {
-        animator.SetBool("isAttacking", true);
-    }
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            animator.SetBool("isAttacking", true);
+        }
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller)
-    {
-        animator.SetBool("isAttacking", false);
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex, AnimatorControllerPlayable controller)
+        {
+            animator.SetBool("isAttacking", false);
+        }
     }
 }
