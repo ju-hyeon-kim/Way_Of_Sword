@@ -71,13 +71,16 @@ public class MainCam_Controller : MonoBehaviour
     }
 
     //Npc와 대화끝 -> 원래 시점으로
-    public void ReturnView()
+    public void ReturnView(bool isNpc)
     {
         isEvent = false;
-        StartCoroutine(Moving(SavePos,false)); //null오류
+        StartCoroutine(Moving(SavePos,false));
         StartCoroutine(Rotating(SaveVec));
 
-        Function(BossMonster.STATE.Battle);
+        if(!isNpc) // 보스 몬스터일 경우
+        {
+            Function(BossMonster.STATE.Battle);
+        }
 
         Uis_OnOff(true);
     }

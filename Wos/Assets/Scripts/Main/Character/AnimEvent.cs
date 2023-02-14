@@ -37,7 +37,7 @@ namespace wos
 
         public void BattleStart_UnActive()
         {
-            Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ReturnView();
+            Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ReturnView(false);
             gameObject.SetActive(false);
         }
     }

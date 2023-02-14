@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player_Movement : Character_Movement
 {
     [Header("-----Player_Movement-----")]
-    public bool ControlPossible = true;
+    public bool ControlPossible = true; // cam에서도 사용(cam 애니메이션 작동시)
     public LayerMask TargetMask;
+
     void Update()
     {
         if (ControlPossible)

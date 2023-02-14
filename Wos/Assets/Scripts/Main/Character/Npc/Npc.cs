@@ -169,6 +169,6 @@ public class Npc : MonoBehaviour
         }
         C_Data.NpcTalk_Window.gameObject.SetActive(false);
         // 카메라 시점 원래대로
-        C_Data.NpcTalk_Window.MainCam.ReturnView();
+        C_Data.NpcTalk_Window.MainCam.ReturnView(true);
     }
 }

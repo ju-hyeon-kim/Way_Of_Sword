@@ -11,6 +11,11 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
     protected Coroutine moveCo = null;
     Coroutine rotCo = null;
 
+    //for Npc
+    protected bool isMovEnd = false;
+    protected bool isRotEnd = false;
+    protected bool isNpc = false;
+
     protected void MoveToPos(Vector3 pos, UnityAction Action_AfterMoving = null, bool isMov = true, bool isRot = true)
     // bool isMov(isRot)는 이동(회전)을 할지 말지 결정
     {
@@ -47,7 +52,7 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         myAnim.SetBool("Move", true);
 
         float range = 0.0f;
-        if (Action_AfterMoving != null)
+        if (Action_AfterMoving != null || isNpc)
         {
             range = myStat.arange();
         }
@@ -70,6 +75,14 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         /*Action_AM이 널이 아니라면 실행 ( ChildAction = 자식에 따라 다르게 실행되는 함수 )
         -플레이어의 경우: 공격 Anim 실행
         -몬스터의 경우: 무빙을 마치고 아이들 상태로 돌아감 -> ChangeState()*/
+
+        //for Npc
+        if(isNpc)
+        {
+            isMovEnd = true;
+            MovRotEnd_NpcEvent();
+        }
+       
     }
 
     // 회전 코루틴
@@ -95,7 +108,13 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
             transform.Rotate(Vector3.up * rotDir * delta);
             yield return null;
         }
+
+        //for Npc
+        if(isNpc)
+        {
+            isRotEnd = true;
+            MovRotEnd_NpcEvent();
+        }
     }
-    public virtual void P_MoveEnd_NpcAction() { }  // P - Npc를 클릭했다면 Npc의 리액션 발생
-    public virtual void P_RotEnd_NpcAction() { }  // P - Npc를 클릭했다면 Npc의 리액션 발생
+    public virtual void MovRotEnd_NpcEvent() { }  // Npc를 클릭했다면 Npc의 리액션 발생
 }

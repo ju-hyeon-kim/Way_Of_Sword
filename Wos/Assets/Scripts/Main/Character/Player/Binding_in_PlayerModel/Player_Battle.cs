@@ -14,11 +14,17 @@ public class Player_Battle : Player_Movement, IBattle
     public Transform ComboAttack_Point;
 
     protected Transform myTarget; // Battle = monster, unBattle = Npc
+
+    //for ComboAttack
     bool isComboable = false;
-    Vector3 EffectPos = Vector3.zero;
-    int SkillNum = 0;
     int ClickCount = 0;
+    
+    //for Skill
+    int SkillNum = 0;
     bool isSkilling = true;
+    Vector3 EffectPos = Vector3.zero;
+
+
 
     public override void Click_MouseLeftButton()
     {
@@ -29,7 +35,6 @@ public class Player_Battle : Player_Movement, IBattle
             //몬스터를 클릭할 경우 -> 몬스터에게 이동 후 콤보어택
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Monster") && !myAnim.GetBool("isAttacking"))
             {
-                //c
                 myTarget = hit.collider.transform;
                 if(!myInterface.GetRangeActive()) // Skill Range가 꺼져있을 경우만 기본 공격 가능
                 {
@@ -37,10 +42,12 @@ public class Player_Battle : Player_Movement, IBattle
                     base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
                 }
             }
-            //Npc를 클릭할 경우 -> Npc에게 이동
+            //Npc를 클릭할 경우 -> Npc에게 이동 후 말걸기
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Npc"))
             {
-                base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
+                myTarget = hit.collider.transform;
+                isNpc = true;
+                base.MoveToPos(hit.point);
             }
         }
     }
@@ -161,10 +168,6 @@ public class Player_Battle : Player_Movement, IBattle
     {
         myInterface.OnSkillEffect(SkillNum, EffectPos); // 스킬의 공격력을 어떻게 가져올까
     }
-    #endregion
-
-    #region for Npc
-    public virtual void MoveToNpc(RaycastHit hit) { }
     #endregion
 
     #region for ItmeDrop

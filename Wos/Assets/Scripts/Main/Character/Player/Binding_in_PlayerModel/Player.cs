@@ -64,38 +64,15 @@ public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
         myAnim.runtimeAnimatorController = AnimSet[Convert.ToInt32(b)];
     }
 
-    public override void MoveToNpc(RaycastHit hit)
+    public override void MovRotEnd_NpcEvent()
     {
-        myTarget = hit.collider.transform;
-        base.MoveToPos(hit.point);
-    }
-
-    public void NpcEvent()
-    {
-        /*if (move_end && rot_end)
+        if(isMovEnd && isRotEnd)
         {
-            isEvent = true; // 플레이어의 조작 제한
-            myNpc.GetComponent<Npc>().Reaction(gameObject);
-            move_end = false;
-            rot_end = false;
-        }*/
-    }
-
-    public override void P_MoveEnd_NpcAction()
-    {
-        /*if (isNpc)
-        {
-            move_end = true;
-            NpcEvent();
-        }*/
-    }
-
-    public override void P_RotEnd_NpcAction()
-    {
-        /*if (isNpc)
-        {
-            rot_end = true;
-            NpcEvent();
-        }*/
+            ControlPossible = false; // 플레이어의 조작 제한
+            myTarget.GetComponent<Npc>().Reaction(this.gameObject);
+            isNpc = false;
+            isMovEnd = false;
+            isRotEnd = false;
+        }
     }
 }
