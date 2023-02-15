@@ -10,6 +10,11 @@ public class Skill_Interface : Hp_Interface
     public Skill_Set Skill_Set;
     public EffectBin EffectBin;
 
+    public bool isEmpyhSlot(int i)
+    {
+        return Skill_Set.Slots[i].isEmpty;
+    }
+
     public bool GetRangeActive()
     {
         bool b = SkillRange.gameObject.activeSelf;

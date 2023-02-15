@@ -25,11 +25,11 @@ public class WeaponData_Window : ItemData_Window
         Explanation.text = Wdata.Explanation;
 
         //오브의 이미지 가져오기
-        for (int i = 0; i < Wdata.Equipped_Obes.Length; i++)
+        for (int i = 0; i < (item2D as Weapon_2D).Equipped_Obes.Length; i++)
         {
-            if(Wdata.Equipped_Obes[i] != null) //오브가 있다면
+            if((item2D as Weapon_2D).Equipped_Obes[i].TryGetComponent<Obe_2D>(out Obe_2D component)) //오브가 있다면
             {
-                ObeImages[i].sprite = Wdata.Equipped_Obes[i].ObeImage;
+                ObeImages[i].sprite = component.GetComponent<Image>().sprite;
             }
         }
     }

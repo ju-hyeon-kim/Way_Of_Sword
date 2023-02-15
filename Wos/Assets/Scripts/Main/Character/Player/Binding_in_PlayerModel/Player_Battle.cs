@@ -108,12 +108,15 @@ public class Player_Battle : Player_Movement, IBattle
     #region for Skill
     public override void OnSkillRange(int i)
     {
-        if(GetComponent<Player>().nowMode == Mode.BATTLE) // 배틀모드라면
+        if(!myInterface.isEmpyhSlot(i)) //i에 해당하는 스킬 슬롯에 스킬이 들어있다면
         {
-            if (myInterface.isPossibeSkill(i, myStat.curmp())) // 쿨타임이 아니고 사용 가능한 마나가 있을 경우
+            if (GetComponent<Player>().nowMode == Mode.BATTLE) // 배틀모드라면
             {
-                myInterface.OnSkillRange(i);
-                StartCoroutine(Skilling(i));
+                if (myInterface.isPossibeSkill(i, myStat.curmp())) // 쿨타임이 아니고 사용 가능한 마나가 있을 경우
+                {
+                    myInterface.OnSkillRange(i);
+                    StartCoroutine(Skilling(i));
+                }
             }
         }
     }

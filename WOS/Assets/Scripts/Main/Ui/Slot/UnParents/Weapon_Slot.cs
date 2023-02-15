@@ -7,7 +7,7 @@ public class Weapon_Slot : Equipment_Slot
 {
     public Player Player;
     public Skill_Set Skill_Set;
-    public SwordObe_Slot[] SwordObe_Slots = new SwordObe_Slot[4];
+    public ObeSlot_inSword[] SwordObe_Slots = new ObeSlot_inSword[4];
     public Weapon_2D myWeapon;
 
     bool isEmpty = false;

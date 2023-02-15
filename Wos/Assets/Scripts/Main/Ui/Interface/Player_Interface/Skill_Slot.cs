@@ -7,7 +7,7 @@ public class Skill_Slot : MonoBehaviour
     public SkillData_Window SkillData_Window;
     public Skill_2D nowSkill;
     public Player_Stat P_Stat;
-
+    public bool isEmpty = true;
 
     public void OnSkillRange(SkillRange skillrange, SkillPoints skillpoints, int key)
     {
