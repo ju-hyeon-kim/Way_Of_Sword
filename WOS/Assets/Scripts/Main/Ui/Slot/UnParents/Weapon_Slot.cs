@@ -8,7 +8,7 @@ public class Weapon_Slot : Equipment_Slot
     public Player Player;
     public Skill_Set Skill_Set;
     public SwordObe_Slot[] SwordObe_Slots = new SwordObe_Slot[4];
-    public Equipment_2D myItem;
+    public Weapon_2D myWeapon;
 
     bool isEmpty = false;
 
@@ -86,10 +86,10 @@ public class Weapon_Slot : Equipment_Slot
 
     public float Get_WeaponAp()
     {
-        if(!isEmpty)
+        if(!isEmpty) // 슬롯이 비어있지 않다면
         {
-            Equipment_Data weaponData = (Equipment_Data)myItem.myData;
-            return weaponData.AP;
+            Weapon_Data weaponData = (Weapon_Data)myWeapon.myData;
+            return weaponData.Ap;
         }
         else
         {

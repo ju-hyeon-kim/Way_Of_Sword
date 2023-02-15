@@ -6,6 +6,7 @@ using UnityEngine;
 public class Play_Starter : MonoBehaviour
 {
     static Play_Starter Instense = null;
+    bool isStart = false;
 
     public static Play_Starter Inst
     {
@@ -34,6 +35,10 @@ public class Play_Starter : MonoBehaviour
 
     public void Start_Call(Transform PlaceManager)
     {
-        transform.parent.GetComponent<Dont_Destroy_Data>().Start_Setting(PlaceManager);
+        if(!isStart)
+        {
+            isStart = true;
+            transform.parent.GetComponent<Dont_Destroy_Data>().Start_Setting(PlaceManager);
+        }
     }
 }

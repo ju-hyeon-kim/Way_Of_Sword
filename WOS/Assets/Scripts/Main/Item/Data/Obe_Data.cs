@@ -6,10 +6,6 @@ using UnityEngine;
 public class Obe_Data : Item_Data
 {
     public int Strengthen;
-    public string Obe_Skill;
-    [TextArea]
-    public string Skill_Explanation;
-
-    public Sprite Skill_Sprite;
-    public Skill_Data Skill_Data;
+    public Skill_2D Skill_2D;
+    public Sprite ObeImage;
 }

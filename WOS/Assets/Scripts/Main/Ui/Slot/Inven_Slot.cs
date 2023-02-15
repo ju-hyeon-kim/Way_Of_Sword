@@ -30,8 +30,6 @@ public class Inven_Slot : Item_Slot
 
     public override void DropEvent(PointerEventData eventData)
     {
-        Debug.Log("드랍이벤트" + gameObject.name);
-
         Transform myItem = eventData.pointerDrag.transform;
 
         // 아이템이 떨궈졌을 때 아이콘의 크기가 슬롯에 맞게 줄어듬
@@ -50,9 +48,9 @@ public class Inven_Slot : Item_Slot
         {
             case ItemType.Equipment: //장비를 받았을 때
                 {
-                    if(myItem.GetComponent<Equipment_2D>().Before_Parents.name == "Weapon")
+                    if(myItem.GetComponent<Item_2D>().Before_Parents.name == "Weapon")
                     {
-                        myItem.GetComponent<Equipment_2D>().Before_Parents.GetComponent<Weapon_Slot>().Equip_Control(); //무기장착해제
+                        myItem.GetComponent<Item_2D>().Before_Parents.GetComponent<Weapon_Slot>().Equip_Control(); //무기장착해제
                     }
                 }
                 break;
@@ -64,12 +62,12 @@ public class Inven_Slot : Item_Slot
                     if(myObe.Before_Parents.parent.name == "SwordObe_Slots")// 소드오브슬롯으로부터 받았을 때
                     {
                         //스킬셋에 스킬데이터 건네주기
-                        myObe.Give_Skill_Data();
-                        //오브 장착 해제
-                        int Obe_Num = myObe.Before_Parents.GetComponent<SwordObe_Slot>().mySlotNum;
-                        Transform myWeapon = myObe.Before_Parents.GetComponent<SwordObe_Slot>().myWeapon_Slot.GetChild(1);
 
-                        myWeapon.GetComponent<Item_2D>().myData.GetComponent<Equipment_Data>().Equipped_Obes[Obe_Num] = null;
+                        //오브 장착 해제
+                        //int Obe_Num = myObe.Before_Parents.GetComponent<SwordObe_Slot>().mySlotNum;
+                        //Transform myWeapon = myObe.Before_Parents.GetComponent<SwordObe_Slot>().myWeapon_Slot.GetChild(1);
+
+                        //myWeapon.GetComponent<Item_2D>().myData.GetComponent<Equipment_Data>().Equipped_Obes[Obe_Num] = null;
                     }
                 }
                 break;

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -192,7 +192,7 @@ MonoBehaviour:
   Beatle: {fileID: 2447627714544534366, guid: 5a62983766a2503448562ee9e94ffe35, type: 3}
   BeatleKing: {fileID: 7213895699675856884, guid: 8a574e85fa283604381f770db905a69a,
     type: 3}
-  SpawnPoint_Player: {fileID: 1374332133}
+  SpawnPoint_Player: {fileID: 1374332132}
   SpawnPoint_Beatle: {fileID: 930649184}
   SpawnPoint_BeatleKing: {fileID: 1935364214}
   Beatle_Zone:
@@ -814,7 +814,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1374332132}
-  - component: {fileID: 1374332133}
   m_Layer: 0
   m_Name: SpawnPoint_Player
   m_TagString: Untagged
@@ -830,26 +829,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1374332131}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 0.5, z: -30}
+  m_LocalPosition: {x: 7, y: 0.5, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 154673676}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1374332133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1374332131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb0ea266d4d3b0040a3b4fa76d22eedc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPlace: Forest
 --- !u!1 &1546938526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,7 +1342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

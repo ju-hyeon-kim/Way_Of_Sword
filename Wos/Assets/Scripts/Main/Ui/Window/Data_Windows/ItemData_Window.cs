@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class ItemData_Window : MonoBehaviour
 {
     Vector2 Pos = Vector2.zero;
-
     private void Start()
     {
         //사이즈에 맞게 포지션 조정

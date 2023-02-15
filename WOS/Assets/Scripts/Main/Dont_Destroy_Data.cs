@@ -31,7 +31,7 @@ public class Dont_Destroy_Data : MonoBehaviour
 
     [Header("-----Windows-----")]
     public Map_Window Map_Window;
-    public ItemData_Windows ItemData_Windows;
+    public ItemData_WindowSet ItemData_WindowSet;
     public Inventory_Window Inventory_Window;
     public NpcTalk_Window NpcTalk_Window;
     public Battle_Window Battle_Window;

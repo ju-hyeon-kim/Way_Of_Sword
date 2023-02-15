@@ -11,7 +11,7 @@ public class Item_2D : MonoBehaviour,
 {    
     public Item_Data myData;
 
-    ItemData_Window myData_Window;
+    protected ItemData_Window myData_Window;
 
     public Transform Before_Parents; // 전에 있던 부모 오브젝트
     public int Before_ChildNum = 0; // 전에 있던 부모의 몇번째 자식이었는지 저장
@@ -20,10 +20,7 @@ public class Item_2D : MonoBehaviour,
     protected Vector2 dragOffset = Vector2.zero;
     protected Vector2 size = Vector2.zero;
 
-    public void OnPointerEnter(PointerEventData eventData) // 마우스 포지션이 아이콘 안으로 들어왔을때
-    {
-        myData_Window = Dont_Destroy_Data.Inst.ItemData_Windows.Show_DataWindow(this);
-    }
+    public virtual void OnPointerEnter(PointerEventData eventData) { } // 마우스 포지션이 아이콘 안으로 들어왔을때
 
     public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 안에 있을때
     {
