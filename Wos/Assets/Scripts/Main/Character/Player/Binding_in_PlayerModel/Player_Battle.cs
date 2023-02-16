@@ -143,7 +143,22 @@ public class Player_Battle : Player_Movement, IBattle
 
                     //끝나면 스킬 발동
                     base.MoveToPos(hit.point, null, false, true); // 회전만 적용
-                    myAnim.SetTrigger("Qskill");
+                    switch(i)
+                    {
+                        case 0:
+                            myAnim.SetTrigger("Qskill");
+                            break;
+                        case 1:
+                            myAnim.SetTrigger("Wskill");
+                            break;
+                        case 2:
+                            myAnim.SetTrigger("Eskill");
+                            break;
+                        case 3:
+                            myAnim.SetTrigger("Rskill");
+                            break;
+                    }
+                    
 
                     StopSkilling(i);
                 }

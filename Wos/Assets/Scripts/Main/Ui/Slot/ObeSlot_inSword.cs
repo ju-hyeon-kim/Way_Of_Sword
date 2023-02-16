@@ -11,6 +11,26 @@ public class ObeSlot_inSword : Item_Slot
     public Skill_Slot mySkill_Slot;
     public int SlotNum;
 
+    void Start() // 지금 자식으로 있는 오브가 있다면 스킬 슬롯과 연동함
+    {
+        if(this.transform.childCount > 0) // 자식이 있다면
+        {
+            // 스킬슬롯에 스킬 전달
+            Obe_2D Obe2D = this.transform.GetChild(0).GetComponent<Obe_2D>();
+            Obe_Data ObeData = Obe2D.myData as Obe_Data;
+
+            GameObject obj = Instantiate(ObeData.Skill_2D.gameObject, mySkill_Slot.transform);
+            obj.transform.SetAsFirstSibling();
+            mySkill_Slot.Save_nowSkill();
+
+            // 오브정보를 무기의 Equipped_Obes(장착된 오브들)에 전달
+            Weapon_Slot.myWeapon.Equipped_Obes[SlotNum] = Obe2D.transform;
+
+            // 스킬 슬롯이 '비어있지 않음'을 설정
+            mySkill_Slot.isEmpty = false;
+        }
+    }
+
     public override bool TypeDetect(PointerEventData eventData)
     {
         //아이템의 타입이 오브라면 true를 반환, 아니면 false를 반환
@@ -38,6 +58,7 @@ public class ObeSlot_inSword : Item_Slot
         Obe_Data ObeData = Obe2D.myData as Obe_Data;
         GameObject obj = Instantiate(ObeData.Skill_2D.gameObject, mySkill_Slot.transform);
         obj.transform.SetAsFirstSibling();
+        mySkill_Slot.Save_nowSkill();
 
         // 오브정보를 무기의 Equipped_Obes(장착된 오브들)에 전달
         Weapon_Slot.myWeapon.Equipped_Obes[SlotNum] = Obe2D.transform;
