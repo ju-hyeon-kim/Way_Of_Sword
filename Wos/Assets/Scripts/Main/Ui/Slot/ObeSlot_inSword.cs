@@ -11,7 +11,7 @@ public class ObeSlot_inSword : Item_Slot
     public Skill_Slot mySkill_Slot;
     public int SlotNum;
 
-    void Start() // 지금 자식으로 있는 오브가 있다면 스킬 슬롯과 연동함
+    public void StartSetting() // SwordIcon_Window의 Start()에서 실행됨
     {
         if(this.transform.childCount > 0) // 자식이 있다면
         {

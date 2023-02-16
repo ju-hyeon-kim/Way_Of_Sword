@@ -35,7 +35,7 @@ public class Monster_Movement : Character_Movement, IBattle
             case STATE.Create:
                 break;
             case STATE.Idle:
-                Check_HpBar();
+                UnActive_HpBar();
                 break;
             case STATE.Roaming: //nomal monster만 사용
                 Roaming_Pos.x = Random.Range(Roaming_Zone[2].position.x, Roaming_Zone[3].position.x);
@@ -47,12 +47,14 @@ public class Monster_Movement : Character_Movement, IBattle
                 myAnim.SetTrigger("Howl");
                 break;
             case STATE.Battle:
-                AttackTarget(myTarget, myStat.arange(), myStat.aspeed());
+                //AttackTarget(myTarget, myStat.arange(), myStat.aspeed());
+
+                base.MoveToPos(myTarget.position, () => ChangeState(STATE.Idle));
+
                 isActive_HpBar(true);
                 break;
             case STATE.Dead:
                 StopAllCoroutines();
-                
                 GiveXp_toPlayer();
                 //HpBar 비활성화
                 isActive_HpBar(false);
@@ -67,6 +69,8 @@ public class Monster_Movement : Character_Movement, IBattle
                 myAI.GetComponent<AI_Perception>().myTarget = null;
                 break;
             case STATE.Resurrection:
+                // 체력바 초기화
+                ResetHp();
                 // 몬스터의 위치가 랜덤한 곳으로 전송됨
                 RandomPos();
                 Dead_Or_Resurrection(true);
@@ -179,6 +183,7 @@ public class Monster_Movement : Character_Movement, IBattle
     {
         float playTime = AttackDelay; // 처음에 바로 공격
         float delta = 0.0f;
+
         while (target != null)
         {
             if (!myAnim.GetBool("isAttacking")) playTime += Time.deltaTime;
@@ -238,9 +243,10 @@ public class Monster_Movement : Character_Movement, IBattle
     }
 
     public virtual void FindTarget(Transform target) { }
-    public virtual void Check_HpBar() { }
+    public virtual void UnActive_HpBar() { }
     public virtual void isActive_HpBar(bool b) { }
     public virtual void Ondamge_HpBar(float dmg) { }
     public virtual void RandomPos() { }
     public virtual void Check_Quest() { }
+    public virtual void ResetHp() { }
 }

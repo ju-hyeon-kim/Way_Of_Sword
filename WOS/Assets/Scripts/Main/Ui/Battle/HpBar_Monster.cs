@@ -36,4 +36,10 @@ public class HpBar_Monster : MonoBehaviour
             myMonster.OnDead();
         }
     }
+
+    public void ResetHp()
+    {
+        NowHp = MaxHp;
+        HP_Bar.fillAmount = 1.0f;
+    }
 }
