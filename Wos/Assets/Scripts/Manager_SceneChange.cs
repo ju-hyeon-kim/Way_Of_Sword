@@ -13,12 +13,12 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
 
     public void ChangeScene(string s)
     {
-        //가이드 타겟을 TEMP로 설정
-        Transform[] GuideTargets = Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets;
+        //가이드 타겟 설정 -> 오류: 
+        /*Transform[] GuideTargets = Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets;
         for (int i = 0; i < GuideTargets.Length; i++)
         {
             GuideTargets[i] = transform;
-        }
+        }*/
 
         //로딩 코루틴
         if (!LoadingChk)
@@ -27,11 +27,11 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
         }
 
         //미니맵 아이콘 설정 변경
-        MiniMapCam_Controller.ChangeView_Setting(s);
+        /*MiniMapCam_Controller.ChangeView_Setting(s);
         for (int i = 0; i < MiniMapCam_Controller.MiniMap_Icons.Length; i++)
         {
             MiniMapCam_Controller.MiniMap_Icons[i] = transform;
-        }
+        }*/
     }
 
     IEnumerator Loading(string s)

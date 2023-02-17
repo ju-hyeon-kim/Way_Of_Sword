@@ -27,9 +27,13 @@ public class TeleportPoint : MonoBehaviour
                     Map_Window.gameObject.SetActive(true);
                     break;
                 case "Village":
+                    Dont_Destroy_Data.Inst.Manager_Quest.SceneChange();
+                    Dont_Destroy_Data.Inst.Manager_Cams.MiniMapCam_Controller.SceneChange();
                     Manager_SceneChange.Inst.ChangeScene(myDestination);
                     break;
                 case "Guild":
+                    Dont_Destroy_Data.Inst.Manager_Quest.SceneChange();
+                    Dont_Destroy_Data.Inst.Manager_Cams.MiniMapCam_Controller.SceneChange();
                     Manager_SceneChange.Inst.ChangeScene(myDestination);
                     break;
             }

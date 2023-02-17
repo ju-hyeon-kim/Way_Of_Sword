@@ -10,7 +10,7 @@ public class MiniMapCam_Controller : MonoBehaviour
     public Camera myCam;
     public Transform Cam_Target;
     public Transform Player_Icon;
-    public Transform[] MiniMap_Icons = new Transform[10]; // [0]은 항상 플레이어 아이콘
+    public Transform[] MiniMap_Icons; // [0]은 항상 플레이어 아이콘
 
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
@@ -104,5 +104,13 @@ public class MiniMapCam_Controller : MonoBehaviour
         bool onScreen = ScreenPoint.z > 0 && ScreenPoint.x > 0 && ScreenPoint.x < 1 && ScreenPoint.y > 0 && ScreenPoint.y < 1;
 
         return onScreen;
+    }
+
+    public void SceneChange()
+    {
+        for(int i = 0; i < MiniMap_Icons.Length; ++i) 
+        {
+            MiniMap_Icons[i] = this.transform;
+        }
     }
 }

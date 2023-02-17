@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Manager_Title : MonoBehaviour
 {
-    public void NewGame()
+    public void NewGame_Button()
     {
         Manager_SceneChange.Inst.ChangeScene("Story1");
     }

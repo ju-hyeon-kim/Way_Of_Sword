@@ -10,7 +10,7 @@ public class Manager_Village : Manager_Place
 
     private void Awake()
     {
-        Play_Starter.Inst.Start_Call(this.transform); // Play_Starter가 없다면 Play_Starter 생성 => Village씬에 처음 왔을 때
+        Play_Starter.Inst.Start_Call(this.transform); // Play_Starter가 없다면 Play_Starter 생성, 있다면 실행 안함
     }
 
     private void Start()

@@ -22,11 +22,7 @@ public class Manager_SaveLode : Singleton<Manager_SaveLode>
     {
         SaveData saveData = new SaveData();
 
-        if (!File.Exists(path)) //저장된 파일이 없으면
-        {
-            Debug.Log("저장된 파일이 없어요");
-        }
-        else //저장된 파일이 있으면
+        if (File.Exists(path)) //저장된 파일이 있으면
         {
             string loadJson = File.ReadAllText(path);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);

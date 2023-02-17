@@ -11,7 +11,7 @@ public class Manager_Quest : MonoBehaviour
     public Quest_Request Quest_Request;
     public int Quest_Num = 0;
     public Quest_Guide Quest_Guide;
-    public Transform[] Guide_Tartgets = new Transform[10]; // Guide_Tartgets[num] = Quest_num의 타겟
+    public Transform[] Guide_Tartgets; // Guide_Tartgets[num] = Quest_num의 타겟
     public Quest_Data NowQuest;
 
     public void Start_Setting(Transform PlaceManager)
@@ -62,5 +62,13 @@ public class Manager_Quest : MonoBehaviour
     {
         Proceeding_Quest.Add_KillCount(count);
         Quest_SubWindow.Add_KillCount(count);
+    }
+
+    public void SceneChange() //로딩씬으로 넘어갈 때 Missing 오류 방지 
+    {
+        for(int i = 0; i < Guide_Tartgets.Length; i++)
+        {
+            Guide_Tartgets[i] = this.transform;
+        }
     }
 }

@@ -51,6 +51,10 @@ public class Quest_Guide : MonoBehaviour
 
     public void StopGuiding()
     {
+        if(CoGuiding == null) // 길드씬이 시작씬일 경우 해당코드가 없으면 에러발생
+        {
+            CoGuiding = StartCoroutine(Guiding());
+        }
         StopCoroutine(CoGuiding);
     }
 
