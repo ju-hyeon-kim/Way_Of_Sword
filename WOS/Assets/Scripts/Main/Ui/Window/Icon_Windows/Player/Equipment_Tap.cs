@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Equipment_Tap : MonoBehaviour
 {
-    public Equipment_Slot[] Slots;
+    public Item_Slot[] Slots;
 
     public float AddAp()
     {

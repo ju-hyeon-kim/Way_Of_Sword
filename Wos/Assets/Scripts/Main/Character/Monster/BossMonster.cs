@@ -27,7 +27,7 @@ public class BossMonster : Monster_Movement
         }
     }
 
-    public override void isActive_HpBar(bool b)
+    public override void Active_HpBar(bool b)
     {
         Dont_Destroy_Data.Inst.Battle_Window.HpBar_Boss.gameObject.SetActive(b);
     }

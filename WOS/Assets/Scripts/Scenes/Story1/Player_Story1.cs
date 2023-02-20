@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class Player_Story1 : MonoBehaviour

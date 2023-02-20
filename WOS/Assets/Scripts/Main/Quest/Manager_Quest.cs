@@ -55,7 +55,7 @@ public class Manager_Quest : MonoBehaviour
         Quest_List.None_Quest(Quest_Num);
 
         //퀘스트 신청서에 다음 퀘스트 정보 전달
-        Quest_Request.Input_Quest_Data(Quest_Prefabs[Quest_Num].GetComponent<Quest_Data>());
+        Quest_Request.Input_QuestData(Quest_Prefabs[Quest_Num].GetComponent<Quest_Data>());
     }
 
     public void Add_KillCount(int count)

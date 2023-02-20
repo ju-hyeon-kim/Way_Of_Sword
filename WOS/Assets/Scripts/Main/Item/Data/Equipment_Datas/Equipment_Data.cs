@@ -5,7 +5,8 @@ using UnityEngine;
 public class Equipment_Data : Item_Data
 {
     public int Strengthen;
-    public string Type;
+    public EquipmentType EquipnetType;
+    public string EquipnetType_Text;
     [TextArea]
     public string Explanation;
 }

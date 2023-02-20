@@ -44,7 +44,7 @@ public class MainCam_Controller : MonoBehaviour
         while(!isEvent)
         {
             //¡‹
-            myDist -= Input.GetAxis("Mouse ScrollWheel");
+            myDist -= Input.GetAxis("Mouse ScrollWheel") * 2.0f;
             myDist = Mathf.Clamp(myDist, 2.0f, 15.0f); // ¡‹ √÷º“,√÷¥Î ¡¶«—
 
             transform.position = Cam_Target.position + myDir * myDist;

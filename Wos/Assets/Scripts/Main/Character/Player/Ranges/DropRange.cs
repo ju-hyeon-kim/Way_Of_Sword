@@ -10,6 +10,7 @@ public class DropRange : MonoBehaviour
     {
         if(DropItems.Count > 0) //드랍된 아이템이 있을때만 실행
         {
+            //아이템을 인벤토리에 넣기
             Dont_Destroy_Data.Inst.Inventory_Window.Put_Item(DropItems[0].myItem2D);
 
             //3D모델 삭제 -> 2D 모델은 인벤토리에 생성됨

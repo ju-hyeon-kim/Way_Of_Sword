@@ -29,7 +29,7 @@ public class QL_Quest : MonoBehaviour
         for(int i = 0; i < 3; i++)
         {
             // 퀘스트의 보상 갯수만큼 보상슬롯 활성화
-            if (i >= Quest_Data.Reward.Count)
+            if (i >= Quest_Data.Reward.Length)
             {
                 Q_Reword[i].SetActive(false);
             }

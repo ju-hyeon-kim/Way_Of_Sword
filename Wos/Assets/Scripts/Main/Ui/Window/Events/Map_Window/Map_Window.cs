@@ -5,7 +5,6 @@ using UnityEngine;
 public class Map_Window : MonoBehaviour
 {
     public GameObject Forest_Lock;
-
     
     public void NowQuest_Check()
     {

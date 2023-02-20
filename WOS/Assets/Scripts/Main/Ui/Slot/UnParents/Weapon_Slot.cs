@@ -2,87 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Weapon_Slot : Equipment_Slot
 {
+    [Header("-----Weapon_Slot-----")]
     public Player Player;
     public Skill_Set Skill_Set;
     public ObeSlot_inSword[] SwordObe_Slots = new ObeSlot_inSword[4];
     public Weapon_2D myWeapon;
-
-    bool isEmpty = false;
-
-    public void Equip_Control() //장착 or 장착 해제
-    {
-        Transform Weapon_Back = Player.Parents_of_Weapon[0].GetChild(0);
-        if (Weapon_Back.gameObject.activeSelf)
-        {
-            //3D상에서 무기 장착 해제
-            Weapon_Back.gameObject.SetActive(false);
-            // 스킬셋 전부 비활성화
-            Skill_Setting(false);
-            // 소드 윈도우와 연동
-            SwordWindow_Setting(false);
-        }
-        else
-        {
-            //3D상에서 무기 장착
-            Weapon_Back.gameObject.SetActive(true);
-            // 오브가 장착된 상황에 맞게 스킬셋 활성화
-            Skill_Setting(true);
-            // 소드 윈도우와 연동
-            SwordWindow_Setting(true);
-        }
-    }
-
-    public void Skill_Setting(bool b)
-    {
-        if(b == false) //검 장착해제
-        {
-            //스킬셋 전부 비활성화
-            for (int i = 0; i < 4; i++)
-            {
-                //Skill_Set.Skill_Icons[i].SetActive(false);
-            }
-        }
-        else  //검 장착
-        {
-            //검에 달려있는 오브의 상황에 맞게 스킬 세팅
-            for (int i = 0; i < 4; i++)
-            {
-                /*if(transform.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] != null)
-                {
-                    Skill_Set.Skill_Icons[i].GetComponent<Skill_Icon>().Skill_Data = transform.GetChild(1).GetComponentInChildren<Equipment_2D>().Equipment_Data.Equipped_Obes[i].Skill_Data;
-                    Skill_Set.Skill_Icons[i].SetActive(true);
-                }*/
-            }
-        }
-    }
-
-    public void SwordWindow_Setting(bool b)
-    {
-        if(b == false) // 장착해제
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                if(SwordObe_Slots[i].transform.childCount > 0)
-                {
-                    SwordObe_Slots[i].transform.GetChild(0).gameObject.SetActive(false);
-                }
-            }
-        }
-        else // 장착
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                /*if (transform.GetChild(1).GetComponent<Equipment_2D>().Equipment_Data.Equipped_Obes[i] != null)
-                {
-                    //SwordObe_Slots[i].transform.GetChild(0).GetComponent<Obe_2D>().Obe_Data = transform.GetChild(1).GetComponentInChildren<Equipment_2D>().Equipment_Data.Equipped_Obes[i];
-                    SwordObe_Slots[i].transform.GetChild(0).gameObject.SetActive(true);
-                }*/
-            }
-        }
-    }
 
     public float Get_WeaponAp()
     {
@@ -95,5 +23,30 @@ public class Weapon_Slot : Equipment_Slot
         {
             return 0;
         }
+    }
+
+    public override void OnDrop_ofChild(PointerEventData eventData)
+    {
+        Weapon_2D weapon = myItem as Weapon_2D;
+        for(int i = 0; i < weapon.Equipped_Obes.Length; i++)
+        {
+            // 오류 -> 무기 장착 해제시 무기에 바인딩 되어있는 오브가 삭제됨 -> 장착 해제시 오브삭제가 아니라 오브를 무기의 자식으로 위치한 unactive obeject에 setparent 시켜서 보관 필요
+            if (weapon.Equipped_Obes[i].TryGetComponent<Obe_2D>(out Obe_2D component)) 
+            {
+                SwordObe_Slots[i].Receive_toWeaponSlot(component);
+            }
+        }
+    }
+
+    public override void isNone_Item()
+    {
+        for(int i = 0; i < SwordObe_Slots.Length; i++)
+        {
+            if(!SwordObe_Slots[i].isEmpty)
+            {
+                SwordObe_Slots[i].Unequipment_Weapon();
+            }
+        }
+        isEmpty = true;
     }
 }

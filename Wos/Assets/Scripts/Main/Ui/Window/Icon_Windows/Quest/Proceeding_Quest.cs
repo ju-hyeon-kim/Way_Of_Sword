@@ -24,13 +24,13 @@ public class Proceeding_Quest : MonoBehaviour
         Name.text = nowQD.Name;
         Explanation.text = nowQD.Explanation;
         // 퀘스트 데이터의 보상을 보상슬롯에 전달
-        for (int i = 0; i < nowQD.Reward.Count; i++)
+        for (int i = 0; i < nowQD.Reward.Length; i++)
         {
             GameObject Obj = Instantiate(nowQD.Reward[i], Reward_Slots[i].transform) as GameObject;
             Obj.transform.SetAsFirstSibling();
         }
         // 보상의 갯수에 맞게 보여지는 보상 슬롯의 갯수도 달라짐
-        for (int i = nowQD.Reward.Count; i < Reward_Slots.Length; i++)
+        for (int i = nowQD.Reward.Length; i < Reward_Slots.Length; i++)
         {
             Reward_Slots[i].SetActive(false);
         }

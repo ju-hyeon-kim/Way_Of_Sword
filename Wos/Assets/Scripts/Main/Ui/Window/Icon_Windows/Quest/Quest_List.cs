@@ -18,7 +18,7 @@ public class Quest_List : MonoBehaviour
 
         for (int i = 0; i < QLQ.Q_Reword.Length; i++)
         {
-            if (i < QD.Reward.Count)
+            if (i < QD.Reward.Length)
             {
                 Instantiate(QD.Reward[i], QLQ.Q_Reword[i].transform.GetChild(0));
                 QLQ.Q_Reword[i].transform.GetChild(1).gameObject.SetActive(false); // hidden_text

@@ -43,6 +43,7 @@ public class Dont_Destroy_Data : MonoBehaviour
     public Transform Canvas;
     public Transform Player;
     public Transform Unactive_Area;
+    public GameObject BossEmergence;
 
     [HideInInspector]
     public Transform myPlaceManager; // 씬이동시 각매니저가 알아서 값으로 들어감

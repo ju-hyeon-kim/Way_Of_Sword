@@ -91,4 +91,11 @@ public class Skill_Slot : MonoBehaviour
     {
         return nowSkill.myData.Mp;
     }
+
+    public void isNone_Skill()
+    {
+        Destroy(nowSkill.gameObject);
+        nowSkill = null;
+        isEmpty = true;
+    }
 }

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
 
 public class Manager_Forest : Manager_Place
 {
@@ -15,7 +13,7 @@ public class Manager_Forest : Manager_Place
     public Transform[] Beatle_Zone; // 비틀의 로밍 제한 구역
     public GameObject BZ_MagicCicle;
 
-    int NomalMonster_Count = 5; // 비틀 생성 갯수
+    int NomalMonster_Count = 8; // 비틀 생성 갯수
 
     private void Awake()
     {

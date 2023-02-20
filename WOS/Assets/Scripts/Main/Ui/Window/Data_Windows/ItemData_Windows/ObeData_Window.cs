@@ -21,7 +21,7 @@ public class ObeData_Window : ItemData_Window
         Obe_Data mydata = (Obe_Data)item2D.myData;
         ItemName.text = mydata.Name;
         Strengthen.text = $"+{mydata.Strengthen}";
-        SkillName.text = mydata.Skill_2D.myData.Name;
+        SkillName.text = $"고유스킬: {mydata.Skill_2D.myData.Name}";
         Explanation.text = mydata.Skill_2D.myData.Explanation;
         Price.text = $"판매가격: {mydata.Price} G";
     }

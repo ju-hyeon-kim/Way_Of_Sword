@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,7 +7,7 @@ using UnityEngine.UI;
 public class Skill_2D : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler // 포인터 핸들러
 {
     public Skill_Data myData;
-    public Image myCoolTime_img;
+    public Image myCoolTime_Img;
     bool isCoolTime = false;
 
     SkillData_Window SDwindow;
@@ -34,19 +33,19 @@ public class Skill_2D : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnCoolTime()
     {
-        StartCoroutine(CoolTime_Chcking());
+        StartCoroutine(CoolTime_Checking());
     }
 
-    IEnumerator CoolTime_Chcking()
+    IEnumerator CoolTime_Checking()
     {
         isCoolTime = true;
-        myCoolTime_img.fillAmount = 1;
+        myCoolTime_Img.fillAmount = 1;
         float cooltime = myData.CoolTime;
 
         while(cooltime > 0)
         {
             cooltime -= Time.deltaTime;
-            myCoolTime_img.fillAmount = cooltime / myData.CoolTime;
+            myCoolTime_Img.fillAmount = cooltime / myData.CoolTime;
             yield return null;
         }
         isCoolTime = false;

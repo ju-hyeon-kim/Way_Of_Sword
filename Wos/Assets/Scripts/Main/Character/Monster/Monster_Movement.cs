@@ -35,7 +35,7 @@ public class Monster_Movement : Character_Movement, IBattle
             case STATE.Create:
                 break;
             case STATE.Idle:
-                UnActive_HpBar();
+                Ready_Roaming();
                 break;
             case STATE.Roaming: //nomal monster만 사용
                 Roaming_Pos.x = Random.Range(Roaming_Zone[2].position.x, Roaming_Zone[3].position.x);
@@ -47,17 +47,14 @@ public class Monster_Movement : Character_Movement, IBattle
                 myAnim.SetTrigger("Howl");
                 break;
             case STATE.Battle:
-                //AttackTarget(myTarget, myStat.arange(), myStat.aspeed());
-
-                base.MoveToPos(myTarget.position, () => ChangeState(STATE.Idle));
-
-                isActive_HpBar(true);
+                AttackTarget(myTarget, myStat.arange(), myStat.aspeed());
+                Active_HpBar(true);
                 break;
             case STATE.Dead:
                 StopAllCoroutines();
                 GiveXp_toPlayer();
                 //HpBar 비활성화
-                isActive_HpBar(false);
+                Active_HpBar(false);
                 // 퀘스트에 접근하여 연관된 퀘스트가 있는지 검사
                 Check_Quest();
                 Dead_Or_Resurrection(false);
@@ -226,7 +223,7 @@ public class Monster_Movement : Character_Movement, IBattle
             }
             transform.Rotate(Vector3.up * delta * rotDir, Space.World);
 
-            if(target.GetComponent<Player>().nowMode == Mode.DEAD)
+            if(target.GetComponent<Player>().nowMode == Mode.DEAD) // 플레이어가 죽었다면
             {
                 target = null;
                 ChangeState(STATE.Roaming);
@@ -243,8 +240,8 @@ public class Monster_Movement : Character_Movement, IBattle
     }
 
     public virtual void FindTarget(Transform target) { }
-    public virtual void UnActive_HpBar() { }
-    public virtual void isActive_HpBar(bool b) { }
+    public virtual void Ready_Roaming() { }
+    public virtual void Active_HpBar(bool b) { }
     public virtual void Ondamge_HpBar(float dmg) { }
     public virtual void RandomPos() { }
     public virtual void Check_Quest() { }

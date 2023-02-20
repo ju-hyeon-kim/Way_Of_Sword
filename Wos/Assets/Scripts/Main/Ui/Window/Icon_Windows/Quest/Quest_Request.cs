@@ -25,7 +25,7 @@ public class Quest_Request : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void Input_Quest_Data(Quest_Data QD) // 퀘스트 데이터 입력
+    public void Input_QuestData(Quest_Data QD) // 퀘스트 데이터 입력
     {
         myQD = QD;
 
@@ -33,12 +33,14 @@ public class Quest_Request : MonoBehaviour
         Q_Explanation.text = myQD.Explanation;
 
         // 퀘스트 데이터의 보상을 보상슬롯에 전달
-        for (int i = 0; i < myQD.Reward.Count; i++)
+        for (int i = 0; i < myQD.Reward.Length; i++)
         {
-            Instantiate(myQD.Reward[i], Q_Reword[i].transform.GetChild(0));
+            GameObject obj = Instantiate(myQD.Reward[i], Q_Reword[i].transform) as GameObject;
+            obj.transform.SetAsFirstSibling();
+
         }
         // 보상의 갯수에 맞게 보여지는 보상 슬롯의 갯수도 달라짐
-        for (int i = myQD.Reward.Count; i < Q_Reword.Length; i++)
+        for (int i = myQD.Reward.Length; i < Q_Reword.Length; i++)
         {
             Q_Reword[i].SetActive(false);
         }

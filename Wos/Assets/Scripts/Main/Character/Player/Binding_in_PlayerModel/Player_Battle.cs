@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,7 +37,6 @@ public class Player_Battle : Player_Movement, IBattle
                 myTarget = hit.collider.transform;
                 if(!myInterface.GetRangeActive()) // Skill Range가 꺼져있을 경우만 기본 공격 가능
                 {
-
                     base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
                 }
             }
@@ -83,7 +81,7 @@ public class Player_Battle : Player_Movement, IBattle
 
     public void Hit_Attack()
     {
-        float radius = 1.3f;
+        float radius = 1.5f;
         Collider[] list = Physics.OverlapSphere(ComboAttack_Point.position, radius, 1 << LayerMask.NameToLayer("Monster"));
 
         foreach (Collider col in list)

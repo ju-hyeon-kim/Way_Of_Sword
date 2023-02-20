@@ -27,12 +27,31 @@ public class TeleportQuestion_Window : MonoBehaviour
 
     public void Yes_Button()
     {
+        //씬전환
+        Dont_Destroy_Data.Inst.Manager_Quest.SceneChange();
+        Dont_Destroy_Data.Inst.Manager_Cams.MiniMapCam_Controller.SceneChange();
+        if(place.name == "Village")
+        {
+            //몬스터 HpBar없애기
+            {
+                Battle_Window BW = Dont_Destroy_Data.Inst.Battle_Window;
+                if (BW.HpBar_List.Count > 0)
+                {
+                    for (int i = 0; i < BW.HpBar_List.Count; i++)
+                    {
+                        Destroy(BW.HpBar_List[i]);
+                    }
+                    BW.HpBar_List.Clear();
+                }
+            }
+        }
         Manager_SceneChange.Inst.ChangeScene(place.name);
+
+        // 캐릭터의 현재위치를 지도에 표시
         NowPos_Icon.ChangeNowPos(place.transform);
 
         this.gameObject.SetActive(false);
         Map_Window.gameObject.SetActive(false);
-
         Time.timeScale = 1.0f;
     }
 

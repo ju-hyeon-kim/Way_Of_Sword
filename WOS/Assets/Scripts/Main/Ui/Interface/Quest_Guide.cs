@@ -22,7 +22,6 @@ public class Quest_Guide : MonoBehaviour
             if (MiniMapCam_Controller.Target_inScreen(Target.gameObject) == false)
             {
                 transform.GetChild(0).gameObject.SetActive(true);
-
                 Vector3 dir = Target.position - Player.position;
                 dir.y = 0;
                 dir.Normalize();
@@ -30,6 +29,7 @@ public class Quest_Guide : MonoBehaviour
                 Transform cam = MiniMapCam_Controller.transform.GetChild(0);
                 float Angle = Vector3.Angle(cam.up, dir);
                 float rotDir = 1.0f; // 1 or -1 => 왼쪽으로 돌지 오른쪽으로 돌지 구분
+
                 if (Vector3.Dot(cam.transform.right, dir) > 0.0f)
                 {
                     rotDir = -rotDir;

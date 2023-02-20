@@ -7,7 +7,7 @@ public class NormalMonster : Monster_Movement
     public GameObject myHpBar;
     HpBar_Monster myHpBar_clone = null;
 
-    public override void UnActive_HpBar()
+    public override void Ready_Roaming()
     {
         if (isHpBar_Created())
         {
@@ -22,7 +22,7 @@ public class NormalMonster : Monster_Movement
         return b;
     }
 
-    public override void isActive_HpBar(bool b)
+    public override void Active_HpBar(bool b)
     {
         if(b)
         {
@@ -32,7 +32,9 @@ public class NormalMonster : Monster_Movement
             }
             else
             {
-                GameObject hpbar = Instantiate(myHpBar, Dont_Destroy_Data.Inst.Battle_Window.transform) as GameObject;
+                Battle_Window BW = Dont_Destroy_Data.Inst.Battle_Window;
+                GameObject hpbar = Instantiate(myHpBar, BW.transform) as GameObject;
+                BW.HpBar_List.Add(hpbar); // 마을로 이동할때 한번에 삭제
                 myHpBar_clone = hpbar.GetComponent<HpBar_Monster>();
                 myHpBar_clone.myHpZone = HpZone;
                 myHpBar_clone.StartSetting(this, myStat.maxhp());

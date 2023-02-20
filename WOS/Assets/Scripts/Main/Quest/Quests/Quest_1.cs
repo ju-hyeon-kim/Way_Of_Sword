@@ -9,7 +9,7 @@ public class Quest_1 : Quest_Data
 {
     Manager_Quest MQ;
     int Nowkill_Count = 0;
-    int Maxkill_Count = 1; // 5
+    int Maxkill_Count = 5; // 5
 
     public override void Start_Questing()
     {

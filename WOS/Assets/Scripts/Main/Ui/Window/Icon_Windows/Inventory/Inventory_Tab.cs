@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory_Tab : Icon_Window
+public class Inventory_Tab : MonoBehaviour
 {
     public Inven_Slot[] mySlots;
     public ItemType myType;

@@ -8,17 +8,17 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
 {
     public AsyncOperation ao;
     public bool LoadingChk = false; // 현재 로딩 중인지를 검사하는 불값
-    public MiniMapCam_Controller MiniMapCam_Controller; // 자동 바인딩
+    public MiniMapCam_Controller MiniMapCam_Controller = null; // 자동 바인딩
     public string Before_Place = "";
 
     public void ChangeScene(string s)
     {
-        //가이드 타겟 설정 -> 오류: 
-        /*Transform[] GuideTargets = Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets;
-        for (int i = 0; i < GuideTargets.Length; i++)
+
+        if (Dont_Destroy_Data.Inst != null)
         {
-            GuideTargets[i] = transform;
-        }*/
+            //미니맵 아이콘 설정 변경
+            MiniMapCam_Controller.ChangeView_Setting(s);
+        }
 
         //로딩 코루틴
         if (!LoadingChk)
@@ -26,12 +26,7 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
             StartCoroutine(Loading(s));
         }
 
-        //미니맵 아이콘 설정 변경
-        /*MiniMapCam_Controller.ChangeView_Setting(s);
-        for (int i = 0; i < MiniMapCam_Controller.MiniMap_Icons.Length; i++)
-        {
-            MiniMapCam_Controller.MiniMap_Icons[i] = transform;
-        }*/
+        
     }
 
     IEnumerator Loading(string s)

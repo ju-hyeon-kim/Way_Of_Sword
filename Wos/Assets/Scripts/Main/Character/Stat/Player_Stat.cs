@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -46,7 +44,7 @@ public class Player_Stat : Character_Stat
     float _CurMp = 100.0f;
 
     //Xp
-    float _MaxXp = 20.0f; // 초기값은 100
+    float _MaxXp = 100.0f; // 초기값은 100
     float _CurXp = 0.0f;
 
     //고정된 능력치

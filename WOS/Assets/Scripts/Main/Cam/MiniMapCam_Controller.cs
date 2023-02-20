@@ -43,7 +43,6 @@ public class MiniMapCam_Controller : MonoBehaviour
 
     public void ChangeView_Setting(string s)
     {
-
         switch (s)
         {
             case "Village":

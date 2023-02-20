@@ -1,10 +1,6 @@
 using System.Collections;
 using TMPro;
-using UnityEditor.Animations;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
-using static UnityEditor.PlayerSettings;
-
 
 [System.Serializable]
 public class Objects
@@ -27,7 +23,7 @@ public class Manager_Story : MonoBehaviour
     public Item_Story Sword;
     public Collider Bed;
     public Collider Sword_zone;
-    public AnimatorController Story1_2;
+    //public AnimatorController Story1_2;
 
     Vector3 IconPos;
     IEnumerator Coroutine;
@@ -73,7 +69,7 @@ public class Manager_Story : MonoBehaviour
                 Player.gameObject.GetComponent<Player_Story1>().PlayerTurn = true;
                 Sword.PlayerTurn = true;
                 Player.applyRootMotion = false;
-                Player.runtimeAnimatorController = Story1_2;
+                //Player.runtimeAnimatorController = Story1_2;
                 break;
             case STEP.Event: //"æÓ¿Ã!!"
                 Objects.GmTalk_Window.SetActive(false);

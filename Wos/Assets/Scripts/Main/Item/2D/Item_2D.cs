@@ -13,8 +13,7 @@ public class Item_2D : MonoBehaviour,
 
     protected ItemData_Window myData_Window;
 
-    public Transform Before_Parents; // 전에 있던 부모 오브젝트
-    public int Before_ChildNum = 0; // 전에 있던 부모의 몇번째 자식이었는지 저장
+    public Item_Slot Before_Slot = null; // 전에 있던 부모 오브젝트
     public bool isSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
 
     protected Vector2 dragOffset = Vector2.zero;
@@ -37,8 +36,7 @@ public class Item_2D : MonoBehaviour,
         isSlot = false; // 슬롯이 정해질 때까지 false로 초기화
 
         //부모오브젝트 저장(슬롯에게 거부당할 경우를 위해)
-        Before_Parents = transform.parent;
-        Before_ChildNum = transform.GetSiblingIndex();
+        Before_Slot = transform.parent.GetComponent<Item_Slot>();
 
         //들어올린 오브젝트는 Canvas의 가장 마지막 자식이 됨
         transform.SetParent(Dont_Destroy_Data.Inst.Canvas);
@@ -59,8 +57,8 @@ public class Item_2D : MonoBehaviour,
         // 아이템을 내려놓았을 때 받아줄 슬롯이 없다면 다시 돌아옴
         if (isSlot == false)
         {
-            transform.SetParent(Before_Parents);
-            transform.SetSiblingIndex(Before_ChildNum);
+            transform.SetParent(Before_Slot.transform);
+            transform.SetAsFirstSibling();
             transform.localPosition = Vector3.zero;
         }
     }

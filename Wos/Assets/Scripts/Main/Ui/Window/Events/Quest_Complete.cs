@@ -26,7 +26,6 @@ public class Quest_Complete : MonoBehaviour
             if (Q_Reword[i].transform.childCount > 2) // 아이템이 있을 때만
             {
                 Item_2D Item = Q_Reword[i].transform.GetChild(0).GetComponent<Item_2D>(); // Icon 컴포넌트 저장
-                
 
                 // 아이템의 타입을 검사하여 Xp나 골드라면 price가 수량을 나타냄 다른 타입의 아이템이라면 1로 수량을 나타냄
                 ItemType ItemType = Item.myData.ItemType; 

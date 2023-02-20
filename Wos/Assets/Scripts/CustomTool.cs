@@ -16,7 +16,7 @@ public class CustomTool : MonoBehaviour
         for(int i = 0; i < slots.Length; i++ )
         {
             //바인딩
-            //slots[i].GetComponent<Inven_Slot>().myQuantity_Text = slots[i].GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+            slots[i].GetComponent<Inven_Slot>().Quantity_Text = slots[i].GetChild(0).GetChild(0).GetComponent<TMP_Text>();
 
             //삭제
             //DestroyImmediate(slots[i].GetChild(0).gameObject);

@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,7 +27,7 @@ public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
     public Transform[] Parents_of_Weapon; // 등 = 0, 손 = 1
     public Transform CamTarget_Main;
     public Transform myWeapon;
-    public AnimatorController[] AnimSet; // 0=Unbattle 1=Battle
+    public RuntimeAnimatorController[] AnimSet; // 0=Unbattle 1=Battle
     public Mode nowMode = Mode.NONE;
     public Player_Dead Player_Dead;
 
