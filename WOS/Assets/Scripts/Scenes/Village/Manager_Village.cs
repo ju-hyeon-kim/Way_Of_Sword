@@ -19,12 +19,6 @@ public class Manager_Village : Manager_Place
         Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(Mode.UNBATTLE);
         Manager_SceneChange.Inst.MiniMapCam_Controller.MiniMap_Icons = Minimap_Icons;
 
-        //보스출현 끄기
-        if(Dont_Destroy_Data.Inst.BossEmergence.activeSelf)
-        {
-            Dont_Destroy_Data.Inst.BossEmergence.SetActive(false);
-        }
-
         //Spawn Player
         SpawnPlayer();
     }

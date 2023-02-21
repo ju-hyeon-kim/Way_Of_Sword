@@ -69,7 +69,7 @@ public class Player_Battle : Player_Movement, IBattle
 
     public void OnDamage(float dmg) // ib
     {
-        DamageText_Zone.OnDamage(dmg, true);
+        DamageText_Zone.OnDamage(dmg, true, Dont_Destroy_Data.Inst.BattleWindow_ofPlayer);
 
         if (myAnim.GetBool("isIdle")) // 공격중에는 Damage 애니 작동불가, 단, 체력은 깎임
         {

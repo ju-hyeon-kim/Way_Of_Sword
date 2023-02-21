@@ -12,12 +12,13 @@ public class BossMonster : Monster_Movement
         if(FinishAppear == false)
         {
             // ∫∏Ω∫¡∏ √‚¿‘πÆ¿Ã ¥›»˚
+            myManager.BossZone_Door.SetBool("Open", false);
 
             myTarget = target;
             target.GetComponent<Player_Movement>().Stop_Movement();
             target.GetComponent<Player_Movement>().Uncontrol_Player();
 
-            Dont_Destroy_Data.Inst.Battle_Window.GetComponent<Battle_Window>().BossEmergence.gameObject.SetActive(false);
+            myManager.BossEmergence.gameObject.SetActive(false);
             MainCam_Controller mainCam = Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller;
             mainCam.Function = ChangeState;
             mainCam.ChangeViewPos = CamView;
@@ -29,6 +30,13 @@ public class BossMonster : Monster_Movement
 
     public override void Active_HpBar(bool b)
     {
-        Dont_Destroy_Data.Inst.Battle_Window.HpBar_Boss.gameObject.SetActive(b);
+        BattleWindow_ofMonster BW = myManager.GetComponent<Manager_Dungeon>().BattleWindow_ofMonster as BattleWindow_ofMonster;
+        BW.gameObject.SetActive(b);
+    }
+
+    public void AppearEvent()
+    {
+        ChangeState(MonstertState.Appear);
+        myManager.Boss_AppearEvent.SetTrigger("Boss_Introduce");
     }
 }

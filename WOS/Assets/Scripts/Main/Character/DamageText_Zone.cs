@@ -5,18 +5,15 @@ using UnityEngine;
 
 public class DamageText_Zone : MonoBehaviour
 {
-
     public Transform[] myPoints;
     public GameObject DamageText;
 
     GameObject TextObj;
 
-    public void OnDamage(float dmg, bool isPlayer)
+    public void OnDamage(float dmg, bool isPlayer, Battle_Window BW)
     {
-        Battle_Window BW = Dont_Destroy_Data.Inst.Battle_Window;
-
         //쓰레기 통안에 쓰레기가 없다면 생성
-        if(BW.RecycleBin_Dmg.childCount == 0)
+        if (BW.RecycleBin_Dmg.childCount == 0)
         {
             TextObj = Instantiate(DamageText, BW.transform) as GameObject;
         }

@@ -12,17 +12,15 @@ public class MainCam_Controller : MonoBehaviour
     public bool isEvent = false;
     public NpcTalk_Window NpcTalk_Window;
     public GameObject[] Unactive_Uis;
-    public Animator Boss_Introduce;
-    public Animator Battle_Start;
-    public UnityAction<BossMonster.STATE> Function;
+    public UnityAction<MonstertState> Function;
 
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
 
-    //Npc 대화 이벤트
+    //Npc 대화 이벤트 or 보스 등장 이벤트
     Vector3 SavePos;
     Vector3 SaveVec;
-    GameObject SaveNpc;
+    GameObject SaveTarget;
     Vector3 RotDir;
 
     bool MovFinish = false;
@@ -58,8 +56,8 @@ public class MainCam_Controller : MonoBehaviour
     {
         isEvent = true;
         // 시점 변경 전 카메라의 위치와 방향벡터 저장
-        SaveNpc = target.gameObject;
-        if (SaveNpc.TryGetComponent<BossMonster>(out BossMonster componet))
+        SaveTarget = target.gameObject;
+        if (SaveTarget.TryGetComponent<BossMonster>(out BossMonster componet))
         {
             Uis_OnOff(false);
         }
@@ -79,7 +77,7 @@ public class MainCam_Controller : MonoBehaviour
 
         if(!isNpc) // 보스 몬스터일 경우
         {
-            Function(BossMonster.STATE.Battle);
+            Function(MonstertState.Battle);
         }
 
         Uis_OnOff(true);
@@ -87,7 +85,7 @@ public class MainCam_Controller : MonoBehaviour
 
     IEnumerator Moving(Vector3 pos,bool b)
     {
-        if (SaveNpc.TryGetComponent<Npc>(out Npc componet))
+        if (SaveTarget.TryGetComponent<Npc>(out Npc componet))
         {
             if (b)
             {
@@ -98,8 +96,6 @@ public class MainCam_Controller : MonoBehaviour
                 componet.Talk_End();
             }
         }
-
-        
 
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
@@ -161,23 +157,13 @@ public class MainCam_Controller : MonoBehaviour
     {
         if(MovFinish && RotFinish)
         {
-            if (SaveNpc.TryGetComponent<BossMonster>(out BossMonster componet))
+            if (SaveTarget.TryGetComponent<BossMonster>(out BossMonster componet))
             {
-                Boss_Introduce.SetBool("Show", true);
-                componet.ChangeState(Monster_Movement.STATE.Appear);
-                StartCoroutine(TimeChecking(2.0f));
+                componet.AppearEvent();
                 MovFinish = false;
                 RotFinish = false;
             }
         }
-    }
-
-    IEnumerator TimeChecking(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Boss_Introduce.SetBool("Show", false);
-        Battle_Start.gameObject.SetActive(true);
-        Battle_Start.SetTrigger("Show");
     }
 
     void Uis_OnOff(bool b)

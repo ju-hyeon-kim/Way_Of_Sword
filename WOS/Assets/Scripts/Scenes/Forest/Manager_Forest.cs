@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Manager_Forest : Manager_Place
+public class Manager_Forest : Manager_Dungeon
 {
+    [Header("-----Manager_Forest-----")]
     public GameObject Beatle;
     public GameObject BeatleKing;
     public Transform SpawnPoint_Player;
@@ -32,7 +33,7 @@ public class Manager_Forest : Manager_Place
             //소환한 몬스터에게 로밍구역 값을 전달
             Beatle_Obj.GetComponent<NormalMonster>().Roaming_Zone = Beatle_Zone;
             //되살아 날때 RandomPos_Monster를 통해 새로운 위치를 할당받기위해서
-            Beatle_Obj.GetComponent<NormalMonster>().myManager = this.transform;
+            Beatle_Obj.GetComponent<NormalMonster>().myManager = this;
         }
 
         //Spawn Player
@@ -42,10 +43,9 @@ public class Manager_Forest : Manager_Place
         player.rotation = SpawnPoint_Player.rotation;
         Manager_SceneChange.Inst.Before_Place = SceneManager.GetActiveScene().name;
 
-        Dont_Destroy_Data.Inst.myPlaceManager = this.transform;
+        Dont_Destroy_Data.Inst.NowPlace_Manager = this.transform;
         Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
         Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(Mode.BATTLE);
-        Dont_Destroy_Data.Inst.Battle_Window.GetComponent<Battle_Window>().BossEmergence.gameObject.SetActive(true);
     }
 
     public void RandomPos_Monster(Transform monster)
@@ -61,5 +61,6 @@ public class Manager_Forest : Manager_Place
     {
         GameObject Beatle_Obj = Instantiate(BeatleKing, SpawnPoint_BeatleKing);
         Beatle_Obj.transform.localPosition = Vector3.zero;
+        Beatle_Obj.GetComponent<BossMonster>().myManager = this;
     }
 }

@@ -6,31 +6,30 @@ using UnityEngine.UI;
 
 public class BossEmergence : MonoBehaviour
 {
+    public GameObject BossZone_MagicCircle;
     public TMP_Text Label;
     public Image Hunting_Bar;
     public TMP_Text Hunting_Count;
     public Animator BE_Massage;
 
-    int Hcount = 0; // Test후 0으로 수정필요
+    int Hcount = 0; 
+    int Maxcount = 1; // Test후 10으로 수정필요
 
     public void Plus_Hunting_Count()
     {
-        if(Hcount <= 10)
+        if(Hcount < Maxcount)
         {
             Hcount++;
-            if (Hcount == 10)
+            if (Hcount == Maxcount)
             {
                 Label.color = Color.red;
-                isBossEmergence();
-            }
-            Hunting_Count.text = $"( {Hcount} / 10 )";
-            Hunting_Bar.fillAmount = Hcount * 0.1f;
-        }
-    }
 
-    public void isBossEmergence()
-    {
-        BE_Massage.SetTrigger("Show");
-        Dont_Destroy_Data.Inst.myPlaceManager.GetComponent<Manager_Forest>().BZ_MagicCicle.SetActive(true);
+                //보스존 입장가능
+                BE_Massage.SetTrigger("Show");
+                BossZone_MagicCircle.SetActive(true);
+            }
+            Hunting_Count.text = $"( {Hcount} / {Maxcount} )";
+            Hunting_Bar.fillAmount = Hcount / Maxcount;
+        }
     }
 }

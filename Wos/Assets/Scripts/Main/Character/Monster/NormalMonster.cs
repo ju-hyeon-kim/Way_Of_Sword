@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NormalMonster : Monster_Movement
 {
+    [Header("-----NormalMonset-----")]
     public GameObject myHpBar;
     HpBar_Monster myHpBar_clone = null;
 
@@ -32,7 +33,7 @@ public class NormalMonster : Monster_Movement
             }
             else
             {
-                Battle_Window BW = Dont_Destroy_Data.Inst.Battle_Window;
+                BattleWindow_ofMonster BW = myManager.BattleWindow_ofMonster as BattleWindow_ofMonster;
                 GameObject hpbar = Instantiate(myHpBar, BW.transform) as GameObject;
                 BW.HpBar_List.Add(hpbar); // 마을로 이동할때 한번에 삭제
                 myHpBar_clone = hpbar.GetComponent<HpBar_Monster>();
@@ -55,13 +56,13 @@ public class NormalMonster : Monster_Movement
     {
         myTarget = target;
         StopAllCoroutines();
-        ChangeState(STATE.Battle);
+        ChangeState(MonstertState.Battle);
     }
 
     IEnumerator DelayRoaming(float t)
     {
         yield return new WaitForSeconds(t);
-        ChangeState(STATE.Roaming);
+        ChangeState(MonstertState.Roaming);
     }
 
     public override void ResetHp()

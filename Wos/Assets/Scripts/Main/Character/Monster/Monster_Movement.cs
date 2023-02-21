@@ -2,56 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MonstertState
+{
+    Create, Idle, Roaming, Appear, Battle, Dead, Resurrection
+}
+
 public class Monster_Movement : Character_Movement, IBattle
 {
+    [Header("-----Monster_Movement-----")]
     public DamageText_Zone DamageText_Zone;
     public Collider myAI;
     public GameObject[] DropItems;
     public GameObject myIcon;
-    public Transform myManager; // 매니저에게 값을 받음
+    public Manager_Dungeon myManager; // 매니저에게 값을 받음
     public Transform[] Roaming_Zone; // 0=U 1=D 2=R 3=L // 매니저에게 값을 받음
-    Vector3 Roaming_Pos = Vector3.zero;
     public Transform HpZone;
+    public MonstertState myState = MonstertState.Create;
 
     protected Transform myTarget = null;
+    Vector3 Roaming_Pos = Vector3.zero;
 
     //for Dead
     float DownSpeed = 0.05f; // 죽고나서 내려가는 속도
     float DeadTime = 15.0f; // 죽고나서 부활되기까지 걸리는 시간
 
-    public enum STATE
-    {
-        Create, Idle, Roaming, Appear, Battle, Dead, Resurrection
-    }
-
-    public STATE myState = STATE.Create;
-
-    public  void ChangeState(STATE s)
+    public  void ChangeState(MonstertState s)
     {
         if (myState == s) return;
         myState = s;
         switch (myState)
         {
-            case STATE.Create:
+            case MonstertState.Create:
                 break;
-            case STATE.Idle:
+            case MonstertState.Idle:
                 Ready_Roaming();
                 break;
-            case STATE.Roaming: //nomal monster만 사용
+            case MonstertState.Roaming: //nomal monster만 사용
                 Roaming_Pos.x = Random.Range(Roaming_Zone[2].position.x, Roaming_Zone[3].position.x);
                 Roaming_Pos.z = Random.Range(Roaming_Zone[0].position.z, Roaming_Zone[1].position.z);
                 Roaming_Pos.y = 0.5f;
-                base.MoveToPos(Roaming_Pos, () => ChangeState(STATE.Idle));
+                base.MoveToPos(Roaming_Pos, () => ChangeState(MonstertState.Idle));
                 break;
-            case STATE.Appear: //boss monster만 사용
+            case MonstertState.Appear: //boss monster만 사용
                 myAnim.SetTrigger("Howl");
                 break;
-            case STATE.Battle:
+            case MonstertState.Battle:
                 AttackTarget(myTarget, myStat.arange(), myStat.aspeed());
                 Active_HpBar(true);
                 break;
-            case STATE.Dead:
+            case MonstertState.Dead:
                 StopAllCoroutines();
+
                 GiveXp_toPlayer();
                 //HpBar 비활성화
                 Active_HpBar(false);
@@ -65,13 +66,13 @@ public class Monster_Movement : Character_Movement, IBattle
                 // AI_Perception Target 초기화 + 콜라이더 끄기
                 myAI.GetComponent<AI_Perception>().myTarget = null;
                 break;
-            case STATE.Resurrection:
+            case MonstertState.Resurrection:
                 // 체력바 초기화
                 ResetHp();
                 // 몬스터의 위치가 랜덤한 곳으로 전송됨
                 RandomPos();
                 Dead_Or_Resurrection(true);
-                ChangeState(STATE.Idle);
+                ChangeState(MonstertState.Idle);
                 break;
         }
     }
@@ -80,7 +81,7 @@ public class Monster_Movement : Character_Movement, IBattle
     {
         switch (myState)
         {
-            case STATE.Dead:
+            case MonstertState.Dead:
                 if (DeadTime > 0)
                 {
                     DeadTime -= Time.deltaTime;
@@ -89,7 +90,7 @@ public class Monster_Movement : Character_Movement, IBattle
                 else
                 {
                     DeadTime = 15.0f;
-                    ChangeState(STATE.Resurrection);
+                    ChangeState(MonstertState.Resurrection);
                 }
                 break;
         }
@@ -97,7 +98,7 @@ public class Monster_Movement : Character_Movement, IBattle
 
     void Start()
     {
-        ChangeState(STATE.Idle);
+        ChangeState(MonstertState.Idle);
     }
 
     void Update()
@@ -109,10 +110,10 @@ public class Monster_Movement : Character_Movement, IBattle
     {
         myTarget = null;
         StopAllCoroutines();
-        if (myState != STATE.Dead)
+        if (myState != MonstertState.Dead)
         {
             myAnim.SetBool("Move", false);
-            ChangeState(STATE.Idle);
+            ChangeState(MonstertState.Idle);
         }
     }
 
@@ -123,17 +124,17 @@ public class Monster_Movement : Character_Movement, IBattle
 
     public void OnDamage(float dmg)
     {
-        if (myState != STATE.Dead)
+        if (myState != MonstertState.Dead)
         {
             myAnim.SetTrigger("Damage");
-            DamageText_Zone.OnDamage(dmg, false);
+            DamageText_Zone.OnDamage(dmg, false, myManager.BattleWindow_ofMonster);
             Ondamge_HpBar(dmg);
         }
     }
 
     public void OnDead()
     {
-        ChangeState(STATE.Dead);
+        ChangeState(MonstertState.Dead);
     }
 
     public void OnDropItem()
@@ -146,13 +147,13 @@ public class Monster_Movement : Character_Movement, IBattle
             Vector3 pos = new Vector3(0, 1, i);
             dropitem.transform.position = this.transform.position + pos;
 
-            dropitem.GetComponent<Item_3D>().OnDrop();
+            dropitem.GetComponent<Item_3D>().OnDrop(myManager.Unactive_Area);
         }
     }
 
     void Plus_HuntingCount()
     {
-        BossEmergence BE = Dont_Destroy_Data.Inst.Battle_Window.GetComponent<Battle_Window>().BossEmergence;
+        BossEmergence BE = myManager.BossEmergence;
         BE.Plus_Hunting_Count();
     }
 
@@ -226,7 +227,7 @@ public class Monster_Movement : Character_Movement, IBattle
             if(target.GetComponent<Player>().nowMode == Mode.DEAD) // 플레이어가 죽었다면
             {
                 target = null;
-                ChangeState(STATE.Roaming);
+                ChangeState(MonstertState.Roaming);
             }
 
             yield return null;
@@ -237,6 +238,7 @@ public class Monster_Movement : Character_Movement, IBattle
     void GiveXp_toPlayer()
     {
         myTarget.GetComponent<Player>().Get_XP(myStat.xp());
+        Dont_Destroy_Data.Inst.Message_Window.Get_Xp((int)myStat.xp());
     }
 
     public virtual void FindTarget(Transform target) { }

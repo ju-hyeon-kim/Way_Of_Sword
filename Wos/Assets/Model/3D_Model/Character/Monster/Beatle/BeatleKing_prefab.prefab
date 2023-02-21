@@ -2114,6 +2114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1420760144196995623}
   - component: {fileID: 2894814462246330788}
+  - component: {fileID: 3359550264756564130}
   - component: {fileID: 3645655260473600087}
   - component: {fileID: 8531203331344260181}
   - component: {fileID: 6119475040970560524}
@@ -2158,10 +2159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a5f0cfb2a58434e9278c8fb110ba83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: 8
-  MoveSpeed: 3
   DamageText_Zone: {fileID: 382181591777562906}
-  myData: {fileID: 11400000, guid: 181468b9669567b458368b35ab0d3598, type: 2}
   myAI: {fileID: 8430236770907516170}
   DropItems: []
   myIcon: {fileID: 4341147195433013360}
@@ -2170,6 +2168,19 @@ MonoBehaviour:
   HpZone: {fileID: 0}
   myState: 0
   CamView: {fileID: 5781080453391739679}
+--- !u!114 &3359550264756564130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7213895699675856884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d96b50674495841b2f9485794c96ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myData: {fileID: 11400000, guid: 14c2dae89b9a0b54ea4ba9611708e74b, type: 2}
 --- !u!95 &3645655260473600087
 Animator:
   serializedVersion: 4

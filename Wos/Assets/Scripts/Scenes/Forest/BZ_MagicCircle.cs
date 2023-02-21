@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BZ_MagicCircle : MonoBehaviour
 {
-    public Animator myEntrance;
     public Manager_Forest myManager;
 
     private void OnTriggerEnter(Collider other)
@@ -12,7 +11,7 @@ public class BZ_MagicCircle : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             myManager.Spawn_BeatleKing();
-            myEntrance.SetTrigger("Open");
+            myManager.BossZone_Door.SetBool("Open", true);
             gameObject.SetActive(false);
         }
     }

@@ -13,6 +13,9 @@ public class DropRange : MonoBehaviour
             //아이템을 인벤토리에 넣기
             Dont_Destroy_Data.Inst.Inventory_Window.Put_Item(DropItems[0].myItem2D);
 
+            //아이템을 얻었다고 메시지에서 표시
+            Dont_Destroy_Data.Inst.Message_Window.Get_Item(DropItems[0].myItem2D);
+
             //3D모델 삭제 -> 2D 모델은 인벤토리에 생성됨
             DropItems[0].Pickup();
 

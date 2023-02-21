@@ -12,13 +12,13 @@ public class Item_3D : MonoBehaviour
     DropRange DropZone;
     bool isOnGround = false;
 
-    public void OnDrop() // Drop시 공중에 뿌려지는 효과
+    public void OnDrop(Transform Unactive_Area) // Drop시 공중에 뿌려지는 효과
     {
         // 충격량은 1로 고정 -> 각 아이템의 Mass값을 변경
         GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
 
         // 이름 라벨 생성 -> 위치값 전달, 이름 전달(세팅)
-        GameObject Obj = Instantiate(myName_Label, Dont_Destroy_Data.Inst.Unactive_Area) as GameObject;
+        GameObject Obj = Instantiate(myName_Label, Dont_Destroy_Data.Inst.NowPlace_Manager.GetComponent<Manager_Dungeon>().Unactive_Area) as GameObject;
         myLabel = Obj.GetComponent<ItemName_Label>();
         myLabel.myNameZone = this.transform;
         string myName = myItem2D.GetComponent<Item_2D>().myData.Name;
@@ -54,7 +54,7 @@ public class Item_3D : MonoBehaviour
         {
             if (other.gameObject.name == "DropRange")
             {
-                myLabel.transform.SetParent(Dont_Destroy_Data.Inst.Unactive_Area);
+                myLabel.transform.SetParent(Dont_Destroy_Data.Inst.NowPlace_Manager.GetComponent<Manager_Dungeon>().Unactive_Area);
                 DropZone = other.GetComponent<DropRange>();
                 DropZone.DropItems.Remove(this);
             }

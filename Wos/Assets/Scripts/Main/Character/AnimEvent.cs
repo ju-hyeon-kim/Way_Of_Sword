@@ -34,12 +34,6 @@ namespace wos
         {
             transform.parent.GetComponent<SaveLode_Window>().Minus_PageNum();
         }
-
-        public void BattleStart_UnActive()
-        {
-            Dont_Destroy_Data.Inst.Manager_Cams.MainCam_Controller.ReturnView(false);
-            gameObject.SetActive(false);
-        }
     }
 }
 

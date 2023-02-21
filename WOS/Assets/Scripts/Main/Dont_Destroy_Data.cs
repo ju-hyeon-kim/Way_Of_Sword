@@ -34,23 +34,22 @@ public class Dont_Destroy_Data : MonoBehaviour
     public ItemData_WindowSet ItemData_WindowSet;
     public Inventory_Window Inventory_Window;
     public NpcTalk_Window NpcTalk_Window;
-    public Battle_Window Battle_Window;
     public Transform Label_Windows;
+    public Battle_Window BattleWindow_ofPlayer;
+    public Message_Window Message_Window;
 
     [Header("-----Etc-----")]
     public Manager_Cams Manager_Cams;
     public Manager_Quest Manager_Quest;
     public Transform Canvas;
     public Transform Player;
-    public Transform Unactive_Area;
-    public GameObject BossEmergence;
 
     [HideInInspector]
-    public Transform myPlaceManager; // 씬이동시 각매니저가 알아서 값으로 들어감
+    public Transform NowPlace_Manager; // 씬이동시 각매니저가 알아서 값으로 들어감
 
     public void Start_Setting(Transform PlaceManager)
     {
-        myPlaceManager = PlaceManager;
+        NowPlace_Manager = PlaceManager;
 
         Manager_SaveLode.Inst.JsonReady();
         Manager_SaveLode.Inst.JsonLoad();
