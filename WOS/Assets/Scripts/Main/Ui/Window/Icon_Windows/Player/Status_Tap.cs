@@ -7,6 +7,7 @@ using UnityEngine;
 public class Status_Tap : MonoBehaviour
 {
     public TMP_Text Level;
+    public TMP_Text Level_onXpBar;
     public TMP_Text Speed;
     public TMP_Text Ap;
     public TMP_Text Dp;
@@ -17,6 +18,7 @@ public class Status_Tap : MonoBehaviour
     {
         //Level
         Level.text = Stat.Level.ToString();
+        Level_onXpBar.text = $"Lv.{Stat.Level}";
 
         //Speed
         Speed.text = $"{Stat.TotalMspeed}({Stat.PlayerMspeed}<color=#FF6400>+{Stat.AddMspeed}</color>)";
