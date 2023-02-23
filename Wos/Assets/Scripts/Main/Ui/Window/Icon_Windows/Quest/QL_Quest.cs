@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -26,7 +23,7 @@ public class QL_Quest : MonoBehaviour
         Q_Name.text = Quest_Data.Name;
         Q_Name.fontSize = 18f;
         //º¸»ó ½½·Ô
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             // Äù½ºÆ®ÀÇ º¸»ó °¹¼ö¸¸Å­ º¸»ó½½·Ô È°¼ºÈ­
             if (i >= Quest_Data.Reward.Length)

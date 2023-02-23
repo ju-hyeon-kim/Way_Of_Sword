@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class DamageText_Zone : MonoBehaviour
@@ -23,7 +20,7 @@ public class DamageText_Zone : MonoBehaviour
             TextObj.transform.SetParent(BW.transform);
         }
 
-        int rnd = Random.Range(0, myPoints.Length-1);
+        int rnd = Random.Range(0, myPoints.Length - 1);
         TextObj.GetComponent<DamageText>().myDamageZone = myPoints[rnd];
         TextObj.GetComponent<DamageText>().ShowDamage(dmg, isPlayer);
     }

@@ -13,7 +13,7 @@ public class Npc : MonoBehaviour
     #region 마우스 포지션과 상호작용하는 함수
     private void OnMouseEnter() //마우스를 갖다 대었을 때
     {
-        if(!isTalking) // 대화중이 아니라면
+        if (!isTalking) // 대화중이 아니라면
         {
             //아웃라인 켜기
             Outline_Active();
@@ -141,9 +141,9 @@ public class Npc : MonoBehaviour
         StartCoroutine(Rotating(I_Data.myForward.position, false));
     }
 
-    public virtual void Outline_Active() {} // 아웃라인 적용
-    public virtual void Outline_Unactive() {} // 아웃라인 해제
-    public virtual void Child_Reaction(GameObject Player) {} // 자식마다 다른 리액션
+    public virtual void Outline_Active() { } // 아웃라인 적용
+    public virtual void Outline_Unactive() { } // 아웃라인 해제
+    public virtual void Child_Reaction(GameObject Player) { } // 자식마다 다른 리액션
 
     public void Buttons_Setting(Proceeding_Quest PQ) //버튼들 연동
     {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Story2 : MonoBehaviour
@@ -9,7 +8,7 @@ public class Player_Story2 : MonoBehaviour
 
     public void Movement(string CoName)
     {
-        switch(CoName)
+        switch (CoName)
         {
             case "Move_Door":
                 StartCoroutine(Move_Door());
@@ -22,7 +21,7 @@ public class Player_Story2 : MonoBehaviour
         float dist = 1.7f;
 
         GetComponent<Animator>().SetBool("Walk", true);
-        while(dist > 0.0f)
+        while (dist > 0.0f)
         {
             float delta = MoveSpeed * Time.deltaTime;
             if (delta > dist)

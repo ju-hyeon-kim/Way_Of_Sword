@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum Mode
 {
@@ -34,8 +31,8 @@ public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
     public void Change_Mode(Mode mode) // false(0) = 언배틀모드, true(1) = 배틀모드
     {
         nowMode = mode;
-        
-        switch(nowMode)
+
+        switch (nowMode)
         {
             case Mode.UNBATTLE:
                 UnBattle_Or_Battle_Setting(false);
@@ -64,7 +61,7 @@ public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
 
     public override void MovRotEnd_NpcEvent()
     {
-        if(isMovEnd && isRotEnd)
+        if (isMovEnd && isRotEnd)
         {
             ControlPossible = false; // 플레이어의 조작 제한
             myTarget.GetComponent<Npc>().Reaction(this.gameObject);

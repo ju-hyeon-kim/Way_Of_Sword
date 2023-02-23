@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Quest_Guide : MonoBehaviour
 {
@@ -51,7 +48,7 @@ public class Quest_Guide : MonoBehaviour
 
     public void StopGuiding()
     {
-        if(CoGuiding == null) // 길드씬이 시작씬일 경우 해당코드가 없으면 에러발생
+        if (CoGuiding == null) // 길드씬이 시작씬일 경우 해당코드가 없으면 에러발생
         {
             CoGuiding = StartCoroutine(Guiding());
         }

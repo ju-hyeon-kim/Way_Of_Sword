@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +18,7 @@ public class Manager_Loading : MonoBehaviour
 
     private void Update()
     {
-        if(Manager_SceneChange.Inst.ao.progress >= 0.9f)
+        if (Manager_SceneChange.Inst.ao.progress >= 0.9f)
         {
             Loading_Fill.fillAmount = Manager_SceneChange.Inst.ao.progress / 0.9f;
             Loading_Text.GetComponent<Animator>().SetTrigger("None");

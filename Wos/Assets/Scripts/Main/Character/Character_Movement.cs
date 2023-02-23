@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -56,7 +55,7 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         float range = 0.0f;
         if (movrotend_action != null || isNpc)
         {
-            range = myStat.arange();
+            range = myAttackRange(); // 플레이어일 경우 나의 range가 아닌 몬스터의 range
         }
 
         while (dist > range)
@@ -116,11 +115,14 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
             MovRotEnd_NpcEvent();
         }*/
     }
+
+    public virtual float myAttackRange() { return 0; }
+
     public virtual void MovRotEnd_NpcEvent() { }  // Npc를 클릭했다면 Npc의 리액션 발생
 
     void MovRotEnd_Action()
     {
-        if(isMovEnd && isRotEnd)
+        if (isMovEnd && isRotEnd)
         {
             isMovEnd = false;
             isRotEnd = false;

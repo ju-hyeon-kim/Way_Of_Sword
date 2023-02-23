@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Map_Window : MonoBehaviour
 {
     public GameObject Forest_Lock;
-    
+
     public void NowQuest_Check()
     {
         //0번째퀘스트가 클리어 되면 포레스트락이 꺼진다

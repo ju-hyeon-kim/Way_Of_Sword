@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +15,7 @@ public class Hp_Set : MonoBehaviour
     {
         Stat.CurHp -= dmg;
 
-        if(Stat.CurHp <= 0)
+        if (Stat.CurHp <= 0)
         {
             OnDead();
             Stat.CurHp = 0;
@@ -44,7 +42,7 @@ public class Hp_Set : MonoBehaviour
             if (regen >= 5.0f) // 5초가 지날 때마다
             {
                 Stat.CurHp += Stat.Level;
-                if(Stat.CurHp > Stat.MaxHp) Stat.CurHp = Stat.MaxHp;
+                if (Stat.CurHp > Stat.MaxHp) Stat.CurHp = Stat.MaxHp;
                 Update_Ui();
                 regen = 0;
             }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory_Tab : MonoBehaviour
@@ -35,7 +33,7 @@ public class Inventory_Tab : MonoBehaviour
             }
         }
 
-        if(isEmptyAllSlot || isNoneSameItem) // 슬롯이 전부 비어있거나 같은 이름의 아이템이 없다면
+        if (isEmptyAllSlot || isNoneSameItem) // 슬롯이 전부 비어있거나 같은 이름의 아이템이 없다면
         {
             for (int i = 0; i < mySlots.Length; i++) // 비어있는 슬롯중에 가장 첫 슬롯에 넣는다.
             {
@@ -52,7 +50,7 @@ public class Inventory_Tab : MonoBehaviour
             }
         }
 
-        if(isFullAllSlot)
+        if (isFullAllSlot)
         {
             Debug.Log("인벤토리가 가득 찼습니다.");
         }

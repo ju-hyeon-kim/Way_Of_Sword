@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -45,11 +43,11 @@ public class SaveLode_Window : MonoBehaviour
 
     void Set_OnOff(bool b)
     {
-        if(b)
+        if (b)
         {
-            for(int i = 0; i < SaveSlots.Length; i++)
+            for (int i = 0; i < SaveSlots.Length; i++)
             {
-                if(i == Now_PageNum-1)
+                if (i == Now_PageNum - 1)
                 {
                     SaveSlots[i].SetActive(true);
                 }
@@ -58,7 +56,7 @@ public class SaveLode_Window : MonoBehaviour
                     SaveSlots[i].SetActive(false);
                 }
             }
-                
+
         }
         SaveLode_Set.SetActive(b);
 

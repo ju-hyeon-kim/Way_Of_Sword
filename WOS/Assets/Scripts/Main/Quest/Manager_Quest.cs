@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Manager_Quest : MonoBehaviour
@@ -66,7 +64,7 @@ public class Manager_Quest : MonoBehaviour
 
     public void SceneChange() //로딩씬으로 넘어갈 때 Missing 오류 방지 
     {
-        for(int i = 0; i < Guide_Tartgets.Length; i++)
+        for (int i = 0; i < Guide_Tartgets.Length; i++)
         {
             Guide_Tartgets[i] = this.transform;
         }

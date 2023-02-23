@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class NpcTalk_Window : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class NpcTalk_Window : MonoBehaviour
 
     public Event_Window Event_Window;
 
-    
+
     public MainCam_Controller MainCam;
     public GameObject Npc_Icon;
     public Proceeding_Quest Proceeding_Quest;

@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Manager_SceneChange : Singleton<Manager_SceneChange>
 {
@@ -26,7 +24,7 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
             StartCoroutine(Loading(s));
         }
 
-        
+
     }
 
     IEnumerator Loading(string s)
@@ -38,7 +36,7 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
     }
 
     IEnumerator LoadNextScene(string s)
-    {       
+    {
         ao = SceneManager.LoadSceneAsync(s);
         ao.allowSceneActivation = false; //씬로딩이 끝나기 전까지 씬을 활성화 시키지 않는다.
 

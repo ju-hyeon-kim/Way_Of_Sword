@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item_Story : MonoBehaviour
@@ -20,7 +18,7 @@ public class Item_Story : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerTurn)
+        if (PlayerTurn)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, PickMask))
@@ -29,7 +27,7 @@ public class Item_Story : MonoBehaviour
                 ItemLabel_Window.gameObject.SetActive(true);
                 ItemLabel_Window.GetComponent<RectTransform>().anchoredPosition = Camera.main.WorldToScreenPoint(transform.position);
 
-                if(Input.GetMouseButtonDown(0) && Sword_Zone.InPlayer)
+                if (Input.GetMouseButtonDown(0) && Sword_Zone.InPlayer)
                 {
                     gameObject.SetActive(false);
                     ItemLabel_Window.gameObject.SetActive(false);

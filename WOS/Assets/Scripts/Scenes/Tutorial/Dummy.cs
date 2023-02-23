@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Contracts;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Dummy : MonoBehaviour
@@ -40,7 +37,7 @@ public class Dummy : MonoBehaviour
         PtoD.Normalize();
 
         //-HP
-        if(Step_KillDummy)
+        if (Step_KillDummy)
         {
             nowHP = maxHP - AP;
             maxHP = nowHP;

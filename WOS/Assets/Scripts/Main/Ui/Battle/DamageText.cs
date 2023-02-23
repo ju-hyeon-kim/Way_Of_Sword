@@ -1,17 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class DamageText : MonoBehaviour
 {
     public Transform myDamageZone;
     public Color OrangeColor;
 
-    public void ShowDamage(float dmg,bool isPlayer)
+    public void ShowDamage(float dmg, bool isPlayer)
     {
-        if(isPlayer)
+        if (isPlayer)
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(myDamageZone.position);
             transform.position = pos;
@@ -28,14 +26,14 @@ public class DamageText : MonoBehaviour
         StartCoroutine(ShowingDamage(dmg, isPlayer));
     }
 
-    IEnumerator ShowingDamage(float dmg ,bool isPlayer)
+    IEnumerator ShowingDamage(float dmg, bool isPlayer)
     {
         GetComponent<TMP_Text>().text = dmg.ToString();
 
         float time = 1.0f;
         while (time > 0)
         {
-            if(isPlayer)
+            if (isPlayer)
             {
                 transform.position -= Vector3.down * 0.5f;
             }

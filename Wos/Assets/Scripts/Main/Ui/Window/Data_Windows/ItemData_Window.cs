@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -15,7 +13,7 @@ public class ItemData_Window : MonoBehaviour
         Pos = new Vector2((posX * 0.5f) + 0.1f, (posY * 0.5f) + 0.1f);
     }
 
-    public virtual void Data_Setting(Item_2D item2D){}
+    public virtual void Data_Setting(Item_2D item2D) { }
 
     public void Updating_Position(PointerEventData eventData)
     {

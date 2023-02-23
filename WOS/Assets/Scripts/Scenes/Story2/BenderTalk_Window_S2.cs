@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Authentication.ExtendedProtection;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BenderTalk_Window_S2 : MonoBehaviour
@@ -30,11 +27,11 @@ public class BenderTalk_Window_S2 : MonoBehaviour
             StopCoroutine(Coroutine);
             if (Input.anyKeyDown)
             {
-                    PlayerTalk_Window.SetActive(true);
-                    PlayerTalk_Window.GetComponent<PlayerTalk_Window_S2>().NextTalk();
+                PlayerTalk_Window.SetActive(true);
+                PlayerTalk_Window.GetComponent<PlayerTalk_Window_S2>().NextTalk();
 
-                    ++Content_Num;
-                    gameObject.SetActive(false);
+                ++Content_Num;
+                gameObject.SetActive(false);
             }
         }
     }

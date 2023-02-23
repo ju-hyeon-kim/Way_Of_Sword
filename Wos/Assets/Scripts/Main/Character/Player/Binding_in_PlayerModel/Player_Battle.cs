@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player_Battle : Player_Movement, IBattle
 {
@@ -17,13 +14,11 @@ public class Player_Battle : Player_Movement, IBattle
     //for ComboAttack
     bool isComboable = false;
     int ClickCount = 0;
-    
+
     //for Skill
     int SkillNum = 0;
     bool isSkilling = true;
     Vector3 EffectPos = Vector3.zero;
-
-
 
     public override void Click_MouseLeftButton()
     {
@@ -35,8 +30,7 @@ public class Player_Battle : Player_Movement, IBattle
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Monster") && !myAnim.GetBool("isAttacking"))
             {
                 myTarget = hit.collider.transform;
-
-                if(!myInterface.GetRangeActive()) // Skill Range가 꺼져있을 경우만 기본 공격 가능
+                if (!myInterface.GetRangeActive()) // Skill Range가 꺼져있을 경우만 기본 공격 가능
                 {
                     base.MoveToPos(myTarget.position, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
                 }
@@ -68,15 +62,13 @@ public class Player_Battle : Player_Movement, IBattle
         }
     }
 
-    public void OnDamage(float dmg) // ib
+    public void OnDamage(float dmg)
     {
         DamageText_Zone.OnDamage(dmg, true, Dont_Destroy_Data.Inst.BattleWindow_ofPlayer);
-
         if (myAnim.GetBool("isIdle")) // 공격중에는 Damage 애니 작동불가, 단, 체력은 깎임
         {
             myAnim.SetTrigger("Damage");
         }
-
         myInterface.OnDamage(dmg);
     }
 
@@ -84,10 +76,9 @@ public class Player_Battle : Player_Movement, IBattle
     {
         float radius = 1.5f;
         Collider[] list = Physics.OverlapSphere(ComboAttack_Point.position, radius, 1 << LayerMask.NameToLayer("Monster"));
-
         foreach (Collider col in list)
         {
-            col.GetComponent<Monster_Movement>().OnDamage( myStat.ap() );
+            col.GetComponent<Monster_Movement>().OnDamage(myStat.ap());
         }
     }
 
@@ -99,6 +90,11 @@ public class Player_Battle : Player_Movement, IBattle
         base.MoveToPos(myTarget.position, null, false, true);
     }
 
+    public override float myAttackRange()
+    {
+        return myTarget.GetComponent<Monster_Movement>().myAttackRange();
+    }
+
     public void Get_XP(float xp)
     {
         myInterface.Get_Xp(xp);
@@ -107,7 +103,7 @@ public class Player_Battle : Player_Movement, IBattle
     #region for Skill
     public override void OnSkillRange(int i)
     {
-        if(!myInterface.isEmpyhSlot(i)) //i에 해당하는 스킬 슬롯에 스킬이 들어있다면
+        if (!myInterface.isEmpyhSlot(i)) //i에 해당하는 스킬 슬롯에 스킬이 들어있다면
         {
             if (GetComponent<Player>().nowMode == Mode.BATTLE) // 배틀모드라면
             {
@@ -127,7 +123,7 @@ public class Player_Battle : Player_Movement, IBattle
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f,1 << LayerMask.NameToLayer("SkillRange"))) // 마우스 포지션이 SkillRange를 감지했으면
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, 1 << LayerMask.NameToLayer("SkillRange"))) // 마우스 포지션이 SkillRange를 감지했으면
             {
                 myInterface.MouseOnSkillRange(i, hit.point);
 
@@ -142,7 +138,7 @@ public class Player_Battle : Player_Movement, IBattle
 
                     //끝나면 스킬 발동
                     base.MoveToPos(hit.point, null, false, true); // 회전만 적용
-                    switch(i)
+                    switch (i)
                     {
                         case 0:
                             myAnim.SetTrigger("Qskill");
@@ -157,7 +153,7 @@ public class Player_Battle : Player_Movement, IBattle
                             myAnim.SetTrigger("Rskill");
                             break;
                     }
-                    
+
 
                     StopSkilling(i);
                 }

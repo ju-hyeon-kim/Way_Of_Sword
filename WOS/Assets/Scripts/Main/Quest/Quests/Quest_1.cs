@@ -1,10 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using UnityEngine;
-
-
 public class Quest_1 : Quest_Data
 {
     Manager_Quest MQ;
@@ -33,11 +26,11 @@ public class Quest_1 : Quest_Data
 
     public override void Add_Count()
     {
-        if(Nowkill_Count < Maxkill_Count)
+        if (Nowkill_Count < Maxkill_Count)
         {
             ++Nowkill_Count;
             MQ.Add_KillCount(Nowkill_Count);
-            if(Nowkill_Count == Maxkill_Count)
+            if (Nowkill_Count == Maxkill_Count)
             {
                 MQ.Complete_Quest();
             }

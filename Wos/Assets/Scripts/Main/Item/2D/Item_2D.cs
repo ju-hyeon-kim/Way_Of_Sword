@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Item_2D : MonoBehaviour, 
-    IPointerEnterHandler, IPointerExitHandler,IPointerMoveHandler, // 포인터 핸들러
+public class Item_2D : MonoBehaviour,
+    IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, // 포인터 핸들러
     IBeginDragHandler, IDragHandler, IEndDragHandler // 드래그 핸들러
-{    
+{
     public Item_Data myData;
 
     protected ItemData_Window myData_Window;
@@ -50,7 +47,7 @@ public class Item_2D : MonoBehaviour,
         transform.position = eventData.position + dragOffset; // 옮기기
     }
 
-    public void OnEndDrag(PointerEventData eventData) 
+    public void OnEndDrag(PointerEventData eventData)
     {
         GetComponent<Image>().raycastTarget = true;
 

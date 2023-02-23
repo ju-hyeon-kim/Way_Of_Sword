@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Security.Authentication.ExtendedProtection;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +11,7 @@ public class PlayerTalk_Window_S1 : MonoBehaviour
     public bool Step_Event2 = false;
     public bool Step_Move2 = false;
     public int Content_Num = 0;
-    
+
 
     string TextTemp = "";
     IEnumerator Coroutine;
@@ -33,12 +31,12 @@ public class PlayerTalk_Window_S1 : MonoBehaviour
 
             if (Input.anyKeyDown)
             {
-                if(Content_Num == 3)
+                if (Content_Num == 3)
                 {
                     //스토리 매니저의 Event2로 스탭체인지
                     Step_Event2 = true;
                 }
-                else if(Content_Num == 4)
+                else if (Content_Num == 4)
                 {
                     Step_Move2 = true;
                 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player_Movement : Character_Movement
@@ -30,7 +28,7 @@ public class Player_Movement : Character_Movement
             }
 
             //½ºÅ³
-            if(Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 OnSkillRange(0);
             }

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,7 +20,7 @@ public class Name_Tag : MonoBehaviour
 
         //형제들은 어둡게 만들고 자신은 밝게 만듬
         Name_Tag[] myTabs = Tabs.GetComponentsInChildren<Name_Tag>();
-        for(int i = 0; i < myTabs.Length; i++)
+        for (int i = 0; i < myTabs.Length; i++)
         {
             if (myTabs[i].transform.parent == myTab)
             {

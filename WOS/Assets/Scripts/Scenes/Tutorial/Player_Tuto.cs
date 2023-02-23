@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -57,7 +56,7 @@ public class Player_Tuto : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1)) // 현재 스킬 애니메이션이 작동중이라면 동작되면 안됨
             {
-                if(Skill_Range.activeSelf == true)
+                if (Skill_Range.activeSelf == true)
                 {
                     Skill_Range.SetActive(false);
                     Skill_Point.SetActive(false);
@@ -84,7 +83,7 @@ public class Player_Tuto : MonoBehaviour
             }
             else if (Input.GetMouseButtonDown(0) && !GetComponent<Animator>().GetBool("isC_Attacking"))
             {
-                if(skillCo == null)
+                if (skillCo == null)
                 {
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, Mask_Character))
@@ -105,15 +104,15 @@ public class Player_Tuto : MonoBehaviour
                 }
             }
             //스킬 사용 준비 ( 스킬 반경 활성화 )
-            if(Input.GetKeyDown(KeyCode.Q) && SkillAttack_Start && isSkillCool == false)
+            if (Input.GetKeyDown(KeyCode.Q) && SkillAttack_Start && isSkillCool == false)
             {
                 Skill_Range.SetActive(true);
                 skillCo = StartCoroutine(Skilling());
             }
 
-            if(isCombable)
+            if (isCombable)
             {
-                if(Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0))
                 {
                     ++ClickCount;
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -206,7 +205,7 @@ public class Player_Tuto : MonoBehaviour
 
     public void ComboCheck(bool b)
     {
-        if(b) // ComboCheckStart
+        if (b) // ComboCheckStart
         {
             isCombable = true;
             ClickCount = 0;
@@ -214,7 +213,7 @@ public class Player_Tuto : MonoBehaviour
         else // ComboCheckEnd
         {
             isCombable = false;
-            if(ClickCount == 0)
+            if (ClickCount == 0)
             {
                 GetComponent<Animator>().SetTrigger("ComboFail");
             }
@@ -226,7 +225,7 @@ public class Player_Tuto : MonoBehaviour
         ComboCheck(true);
     }
 
-    public void ComboCheckEnd() 
+    public void ComboCheckEnd()
     {
         ComboCheck(false);
     }
@@ -235,7 +234,7 @@ public class Player_Tuto : MonoBehaviour
     {
         Collider[] list = Physics.OverlapSphere(Weapon_Hand.transform.position, 0.7f, Mask_Character);
 
-        foreach(Collider col in list)
+        foreach (Collider col in list)
         {
             col.GetComponent<Dummy>()?.OnDamage(AP);
         }
@@ -257,7 +256,7 @@ public class Player_Tuto : MonoBehaviour
 
     public void ComboAttackSuccess()
     {
-        if(ComboAttack_Success == false)
+        if (ComboAttack_Success == false)
         {
             ComboAttack_Success = true;
         }
@@ -284,12 +283,12 @@ public class Player_Tuto : MonoBehaviour
 
     IEnumerator Skilling()
     {
-        while(true)
+        while (true)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, Mask_SkillRange))
             {
-                if(Skill_Point.activeSelf == false)
+                if (Skill_Point.activeSelf == false)
                 {
                     Skill_Point.SetActive(true);
                 }
@@ -326,7 +325,7 @@ public class Player_Tuto : MonoBehaviour
             {
                 Skill_Point.SetActive(false);
             }
-                yield return null;
+            yield return null;
         }
     }
 
@@ -339,7 +338,7 @@ public class Player_Tuto : MonoBehaviour
         while (temp > 0)
         {
             temp -= Time.deltaTime;
-            Skill_Icon_Forward.fillAmount = 1.0f - (temp/CoolTime);
+            Skill_Icon_Forward.fillAmount = 1.0f - (temp / CoolTime);
             yield return null;
         }
 

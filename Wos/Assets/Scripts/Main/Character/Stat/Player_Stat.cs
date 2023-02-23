@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Player_Stat : Character_Stat
 {
@@ -12,7 +9,7 @@ public class Player_Stat : Character_Stat
     public Equipment_Tap Equipment_Tap;
     public Skill_Set Skill_Set;
 
-    private void Start() 
+    private void Start()
     {
         Status_Tap.Update_Status(this); // Status_Tap 초기 세팅
     }
@@ -31,7 +28,7 @@ public class Player_Stat : Character_Stat
 
     //Dp
     float _PlayerDp = 10.0f;
-    float _AddDp = 0.0f; 
+    float _AddDp = 0.0f;
 
     //Hp
     float _PlayerHp = 100.0f;
@@ -48,7 +45,6 @@ public class Player_Stat : Character_Stat
     float _CurXp = 0.0f;
 
     //고정된 능력치
-    float _Arange = 3.0f;
     float _Aspeed = 3.0f;
 
     #region 프로퍼티
@@ -75,8 +71,8 @@ public class Player_Stat : Character_Stat
     //Ap
     public float TotalAp_Attack { get { return PlayerAp + AddAp; } }
     public float PlayerAp
-    { 
-        get { return _PlayerAp;  } 
+    {
+        get { return _PlayerAp; }
         set { _PlayerAp = value; }
     }
     public float AddAp { get { return Equipment_Tap.AddAp(); } }
@@ -143,11 +139,6 @@ public class Player_Stat : Character_Stat
     }
 
     // 고정된 능력치
-    public float Arange
-    {
-        get { return _Arange; }
-    }
-
     public float Aspeed
     {
         get { return _Aspeed; }
@@ -165,9 +156,7 @@ public class Player_Stat : Character_Stat
 
     public override float mspeed() { return TotalMspeed; }
 
-    public override float arange() { return _Arange; }
-
-    public override float curmp() {  return _CurMp; }
+    public override float curmp() { return _CurMp; }
 
     public override float aspeed() { return _Aspeed; }
     #endregion

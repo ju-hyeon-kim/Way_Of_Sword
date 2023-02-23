@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Quest_2 : Quest_Data
 {
     Manager_Quest MQ;

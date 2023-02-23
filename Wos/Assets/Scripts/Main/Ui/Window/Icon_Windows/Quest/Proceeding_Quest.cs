@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Proceeding_Quest : MonoBehaviour
 {
@@ -37,7 +34,7 @@ public class Proceeding_Quest : MonoBehaviour
         Progress.text = "진행중";
         Progress.color = Color.white;
         //카운트를 세는 퀘스트인지 검사
-        if(QD.isCounting())
+        if (QD.isCounting())
         {
             Countig_Text.text = $"({nowQD.Now_Count()}/{nowQD.Max_Count()})";
             Countig_Text.gameObject.SetActive(true);

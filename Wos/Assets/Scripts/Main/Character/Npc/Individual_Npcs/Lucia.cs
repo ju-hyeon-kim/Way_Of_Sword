@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Rendering.RendererUtils;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Lucia : Npc
@@ -27,9 +24,9 @@ public class Lucia : Npc
 
     enum Q_STATE
     {
-        Questing, Complete, None 
+        Questing, Complete, None
     }
-    
+
     Q_STATE Q_state = Q_STATE.None;
 
     public override void Button_0and1_Set(Proceeding_Quest PQ) // 퀘스트의 상태를 감지
@@ -37,7 +34,7 @@ public class Lucia : Npc
         nowPQ = PQ;
         if (nowPQ.Q_Exist_Settings[1].activeSelf == true)
         {
-            if(nowPQ.Progress.text == "진행중")
+            if (nowPQ.Progress.text == "진행중")
             {
                 //현재 퀘스트가 조건 불충족 상태일 때 -> 아직 퀘스트 진행중
                 Q_state = Q_STATE.Questing;
@@ -67,7 +64,7 @@ public class Lucia : Npc
         //온클릭 적용
         myButton.GetComponent<Button>().onClick.AddListener(QuestComplete_Button);
 
-        if(Q_state== Q_STATE.Complete) 
+        if (Q_state == Q_STATE.Complete)
         {
             myButton.GetChild(1).gameObject.SetActive(false);
             myButton.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 완료 보고";
@@ -87,7 +84,7 @@ public class Lucia : Npc
         //온클릭 적용
         myButton.GetComponent<Button>().onClick.AddListener(QuestRequest_Btton);
 
-        if(Q_state == Q_STATE.None) // 현재 퀘스트가 없다면 = 새로운 퀘스트를 받으러 왔다면
+        if (Q_state == Q_STATE.None) // 현재 퀘스트가 없다면 = 새로운 퀘스트를 받으러 왔다면
         {
             //Lock 비활성화
             myButton.GetChild(1).gameObject.SetActive(false);
@@ -108,9 +105,9 @@ public class Lucia : Npc
 
         Debug.Log(RewardCount);
 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            if( i < RewardCount)
+            if (i < RewardCount)
             {
                 GameObject Obj = Instantiate(nowQD.Reward[i], QC.Q_Reword[i].transform) as GameObject;
                 Obj.transform.SetAsFirstSibling();

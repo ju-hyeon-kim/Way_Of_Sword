@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Skill_Slot : MonoBehaviour
@@ -17,7 +15,7 @@ public class Skill_Slot : MonoBehaviour
 
     public void OnSkillRange(SkillRange skillrange, SkillPoints skillpoints, int key)
     {
-        if(transform.childCount > 0) // 자식으로 스킬이 있으면 실행
+        if (transform.childCount > 0) // 자식으로 스킬이 있으면 실행
         {
             skillrange.RangeSetting(nowSkill.myData.Dist);
             skillpoints.PointSetting(nowSkill.myData.SkillPoint, key);
@@ -26,19 +24,19 @@ public class Skill_Slot : MonoBehaviour
 
     public void OnSkillEffect(int i, Vector3 pos, EffectBin bin)
     {
-        if(bin.UsedEffects[i].Name == nowSkill.myData.Name)  // 쓰레기 통에 동일한 이름의 쓰레기가 있을 경우
+        if (bin.UsedEffects[i].Name == nowSkill.myData.Name)  // 쓰레기 통에 동일한 이름의 쓰레기가 있을 경우
         {
-            if(nowSkill.myData.SkillPoint.GetComponent<SkillPoint>().skilltype == SKILLTYPE.RANGE)
+            if (nowSkill.myData.SkillPoint.GetComponent<SkillPoint>().skilltype == SKILLTYPE.RANGE)
             {
                 bin.UsedEffects[i].transform.position = pos;
             }
             else
             {
-                bin.UsedEffects[i].transform.position = Dont_Destroy_Data.Inst.Player.transform.position + new Vector3(0,1,0);
+                bin.UsedEffects[i].transform.position = Dont_Destroy_Data.Inst.Player.transform.position + new Vector3(0, 1, 0);
                 pos.y = bin.UsedEffects[i].transform.position.y;
                 bin.UsedEffects[i].transform.LookAt(pos);
             }
-            
+
             bin.UsedEffects[i].gameObject.SetActive(true);
             bin.UsedEffects[i].GetComponent<ParticleSystem>().Play();
         }

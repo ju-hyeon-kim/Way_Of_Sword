@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveButton : MonoBehaviour
@@ -10,6 +8,6 @@ public class SaveButton : MonoBehaviour
     {
         Manager_SaveLode.Inst.JsonSave();
         int SlotNum = SaveLode_Window.Now_PageNum;
-        SaveLode_Window.SaveSlots[SlotNum-1].GetComponent<SaveSlot>().OnSave();
+        SaveLode_Window.SaveSlots[SlotNum - 1].GetComponent<SaveSlot>().OnSave();
     }
 }

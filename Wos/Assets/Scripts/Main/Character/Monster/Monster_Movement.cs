@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum MonstertState
@@ -26,7 +25,7 @@ public class Monster_Movement : Character_Movement, IBattle
     float DownSpeed = 0.05f; // 죽고나서 내려가는 속도
     float DeadTime = 15.0f; // 죽고나서 부활되기까지 걸리는 시간
 
-    public  void ChangeState(MonstertState s)
+    public void ChangeState(MonstertState s)
     {
         if (myState == s) return;
         myState = s;
@@ -38,8 +37,6 @@ public class Monster_Movement : Character_Movement, IBattle
                 Ready_Roaming();
                 break;
             case MonstertState.Roaming: //nomal monster만 사용
-
-
                 Roaming_Pos.x = Random.Range(Roaming_Zone[2].position.x, Roaming_Zone[3].position.x);
                 Roaming_Pos.z = Random.Range(Roaming_Zone[0].position.z, Roaming_Zone[1].position.z);
                 Roaming_Pos.y = 0.5f;
@@ -226,10 +223,10 @@ public class Monster_Movement : Character_Movement, IBattle
             }
             transform.Rotate(Vector3.up * delta * rotDir, Space.World);
 
-            if(target.GetComponent<Player>().nowMode == Mode.DEAD) // 플레이어가 죽었다면
+            if (target.GetComponent<Player>().nowMode == Mode.DEAD) // 플레이어가 죽었다면
             {
                 target = null;
-                if(TryGetComponent<NormalMonster>(out NormalMonster component)) // 노말몬스터일 경우
+                if (TryGetComponent<NormalMonster>(out NormalMonster component)) // 노말몬스터일 경우
                 {
                     ChangeState(MonstertState.Roaming);
                 }
@@ -249,6 +246,12 @@ public class Monster_Movement : Character_Movement, IBattle
         myTarget.GetComponent<Player>().Get_XP(myStat.xp());
         Dont_Destroy_Data.Inst.Message_Window.Get_Xp((int)myStat.xp());
     }
+
+    public override float myAttackRange()
+    {
+        return myStat.arange();
+    }
+
     public virtual void FindTarget(Transform target) { }
     public virtual void Ready_Roaming() { }
     public virtual void Active_HpBar(bool b) { }

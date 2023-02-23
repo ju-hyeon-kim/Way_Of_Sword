@@ -1,9 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class Gold_2D : Item_2D
 {
     /*public override void GiveData_DW()

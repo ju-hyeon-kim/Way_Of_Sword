@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 
@@ -35,7 +33,7 @@ public class Message_Window : MonoBehaviour
         //°¡Àå ¹Ø¿¡ ÀÖ´Â ¸Þ½ÃÁö °Ë»ç
         for (int i = 0; i < myMessages.Length; i++)
         {
-            if(myMessages[i].transform.position == Create_Area)
+            if (myMessages[i].transform.position == Create_Area)
             {
                 myMessages[i].GetChild(0).GetComponent<TMP_Text>().text = $"È¹µæ {ItemName} +{price}";
                 myMessages[i].gameObject.SetActive(true);
@@ -88,7 +86,7 @@ public class Message_Window : MonoBehaviour
 
         for (int i = 0; i < myMessages.Length; i++)
         {
-            if(myMessages[i].gameObject.activeSelf == true)
+            if (myMessages[i].gameObject.activeSelf == true)
             {
                 myMessages[i].gameObject.SetActive(false);
             }

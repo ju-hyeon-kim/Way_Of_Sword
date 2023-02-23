@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class ObeSlot_inSword : Item_Slot
 {
@@ -14,7 +10,7 @@ public class ObeSlot_inSword : Item_Slot
 
     public void StartSetting() // SwordIcon_Window의 Start()에서 실행됨
     {
-        if(this.transform.childCount > 0) // 자식이 있다면
+        if (this.transform.childCount > 0) // 자식이 있다면
         {
             // 스킬슬롯에 스킬 전달
             myObe = this.transform.GetChild(0).GetComponent<Obe_2D>();
@@ -32,7 +28,7 @@ public class ObeSlot_inSword : Item_Slot
         }
     }
 
-    
+
 
     public override void OnDrop_ofChild(PointerEventData eventData) // DragDrop으로 오브를 받았을 때
     {

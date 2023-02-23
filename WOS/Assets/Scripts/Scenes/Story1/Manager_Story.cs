@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 [System.Serializable]
@@ -121,7 +120,7 @@ public class Manager_Story : MonoBehaviour
         {
             case STEP.Sleep:
                 time += Time.deltaTime;
-                if(time > 2.0f)
+                if (time > 2.0f)
                 {
                     IconPos = Camera.main.WorldToScreenPoint(IconZone.position);
                     Objects.ExclamarionMark.transform.position = IconPos;
@@ -137,7 +136,7 @@ public class Manager_Story : MonoBehaviour
             case STEP.Wakeup:
                 if (Player.GetCurrentAnimatorStateInfo(0).IsName("Story.Wakeup"))
                 {
-                    Player.transform.Rotate(Vector3.up * Time.deltaTime * 70.0f); 
+                    Player.transform.Rotate(Vector3.up * Time.deltaTime * 70.0f);
                     Player.transform.Translate(Vector3.forward * Time.deltaTime * 0.2f);
                 }
                 else if (Player.GetCurrentAnimatorStateInfo(0).IsName("Story.Sit"))
@@ -152,7 +151,7 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Talk:
                 {
-                    if(Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Content_Num == 3)
+                    if (Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Content_Num == 3)
                     {
                         ChangeStep(STEP.Standup);
                     }
@@ -160,11 +159,11 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Standup:
                 {
-                    if(Player.GetCurrentAnimatorStateInfo(0).IsName("Story.Standup"))
+                    if (Player.GetCurrentAnimatorStateInfo(0).IsName("Story.Standup"))
                     {
                         Player.transform.Translate(Vector3.forward * Time.deltaTime * 0.2f);
                     }
-                    else if(Player.GetCurrentAnimatorStateInfo(0).IsName("Story.Walk"))
+                    else if (Player.GetCurrentAnimatorStateInfo(0).IsName("Story.Walk"))
                     {
                         Player.transform.Translate(Vector3.forward * Time.deltaTime * 0.8f);
                     }
@@ -176,10 +175,10 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Move:
                 {
-                    if(Player.GetComponent<Player_Story1>().Weapon_Back.activeSelf) // 검을 장착 했으면
+                    if (Player.GetComponent<Player_Story1>().Weapon_Back.activeSelf) // 검을 장착 했으면
                     {
                         time += Time.deltaTime;
-                        if(time > 1.0f)
+                        if (time > 1.0f)
                         {
                             time = 0;
                             ChangeStep(STEP.Event);
@@ -200,7 +199,7 @@ public class Manager_Story : MonoBehaviour
                 break;
             case STEP.Talk2:
                 {
-                    if(Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Step_Event2)
+                    if (Objects.Player_Talk_Window.GetComponent<PlayerTalk_Window_S1>().Step_Event2)
                     {
                         ChangeStep(STEP.Event2);
                     }
@@ -251,7 +250,7 @@ public class Manager_Story : MonoBehaviour
 
     IEnumerator CheckClick()
     {
-        while(true)
+        while (true)
         {
             if (Input.GetMouseButtonDown(0))
             {

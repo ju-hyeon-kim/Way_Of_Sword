@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,7 +14,7 @@ public class Door_Zone : MonoBehaviour
 
     IEnumerator SceneChange()
     {
-        while(FadeOut.GetComponent<Image>().fillAmount < 1)
+        while (FadeOut.GetComponent<Image>().fillAmount < 1)
         {
             FadeOut.GetComponent<Image>().fillAmount += Time.deltaTime;
             yield return null;

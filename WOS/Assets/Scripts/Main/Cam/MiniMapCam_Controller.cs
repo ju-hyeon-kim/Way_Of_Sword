@@ -1,8 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class MiniMapCam_Controller : MonoBehaviour
 {
@@ -107,7 +104,7 @@ public class MiniMapCam_Controller : MonoBehaviour
 
     public void SceneChange()
     {
-        for(int i = 0; i < MiniMap_Icons.Length; ++i) 
+        for (int i = 0; i < MiniMap_Icons.Length; ++i)
         {
             MiniMap_Icons[i] = this.transform;
         }

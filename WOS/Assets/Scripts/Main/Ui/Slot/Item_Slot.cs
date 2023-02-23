@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class Item_Slot : MonoBehaviour, IDropHandler
 {
@@ -17,7 +13,7 @@ public class Item_Slot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        
+
         myItem = eventData.pointerDrag.GetComponent<Item_2D>();
         //아이템이 슬롯위에 있음을 알려주는 코드
         myItem.GetComponent<Item_2D>().isSlot = true;
@@ -25,7 +21,7 @@ public class Item_Slot : MonoBehaviour, IDropHandler
 
         if (myItem.myData.ItemType == SlotType) //아이템 타입을 감지하여 슬롯에 받을지 말지를 검사한다.
         {
-            if(isSame_EquipnemtType())
+            if (isSame_EquipnemtType())
             {
                 //아이템을 받는다.
                 myItem.transform.SetParent(transform); // 내려놓은 오브제의 부모 = this 슬롯

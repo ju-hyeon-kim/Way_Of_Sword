@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Equipment_Slot : Item_Slot
 {
@@ -13,7 +9,7 @@ public class Equipment_Slot : Item_Slot
     {
         Equipment_Data EquipmentData = myItem.myData as Equipment_Data;
         bool b = false;
-        if(EquipmentType_slot == EquipmentData.EquipnetType)
+        if (EquipmentType_slot == EquipmentData.EquipnetType)
         {
             b = true;
         }

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Play_Starter : MonoBehaviour
@@ -35,7 +32,7 @@ public class Play_Starter : MonoBehaviour
 
     public void Start_Call(Transform PlaceManager)
     {
-        if(!isStart)
+        if (!isStart)
         {
             isStart = true;
             transform.parent.GetComponent<Dont_Destroy_Data>().Start_Setting(PlaceManager);

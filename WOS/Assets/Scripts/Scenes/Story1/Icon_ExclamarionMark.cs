@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Icon_ExclamarionMark : MonoBehaviour
@@ -12,4 +10,4 @@ public class Icon_ExclamarionMark : MonoBehaviour
         pos = Camera.main.WorldToScreenPoint(IconZone.position);
         transform.position = pos;
     }
-} 
+}

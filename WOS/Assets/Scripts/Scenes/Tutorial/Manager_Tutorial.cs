@@ -1,5 +1,4 @@
- using System.Collections;
-using TMPro;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +26,7 @@ public class Manager_Tutorial : MonoBehaviour
 
     enum STEP
     {
-        Start, Talk_B1, BasicAttack, End, Talk_B2, ComboAttack, Talk_B3, SkillAttack, Talk_B4, KillDummy, Talk_B5, 
+        Start, Talk_B1, BasicAttack, End, Talk_B2, ComboAttack, Talk_B3, SkillAttack, Talk_B4, KillDummy, Talk_B5,
         Talk_P1, Talk_B6, Talk_P2
     }
 
@@ -186,14 +185,14 @@ public class Manager_Tutorial : MonoBehaviour
                 }
                 break;
             case STEP.Talk_B1:
-                if(Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 1)
+                if (Objects.BenderTalk_Window.GetComponent<BenderTalk_Window_T>().Content_Num == 1)
                 {
                     ChangeStep(STEP.BasicAttack);
                 }
                 break;
             case STEP.BasicAttack:
                 {
-                    if(BasicAttack_end)
+                    if (BasicAttack_end)
                     {
                         ChangeStep(STEP.Talk_B2);
                     }
@@ -207,7 +206,7 @@ public class Manager_Tutorial : MonoBehaviour
                 break;
             case STEP.ComboAttack:
                 // 콤보공격이 실행되면 체인지 스탭
-                if(Objects.Player.GetComponent<Player_Tuto>().ComboAttack_Success == true)
+                if (Objects.Player.GetComponent<Player_Tuto>().ComboAttack_Success == true)
                 {
                     ChangeStep(STEP.Talk_B3);
                 }
@@ -219,7 +218,7 @@ public class Manager_Tutorial : MonoBehaviour
                 }
                 break;
             case STEP.SkillAttack:
-                if(Objects.Player.GetComponent<Player_Tuto>().SkillAttack_Success == true)
+                if (Objects.Player.GetComponent<Player_Tuto>().SkillAttack_Success == true)
                 {
                     ChangeStep(STEP.Talk_B4);
                 }

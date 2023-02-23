@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ public class DropRange : MonoBehaviour
 
     public void Pickup_Item()
     {
-        if(DropItems.Count > 0) //드랍된 아이템이 있을때만 실행
+        if (DropItems.Count > 0) //드랍된 아이템이 있을때만 실행
         {
             //아이템을 인벤토리에 넣기
             Dont_Destroy_Data.Inst.Inventory_Window.Put_Item(DropItems[0].myItem2D);

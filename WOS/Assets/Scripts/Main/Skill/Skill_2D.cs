@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -42,7 +41,7 @@ public class Skill_2D : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         myCoolTime_Img.fillAmount = 1;
         float cooltime = myData.CoolTime;
 
-        while(cooltime > 0)
+        while (cooltime > 0)
         {
             cooltime -= Time.deltaTime;
             myCoolTime_Img.fillAmount = cooltime / myData.CoolTime;

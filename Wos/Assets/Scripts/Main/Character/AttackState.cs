@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
 
-namespace wos 
+namespace wos
 {
     public class AttackState : StateMachineBehaviour
     {

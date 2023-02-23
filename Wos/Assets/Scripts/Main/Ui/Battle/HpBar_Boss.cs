@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +16,7 @@ public class HpBar_Boss : MonoBehaviour
 
     public void StartSetting(BossMonster monster, float maxhp)
     {
+
         myMonster = monster;
         NowHp = maxhp;
         MaxHp = maxhp;
@@ -29,19 +28,19 @@ public class HpBar_Boss : MonoBehaviour
     public void OnDmage(float dmg)
     {
         NowHp -= dmg;
-
-        Bars[BarNumber].fillAmount = (NowHp/Bars.Length) / (MaxHp/Bars.Length);
-        Hp_text.text = $"( {NowHp} / {MaxHp} )";
-
-        if(NowHp < (MaxHp / Bars.Length) * (Bars.Length - (BarNumber + 1)))
+        if (NowHp < (MaxHp / Bars.Length) * (Bars.Length - (BarNumber + 1)))
         {
+            Bars[BarNumber].fillAmount = 0;
             BarNumber++;
             BarCount.text = $"x{--NowBarCount}";
         }
-
         if (NowHp <= 0)
         {
+            NowHp = 0;
             myMonster.OnDead();
         }
+        Bars[BarNumber].fillAmount = NowHp % (MaxHp / Bars.Length) / (MaxHp / Bars.Length);
+        Hp_text.text = $"( {NowHp} / {MaxHp} )";
+        Debug.Log($"( {NowHp} / {MaxHp} )");
     }
 }

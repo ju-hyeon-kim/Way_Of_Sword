@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class VectorSkill_Effect : Skill_Effect
@@ -23,7 +21,7 @@ public class VectorSkill_Effect : Skill_Effect
 
         while (dist > 0)
         {
-            float delta = speed * Time.deltaTime; 
+            float delta = speed * Time.deltaTime;
             if (delta > dist)
             {
                 delta = dist;

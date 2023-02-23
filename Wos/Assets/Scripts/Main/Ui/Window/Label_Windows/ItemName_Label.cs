@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ItemName_Label : MonoBehaviour
 {
@@ -11,7 +8,7 @@ public class ItemName_Label : MonoBehaviour
 
     void Update()
     {
-        if(isSetting)
+        if (isSetting)
         {
             Vector3 pos = Camera.main.WorldToScreenPoint(myNameZone.position);
             transform.position = pos;

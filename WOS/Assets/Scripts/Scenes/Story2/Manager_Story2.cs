@@ -1,5 +1,4 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -56,7 +55,7 @@ public class Manager_Story2 : MonoBehaviour
         {
             case STEP.Start:
                 time += Time.deltaTime;
-                if(time > 1.0f)
+                if (time > 1.0f)
                 {
                     time = 0;
                     ChangeStep(STEP.Move);
@@ -69,7 +68,7 @@ public class Manager_Story2 : MonoBehaviour
                 }
                 break;
             case STEP.Talk:
-                if(Objects.PlayerTalk_Window.GetComponent<PlayerTalk_Window_S2>().SceneEnd == true)
+                if (Objects.PlayerTalk_Window.GetComponent<PlayerTalk_Window_S2>().SceneEnd == true)
                 {
                     ChangeStep(STEP.End);
                 }

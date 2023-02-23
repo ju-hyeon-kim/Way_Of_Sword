@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +13,7 @@ public class Xp_Set : MonoBehaviour
     public void Get_Xp(float xp)
     {
         Stat.CurXp += xp;
-        if(Stat.CurXp >= Stat.MaxXp)
+        if (Stat.CurXp >= Stat.MaxXp)
         {
             Stat.CurXp -= Stat.MaxXp;
             Stat.Level_Up();

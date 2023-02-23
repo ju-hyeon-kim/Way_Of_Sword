@@ -1,29 +1,31 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
-public class MB_SwapShirts : MonoBehaviour {
+public class MB_SwapShirts : MonoBehaviour
+{
     public MB3_MeshBaker meshBaker;
 
     public Renderer[] clothingAndBodyPartsBareTorso;
     public Renderer[] clothingAndBodyPartsBareTorsoDamagedArm;
     public Renderer[] clothingAndBodyPartsHoodie;
 
-	void Start(){
-		//initial bake
-		GameObject[] objs = new GameObject[ clothingAndBodyPartsBareTorso.Length ];
-		for (int i = 0; i < clothingAndBodyPartsBareTorso.Length; i++) {
-			objs[i] = clothingAndBodyPartsBareTorso[i].gameObject;
-		}		
-		meshBaker.ClearMesh ();
-		meshBaker.AddDeleteGameObjects (objs,null,true);
-		meshBaker.Apply ();
-	}
+    void Start()
+    {
+        //initial bake
+        GameObject[] objs = new GameObject[clothingAndBodyPartsBareTorso.Length];
+        for (int i = 0; i < clothingAndBodyPartsBareTorso.Length; i++)
+        {
+            objs[i] = clothingAndBodyPartsBareTorso[i].gameObject;
+        }
+        meshBaker.ClearMesh();
+        meshBaker.AddDeleteGameObjects(objs, null, true);
+        meshBaker.Apply();
+    }
 
     // Update is called once per frame
-    void OnGUI () {
+    void OnGUI()
+    {
         if (GUILayout.Button("Wear Hoodie"))
         {
             ChangeOutfit(clothingAndBodyPartsHoodie);
@@ -72,7 +74,7 @@ public class MB_SwapShirts : MonoBehaviour {
             }
         }
 
-        meshBaker.AddDeleteGameObjects(objectsWeAreAdding.ToArray(), objectsWeAreRemoving.ToArray(),true);
+        meshBaker.AddDeleteGameObjects(objectsWeAreAdding.ToArray(), objectsWeAreRemoving.ToArray(), true);
         meshBaker.Apply();
     }
 }

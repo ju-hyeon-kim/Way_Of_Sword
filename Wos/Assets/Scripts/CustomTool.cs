@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,7 +11,7 @@ public class CustomTool : MonoBehaviour
     [ContextMenu("함수실행")]
     void tool()
     {
-        for(int i = 0; i < slots.Length; i++ )
+        for (int i = 0; i < slots.Length; i++)
         {
             //바인딩
             slots[i].GetComponent<Inven_Slot>().Quantity_Text = slots[i].GetChild(0).GetChild(0).GetComponent<TMP_Text>();

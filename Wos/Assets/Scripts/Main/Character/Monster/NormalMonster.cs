@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NormalMonster : Monster_Movement
@@ -25,9 +24,9 @@ public class NormalMonster : Monster_Movement
 
     public override void Active_HpBar(bool b)
     {
-        if(b)
+        if (b)
         {
-            if(isHpBar_Created()) // 이미 HpBar가 생성되어있다면
+            if (isHpBar_Created()) // 이미 HpBar가 생성되어있다면
             {
                 myHpBar_clone.gameObject.SetActive(true);
             }

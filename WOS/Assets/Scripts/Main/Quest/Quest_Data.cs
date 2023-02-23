@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Quest_Data : MonoBehaviour
@@ -11,7 +9,7 @@ public class Quest_Data : MonoBehaviour
     public string Explanation;
     public GameObject[] Reward;
 
-    public virtual void Start_Questing(){}
+    public virtual void Start_Questing() { }
 
     public virtual bool isCounting() // 카운트를 세는 퀘스트와 세지 않는 퀘스트 구분
     {
@@ -28,7 +26,7 @@ public class Quest_Data : MonoBehaviour
         return 0;
     }
 
-    public virtual void Add_Count(){}
+    public virtual void Add_Count() { }
 
-    
+
 }

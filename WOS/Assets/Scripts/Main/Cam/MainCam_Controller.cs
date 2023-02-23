@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
 public class MainCam_Controller : MonoBehaviour
@@ -39,7 +37,7 @@ public class MainCam_Controller : MonoBehaviour
 
     IEnumerator Follow_CamTarget()
     {
-        while(!isEvent)
+        while (!isEvent)
         {
             //줌
             myDist -= Input.GetAxis("Mouse ScrollWheel") * 2.0f;
@@ -64,7 +62,7 @@ public class MainCam_Controller : MonoBehaviour
         SavePos = transform.position;
         SaveVec = transform.forward;
         // 카메라 시점 변경
-        StartCoroutine(Moving(ChangeViewPos.position,true));
+        StartCoroutine(Moving(ChangeViewPos.position, true));
         StartCoroutine(Rotating(target.position));
     }
 
@@ -72,17 +70,17 @@ public class MainCam_Controller : MonoBehaviour
     public void ReturnView(bool isNpc)
     {
         isEvent = false;
-        StartCoroutine(Moving(SavePos,false));
+        StartCoroutine(Moving(SavePos, false));
         StartCoroutine(Rotating(SaveVec));
 
-        if(!isNpc) // 보스 몬스터일 경우
+        if (!isNpc) // 보스 몬스터일 경우
         {
             Function(MonstertState.Battle);
             Uis_OnOff(true);
         }
     }
 
-    IEnumerator Moving(Vector3 pos,bool b)
+    IEnumerator Moving(Vector3 pos, bool b)
     {
         if (SaveTarget.TryGetComponent<Npc>(out Npc componet))
         {
@@ -112,7 +110,7 @@ public class MainCam_Controller : MonoBehaviour
             yield return null;
         }
 
-        if(b)
+        if (b)
         {
             Talk_Ready = true;
 
@@ -126,7 +124,7 @@ public class MainCam_Controller : MonoBehaviour
             Talk_Ready = false;
         }
 
-        
+
     }
 
     IEnumerator Rotating(Vector3 pos)
@@ -154,7 +152,7 @@ public class MainCam_Controller : MonoBehaviour
 
     void ViewChangeFinish()
     {
-        if(MovFinish && RotFinish)
+        if (MovFinish && RotFinish)
         {
             if (SaveTarget.TryGetComponent<BossMonster>(out BossMonster componet))
             {

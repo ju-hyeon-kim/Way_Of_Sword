@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Item_3D : MonoBehaviour
 {
@@ -37,7 +34,7 @@ public class Item_3D : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) // 플레이어의 드랍존에 닿았을 때
     {
-        if(isOnGround)
+        if (isOnGround)
         {
             if (other.gameObject.name == "DropRange")
             {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Obe_Data", menuName = "ScriptableObjects/Obe_Data", order = 1)]

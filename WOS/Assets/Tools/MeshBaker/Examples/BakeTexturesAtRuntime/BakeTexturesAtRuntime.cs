@@ -1,6 +1,5 @@
-using UnityEngine;
-using System.Collections;
 using DigitalOpus.MB.Core;
+using UnityEngine;
 
 /*
  * For building atlases at runtime it is very important that:
@@ -15,33 +14,36 @@ using DigitalOpus.MB.Core;
  * 
  * If you are having problems look at the Debug Log on the device
  */
-public class BakeTexturesAtRuntime : MonoBehaviour {
-	public GameObject target;
-	float elapsedTime = 0;
-	MB3_TextureCombiner.CreateAtlasesCoroutineResult result = new MB3_TextureCombiner.CreateAtlasesCoroutineResult();
-	
-	void OnGUI(){
-		GUILayout.Label("Time to bake textures: " + elapsedTime);
-		if (GUILayout.Button("Combine textures & build combined mesh all at once")){
-			MB3_MeshBaker meshbaker = target.GetComponentInChildren<MB3_MeshBaker>();
-			MB3_TextureBaker textureBaker = target.GetComponent<MB3_TextureBaker>();
-			
-			//These can be assets configured at runtime or you can create them
-			// on the fly like this
-			textureBaker.textureBakeResults = ScriptableObject.CreateInstance<MB2_TextureBakeResults>();
-			textureBaker.resultMaterial = new Material( Shader.Find("Diffuse") ); 
-			
-			float t1 = Time.realtimeSinceStartup;
-			textureBaker.CreateAtlases();
-			elapsedTime = Time.realtimeSinceStartup - t1;	
-			
-			meshbaker.ClearMesh(); //only necessary if your not sure whats in the combined mesh
-			meshbaker.textureBakeResults = textureBaker.textureBakeResults;
-			//Add the objects to the combined mesh
-			meshbaker.AddDeleteGameObjects(textureBaker.GetObjectsToCombine().ToArray(), null, true);
-			
-			meshbaker.Apply();
-		}
+public class BakeTexturesAtRuntime : MonoBehaviour
+{
+    public GameObject target;
+    float elapsedTime = 0;
+    MB3_TextureCombiner.CreateAtlasesCoroutineResult result = new MB3_TextureCombiner.CreateAtlasesCoroutineResult();
+
+    void OnGUI()
+    {
+        GUILayout.Label("Time to bake textures: " + elapsedTime);
+        if (GUILayout.Button("Combine textures & build combined mesh all at once"))
+        {
+            MB3_MeshBaker meshbaker = target.GetComponentInChildren<MB3_MeshBaker>();
+            MB3_TextureBaker textureBaker = target.GetComponent<MB3_TextureBaker>();
+
+            //These can be assets configured at runtime or you can create them
+            // on the fly like this
+            textureBaker.textureBakeResults = ScriptableObject.CreateInstance<MB2_TextureBakeResults>();
+            textureBaker.resultMaterial = new Material(Shader.Find("Diffuse"));
+
+            float t1 = Time.realtimeSinceStartup;
+            textureBaker.CreateAtlases();
+            elapsedTime = Time.realtimeSinceStartup - t1;
+
+            meshbaker.ClearMesh(); //only necessary if your not sure whats in the combined mesh
+            meshbaker.textureBakeResults = textureBaker.textureBakeResults;
+            //Add the objects to the combined mesh
+            meshbaker.AddDeleteGameObjects(textureBaker.GetObjectsToCombine().ToArray(), null, true);
+
+            meshbaker.Apply();
+        }
 
         if (GUILayout.Button("Combine textures & build combined mesh using coroutine"))
         {
@@ -55,7 +57,7 @@ public class BakeTexturesAtRuntime : MonoBehaviour {
 
             //register an OnSuccess function to be called when texture baking is complete
             textureBaker.onBuiltAtlasesSuccess = new MB3_TextureBaker.OnCombinedTexturesCoroutineSuccess(OnBuiltAtlasesSuccess);
-			StartCoroutine(textureBaker.CreateAtlasesCoroutine(null,result,false,null,.01f));
+            StartCoroutine(textureBaker.CreateAtlasesCoroutine(null, result, false, null, .01f));
 
         }
     }

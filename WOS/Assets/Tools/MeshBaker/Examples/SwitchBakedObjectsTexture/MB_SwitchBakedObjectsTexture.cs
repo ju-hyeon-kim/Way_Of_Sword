@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MB_SwitchBakedObjectsTexture : MonoBehaviour {
+public class MB_SwitchBakedObjectsTexture : MonoBehaviour
+{
     // The target renderer where we will switch materials.
     public MeshRenderer targetRenderer;
 
@@ -21,7 +20,7 @@ public class MB_SwitchBakedObjectsTexture : MonoBehaviour {
     public void Start()
     {
         // Bake the mesh.
-        meshBaker.AddDeleteGameObjects(meshBaker.GetObjectsToCombine().ToArray(),null,true);
+        meshBaker.AddDeleteGameObjects(meshBaker.GetObjectsToCombine().ToArray(), null, true);
         meshBaker.Apply();
     }
 
@@ -34,8 +33,10 @@ public class MB_SwitchBakedObjectsTexture : MonoBehaviour {
             Material mat = targetRenderer.sharedMaterial;
             //Find the index of the current material on the Renderer
             int materialIdx = -1;
-            for (int i = 0; i < materials.Length; i++){
-                if (materials[i] == mat){
+            for (int i = 0; i < materials.Length; i++)
+            {
+                if (materials[i] == mat)
+                {
                     materialIdx = i;
                 }
             }
@@ -53,7 +54,7 @@ public class MB_SwitchBakedObjectsTexture : MonoBehaviour {
                 // Update the Mesh Baker combined mesh
                 GameObject[] gameObjects = new GameObject[] { targetRenderer.gameObject };
                 meshBaker.UpdateGameObjects(gameObjects, false, false, false, false, true, false, false, false, false);
-                
+
                 // We could have used AddDelteGameObjects instead of UpdateGameObjects.
                 // UpdateGameObjects is faster, but does not work if the material change causes
                 // the object to switch submeshes in the combined mesh.
