@@ -14,10 +14,13 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
     protected bool isMovEnd = false;
     protected bool isRotEnd = false;
     protected bool isNpc = false;
+    UnityAction movrotend_action = null;
 
     protected void MoveToPos(Vector3 pos, UnityAction Action_AfterMoving = null, bool isMov = true, bool isRot = true)
     // bool isMov(isRot)는 이동(회전)을 할지 말지 결정
     {
+        movrotend_action = Action_AfterMoving;
+
         if (isMov)
         {
             pos.y = transform.position.y;
@@ -27,7 +30,7 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
                 StopCoroutine(moveCo);
                 moveCo = null;
             }
-            moveCo = StartCoroutine(Moving(pos, Action_AfterMoving));
+            moveCo = StartCoroutine(Moving(pos));
         }
 
         if (isRot)
@@ -42,7 +45,7 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
     }
 
     // 무빙 코루틴
-    IEnumerator Moving(Vector3 pos, UnityAction Action_AfterMoving)
+    IEnumerator Moving(Vector3 pos)
     {
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
@@ -51,7 +54,7 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         myAnim.SetBool("Move", true);
 
         float range = 0.0f;
-        if (Action_AfterMoving != null || isNpc)
+        if (movrotend_action != null || isNpc)
         {
             range = myStat.arange();
         }
@@ -70,18 +73,14 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
 
         myAnim.SetBool("Move", false);
 
-        Action_AfterMoving?.Invoke();
-        /*Action_AM이 널이 아니라면 실행 ( ChildAction = 자식에 따라 다르게 실행되는 함수 )
-        -플레이어의 경우: 공격 Anim 실행
-        -몬스터의 경우: 무빙을 마치고 아이들 상태로 돌아감 -> ChangeState()*/
-
+        isMovEnd = true;
+        MovRotEnd_Action();
         //for Npc
-        if(isNpc)
+        /*if(isNpc)
         {
             isMovEnd = true;
             MovRotEnd_NpcEvent();
-        }
-       
+        }*/
     }
 
     // 회전 코루틴
@@ -108,12 +107,24 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
             yield return null;
         }
 
+        isRotEnd = true;
+        MovRotEnd_Action();
         //for Npc
-        if(isNpc)
+        /*if(isNpc)
         {
             isRotEnd = true;
             MovRotEnd_NpcEvent();
-        }
+        }*/
     }
     public virtual void MovRotEnd_NpcEvent() { }  // Npc를 클릭했다면 Npc의 리액션 발생
+
+    void MovRotEnd_Action()
+    {
+        if(isMovEnd && isRotEnd)
+        {
+            isMovEnd = false;
+            isRotEnd = false;
+            movrotend_action?.Invoke();
+        }
+    }
 }

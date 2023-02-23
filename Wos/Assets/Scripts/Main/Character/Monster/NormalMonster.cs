@@ -6,7 +6,7 @@ public class NormalMonster : Monster_Movement
 {
     [Header("-----NormalMonset-----")]
     public GameObject myHpBar;
-    HpBar_Monster myHpBar_clone = null;
+    HpBar_NormalMonster myHpBar_clone = null;
 
     public override void Ready_Roaming()
     {
@@ -36,7 +36,7 @@ public class NormalMonster : Monster_Movement
                 BattleWindow_ofMonster BW = myManager.BattleWindow_ofMonster as BattleWindow_ofMonster;
                 GameObject hpbar = Instantiate(myHpBar, BW.transform) as GameObject;
                 BW.HpBar_List.Add(hpbar); // 마을로 이동할때 한번에 삭제
-                myHpBar_clone = hpbar.GetComponent<HpBar_Monster>();
+                myHpBar_clone = hpbar.GetComponent<HpBar_NormalMonster>();
                 myHpBar_clone.myHpZone = HpZone;
                 myHpBar_clone.StartSetting(this, myStat.maxhp());
             }
@@ -49,7 +49,7 @@ public class NormalMonster : Monster_Movement
 
     public override void Ondamge_HpBar(float dmg)
     {
-        myHpBar_clone.GetComponent<HpBar_Monster>().OnDmage(dmg);
+        myHpBar_clone.GetComponent<HpBar_NormalMonster>().OnDmage(dmg);
     }
 
     public override void FindTarget(Transform target)

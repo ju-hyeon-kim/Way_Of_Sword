@@ -5,7 +5,9 @@ using UnityEngine;
 public class BossMonster : Monster_Movement
 {
     public Transform CamView;
+
     bool FinishAppear = false;
+    HpBar_Boss myHpBar;
 
     public override void FindTarget(Transform target)
     {
@@ -31,7 +33,14 @@ public class BossMonster : Monster_Movement
     public override void Active_HpBar(bool b)
     {
         BattleWindow_ofMonster BW = myManager.GetComponent<Manager_Dungeon>().BattleWindow_ofMonster as BattleWindow_ofMonster;
-        BW.gameObject.SetActive(b);
+        myHpBar = BW.HpBar_Boss;
+        myHpBar.StartSetting(this, myStat.maxhp());
+        myHpBar.gameObject.SetActive(b);
+    }
+
+    public override void Ondamge_HpBar(float dmg)
+    {
+        myHpBar.OnDmage(dmg);
     }
 
     public void AppearEvent()

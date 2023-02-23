@@ -35,9 +35,10 @@ public class Player_Battle : Player_Movement, IBattle
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Monster") && !myAnim.GetBool("isAttacking"))
             {
                 myTarget = hit.collider.transform;
+
                 if(!myInterface.GetRangeActive()) // Skill Range가 꺼져있을 경우만 기본 공격 가능
                 {
-                    base.MoveToPos(hit.point, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
+                    base.MoveToPos(myTarget.position, () => GetComponent<Animator>().SetTrigger("ComboAttack"));
                 }
             }
             //Npc를 클릭할 경우 -> Npc에게 이동 후 말걸기
@@ -50,7 +51,7 @@ public class Player_Battle : Player_Movement, IBattle
         }
     }
 
-    public override void ComboCheck(bool b)
+    public override void ComboCheck(bool b) // Anim Event
     {
         if (b)
         {

@@ -13,7 +13,7 @@ public class BossEmergence : MonoBehaviour
     public Animator BE_Massage;
 
     int Hcount = 0; 
-    int Maxcount = 10; // Test후 10으로 수정필요
+    int Maxcount = 1; // Test후 10으로 수정필요
 
     public void Plus_Hunting_Count()
     {

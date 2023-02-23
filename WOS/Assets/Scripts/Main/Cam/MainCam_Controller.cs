@@ -78,9 +78,8 @@ public class MainCam_Controller : MonoBehaviour
         if(!isNpc) // 보스 몬스터일 경우
         {
             Function(MonstertState.Battle);
+            Uis_OnOff(true);
         }
-
-        Uis_OnOff(true);
     }
 
     IEnumerator Moving(Vector3 pos,bool b)

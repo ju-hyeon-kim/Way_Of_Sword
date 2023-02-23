@@ -38,6 +38,8 @@ public class Monster_Movement : Character_Movement, IBattle
                 Ready_Roaming();
                 break;
             case MonstertState.Roaming: //nomal monster만 사용
+
+
                 Roaming_Pos.x = Random.Range(Roaming_Zone[2].position.x, Roaming_Zone[3].position.x);
                 Roaming_Pos.z = Random.Range(Roaming_Zone[0].position.z, Roaming_Zone[1].position.z);
                 Roaming_Pos.y = 0.5f;
@@ -227,7 +229,14 @@ public class Monster_Movement : Character_Movement, IBattle
             if(target.GetComponent<Player>().nowMode == Mode.DEAD) // 플레이어가 죽었다면
             {
                 target = null;
-                ChangeState(MonstertState.Roaming);
+                if(TryGetComponent<NormalMonster>(out NormalMonster component)) // 노말몬스터일 경우
+                {
+                    ChangeState(MonstertState.Roaming);
+                }
+                else // 보스몬스터일 경우
+                {
+                    // 하울링
+                }
             }
 
             yield return null;
@@ -240,7 +249,6 @@ public class Monster_Movement : Character_Movement, IBattle
         myTarget.GetComponent<Player>().Get_XP(myStat.xp());
         Dont_Destroy_Data.Inst.Message_Window.Get_Xp((int)myStat.xp());
     }
-
     public virtual void FindTarget(Transform target) { }
     public virtual void Ready_Roaming() { }
     public virtual void Active_HpBar(bool b) { }
