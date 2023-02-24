@@ -15,10 +15,10 @@ public class Monster_Movement : Character_Movement, IBattle
     public GameObject myIcon;
     public Manager_Dungeon myManager; // 매니저에게 값을 받음
     public Transform[] Roaming_Zone; // 0=U 1=D 2=R 3=L // 매니저에게 값을 받음
-    public Transform HpZone;
     public MonstertState myState = MonstertState.Create;
 
     protected Transform myTarget = null;
+    protected Coroutine CoAttack = null;
     Vector3 Roaming_Pos = Vector3.zero;
 
     //for Dead
@@ -173,7 +173,7 @@ public class Monster_Movement : Character_Movement, IBattle
     protected void AttackTarget(Transform target, float AttackRange, float AttackDelay)
     {
         StopAllCoroutines();
-        StartCoroutine(Attacking(target, AttackRange, AttackDelay));
+        CoAttack = StartCoroutine(Attacking(target, AttackRange, AttackDelay));
     }
 
     IEnumerator Attacking(Transform target, float AttackRange, float AttackDelay) //몬스터만 사용
@@ -206,6 +206,7 @@ public class Monster_Movement : Character_Movement, IBattle
                     //공격
                     playTime = 0.0f;
                     myAnim.SetTrigger("Attack");
+                    BossAction();
                 }
             }
 
@@ -259,4 +260,5 @@ public class Monster_Movement : Character_Movement, IBattle
     public virtual void RandomPos() { }
     public virtual void Check_Quest() { }
     public virtual void ResetHp() { }
+    public virtual void BossAction() { }
 }

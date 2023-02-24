@@ -1,4 +1,6 @@
+using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +15,8 @@ public class HpBar_Boss : MonoBehaviour
     float MaxHp = 0;
     int BarNumber = 0;
     int NowBarCount = 0;
+
+    Coroutine coHpCalculating = null;
 
     public void StartSetting(BossMonster monster, float maxhp)
     {
@@ -30,17 +34,51 @@ public class HpBar_Boss : MonoBehaviour
         NowHp -= dmg;
         if (NowHp < (MaxHp / Bars.Length) * (Bars.Length - (BarNumber + 1)))
         {
+            
             Bars[BarNumber].fillAmount = 0;
-            BarNumber++;
+
+            if(BarNumber < Bars.Length - 1)
+            {
+                BarNumber++;
+            }
+            
+
+
+            if(BarNumber == 1)
+            {
+                myMonster.ChangePhase(BossPhase.Phase2);
+            }
+            else if (BarNumber == 2)
+            {
+                myMonster.ChangePhase(BossPhase.Phase3);
+            }
             BarCount.text = $"x{--NowBarCount}";
         }
-        if (NowHp <= 0)
+        float chagefill = NowHp % (MaxHp / Bars.Length) / (MaxHp / Bars.Length);
+
+        if (coHpCalculating != null)
         {
-            NowHp = 0;
-            myMonster.OnDead();
+            StopCoroutine(coHpCalculating);
         }
-        Bars[BarNumber].fillAmount = NowHp % (MaxHp / Bars.Length) / (MaxHp / Bars.Length);
+        coHpCalculating = StartCoroutine(HpCalculating(chagefill));
+
+
         Hp_text.text = $"( {NowHp} / {MaxHp} )";
-        Debug.Log($"( {NowHp} / {MaxHp} )");
+    }
+    IEnumerator HpCalculating(float ChangeFill)
+    {
+        while (Bars[BarNumber].fillAmount > ChangeFill + 0.0001f)
+        {
+            if (Bars[Bars.Length - 1].fillAmount != 0)
+            {
+                Bars[BarNumber].fillAmount = Mathf.Lerp(Bars[BarNumber].fillAmount, ChangeFill, Time.deltaTime);
+            }
+            else
+            {
+                myMonster.OnDead();
+                StopCoroutine(coHpCalculating);
+            }
+            yield return null;
+        }
     }
 }

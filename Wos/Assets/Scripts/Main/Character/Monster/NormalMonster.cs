@@ -4,6 +4,7 @@ using UnityEngine;
 public class NormalMonster : Monster_Movement
 {
     [Header("-----NormalMonset-----")]
+    public Transform HpZone;
     public GameObject myHpBar;
     HpBar_NormalMonster myHpBar_clone = null;
 
