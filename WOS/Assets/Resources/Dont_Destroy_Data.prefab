@@ -2937,7 +2937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4007330144881268427}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Ranges
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2958,6 +2958,7 @@ Transform:
   m_Children:
   - {fileID: 3248162789043393022}
   - {fileID: 3247136987959655106}
+  - {fileID: 3248162788217520858}
   m_Father: {fileID: 6422646444300816848}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59103,7 +59104,7 @@ GameObject:
   - component: {fileID: 3248162788217520858}
   - component: {fileID: 3248162788217520805}
   m_Layer: 0
-  m_Name: ComboAttack_Point
+  m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59116,13 +59117,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3248162788217520859}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 6
+  m_Father: {fileID: 4007330144881268427}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &3248162788217520805
 SphereCollider:
@@ -96943,7 +96944,6 @@ Transform:
   - {fileID: 4007330144881268427}
   - {fileID: 7119942078024300584}
   - {fileID: 4379354096864182966}
-  - {fileID: 3248162788217520858}
   - {fileID: 7581542594089088049}
   m_Father: {fileID: 1768782277592172526}
   m_RootOrder: 4
@@ -96967,7 +96967,7 @@ MonoBehaviour:
   myInterface: {fileID: 8856255254170992092}
   DamageText_Zone: {fileID: 7461125622924587690}
   DropRange: {fileID: 5479995463717672782}
-  ComboAttack_Point: {fileID: 3248162788217520858}
+  AttackRange: {fileID: 3248162788217520858}
   Parents_of_Weapon:
   - {fileID: 2463787410212098609}
   - {fileID: 2463787411045696864}
@@ -100359,7 +100359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7119942078024300584}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: CamTargets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106642,7 +106642,7 @@ Transform:
   m_Children:
   - {fileID: 3871918858170679750}
   m_Father: {fileID: 6422646444300816848}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &5669355344236558452
 ParticleSystem:

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class Player_Battle : Player_Movement, IBattle
@@ -7,7 +8,7 @@ public class Player_Battle : Player_Movement, IBattle
     public Player_Interface myInterface;
     public DamageText_Zone DamageText_Zone;
     public DropRange DropRange;
-    public Transform ComboAttack_Point;
+    public Transform AttackRange;
 
     protected Transform myTarget; // Battle = monster, unBattle = Npc
 
@@ -75,7 +76,18 @@ public class Player_Battle : Player_Movement, IBattle
     public void Hit_Attack()
     {
         float radius = 1.5f;
-        Collider[] list = Physics.OverlapSphere(ComboAttack_Point.position, radius, 1 << LayerMask.NameToLayer("Monster"));
+        Collider[] list = Physics.OverlapSphere(AttackRange.position, radius, 1 << LayerMask.NameToLayer("Monster"));
+
+        //오류 테스트
+        Debug.Log(list.Length);
+        if(list.Length >= 2)
+        {
+            foreach (Collider col in list)
+            {
+                Debug.Log(col.gameObject.name);
+            }
+        }
+
         foreach (Collider col in list)
         {
             col.GetComponent<Monster_Movement>().OnDamage(myStat.ap());

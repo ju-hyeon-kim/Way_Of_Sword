@@ -13,9 +13,10 @@ public class Monster_Movement : Character_Movement, IBattle
     public Collider myAI;
     public GameObject[] DropItems;
     public GameObject myIcon;
-    public Manager_Dungeon myManager; // 매니저에게 값을 받음
     public Transform[] Roaming_Zone; // 0=U 1=D 2=R 3=L // 매니저에게 값을 받음
     public MonstertState myState = MonstertState.Create;
+    [HideInInspector]
+    public Manager_Dungeon myManager; // 매니저에게 값을 받음
 
     protected Transform myTarget = null;
     protected Coroutine CoAttack = null;

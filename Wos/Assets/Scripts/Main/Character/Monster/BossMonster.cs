@@ -11,14 +11,16 @@ public class BossMonster : Monster_Movement
     [Header("-----BossMonster-----")]
     public Transform CamView;
     public GameObject[] Auras;
-    public GameObject[] Skill_Ranges;
+    public BossSkill_Range[] Skill_Ranges;
     public GameObject[] Skill_Effects;
-   
+    public Transform[] SkillEffect_Pos;
+    public Transform SkillEffect_Bin; //오브젝트 풀링
+
 
     //페이즈에 따라 달라지는 스킬, AttackCount
     BossPhase nowPhase = BossPhase.Phase1;
-    UnityAction nowSkill = null;
     int AttackCount = 0;
+    int SkillNum = 0;
 
     bool FinishAppear = false;
     HpBar_Boss myHpBar;
@@ -31,12 +33,12 @@ public class BossMonster : Monster_Movement
         {
             case BossPhase.Phase2: // 2번 공격 후 썬더볼트 발동
                 Auras[0].SetActive(true);
-                nowSkill = Skill1;
+                SkillNum = 0;
                 break;
             case BossPhase.Phase3: // 2번 공격 후 그린토네이도 발동
                 Auras[0].SetActive(false);
                 Auras[1].SetActive(true);
-                nowSkill = Skill2;
+                SkillNum = 1;
                 break;
         }
     }
@@ -87,15 +89,16 @@ public class BossMonster : Monster_Movement
         if(nowPhase > 0)
         {
             AttackCount++;
-            if (AttackCount == 2)
+            if (AttackCount == 3)  // 3번째 공격후 스킬사용
             {
                 StopCoroutine(CoAttack);
-                nowSkill();
+                SkillReady(SkillNum);
                 AttackCount = 0;
             }
         }
     }
 
-    public virtual void Skill1() { }
-    public virtual void Skill2() { }
+    public virtual void SkillReady(int skillnum) { }
+    public virtual void SkillAction(int skillnum) { } //스킬레인지의 AnimEvent가 호출하여 실행
+    public virtual void SkillEnd(int skillnum) { }
 }
