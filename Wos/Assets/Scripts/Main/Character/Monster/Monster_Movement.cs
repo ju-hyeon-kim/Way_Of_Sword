@@ -23,8 +23,8 @@ public class Monster_Movement : Character_Movement, IBattle
     Vector3 Roaming_Pos = Vector3.zero;
 
     //for Dead
-    float DownSpeed = 0.05f; // 죽고나서 내려가는 속도
-    float DeadTime = 15.0f; // 죽고나서 부활되기까지 걸리는 시간
+    public float DownSpeed = 0f; // 죽고나서 내려가는 속도: 노말몬스터->0.05f / 노말몬스터->0.1f
+    protected float DeadTime = 15.0f; // 죽고나서 부활되기까지 걸리는 시간
 
     public void ChangeState(MonstertState s)
     {
@@ -51,13 +51,18 @@ public class Monster_Movement : Character_Movement, IBattle
                 Active_HpBar(true);
                 break;
             case MonstertState.Dead:
-                StopAllCoroutines();
+                Debug.Log("Dead스테이트 발동");
 
+                StopAllCoroutines();
+                // BossMonster.cs 에서 재정의
+                BossDead(); 
+                // 플레이어에게 경험치주기
                 GiveXp_toPlayer();
-                //HpBar 비활성화
+                // HpBar 비활성화
                 Active_HpBar(false);
                 // 퀘스트에 접근하여 연관된 퀘스트가 있는지 검사
                 Check_Quest();
+                //죽음 또는 소생 함수
                 Dead_Or_Resurrection(false);
                 // 아이템 드랍
                 OnDropItem();
@@ -81,17 +86,10 @@ public class Monster_Movement : Character_Movement, IBattle
     {
         switch (myState)
         {
-            case MonstertState.Dead:
-                if (DeadTime > 0)
-                {
-                    DeadTime -= Time.deltaTime;
-                    transform.Translate(Vector3.down * (Time.deltaTime * DownSpeed));
-                }
-                else
-                {
-                    DeadTime = 15.0f;
-                    ChangeState(MonstertState.Resurrection);
-                }
+            case MonstertState.Dead: // 추상화되어있는 CorpseDown()가 매 프레임마다 실행됨 -> 자식에 따라 재정의 -> 노말몬스터 소생o / 보스몬스터는 소생x
+                CorpseDown();
+
+                
                 break;
         }
     }
@@ -132,11 +130,6 @@ public class Monster_Movement : Character_Movement, IBattle
         }
     }
 
-    public void OnDead()
-    {
-        ChangeState(MonstertState.Dead);
-    }
-
     public void OnDropItem()
     {
         for (int i = 0; i < DropItems.Length; i++)
@@ -159,11 +152,13 @@ public class Monster_Movement : Character_Movement, IBattle
 
     void Dead_Or_Resurrection(bool b) //Dead = false, Resurrection = true
     {
+        Debug.Log("Dead_Or_Resurrection함수 발동");
         // 애니메이션
-        myAnim.SetBool("Dead", !b);
+        if (!b) myAnim.SetTrigger("Dead");
+        else myAnim.SetTrigger("Resurrection"); //노말 몬스터만 사용
         // AI_Perception
         myAI.enabled = b;
-        // 리지드바디 키네메틱
+        // 리지드바디 키네메틱 -> false -> 땅으로 내려감
         myRigid.isKinematic = !b;
         // 콜라이더
         myColl.enabled = b;
@@ -185,7 +180,8 @@ public class Monster_Movement : Character_Movement, IBattle
         while (target != null)
         {
             if (!myAnim.GetBool("isAttacking")) playTime += Time.deltaTime;
-            //이동
+
+            // 이동
             Vector3 dir = target.position - transform.position;
             float dist = dir.magnitude;
             dir.Normalize();
@@ -204,14 +200,14 @@ public class Monster_Movement : Character_Movement, IBattle
                 myAnim.SetBool("Move", false);
                 if (playTime >= AttackDelay)
                 {
-                    //공격
+                    // 공격
                     playTime = 0.0f;
                     myAnim.SetTrigger("Attack");
                     BossAction();
                 }
             }
 
-            //회전
+            // 회전
             delta = RotSpeed * Time.deltaTime;
             float Angle = Vector3.Angle(dir, transform.forward);
             float rotDir = 1.0f;
@@ -237,7 +233,6 @@ public class Monster_Movement : Character_Movement, IBattle
                     // 하울링
                 }
             }
-
             yield return null;
         }
         myAnim.SetBool("Move", false);
@@ -262,4 +257,6 @@ public class Monster_Movement : Character_Movement, IBattle
     public virtual void Check_Quest() { }
     public virtual void ResetHp() { }
     public virtual void BossAction() { }
+    public virtual void BossDead() { }
+    public virtual void CorpseDown() { }
 }

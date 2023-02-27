@@ -6,7 +6,9 @@ public class NormalMonster : Monster_Movement
     [Header("-----NormalMonset-----")]
     public Transform HpZone;
     public GameObject myHpBar;
+
     HpBar_NormalMonster myHpBar_clone = null;
+    
 
     public override void Ready_Roaming()
     {
@@ -68,5 +70,19 @@ public class NormalMonster : Monster_Movement
     public override void ResetHp()
     {
         myHpBar_clone.ResetHp();
+    }
+
+    public override void CorpseDown()
+    {
+        if (DeadTime > 0)
+        {
+            DeadTime -= Time.deltaTime;
+            transform.Translate(Vector3.down * (Time.deltaTime * DownSpeed));
+        }
+        else
+        {
+            DeadTime = 15.0f;
+            ChangeState(MonstertState.Resurrection);
+        }
     }
 }

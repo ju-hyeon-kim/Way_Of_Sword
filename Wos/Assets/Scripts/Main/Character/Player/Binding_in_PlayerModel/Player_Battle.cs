@@ -77,17 +77,6 @@ public class Player_Battle : Player_Movement, IBattle
     {
         float radius = 1.5f;
         Collider[] list = Physics.OverlapSphere(AttackRange.position, radius, 1 << LayerMask.NameToLayer("Monster"));
-
-        //오류 테스트
-        Debug.Log(list.Length);
-        if(list.Length >= 2)
-        {
-            foreach (Collider col in list)
-            {
-                Debug.Log(col.gameObject.name);
-            }
-        }
-
         foreach (Collider col in list)
         {
             col.GetComponent<Monster_Movement>().OnDamage(myStat.ap());

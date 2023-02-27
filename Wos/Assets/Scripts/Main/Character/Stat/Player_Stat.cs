@@ -31,9 +31,9 @@ public class Player_Stat : Character_Stat
     float _AddDp = 0.0f;
 
     //Hp
-    float _PlayerHp = 100.0f;
+    float _PlayerHp = 10000.0f; // 테스트 후 100으로 수정 필요
     float _AddHp = 0.0f;
-    float _CurHp = 100.0f;
+    float _CurHp = 10000.0f; // 테스트 후 100으로 수정 필요
 
     //Mp
     float _PlayerMp = 100.0f;

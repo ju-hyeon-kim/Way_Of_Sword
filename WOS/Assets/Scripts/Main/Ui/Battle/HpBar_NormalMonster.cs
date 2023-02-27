@@ -29,7 +29,7 @@ public class HpBar_NormalMonster : MonoBehaviour
         HP_Bar.fillAmount = NowHp / MaxHp;
         if (NowHp <= 0)
         {
-            myMonster.OnDead();
+            myMonster.ChangeState(MonstertState.Dead);
         }
     }
 

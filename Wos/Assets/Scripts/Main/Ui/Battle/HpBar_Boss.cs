@@ -32,39 +32,49 @@ public class HpBar_Boss : MonoBehaviour
     public void OnDmage(float dmg)
     {
         NowHp -= dmg;
-        if (NowHp < (MaxHp / Bars.Length) * (Bars.Length - (BarNumber + 1)))
+
+        if(NowHp <= 0) // Á×À½
         {
-            
-            Bars[BarNumber].fillAmount = 0;
-
-            if(BarNumber < Bars.Length - 1)
-            {
-                BarNumber++;
-            }
-            
-
-
-            if(BarNumber == 1)
-            {
-                myMonster.ChangePhase(BossPhase.Phase2);
-            }
-            else if (BarNumber == 2)
-            {
-                myMonster.ChangePhase(BossPhase.Phase3);
-            }
-            BarCount.text = $"x{--NowBarCount}";
+            myMonster.ChangeState(MonstertState.Dead);
+            NowHp = 0;
         }
-        float chagefill = NowHp % (MaxHp / Bars.Length) / (MaxHp / Bars.Length);
-
-        if (coHpCalculating != null)
+        else // Á×Áö ¾Ê¾ÒÀ» °æ¿ì
         {
-            StopCoroutine(coHpCalculating);
+            if (NowHp < (MaxHp / Bars.Length) * (Bars.Length - (BarNumber + 1)))
+            {
+
+                Bars[BarNumber].fillAmount = 0;
+
+                if (BarNumber < Bars.Length - 1)
+                {
+                    BarNumber++;
+                }
+
+
+
+                if (BarNumber == 1)
+                {
+                    myMonster.ChangePhase(BossPhase.Phase2);
+                }
+                else if (BarNumber == 2)
+                {
+                    myMonster.ChangePhase(BossPhase.Phase3);
+                }
+                BarCount.text = $"x{--NowBarCount}";
+            }
+
+            float chagefill = NowHp % (MaxHp / Bars.Length) / (MaxHp / Bars.Length);
+
+            if (coHpCalculating != null)
+            {
+                StopCoroutine(coHpCalculating);
+            }
+            coHpCalculating = StartCoroutine(HpCalculating(chagefill));
+
+            Hp_text.text = $"( {NowHp} / {MaxHp} )";
         }
-        coHpCalculating = StartCoroutine(HpCalculating(chagefill));
-
-
-        Hp_text.text = $"( {NowHp} / {MaxHp} )";
     }
+
     IEnumerator HpCalculating(float ChangeFill)
     {
         while (Bars[BarNumber].fillAmount > ChangeFill + 0.0001f)
@@ -75,7 +85,7 @@ public class HpBar_Boss : MonoBehaviour
             }
             else
             {
-                myMonster.OnDead();
+                myMonster.ChangeState(MonstertState.Dead);
                 StopCoroutine(coHpCalculating);
             }
             yield return null;

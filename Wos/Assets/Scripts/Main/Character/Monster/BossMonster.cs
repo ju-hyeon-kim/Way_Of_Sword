@@ -98,6 +98,26 @@ public class BossMonster : Monster_Movement
         }
     }
 
+    public override void BossDead()
+    {
+        //아우라 끄기
+        Auras[1].SetActive(false);
+    }
+
+    public override void CorpseDown()
+    {
+        if (DeadTime > 0)
+        {
+            DeadTime -= Time.deltaTime;
+            transform.Translate(Vector3.down * (Time.deltaTime * DownSpeed));
+        }
+        else
+        {
+            DeadTime = 15.0f;
+            ChangeState(MonstertState.Create); // 아무것도 아닌 상태로 변경
+        }
+    }
+
     public virtual void SkillReady(int skillnum) { }
     public virtual void SkillAction(int skillnum) { } //스킬레인지의 AnimEvent가 호출하여 실행
     public virtual void SkillEnd(int skillnum) { }
