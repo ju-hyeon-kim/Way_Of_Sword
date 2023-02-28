@@ -12,14 +12,9 @@ public class Lucia : Npc
         Child_Start_Setting();
     }
 
-    public override void Outline_Active() // 아웃라인 적용
+    public override void Outline_SetActive(bool b) // 아웃라인 적용
     {
-        Body_Outline.SetActive(true);
-    }
-
-    public override void Outline_Unactive() // 아웃라인 해제
-    {
-        Body_Outline.SetActive(false);
+        Body_Outline.SetActive(b);
     }
 
     enum Q_STATE
@@ -29,9 +24,10 @@ public class Lucia : Npc
 
     Q_STATE Q_state = Q_STATE.None;
 
-    public override void Button_0and1_Set(Proceeding_Quest PQ) // 퀘스트의 상태를 감지
+    public override void Button_0and1_Set() 
     {
-        nowPQ = PQ;
+        // 퀘스트의 상태를 감지
+        nowPQ = Dont_Destroy_Data.Inst.Manager_Quest.Proceeding_Quest;
         if (nowPQ.Q_Exist_Settings[1].activeSelf == true)
         {
             if (nowPQ.Progress.text == "진행중")
@@ -54,9 +50,9 @@ public class Lucia : Npc
         Button1_Set();
     }
 
-    public void Button0_Set()
+    void Button0_Set()
     {
-        Transform myButton = C_Data.NpcTalk_Window.Buttons[0].transform;
+        Transform myButton = NpcTalk_Window.Buttons[0].transform;
         // 버튼 이름
         myButton.GetChild(0).GetComponent<TMP_Text>().text = "완료된 퀘스트 없음";
         //Lock 활성화
@@ -74,9 +70,9 @@ public class Lucia : Npc
         myButton.gameObject.SetActive(true);
     }
 
-    public void Button1_Set()
+    void Button1_Set()
     {
-        Transform myButton = C_Data.NpcTalk_Window.Buttons[1].transform;
+        Transform myButton = NpcTalk_Window.Buttons[1].transform;
         // 버튼 이름
         myButton.GetChild(0).GetComponent<TMP_Text>().text = "퀘스트 신청";
         //Lock 활성화
@@ -97,7 +93,7 @@ public class Lucia : Npc
     void QuestComplete_Button()
     {
         //Quest_Complete에게 퀘스트 정보전달
-        Quest_Complete QC = C_Data.NpcTalk_Window.Event_Window.Events[0].GetComponent<Quest_Complete>();
+        Quest_Complete QC = NpcTalk_Window.Event_Window.Events[0].GetComponent<Quest_Complete>();
 
         QC.Q_Name.text = nowPQ.Name.text;
         Quest_Data nowQD = Dont_Destroy_Data.Inst.Manager_Quest.NowQuest;
@@ -119,34 +115,17 @@ public class Lucia : Npc
             }
         }
 
-        /*for(int i = 0; i < 3; i++) // 보상갯수에 맞게 보상슬롯 활성화
-        {
-            if(nowPQ.Reward_Slots[i].activeSelf == true)
-            {
-                GameObject Obj = Instantiate(nowPQ.Reward_Slots[i].transform.GetChild(0).gameObject, QC.Q_Reword[i].transform) as GameObject;
-                Obj.transform.SetAsFirstSibling();
-                QC.Q_Reword[i].SetActive(true);
-            }
-            else
-            {
-                QC.Q_Reword[i].SetActive(false);
-            }
-        }*/
-
         //이벤트 활성화
         QC.gameObject.SetActive(true);
         QC.transform.GetComponent<Animator>().SetBool("Open", true);
 
-        //Npc아이콘 비활성화
-        I_Data.Npc_Icon.SetActive(false);
-
         // 0번 버튼 Lock 적용
-        C_Data.NpcTalk_Window.Lock_or_Unlock_Button(0, true);
-        C_Data.NpcTalk_Window.Buttons[0].transform.GetChild(0).GetComponent<TMP_Text>().text = "완료된 퀘스트 없음";
+        NpcTalk_Window.Lock_or_Unlock_Button(0, true);
+        NpcTalk_Window.Buttons[0].transform.GetChild(0).GetComponent<TMP_Text>().text = "완료된 퀘스트 없음";
     }
 
     void QuestRequest_Btton()
     {
-        C_Data.NpcTalk_Window.Event_Window.Events[1].SetActive(true); // 리퀘스트 윈도우 생성
+        NpcTalk_Window.Event_Window.Events[1].SetActive(true); // 리퀘스트 윈도우 생성
     }
 }

@@ -17,24 +17,26 @@ public class Bender : Npc
         }
     }
 
-    public override void Outline_Active()
+    public override void Outline_SetActive(bool b)
     {
-        //아웃라인 적용
-        for (int i = 0; i < RendererList.Length; ++i)
+        
+        if(b) //아웃라인 적용
         {
-            Material[] Change = new Material[2];
-            Change[0] = RendererList[i].materials[0];
-            Change[1] = Outline_mat;
-            RendererList[i].materials = Change;
+            for (int i = 0; i < RendererList.Length; ++i)
+            {
+                Material[] Change = new Material[2];
+                Change[0] = RendererList[i].materials[0];
+                Change[1] = Outline_mat;
+                RendererList[i].materials = Change;
+            }
         }
-    }
-
-    public override void Outline_Unactive() // 아웃라인 해제
-    {
-        //아웃라인 해제
-        for (int i = 0; i < RendererList.Length; ++i)
+        else //아웃라인 해제
         {
-            RendererList[i].materials = Origin[i];
+            
+            for (int i = 0; i < RendererList.Length; ++i)
+            {
+                RendererList[i].materials = Origin[i];
+            }
         }
     }
 }

@@ -12,7 +12,6 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
     //for Npc
     protected bool isMovEnd = false;
     protected bool isRotEnd = false;
-    protected bool isNpc = false;
     UnityAction movrotend_action = null;
 
     protected void MoveToPos(Vector3 pos, UnityAction Action_AfterMoving = null, bool isMov = true, bool isRot = true)
@@ -53,7 +52,7 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
         myAnim.SetBool("Move", true);
 
         float range = 0.0f;
-        if (movrotend_action != null || isNpc)
+        if (movrotend_action != null)
         {
             range = myAttackRange(); // 플레이어일 경우 나의 range가 아닌 몬스터의 range
         }
@@ -74,12 +73,6 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
 
         isMovEnd = true;
         MovRotEnd_Action();
-        //for Npc
-        /*if(isNpc)
-        {
-            isMovEnd = true;
-            MovRotEnd_NpcEvent();
-        }*/
     }
 
     // 회전 코루틴
@@ -108,17 +101,9 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
 
         isRotEnd = true;
         MovRotEnd_Action();
-        //for Npc
-        /*if(isNpc)
-        {
-            isRotEnd = true;
-            MovRotEnd_NpcEvent();
-        }*/
     }
 
     public virtual float myAttackRange() { return 0; }
-
-    public virtual void MovRotEnd_NpcEvent() { }  // Npc를 클릭했다면 Npc의 리액션 발생
 
     void MovRotEnd_Action()
     {

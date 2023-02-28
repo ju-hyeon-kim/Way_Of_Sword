@@ -12,14 +12,14 @@ public class NpcTalk_Window : MonoBehaviour
 
 
     public MainCam_Controller MainCam;
-    public GameObject Npc_Icon;
     public Proceeding_Quest Proceeding_Quest;
 
-    public string SaveText = "";
+    string SaveText = "";
     string SaveString = "";
 
     public void Talking(Npc Target_Npc)
     {
+        SaveText = Target_Npc.Greetings;
         StartCoroutine(Typing(Target_Npc));
     }
 
@@ -36,7 +36,7 @@ public class NpcTalk_Window : MonoBehaviour
         SaveString = "";
 
         //버튼들 세팅
-        Target_Npc.Buttons_Setting(Proceeding_Quest);
+        Target_Npc.Buttons_Setting();
     }
 
     public void Lock_or_Unlock_Button(int i, bool b)

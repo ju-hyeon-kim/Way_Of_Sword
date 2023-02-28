@@ -59,15 +59,8 @@ public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
         myAnim.runtimeAnimatorController = AnimSet[Convert.ToInt32(b)];
     }
 
-    public override void MovRotEnd_NpcEvent()
+    public void NpcEvent() //!
     {
-        if (isMovEnd && isRotEnd)
-        {
-            ControlPossible = false; // 플레이어의 조작 제한
-            myTarget.GetComponent<Npc>().Reaction(this.gameObject);
-            isNpc = false;
-            isMovEnd = false;
-            isRotEnd = false;
-        }
+        
     }
 }

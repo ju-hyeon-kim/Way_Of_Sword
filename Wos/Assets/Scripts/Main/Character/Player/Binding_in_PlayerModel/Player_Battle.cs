@@ -40,8 +40,7 @@ public class Player_Battle : Player_Movement, IBattle
             else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Npc"))
             {
                 myTarget = hit.collider.transform;
-                isNpc = true;
-                base.MoveToPos(hit.point);
+                base.MoveToPos(myTarget.position, () => Talk_toNPC());
             }
         }
     }
@@ -91,9 +90,13 @@ public class Player_Battle : Player_Movement, IBattle
         base.MoveToPos(myTarget.position, null, false, true);
     }
 
-    public override float myAttackRange()
+    public override float myAttackRange() // 예외 처리: 
     {
-        return myTarget.GetComponent<Monster_Movement>().myAttackRange();
+        if (myTarget.GetComponent<Monster_Movement>() != null)
+        {
+            return myTarget.GetComponent<Monster_Movement>().myAttackRange(); // 몬스터의 경우 -> 몬스터의 사거리를 반환
+        }
+        return 2; // Npc일 경우 -> 3을 반환 -> Npc의 3의 거리만큼 다가갔을 때 상호작용 발동
     }
 
     public void Get_XP(float xp)
@@ -188,6 +191,14 @@ public class Player_Battle : Player_Movement, IBattle
     public override void Pickup_Item()
     {
         DropRange.Pickup_Item();
+    }
+    #endregion
+
+    #region for Npc
+    void Talk_toNPC()
+    {
+        ControlPossible = false; // 플레이어의 조작 제한
+        myTarget.GetComponent<Npc>().Reaction(this.gameObject);
     }
     #endregion
 }
