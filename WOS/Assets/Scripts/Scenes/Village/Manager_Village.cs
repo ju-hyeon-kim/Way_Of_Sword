@@ -26,12 +26,12 @@ public class Manager_Village : Manager_Place
         switch (Manager_SceneChange.Inst.Before_Place)
         {
             case "Guild":
-                Dont_Destroy_Data.Inst.Player.position = SpawnPoints_Player[0].position;
-                Dont_Destroy_Data.Inst.Player.rotation = SpawnPoints_Player[0].rotation;
-                break;
-            case "Forest":
                 Dont_Destroy_Data.Inst.Player.position = SpawnPoints_Player[1].position;
                 Dont_Destroy_Data.Inst.Player.rotation = SpawnPoints_Player[1].rotation;
+                break;
+            case "Forest":
+                Dont_Destroy_Data.Inst.Player.position = SpawnPoints_Player[2].position;
+                Dont_Destroy_Data.Inst.Player.rotation = SpawnPoints_Player[2].rotation;
                 break;
         }
     }

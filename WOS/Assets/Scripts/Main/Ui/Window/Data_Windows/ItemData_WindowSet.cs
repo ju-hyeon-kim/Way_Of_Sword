@@ -3,6 +3,7 @@ using UnityEngine;
 public class ItemData_WindowSet : MonoBehaviour // ΩÃ±€≈Ê
 {
     // DataWindows
+    [Header("-----Windows-----")]
     public WeaponData_Window WeaponData_Window;
     public ArmorData_Window ArmorData_Window;
     public ObeData_Window ObeData_Window;

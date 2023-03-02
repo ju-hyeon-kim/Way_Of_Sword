@@ -8,6 +8,7 @@ public class Bruno : Npc
 {
     [Header("-----Bruno-----")]
     public GameObject Meshs_OutLine;
+    public GameObject Store_Window;
 
     public override void Outline_SetActive(bool b)
     {
@@ -37,6 +38,12 @@ public class Bruno : Npc
 
     void Store_Button()
     {
-        //상점창 열림
+        //상점윈도우 키기 -> 위치설정(왼쪽)
+        Store_Window.SetActive(true);
+        Store_Window.GetComponent<RectTransform>().anchoredPosition = new Vector2(-350, 130);
+        //인벤윈도우 키기 -> 위치설정(오른쪽)
+        GameObject Inventory_Window = Dont_Destroy_Data.Inst.Inventory_Window.gameObject;
+        Inventory_Window.SetActive(true);
+        Inventory_Window.GetComponent<RectTransform>().anchoredPosition = new Vector2(350, 130);
     }
 }

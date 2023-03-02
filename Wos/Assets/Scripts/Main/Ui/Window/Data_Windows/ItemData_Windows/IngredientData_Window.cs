@@ -8,7 +8,7 @@ public class IngredientData_Window : ItemData_Window
     public TMP_Text Explanation;
     public TMP_Text Price;
 
-    public override void Data_Setting(Item_2D item2D)
+    public override void DataSetting_ofChild(Item_2D item2D)
     {
         Image.sprite = item2D.transform.GetComponent<Image>().sprite;
 

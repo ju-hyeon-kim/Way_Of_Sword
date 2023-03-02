@@ -27,6 +27,11 @@ public class Dont_Destroy_Data : MonoBehaviour
     }
     #endregion
 
+    [Header("-----Managers-----")]
+    public Manager_Cams Manager_Cams;
+    public Manager_Quest Manager_Quest;
+    public Manager_Item Manager_Item;
+
     [Header("-----Windows-----")]
     public Map_Window Map_Window;
     public ItemData_WindowSet ItemData_WindowSet;
@@ -37,8 +42,6 @@ public class Dont_Destroy_Data : MonoBehaviour
     public Message_Window Message_Window;
 
     [Header("-----Etc-----")]
-    public Manager_Cams Manager_Cams;
-    public Manager_Quest Manager_Quest;
     public Transform Canvas;
     public Transform Player;
 
@@ -51,6 +54,17 @@ public class Dont_Destroy_Data : MonoBehaviour
 
         Manager_SaveLode.Inst.JsonReady();
         Manager_SaveLode.Inst.JsonLoad();
+
+        // 뉴 게임 시작시 플레이어의 위치를 설정 <- 메인카메라도 따라가게
+        if (PlaceManager.TryGetComponent<Manager_Village>(out Manager_Village component))
+        {
+            float x = component.SpawnPoints_Player[0].position.x - Player.position.x;
+            float z = component.SpawnPoints_Player[0].position.z - Player.position.z;
+            Manager_Cams.MainCam_Controller.transform.position += new Vector3(x, 0, z);
+            Manager_Cams.MiniMapCam_Controller.transform.position += new Vector3(x, 0, z);
+
+            Player.position = component.SpawnPoints_Player[0].position;
+        }
 
         Manager_Cams.Start_Setting();
         Manager_Quest.Start_Setting(PlaceManager);

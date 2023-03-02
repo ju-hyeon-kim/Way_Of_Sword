@@ -13,7 +13,7 @@ public class WeaponData_Window : ItemData_Window
     public Image[] ObeImages;
     public SwordIcon_Window SwordIcon_Window;
 
-    public override void Data_Setting(Item_2D item2D)
+    public override void DataSetting_ofChild(Item_2D item2D)
     {
         ItemImage.sprite = item2D.GetComponent<Image>().sprite;
         Weapon_Data Wdata = item2D.myData as Weapon_Data;
