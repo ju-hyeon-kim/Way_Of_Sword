@@ -46,4 +46,10 @@ public class Bruno : Npc
         Inventory_Window.SetActive(true);
         Inventory_Window.GetComponent<RectTransform>().anchoredPosition = new Vector2(350, 130);
     }
+
+    public override void Button2_OnClick_ofChild()
+    {
+        Store_Window.SetActive(false);
+        Dont_Destroy_Data.Inst.Inventory_Window.gameObject.SetActive(false);
+    }
 }

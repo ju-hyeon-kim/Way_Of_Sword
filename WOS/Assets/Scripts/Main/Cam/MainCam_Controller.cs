@@ -7,13 +7,14 @@ public class MainCam_Controller : MonoBehaviour
     public Transform Cam_Target;
     public Transform ChangeViewPos;
     public bool Talk_Ready = false;
-    public bool isEvent = false;
     public NpcTalk_Window NpcTalk_Window;
     public GameObject[] Unactive_Uis;
     public UnityAction<MonstertState> Function;
 
     Vector3 myDir = Vector3.zero;
     float myDist = 0.0f;
+    bool Follow_Possible = true;
+    bool Zoom_Possible = true;
 
     //Npc 대화 이벤트 or 보스 등장 이벤트
     Vector3 SavePos;
@@ -37,11 +38,14 @@ public class MainCam_Controller : MonoBehaviour
 
     IEnumerator Follow_CamTarget()
     {
-        while (!isEvent)
+        while (Follow_Possible)
         {
             //줌
-            myDist -= Input.GetAxis("Mouse ScrollWheel") * 2.0f;
-            myDist = Mathf.Clamp(myDist, 2.0f, 15.0f); // 줌 최소,최대 제한
+            if(Zoom_Possible)
+            {
+                myDist -= Input.GetAxis("Mouse ScrollWheel") * 2.0f;
+                myDist = Mathf.Clamp(myDist, 2.0f, 15.0f); // 줌 최소,최대 제한
+            }
 
             transform.position = Cam_Target.position + myDir * myDist;
             yield return null;
@@ -52,7 +56,7 @@ public class MainCam_Controller : MonoBehaviour
     //보스몹 클로즈업
     public void ChangeView(Transform target)
     {
-        isEvent = true;
+        Follow_Possible = false;
         // 시점 변경 전 카메라의 위치와 방향벡터 저장
         SaveTarget = target.gameObject;
         if (SaveTarget.TryGetComponent<BossMonster>(out BossMonster componet))
@@ -69,7 +73,7 @@ public class MainCam_Controller : MonoBehaviour
     //Npc와 대화끝 -> 원래 시점으로
     public void ReturnView(bool isNpc)
     {
-        isEvent = false;
+        Follow_Possible = true;
         StartCoroutine(Moving(SavePos, false));
         StartCoroutine(Rotating(SaveVec));
 
@@ -113,13 +117,11 @@ public class MainCam_Controller : MonoBehaviour
         if (b)
         {
             Talk_Ready = true;
-
             MovFinish = true;
             ViewChangeFinish();
         }
         else
         {
-            StartCoroutine(Follow_CamTarget());
             Cam_Target.GetComponentInParent<Player>().ControlPossible = true; // 플레이어 조작 가능
             Talk_Ready = false;
         }
@@ -160,6 +162,7 @@ public class MainCam_Controller : MonoBehaviour
                 MovFinish = false;
                 RotFinish = false;
             }
+            StartCoroutine(Follow_CamTarget());
         }
     }
 
@@ -169,5 +172,10 @@ public class MainCam_Controller : MonoBehaviour
         {
             Unactive_Uis[i].SetActive(b);
         }
+    }
+
+    public void Zoom_Possible_OnOff(bool b)
+    {
+        Zoom_Possible = b;
     }
 }

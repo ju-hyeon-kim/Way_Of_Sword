@@ -11,7 +11,6 @@ public class WeaponData_Window : ItemData_Window
     public TMP_Text Ap;
     public TMP_Text Explanation;
     public Image[] ObeImages;
-    public SwordIcon_Window SwordIcon_Window;
 
     public override void DataSetting_ofChild(Item_2D item2D)
     {
@@ -24,11 +23,13 @@ public class WeaponData_Window : ItemData_Window
         Explanation.text = Wdata.Explanation;
 
         //오브의 이미지 가져오기
-        for (int i = 0; i < SwordIcon_Window.ObeSlots.Length; i++)
+        Weapon_2D Weapon2D = item2D as Weapon_2D;
+
+        for (int i = 0; i < 4; i++)
         {
-            if (!SwordIcon_Window.ObeSlots[i].isEmpty)
+            if (Weapon2D.Equipped_Obes[i] != null) // 오브가 있다면
             {
-                ObeImages[i].sprite = SwordIcon_Window.ObeSlots[i].myObe.GetComponent<Image>().sprite;
+                ObeImages[i].sprite = Weapon2D.Equipped_Obes[i].GetComponent<Image>().sprite;
                 ObeImages[i].color = new Vector4(1, 1, 1, 0.6f); // 반투명화
             }
             else

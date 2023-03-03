@@ -175,7 +175,11 @@ public class Npc : MonoBehaviour
             NpcTalk_Window.Buttons[i].SetActive(false);
         }
         NpcTalk_Window.gameObject.SetActive(false);
+        // 자식따라 달라지는 옵션
+        Button2_OnClick_ofChild();
         // 카메라 시점 원래대로
         NpcTalk_Window.MainCam.ReturnView(true);
     }
+
+    public virtual void Button2_OnClick_ofChild() { }
 }

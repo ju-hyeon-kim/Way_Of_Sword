@@ -1,4 +1,4 @@
-public class SwordIcon_Window : Icon_Window
+public class SwordIcon_Window : Window
 {
     public ObeSlot_inSword[] ObeSlots;
 

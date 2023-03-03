@@ -1,23 +1,23 @@
 Using pre-set license
-Built from '2021.3/staging' branch; Version is '2021.3.11f1 (0a5ca18544bf) revision 679073'; Using compiler version '192829333'; Build Type 'Release'
-OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'ko' Physical Memory: 16332 MB
+Built from '2021.3/staging' branch; Version is '2021.3.1f1 (3b70a0754835) revision 3895456'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19044) 64bit Professional' Language: 'ko' Physical Memory: 16321 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
 
 COMMAND LINE ARGUMENTS:
-C:\Program Files\Unity\Hub\Editor\2021.3.11f1\Editor\Unity.exe
+C:\Program Files\Unity 2021.3.1f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/김주현/Desktop/WosGit/WOS/WOS
+C:/Users/Atents/Desktop/WOS/WOS
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-11176
-Successfully changed project path to: C:/Users/김주현/Desktop/WosGit/WOS/WOS
-C:/Users/김주현/Desktop/WosGit/WOS/WOS
+56594
+Successfully changed project path to: C:/Users/Atents/Desktop/WOS/WOS
+C:/Users/Atents/Desktop/WOS/WOS
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -47,321 +47,58 @@ C:/Users/김주현/Desktop/WosGit/WOS/WOS
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 138.59 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 128.23 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Initialize engine version: 2021.3.11f1 (0a5ca18544bf)
-[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/김주현/Desktop/WosGit/WOS/WOS/Assets
+Initialize engine version: 2021.3.1f1 (3b70a0754835)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity 2021.3.1f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Atents/Desktop/WOS/WOS/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
-    Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 2060 SUPER (ID=0x1f06)
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 710 (ID=0x128b)
     Vendor:   NVIDIA
-    VRAM:     8031 MB
-    Driver:   31.0.15.1694
+    VRAM:     984 MB
+    Driver:   30.0.14.7404
 Initialize mono
-Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/Managed'
-Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
-Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56560
+Mono path[0] = 'C:/Program Files/Unity 2021.3.1f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity 2021.3.1f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity 2021.3.1f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56080
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.067264 seconds.
+Register platform support module: C:/Program Files/Unity 2021.3.1f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.006466 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 111.60 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 140.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.039 seconds
+- Completed reload, in  1.226 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1039ms)
-		BeginReloadAssembly (250ms)
+	ReloadAssembly (1227ms)
+		BeginReloadAssembly (93ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (511ms)
-			LoadAssemblies (230ms)
+		EndReloadAssembly (819ms)
+			LoadAssemblies (89ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (104ms)
+			SetupTypeCache (351ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (24ms)
-			SetupLoadedEditorAssemblies (294ms)
+			RebuildScriptCaches (35ms)
+			SetupLoadedEditorAssemblies (367ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (21ms)
+				InitializePlatformSupportModulesInManaged (9ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (112ms)
-				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (107ms)
-				ProcessInitializeOnLoadMethodAttributes (53ms)
+				RefreshPlugins (141ms)
+				BeforeProcessingInitializeOnLoad (2ms)
+				ProcessInitializeOnLoadAttributes (152ms)
+				ProcessInitializeOnLoadMethodAttributes (64ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.034345 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image C:\Users\김주현\Desktop\WosGit\WOS\WOS\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image C:\Users\김주현\Desktop\WosGit\WOS\WOS\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.06 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.862 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1862ms)
-		BeginReloadAssembly (289ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (5ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (20ms)
-		EndReloadAssembly (1337ms)
-			LoadAssemblies (315ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (305ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (73ms)
-			SetupLoadedEditorAssemblies (675ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (24ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (218ms)
-				ProcessInitializeOnLoadAttributes (324ms)
-				ProcessInitializeOnLoadMethodAttributes (42ms)
-				AfterProcessingInitializeOnLoad (66ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (14ms)
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.08 seconds
-Refreshing native plugins compatible for Editor in 1.84 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3928 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 43 unused Assets / (1.4 MB). Loaded Objects now: 4417.
-Memory consumption went from 236.6 MB to 235.2 MB.
-Total: 5.650600 ms (FindLiveObjects: 0.798900 ms CreateObjectMapping: 0.133900 ms MarkObjects: 4.075100 ms  DeleteObjects: 0.640900 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 1649.367770 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Common/Nobg/02_plate_cloak_nobg.png
-  artifactKey: Guid(0f2252a9d2fedbe409afd310ec83e4cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Common/Nobg/02_plate_cloak_nobg.png using Guid(0f2252a9d2fedbe409afd310ec83e4cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccc1a69d9328189fb692f90e1487ba37') in 0.406790 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Skills/No_bg/09_Melee_slash_nobg.png
-  artifactKey: Guid(3cb5846afaa42464f859735f72047fc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Skills/No_bg/09_Melee_slash_nobg.png using Guid(3cb5846afaa42464f859735f72047fc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2aabaf1ccaf02a48a8b9228fcf57751c') in 0.060531 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/06_plate_pants_E.png
-  artifactKey: Guid(600efcd1e359c604b823dcc06b09c4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/06_plate_pants_E.png using Guid(600efcd1e359c604b823dcc06b09c4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a1d93f5eec81b467f419b47555746c3') in 0.047669 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Char/02_Blacksmithing.png
-  artifactKey: Guid(86aefa2655c3f114ab27823c16e3f431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Char/02_Blacksmithing.png using Guid(86aefa2655c3f114ab27823c16e3f431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1fe7f7cfcf2965b53024660095ca8f6') in 0.040874 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Scripts/Main/Ui/Window/Label_Windows/NpcName_Label.cs
-  artifactKey: Guid(9ac02fa2b89c9cc4a8d6837e8e09b15c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Main/Ui/Window/Label_Windows/NpcName_Label.cs using Guid(9ac02fa2b89c9cc4a8d6837e8e09b15c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63bcd2bcf0d080aaae34bb8e27235b15') in 0.021705 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000032 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/02_plate_shoulder_E.png
-  artifactKey: Guid(31d9fd9a71fd2fa46b253808d9db9ab2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/02_plate_shoulder_E.png using Guid(31d9fd9a71fd2fa46b253808d9db9ab2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57bc1b0bfe966f7035d2b4ac420dbbfb') in 0.046218 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/Nobg/06_plate_pants_E_nobg.png
-  artifactKey: Guid(8b56dd3c68ad16841b664ad9a83345d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/Nobg/06_plate_pants_E_nobg.png using Guid(8b56dd3c68ad16841b664ad9a83345d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c19d581d9109e9561e685776b2203388') in 0.041758 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000041 seconds.
-  path: Assets/Scripts/Main/Ui/Window/Label_Windows
-  artifactKey: Guid(d40d06cb8a23a84469f7fba285ade756) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/Main/Ui/Window/Label_Windows using Guid(d40d06cb8a23a84469f7fba285ade756) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa86ab9e8358485471328b6ae631a762') in 0.008227 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/Nobg/02_plate_cloak_E_nobg.png
-  artifactKey: Guid(e399808bbd371d04bbf5c1cca82e00fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/Nobg/02_plate_cloak_E_nobg.png using Guid(e399808bbd371d04bbf5c1cca82e00fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e53b3bdf77d8d82dc5401c95967bf7a') in 0.037045 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/01_plate_chest_E.png
-  artifactKey: Guid(9c8101d479c60d34185259c220494c61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/01_plate_chest_E.png using Guid(9c8101d479c60d34185259c220494c61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '983a9d3fc875adb352b79488977b637a') in 0.028011 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/03_plate_helm_E.png
-  artifactKey: Guid(3253ad9deab97584d9f92d6a2fad17b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/03_plate_helm_E.png using Guid(3253ad9deab97584d9f92d6a2fad17b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b73814a405d4ea187c25bea1e17654b') in 0.026912 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/Nobg/05_plate_boots_E_nobg.png
-  artifactKey: Guid(e89ca016d404a6a4687a5ee741e2d2b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Epic/Nobg/05_plate_boots_E_nobg.png using Guid(e89ca016d404a6a4687a5ee741e2d2b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8e35e831d737d9f6a665f953adba919') in 0.029248 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Common/Nobg/05_plate_boots_nobg.png
-  artifactKey: Guid(57e55d9ab75fec140a903522d5acf84e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Common/Nobg/05_plate_boots_nobg.png using Guid(57e55d9ab75fec140a903522d5acf84e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68adaeb40893fb4e54851d6c966100e3') in 0.029458 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Common/05_plate_boots.png
-  artifactKey: Guid(cd7b401a96a069e45a2313a33309ef26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Armor/Common/05_plate_boots.png using Guid(cd7b401a96a069e45a2313a33309ef26) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9f204b1f83552e1106720c9dd5d7d26') in 0.030597 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 2.462146 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Weapons/No_bg/03_Greataxe_nobg.png
-  artifactKey: Guid(6a20f4dbf06be284e860c0bf6799923a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Weapons/No_bg/03_Greataxe_nobg.png using Guid(6a20f4dbf06be284e860c0bf6799923a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab7949de8c22441fc7c53ae872be0e6a') in 0.026052 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Weapons/No_bg/08_Mage_Staff_nobg.png
-  artifactKey: Guid(c0280fafa88fc374899c40a7f7982b39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Ui/Basic_RPG_Icons/Items/Weapons/No_bg/08_Mage_Staff_nobg.png using Guid(c0280fafa88fc374899c40a7f7982b39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e867767a6343cb25a4d29dad7dc4720e') in 0.026072 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/AssetStore/Building/fbx/full/_tavern.fbx
-  artifactKey: Guid(9d627988082ef8a469ac371a8ebfc926) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Building/fbx/full/_tavern.fbx using Guid(9d627988082ef8a469ac371a8ebfc926) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2331e40c492fa8777c474c78d4f0a9b') in 0.101228 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Datas/Monster/Beatle_Data.asset
-  artifactKey: Guid(7ac07b374bba9b843bd73d6e3b3752e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Datas/Monster/Beatle_Data.asset using Guid(7ac07b374bba9b843bd73d6e3b3752e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04041fc67dd69c8cdf242b34aa74c7e3') in 0.012939 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Model/3D_Model/Character/Monster/Beatle/Beatle_fbx.FBX
-  artifactKey: Guid(66ca9bf0145725543a1e8a693589f362) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Model/3D_Model/Character/Monster/Beatle/Beatle_fbx.FBX using Guid(66ca9bf0145725543a1e8a693589f362) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c283794659e9a686776ec97f8811de7d') in 0.148821 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Model/2D_Model/Ui/Images/Tag.png
-  artifactKey: Guid(364d4fadfa4a5b944932e51d14349636) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Model/2D_Model/Ui/Images/Tag.png using Guid(364d4fadfa4a5b944932e51d14349636) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58245ddf95b466df4d891a885598e846') in 0.048773 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Datas/Skill/FireWave_Data.asset
-  artifactKey: Guid(8f7b16179c4bfef4b8501d750f4b8923) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Datas/Skill/FireWave_Data.asset using Guid(8f7b16179c4bfef4b8501d750f4b8923) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2943c15bf2f98b49f6553af59b09da16') in 0.033288 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/AssetStore/Cursors/Cursors 256/Cursor_Attack.png
-  artifactKey: Guid(24d21e256b498a944a00e2527ed7618c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Cursors/Cursors 256/Cursor_Attack.png using Guid(24d21e256b498a944a00e2527ed7618c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd13499e096282c8d5cfaa94a1f0eba2d') in 0.033811 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/AssetStore/Building/fbx/full/_fontan_2.fbx
-  artifactKey: Guid(51be813a63a10b1458b6ee004610f643) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/AssetStore/Building/fbx/full/_fontan_2.fbx using Guid(51be813a63a10b1458b6ee004610f643) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7f5c6b07ed3f96136504a1deb2b89c7') in 0.034488 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Model/3D_Model/Character/Npc/Bruno/Bruno_fbx.fbx
-  artifactKey: Guid(eea804eac41420e44a6613395a99a2a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Model/3D_Model/Character/Npc/Bruno/Bruno_fbx.fbx using Guid(eea804eac41420e44a6613395a99a2a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '596a2c6b32c6d0722de9cca8d3776f09') in 0.540371 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 95.509266 seconds.
-  path: Assets/Model/2D_Model/Ui/Window/Slot_Frame.png
-  artifactKey: Guid(4293f3f43e7a5524dbcb191b0ef09d9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Model/2D_Model/Ui/Window/Slot_Frame.png using Guid(4293f3f43e7a5524dbcb191b0ef09d9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44adff9c2047ff3c74d2b59bde0400f3') in 0.030576 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Model/2D_Model/Ui/Window/Window4.png
-  artifactKey: Guid(ae0f0bcab89e94242a5b97d3ba003062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Model/2D_Model/Ui/Window/Window4.png using Guid(ae0f0bcab89e94242a5b97d3ba003062) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29d490b14560a144b947b8ebd01d2b51') in 0.190242 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/Model/2D_Model/Ui/Window/Window_Frame.png
-  artifactKey: Guid(c430351465fe1fc42a6bef5878a08253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Model/2D_Model/Ui/Window/Window_Frame.png using Guid(c430351465fe1fc42a6bef5878a08253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fd84c907c950a2d877c50cf70451a3b') in 0.186138 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Model/2D_Model/Ui/Window/Window3.png
-  artifactKey: Guid(4edbc5539b441f049966c07e2ba12186) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Model/2D_Model/Ui/Window/Window3.png using Guid(4edbc5539b441f049966c07e2ba12186) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5908c1de5b72dd39c03b7313c18a5b10') in 0.157838 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 106.727348 seconds.
-  path: Assets/Font/Cursive/Cur1/Kor_Cur1.asset
-  artifactKey: Guid(def766e3f36c7674b8cf495742185eae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Font/Cursive/Cur1/Kor_Cur1.asset using Guid(def766e3f36c7674b8cf495742185eae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c04c296778069242431011ee5f599e06') in 0.291787 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Font/Cursive/Cur1/Kor_Cur1_OL_Title.asset
-  artifactKey: Guid(20085eebf19dc3343a425eb6bdee81f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Font/Cursive/Cur1/Kor_Cur1_OL_Title.asset using Guid(20085eebf19dc3343a425eb6bdee81f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bbf9c34b72ea225a6891aa1260d1f235') in 0.233247 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/Font/Dot/Kor_Dot/Dot1/Korean_Dot1.asset
-  artifactKey: Guid(fc4e19b4bc29d8e4f8c6736705ffe9d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Font/Dot/Kor_Dot/Dot1/Korean_Dot1.asset using Guid(fc4e19b4bc29d8e4f8c6736705ffe9d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9775c42d110cdf342c625b0893d9f3fe') in 0.229917 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Tools/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
-  artifactKey: Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Tools/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset using Guid(8f586378b4e144a9851e7b34d9b748ee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f5976338c8406fb8cd5d26d4128a504') in 0.026252 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Font/Cursive/Cur2/Kor_Cur2.asset
-  artifactKey: Guid(4455251ad21c99946833bad019c30815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Font/Cursive/Cur2/Kor_Cur2.asset using Guid(4455251ad21c99946833bad019c30815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '392c1d3432878b3e670c56ae2a7d0f44') in 0.040446 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Font/Dot/Kor_Dot/Dot1/Korean_Dot1_OL.asset
-  artifactKey: Guid(17219f0a642b5864487795aebae50717) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Font/Dot/Kor_Dot/Dot1/Korean_Dot1_OL.asset using Guid(17219f0a642b5864487795aebae50717) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a6765108031d31dcb0579e1f741e33b') in 0.214171 seconds 
-Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
-AssetImportWorker is now disconnected from the server
-Process exiting
-Exiting without the bug reporter. Application will terminate with return code 0
+Registered in 0.006273 seconds.

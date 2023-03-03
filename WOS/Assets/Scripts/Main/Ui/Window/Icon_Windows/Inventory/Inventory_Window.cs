@@ -1,4 +1,4 @@
-public class Inventory_Window : Icon_Window
+public class Inventory_Window : Window
 {
     public Inventory_Tab[] myTabs;
     public Manager_Player Manager_Player;
