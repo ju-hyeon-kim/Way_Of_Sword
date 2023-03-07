@@ -241,7 +241,7 @@ public class Monster_Movement : Character_Movement, IBattle
     void GiveXp_toPlayer()
     {
         myTarget.GetComponent<Player>().Get_XP(myStat.xp());
-        Dont_Destroy_Data.Inst.Message_Window.Get_Xp((int)myStat.xp());
+        Dont_Destroy_Data.Inst.ItemAcuisition_Message.Get_Xp((int)myStat.xp());
     }
 
     public override float myAttackRange()

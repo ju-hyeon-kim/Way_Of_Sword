@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,20 +27,23 @@ public class Npc : MonoBehaviour
             Outline_SetActive(true);
 
             //이름 라벨 켜기
-            NpcName_Label.Inst.gameObject.SetActive(true);
-            NpcName_Label.Inst.GetComponentInChildren<TMP_Text>().text = Name;
+            GameObject Label = Dont_Destroy_Data.Inst.NpcName_Label;
+            Label.SetActive(true);
+            Label.GetComponentInChildren<TMP_Text>().text = Name;
         }
     }
     private void OnMouseOver() //마우스가 Npc를 가리키고 있는 동안
     {
-        NpcName_Label.Inst.transform.position = Camera.main.WorldToScreenPoint(NameLabel_Zone.position);
+        GameObject Label = Dont_Destroy_Data.Inst.NpcName_Label;
+        Label.transform.position = Camera.main.WorldToScreenPoint(NameLabel_Zone.position);
     }
     private void OnMouseExit() //마우스가 빠져 나갈 때
     {
         Outline_SetActive(false); //아웃라인 해제
 
         //이름 라벨 끄기
-        NpcName_Label.Inst.gameObject.SetActive(false);
+        GameObject Label = Dont_Destroy_Data.Inst.NpcName_Label;
+        Label.SetActive(false);
     }
     #endregion
 
@@ -137,7 +141,8 @@ public class Npc : MonoBehaviour
         //아웃라인 해제
         Outline_SetActive(false);
         //이름 라벨 끄기
-        NpcName_Label.Inst.gameObject.SetActive(false);
+        GameObject Label = Dont_Destroy_Data.Inst.NpcName_Label;
+        Label.SetActive(false);
     }
 
     //플레이어와 대화 종료 시 원래 바라보고 있던 방향으로 돌아가기

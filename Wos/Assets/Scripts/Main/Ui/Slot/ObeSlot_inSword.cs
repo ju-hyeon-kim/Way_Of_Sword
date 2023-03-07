@@ -28,15 +28,13 @@ public class ObeSlot_inSword : Item_Slot
         }
     }
 
-
-
     public override void OnDrop_ofChild(PointerEventData eventData) // DragDrop으로 오브를 받았을 때
     {
         myObe = eventData.pointerDrag.GetComponent<Obe_2D>();
         Receive_Obe();
     }
 
-    public void Receive_toWeaponSlot(Obe_2D Obe2D) // Weapon의 장착으로 오브를 받았을 때
+    public void ReceiveObe_fromWeapon(Obe_2D Obe2D) // Weapon의 장착으로 오브를 받았을 때
     {
         myObe = Obe2D;
         Receive_Obe();

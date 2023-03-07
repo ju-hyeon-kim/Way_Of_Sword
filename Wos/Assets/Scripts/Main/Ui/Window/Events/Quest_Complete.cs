@@ -24,8 +24,6 @@ public class Quest_Complete : MonoBehaviour
             {
                 Item_2D Item = Q_Reword[i].transform.GetChild(0).GetComponent<Item_2D>(); // Icon 컴포넌트 저장
                 Dont_Destroy_Data.Inst.Inventory_Window.Put_Item(Item);
-
-                Dont_Destroy_Data.Inst.Message_Window.Get_Item(Item);
             }
         }
 

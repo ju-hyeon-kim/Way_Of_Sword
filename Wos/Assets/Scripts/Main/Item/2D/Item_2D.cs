@@ -7,16 +7,20 @@ public class Item_2D : MonoBehaviour,
     IBeginDragHandler, IDragHandler, IEndDragHandler // 드래그 핸들러
 {
     public Item_Data myData;
+    public bool isSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
+    [HideInInspector]
+    public Item_Slot Before_Slot = null; // 전에 있던 부모 오브젝트
 
     protected ItemData_Window myData_Window;
-
-    public Item_Slot Before_Slot = null; // 전에 있던 부모 오브젝트
-    public bool isSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
-
     protected Vector2 dragOffset = Vector2.zero;
     protected Vector2 size = Vector2.zero;
 
-    public virtual void OnPointerEnter(PointerEventData eventData) { } // 마우스 포지션이 아이콘 안으로 들어왔을때
+    public void OnPointerEnter(PointerEventData eventData) // 마우스 포지션이 아이콘 안으로 들어왔을때
+    {
+        Reset_myDataWindow(); // myDataWindow 초기화 (자식에 맞게)
+        myData_Window.Data_Setting(this);
+        myData_Window.gameObject.SetActive(true);
+    }
 
     public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 안에 있을때
     {
@@ -59,4 +63,6 @@ public class Item_2D : MonoBehaviour,
             transform.localPosition = Vector3.zero;
         }
     }
+
+    public virtual void Reset_myDataWindow() { }
 }

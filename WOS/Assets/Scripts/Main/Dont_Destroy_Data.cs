@@ -31,6 +31,7 @@ public class Dont_Destroy_Data : MonoBehaviour
     public Manager_Cams Manager_Cams;
     public Manager_Quest Manager_Quest;
     public Manager_Item Manager_Item;
+    public Manager_Gold Manager_Gold;
 
     [Header("-----Windows-----")]
     public Map_Window Map_Window;
@@ -39,11 +40,14 @@ public class Dont_Destroy_Data : MonoBehaviour
     public NpcTalk_Window NpcTalk_Window;
     public Transform Label_Windows;
     public Battle_Window BattleWindow_ofPlayer;
-    public Message_Window Message_Window;
+    public Question_Window Question_Window;
 
     [Header("-----Etc-----")]
     public Transform Canvas;
     public Transform Player;
+    public ItemAcuisition_Message ItemAcuisition_Message;
+    public GameObject GoldLack_Message;
+    public GameObject NpcName_Label;
 
     [HideInInspector]
     public Transform NowPlace_Manager; // 씬이동시 각매니저가 알아서 값으로 들어감
@@ -65,7 +69,6 @@ public class Dont_Destroy_Data : MonoBehaviour
 
             Player.position = component.SpawnPoints_Player[0].position;
         }
-
         Manager_Cams.Start_Setting();
         Manager_Quest.Start_Setting(PlaceManager);
     }

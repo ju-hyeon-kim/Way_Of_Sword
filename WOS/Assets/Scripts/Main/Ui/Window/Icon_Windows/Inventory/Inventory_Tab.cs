@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Inventory_Tab : MonoBehaviour
 {
-    public Inven_Slot[] mySlots;
+    public Inventory_Slot[] mySlots;
     public ItemType myType;
 
     public void Put_Item(Item_2D item)
@@ -19,8 +19,15 @@ public class Inventory_Tab : MonoBehaviour
                 if (mySlots[i].Get_myItemName() == item.myData.Name) // 같은 아이템이 있다면
                 {
                     isNoneSameItem = false;
-                    mySlots[i].Put_SameItem();
-                    break;
+                    if(myType != ItemType.Equipment || myType != ItemType.Obe) // 장비or오브 타입이 아니라면
+                    {
+                        mySlots[i].Put_SameItem(); 
+                        break;
+                    }
+                    else // 장비or오브는 같은 아이템이 있어도 다르게 인식해야함
+                    {
+                        isNoneSameItem = true;
+                    }
                 }
                 else // 같은 아이템이 아니라면
                 {
