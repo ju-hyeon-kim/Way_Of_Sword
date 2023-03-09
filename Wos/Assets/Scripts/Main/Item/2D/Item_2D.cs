@@ -8,6 +8,7 @@ public class Item_2D : MonoBehaviour,
 {
     public Item_Data myData;
     public bool isSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
+    public bool isItem_ofStore = false; // 상점에서 판매하는 아이템의 경우 -> 드래그 불가능
     [HideInInspector]
     public Item_Slot Before_Slot = null; // 전에 있던 부모 오브젝트
 
@@ -34,33 +35,42 @@ public class Item_2D : MonoBehaviour,
 
     public void OnBeginDrag(PointerEventData eventData) // 아이템을 들어올림
     {
-        isSlot = false; // 슬롯이 정해질 때까지 false로 초기화
+        if(!isItem_ofStore) // 상점에서 파는 아이템이 아니어야 드래그 가능
+        {
+            isSlot = false; // 슬롯이 정해질 때까지 false로 초기화
 
-        //부모오브젝트 저장(슬롯에게 거부당할 경우를 위해)
-        Before_Slot = transform.parent.GetComponent<Item_Slot>();
+            //부모오브젝트 저장(슬롯에게 거부당할 경우를 위해)
+            Before_Slot = transform.parent.GetComponent<Item_Slot>();
 
-        //들어올린 오브젝트는 Canvas의 가장 마지막 자식이 됨
-        transform.SetParent(Dont_Destroy_Data.Inst.Canvas);
+            //들어올린 오브젝트는 Canvas의 가장 마지막 자식이 됨
+            transform.SetParent(Dont_Destroy_Data.Inst.Canvas);
 
-        GetComponent<Image>().raycastTarget = false;
-        dragOffset = (Vector2)transform.position - eventData.position; // 마우스 포지션 = 잡은 지점
+            GetComponent<Image>().raycastTarget = false;
+            dragOffset = (Vector2)transform.position - eventData.position; // 마우스 포지션 = 잡은 지점
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position + dragOffset; // 옮기기
+        if (!isItem_ofStore)
+        {
+            transform.position = eventData.position + dragOffset; // 옮기기
+        }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        GetComponent<Image>().raycastTarget = true;
-
-        // 아이템을 내려놓았을 때 받아줄 슬롯이 없다면 다시 돌아옴
-        if (isSlot == false)
+        if (!isItem_ofStore)
         {
-            transform.SetParent(Before_Slot.transform);
-            transform.SetAsFirstSibling();
-            transform.localPosition = Vector3.zero;
+            GetComponent<Image>().raycastTarget = true;
+
+            // 아이템을 내려놓았을 때 받아줄 슬롯이 없다면 다시 돌아옴
+            if (isSlot == false)
+            {
+                transform.SetParent(Before_Slot.transform);
+                transform.SetAsFirstSibling();
+                transform.localPosition = Vector3.zero;
+            }
         }
     }
 

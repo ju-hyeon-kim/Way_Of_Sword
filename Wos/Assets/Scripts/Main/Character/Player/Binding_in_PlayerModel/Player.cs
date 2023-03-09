@@ -23,7 +23,7 @@ public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
     [Header("-----Player-----")]
     public Transform[] Parents_of_Weapon; // 등 = 0, 손 = 1
     public Transform CamTarget_Main;
-    public Transform myWeapon;
+    public Transform myWeapon_3D;
     public RuntimeAnimatorController[] AnimSet; // 0=Unbattle 1=Battle
     public Mode nowMode = Mode.NONE;
     public Player_Dead Player_Dead;
@@ -52,9 +52,9 @@ public class Player : Player_Battle //장비착용, Npc상호작용, 죽음
 
     void UnBattle_Or_Battle_Setting(bool b)
     {
-        myWeapon.SetParent(Parents_of_Weapon[Convert.ToInt32(b)]);
-        myWeapon.localPosition = Vector3.zero;
-        myWeapon.localRotation = Quaternion.identity;
+        myWeapon_3D.SetParent(Parents_of_Weapon[Convert.ToInt32(b)]);
+        myWeapon_3D.localPosition = Vector3.zero;
+        myWeapon_3D.localRotation = Quaternion.identity;
         DropRange.gameObject.SetActive(b);
         myAnim.runtimeAnimatorController = AnimSet[Convert.ToInt32(b)];
     }

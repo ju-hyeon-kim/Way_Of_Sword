@@ -15,4 +15,6 @@ public class EquipmentSlot_ofPlayerWindow : Item_Slot
         }
         return b;
     }
+
+    public virtual void Put_Item(Item_2D item) { }
 }

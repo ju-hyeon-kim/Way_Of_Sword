@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player_Movement : Character_Movement
 {
@@ -10,8 +11,8 @@ public class Player_Movement : Character_Movement
     {
         if (ControlPossible)
         {
-            //우클릭 - 무빙
-            if (Input.GetMouseButtonDown(1))
+            //우클릭
+            if (Input.GetMouseButtonDown(1) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, 1 << LayerMask.NameToLayer("Ground")))
@@ -21,8 +22,8 @@ public class Player_Movement : Character_Movement
                 }
             }
 
-            //좌클릭 - Npc대화 or 몬스터 공격
-            if (Input.GetMouseButtonDown(0))
+            //좌클릭 - NpcReaction or 몬스터 공격
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Click_MouseLeftButton();
             }

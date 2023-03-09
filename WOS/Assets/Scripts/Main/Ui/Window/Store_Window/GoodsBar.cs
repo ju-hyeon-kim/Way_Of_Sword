@@ -21,6 +21,7 @@ public class GoodsBar : MonoBehaviour
         GameObject Item = Instantiate(Dont_Destroy_Data.Inst.Manager_Item.ItemList[ItemID_forSell], ItemSlot);
         Item.transform.SetAsFirstSibling();
         myItem = Item.GetComponent<Item_2D>();
+        myItem.isItem_ofStore = true;
         ItemName.text = myItem.myData.Name;
         ItemPrice.text = $"АЁАн: {myItem.myData.Price}G";
     }

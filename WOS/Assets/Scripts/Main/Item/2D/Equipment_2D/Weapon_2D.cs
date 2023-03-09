@@ -3,7 +3,9 @@ using UnityEngine.EventSystems;
 
 public class Weapon_2D : Item_2D
 {
+    [Header("-----Weapon_2D-----")]
     public Transform[] Equipped_Obes = new Transform[4];
+    public Transform myWeapon_3D;
 
     public override void Reset_myDataWindow()
     {

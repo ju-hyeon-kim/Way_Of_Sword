@@ -24,8 +24,6 @@ public class Weapon_Slot : EquipmentSlot_ofPlayerWindow
 
     public override void OnDrop_ofChild(PointerEventData eventData)
     {
-        
-
         Weapon_2D weapon = myItem as Weapon_2D;
 
         //오브 세팅
@@ -52,11 +50,29 @@ public class Weapon_Slot : EquipmentSlot_ofPlayerWindow
         isEmpty = true;
     }
 
-    public override void Slot_is_not_empty() // 슬롯에 이미 아이템이있는데 다른아이템을 드랍받으려 한다면
+    public override void Slot_is_not_empty(Item_2D beforeItem, Item_2D newItem) // 슬롯에 이미 아이템이있는데 다른아이템을 드랍받으려 한다면
     {
-        //무기를 교체 하시겠습니까?
-        Question_Window QW = Dont_Destroy_Data.Inst.Question_Window;
-        QW.Text.text = "무기를 교체하시겠습니까?";
-        QW.gameObject.SetActive(true);
+        //3D무기교체
+        Player player = Dont_Destroy_Data.Inst.Player.GetComponent<Player>();
+        Weapon_2D BeforeWeapon2D = beforeItem as Weapon_2D;
+        player.myWeapon_3D.SetParent(BeforeWeapon2D.myWeapon_3D);
+
+        Weapon_2D NewWeapon2D = newItem as Weapon_2D;
+        Transform NewWeapon3D = NewWeapon2D.myWeapon_3D.GetChild(0);
+        NewWeapon3D.SetParent(player.Parents_of_Weapon[0]);
+        NewWeapon3D.transform.localPosition = Vector3.zero;
+        NewWeapon3D.transform.localRotation = Quaternion.identity;
+
+        //2D무기교체
+        //beforeItem
+        beforeItem.transform.SetParent(newItem.Before_Slot.transform);
+        beforeItem.transform.SetAsFirstSibling();
+        beforeItem.transform.localPosition = Vector3.zero; // 오브제의 포지션은 슬롯을 기준으로 가운데로 설정
+        beforeItem.GetComponent<RectTransform>().sizeDelta = Vector2.zero; // 사이즈 슬롯에 맞게 설정
+        //newItem
+        newItem.transform.SetParent(this.transform);
+        newItem.transform.SetAsFirstSibling();
+        newItem.transform.localPosition = Vector3.zero; // 오브제의 포지션은 슬롯을 기준으로 가운데로 설정
+        newItem.GetComponent<RectTransform>().sizeDelta = Vector2.zero; // 사이즈 슬롯에 맞게 설정
     }
 }

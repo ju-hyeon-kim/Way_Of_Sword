@@ -35,6 +35,7 @@ public class Inventory_Slot : Item_Slot
         }*/
 
         myItem = Obj.GetComponent<Item_2D>();
+        myItem.isItem_ofStore = false;
         isEmpty = false;
     }
 
