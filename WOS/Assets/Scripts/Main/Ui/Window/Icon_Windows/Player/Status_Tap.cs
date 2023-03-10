@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Status_Tap : MonoBehaviour
 {
+    public Player_Stat Player_Stat;
     public TMP_Text Level;
     public TMP_Text Level_onXpBar;
     public TMP_Text Speed;
@@ -11,25 +12,25 @@ public class Status_Tap : MonoBehaviour
     public TMP_Text Hp;
     public TMP_Text Mp;
 
-    public void Update_Status(Player_Stat Stat) // 레벨업 했을 경우 or 아이템을 착용,해제 했을 경우
+    public void Update_Status() // 레벨업 했을 경우 or 아이템을 착용,해제 했을 경우
     {
         //Level
-        Level.text = Stat.Level.ToString();
-        Level_onXpBar.text = $"Lv.{Stat.Level}";
+        Level.text = Player_Stat.Level.ToString();
+        Level_onXpBar.text = $"Lv.{Player_Stat.Level}";
 
         //Speed
-        Speed.text = $"{Stat.TotalMspeed}({Stat.PlayerMspeed}<color=#FF6400>+{Stat.AddMspeed}</color>)";
+        Speed.text = $"{Player_Stat.TotalMspeed}({Player_Stat.PlayerMspeed}<color=#FF6400>+{Player_Stat.AddMspeed}</color>)";
 
         //Ap
-        Ap.text = $"{Stat.TotalAp_Attack}({Stat.PlayerAp}<color=#FF0000>+{Stat.AddAp}</color>)";
+        Ap.text = $"{Player_Stat.TotalAp_Attack}({Player_Stat.PlayerAp}<color=#FF0000>+{Player_Stat.AddAp}</color>)";
 
         //Dp
-        Dp.text = $"{Stat.TotalDp}({Stat.PlayerDp}<color=#008CFF>+{Stat.AddDp}</color>)";
+        Dp.text = $"{Player_Stat.TotalDp}({Player_Stat.PlayerDp}<color=#008CFF>+{Player_Stat.AddDp}</color>)";
 
         //Hp
-        Hp.text = $"{Stat.MaxHp}({Stat.PlayerHp}<color=#00FF00>+{Stat.AddHp}</color>)";
+        Hp.text = $"{Player_Stat.MaxHp}({Player_Stat.PlayerHp}<color=#00FF00>+{Player_Stat.AddHp}</color>)";
 
         //Mp
-        Mp.text = $"{Stat.MaxMp}({Stat.PlayerMp}<color=#00FFE6>+{Stat.AddMp}</color>)";
+        Mp.text = $"{Player_Stat.MaxMp}({Player_Stat.PlayerMp}<color=#00FFE6>+{Player_Stat.AddMp}</color>)";
     }
 }

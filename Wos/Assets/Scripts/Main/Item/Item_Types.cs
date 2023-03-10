@@ -5,5 +5,10 @@ public enum ItemType
 
 public enum EquipmentType // 장비품이 아닐경우 None
 {
-    None, Weapon, Armor,
+    Weapon, Armor
+}
+
+public enum ArmorType
+{
+    Necklace, Bracelet, Ring, Helmet, Top, Pants, Boots
 }

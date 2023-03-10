@@ -11,7 +11,7 @@ public class Player_Stat : Character_Stat
 
     private void Start()
     {
-        Status_Tap.Update_Status(this); // Status_Tap 초기 세팅
+        Status_Tap.Update_Status(); // Status_Tap 초기 세팅
     }
 
     //바뀌는 능력치
@@ -28,7 +28,6 @@ public class Player_Stat : Character_Stat
 
     //Dp
     float _PlayerDp = 10.0f;
-    float _AddDp = 0.0f;
 
     //Hp
     float _PlayerHp = 100.0f;
@@ -75,10 +74,13 @@ public class Player_Stat : Character_Stat
         get { return _PlayerAp; }
         set { _PlayerAp = value; }
     }
-    public float AddAp { get { return Equipment_Tap.AddAp(); } }
+    public float AddAp 
+    { 
+        get { return Equipment_Tap.AddAp(); }
+    }
 
     //Dp
-    public float TotalDp { get { return _PlayerDp + _AddDp; } }
+    public float TotalDp { get { return _PlayerDp + AddDp; } }
     public float PlayerDp
     {
         get { return _PlayerDp; }
@@ -86,8 +88,7 @@ public class Player_Stat : Character_Stat
     }
     public float AddDp
     {
-        get { return _AddDp; }
-        set { _AddDp = value; }
+        get { return Equipment_Tap.AddAp(); }
     }
 
     //Hp
@@ -174,6 +175,6 @@ public class Player_Stat : Character_Stat
         PlayerMp += 30.0f;
         MaxXp += 50.0f;
 
-        Status_Tap.Update_Status(this);
+        Status_Tap.Update_Status();
     }
 }

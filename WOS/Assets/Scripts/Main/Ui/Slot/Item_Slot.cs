@@ -13,7 +13,12 @@ public class Item_Slot : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Item_2D BeforeItem = myItem;
+        Item_2D BeforeItem = null;
+        if (myItem != null)
+        {
+            BeforeItem = myItem;
+        }
+        
         myItem = eventData.pointerDrag.GetComponent<Item_2D>();
 
         if(!myItem.isItem_ofStore)
@@ -22,7 +27,7 @@ public class Item_Slot : MonoBehaviour, IDropHandler
             myItem.GetComponent<Item_2D>().isSlot = true;
             BeforeSlot_ofItem = myItem.Before_Slot;
 
-            if (myItem.myData.ItemType == SlotType) //슬롯타입과 아이템의 타입이 같다면
+            if (isSameType(myItem)) //슬롯타입과 아이템의 타입이 같다면
             {
                 if (isEmpty) // 슬롯이 비어있다면
                 {
@@ -37,7 +42,7 @@ public class Item_Slot : MonoBehaviour, IDropHandler
                 }
                 else // 슬롯에 이미 아이템이 들어 있다면
                 {
-                    Slot_is_not_empty(BeforeItem, myItem);
+                    Change_Item(BeforeItem, myItem);
                 }
             }
             else
@@ -47,13 +52,17 @@ public class Item_Slot : MonoBehaviour, IDropHandler
                 myItem.transform.localPosition = Vector3.zero;
             }
         }
-    }
 
-    public virtual bool isSame_EquipnemtType() { return true; }
+        isEquipment(); // 장비라면 스탯창 초기화
+    }
 
     public virtual void OnDrop_ofChild(PointerEventData eventData) { }
 
     public virtual void isNone_Item() { }
 
-    public virtual void Slot_is_not_empty(Item_2D beforeItem, Item_2D newItem) { }
+    public virtual void Change_Item(Item_2D beforeItem, Item_2D newItem) { }
+
+    public virtual bool isSameType(Item_2D NewItem2D) { return true; }
+
+    public virtual void isEquipment() { }
 }

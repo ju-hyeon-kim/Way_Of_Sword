@@ -50,14 +50,14 @@ public class Weapon_Slot : EquipmentSlot_ofPlayerWindow
         isEmpty = true;
     }
 
-    public override void Slot_is_not_empty(Item_2D beforeItem, Item_2D newItem) // 슬롯에 이미 아이템이있는데 다른아이템을 드랍받으려 한다면
+    public override void Change_Item(Item_2D beforeItem, Item_2D newItem) // 슬롯에 이미 아이템이있는데 다른아이템을 드랍받으려 한다면
     {
         //3D무기교체
         Player player = Dont_Destroy_Data.Inst.Player.GetComponent<Player>();
         Weapon_2D BeforeWeapon2D = beforeItem as Weapon_2D;
         player.myWeapon_3D.SetParent(BeforeWeapon2D.myWeapon_3D);
-
         Weapon_2D NewWeapon2D = newItem as Weapon_2D;
+        myWeapon = NewWeapon2D;
         Transform NewWeapon3D = NewWeapon2D.myWeapon_3D.GetChild(0);
         NewWeapon3D.SetParent(player.Parents_of_Weapon[0]);
         NewWeapon3D.transform.localPosition = Vector3.zero;

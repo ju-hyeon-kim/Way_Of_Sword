@@ -6,6 +6,7 @@ public class Item_2D : MonoBehaviour,
     IPointerEnterHandler, IPointerExitHandler, IPointerMoveHandler, // 포인터 핸들러
     IBeginDragHandler, IDragHandler, IEndDragHandler // 드래그 핸들러
 {
+    [Header("-----Item_2D-----")]
     public Item_Data myData;
     public bool isSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
     public bool isItem_ofStore = false; // 상점에서 판매하는 아이템의 경우 -> 드래그 불가능

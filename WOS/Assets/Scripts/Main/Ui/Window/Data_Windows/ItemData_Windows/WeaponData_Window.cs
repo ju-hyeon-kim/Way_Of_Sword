@@ -10,6 +10,7 @@ public class WeaponData_Window : ItemData_Window
     public TMP_Text Type;
     public TMP_Text Ap;
     public TMP_Text Explanation;
+    public TMP_Text Price;
     public Image[] ObeImages;
 
     public override void DataSetting_ofChild(Item_2D item2D)
@@ -21,6 +22,7 @@ public class WeaponData_Window : ItemData_Window
         Type.text = Wdata.EquipnetType_Text;
         Ap.text = $"공격력: {Wdata.Ap}";
         Explanation.text = Wdata.Explanation;
+        Price.text = $"판매가격: {Wdata.Price}G";
 
         //오브의 이미지 가져오기
         Weapon_2D Weapon2D = item2D as Weapon_2D;
