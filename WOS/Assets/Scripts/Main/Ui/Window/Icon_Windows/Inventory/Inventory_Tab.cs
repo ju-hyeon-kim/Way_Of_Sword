@@ -2,26 +2,23 @@ using UnityEngine;
 
 public class Inventory_Tab : MonoBehaviour
 {
-    public Inventory_Slot[] mySlots;
+    public Item_Slot[] mySlots;
     public ItemType myType;
 
     public void Put_Item(Item_2D item)
     {
         bool isEmptyAllSlot = false;
-        bool isNoneSameItem = false;
-        bool isFullAllSlot = false;
+        bool isNoneSameItem = false; // true = 같은 이름의 아이템이 없다 
 
         for (int i = 0; i < mySlots.Length; i++)
         {
-            if (!mySlots[i].isEmpty) // 비어있지않으면
+            if (mySlots[i].myItem != null) // 비어있지않으면
             {
-                isEmptyAllSlot = false;
                 if (mySlots[i].Get_myItemName() == item.myData.Name) // 같은 아이템이 있다면
                 {
-                    isNoneSameItem = false;
-                    if(myType != ItemType.Equipment || myType != ItemType.Obe) // 장비or오브 타입이 아니라면
+                    if (myType == ItemType.Expendables || myType == ItemType.Ingredient) // 소모품or재료 타입이라면
                     {
-                        mySlots[i].Put_SameItem(); 
+                        ++mySlots[i].GetComponent<ItemSlot_isQuantity>().Quantity;
                         break;
                     }
                     else // 장비or오브는 같은 아이템이 있어도 다르게 인식해야함
@@ -44,22 +41,16 @@ public class Inventory_Tab : MonoBehaviour
         {
             for (int i = 0; i < mySlots.Length; i++) // 비어있는 슬롯중에 가장 첫 슬롯에 넣는다.
             {
-                if (mySlots[i].isEmpty)
+                if (mySlots[i].myItem == null)
                 {
-                    isFullAllSlot = false;
                     mySlots[i].Put_NewItem(item);
                     break;
                 }
                 else
                 {
-                    isFullAllSlot = true;
+                    Debug.Log("인벤토리가 가득 찼습니다.");
                 }
             }
-        }
-
-        if (isFullAllSlot)
-        {
-            Debug.Log("인벤토리가 가득 찼습니다.");
         }
     }
 }

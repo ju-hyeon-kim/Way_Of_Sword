@@ -51,8 +51,6 @@ public class Monster_Movement : Character_Movement, IBattle
                 Active_HpBar(true);
                 break;
             case MonstertState.Dead:
-                Debug.Log("Dead스테이트 발동");
-
                 StopAllCoroutines();
                 // BossMonster.cs 에서 재정의
                 BossDead(); 
@@ -152,7 +150,6 @@ public class Monster_Movement : Character_Movement, IBattle
 
     void Dead_Or_Resurrection(bool b) //Dead = false, Resurrection = true
     {
-        Debug.Log("Dead_Or_Resurrection함수 발동");
         // 애니메이션
         if (!b) myAnim.SetTrigger("Dead");
         else myAnim.SetTrigger("Resurrection"); //노말 몬스터만 사용

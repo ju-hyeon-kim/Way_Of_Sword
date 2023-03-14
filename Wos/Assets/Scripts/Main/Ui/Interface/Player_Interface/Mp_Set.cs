@@ -17,7 +17,7 @@ public class Mp_Set : MonoBehaviour
         Update_Ui();
     }
 
-    void Update_Ui()
+    public void Update_Ui()
     {
         MpBar.fillAmount = Stat.CurMp / Stat.MaxMp;
         NowMp.text = $"({Stat.CurMp} / {Stat.MaxMp})";

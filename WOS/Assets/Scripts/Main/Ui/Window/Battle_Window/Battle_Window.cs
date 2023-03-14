@@ -4,4 +4,5 @@ public class Battle_Window : MonoBehaviour
 {
     [Header("Battle_Window")]
     public Transform RecycleBin_Dmg;
+    public Transform RecycleBin_RecoveryText;
 }

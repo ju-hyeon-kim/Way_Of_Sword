@@ -10,7 +10,7 @@ public class Equipment_Tap : MonoBehaviour
         return ws.Get_WeaponAp();
     }
 
-    public float AddDp()
+    public float AddDp() // 추가 방어력
     {
         float TotalAddDp = 0;
         // 나중에 슬롯 1~7 까지 검사하여 방어력 빼오기 구현 필요

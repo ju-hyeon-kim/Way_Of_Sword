@@ -28,11 +28,11 @@ public class ObeSlot_inSword : Item_Slot
         }
     }
 
-    public override void OnDrop_ofChild(PointerEventData eventData) // DragDrop으로 오브를 받았을 때
+    /*public override void OnDrop_ofChild(PointerEventData eventData) // DragDrop으로 오브를 받았을 때
     {
         myObe = eventData.pointerDrag.GetComponent<Obe_2D>();
         Receive_Obe();
-    }
+    }*/
 
     public void ReceiveObe_fromWeapon(Obe_2D Obe2D) // Weapon의 장착으로 오브를 받았을 때
     {
@@ -61,18 +61,16 @@ public class ObeSlot_inSword : Item_Slot
         mySkill_Slot.isEmpty = false;
     }
 
-    public override void isNone_Item() // 오브 장착해제
+    public override void isNoneItem_ofChild() // 오브 장착해제
     {
         //해당 슬롯에 연결된 스킬 삭제 -> 추후에 오브젝트 풀링 적용 필요
         mySkill_Slot.isNone_Skill();
-        isEmpty = true;
     }
 
     public void Unequipment_Weapon()
     {
         Destroy(myObe.gameObject);
         myObe = null;
-        isNone_Item();
-        isEmpty = true;
+        isNoneItem_ofChild();
     }
 }

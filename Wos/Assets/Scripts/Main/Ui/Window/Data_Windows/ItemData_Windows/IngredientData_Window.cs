@@ -15,6 +15,6 @@ public class IngredientData_Window : ItemData_Window
         Ingredient_Data mydata = (Ingredient_Data)item2D.myData;
         Name.text = mydata.Name;
         Explanation.text = mydata.Explanation;
-        Price.text = $"판매가격: {mydata.Price}";
+        Price.text = $"판매가격: {mydata.SellPrice}";
     }
 }

@@ -23,6 +23,6 @@ public class ArmorData_Window : ItemData_Window
         Type.text = Wdata.EquipnetType_Text;
         Dp.text = $"방어력: {Wdata.Dp}";
         Explanation.text = Wdata.Explanation;
-        Price.text = $"판매가격: {Wdata.Price}G";
+        Price.text = $"판매가격: {Wdata.SellPrice}G";
     }
 }

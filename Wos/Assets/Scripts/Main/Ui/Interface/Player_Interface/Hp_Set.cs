@@ -28,7 +28,7 @@ public class Hp_Set : MonoBehaviour
         Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(Mode.DEAD);
     }
 
-    void Update_Ui()
+    public void Update_Ui()
     {
         HpBar.fillAmount = Stat.CurHp / Stat.MaxHp;
         NowHp.text = $"({Stat.CurHp} / {Stat.MaxHp})";

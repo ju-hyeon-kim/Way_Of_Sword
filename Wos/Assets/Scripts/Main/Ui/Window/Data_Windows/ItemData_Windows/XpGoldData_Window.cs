@@ -12,6 +12,6 @@ public class XpGoldData_Window : ItemData_Window
         Image.sprite = item2D.GetComponent<Image>().sprite;
         XpGold_Data mydata = (XpGold_Data)item2D.myData;
         Name.text = mydata.Name;
-        Price.text = $"{mydata.Price} xp";
+        Price.text = $"{mydata.BuyPrice} xp";
     }
 }

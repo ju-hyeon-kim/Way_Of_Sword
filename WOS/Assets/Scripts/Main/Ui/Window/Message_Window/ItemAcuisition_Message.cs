@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ItemAcuisition_Message : MonoBehaviour
 {
@@ -17,38 +18,35 @@ public class ItemAcuisition_Message : MonoBehaviour
         }
     }
 
-    public void Get_Item(Item_2D Item)
+    public void Get_Item(Item_2D Item, int Quantity)
     {
         // 아이템의 타입을 검사하여 Xp나 골드라면 price가 수량을 나타냄 다른 타입의 아이템이라면 1로 수량을 나타냄
         ItemType ItemType = Item.myData.ItemType;
-        int price = 1;
         if (ItemType == ItemType.Xp || ItemType == ItemType.Gold)
         {
-            price = Item.myData.Price;
+            Quantity = Item.myData.SellPrice;
         }
+        Messages_Setting(Item.myData.Name, Quantity);
+    }
 
-        string ItemName = Item.myData.Name; // 아이템의 이름 가져오기
-
-        //가장 밑에 있는 메시지 검사
-        for (int i = 0; i < myMessages.Length; i++)
-        {
-            if (myMessages[i].transform.position == Create_Area)
-            {
-                myMessages[i].GetChild(0).GetComponent<TMP_Text>().text = $"획득 {ItemName} +{price}";
-                myMessages[i].gameObject.SetActive(true);
-                StartCoroutine(Up_Anim());
-            }
-        }
+    public void Get_Gold(int gold)
+    {
+        Messages_Setting("획득 골드", gold);
     }
 
     public void Get_Xp(int xp)
     {
+        Messages_Setting("획득 경험치", xp);
+    }
+
+    void Messages_Setting(string name, int Quantity)
+    {
         //가장 밑에 있는 메시지 검사
         for (int i = 0; i < myMessages.Length; i++)
         {
-            if (myMessages[i].transform.position == Create_Area)
+            if (myMessages[i].transform.position == Create_Area) 
             {
-                myMessages[i].GetChild(0).GetComponent<TMP_Text>().text = $"획득 경험치 +{xp}";
+                myMessages[i].GetChild(0).GetComponent<TMP_Text>().text = $"{name} +{Quantity}";
                 myMessages[i].gameObject.SetActive(true);
                 StartCoroutine(Up_Anim());
             }
@@ -58,6 +56,7 @@ public class ItemAcuisition_Message : MonoBehaviour
     IEnumerator Up_Anim()
     {
         float dist = 50f;
+
         while (dist > 0.0f)
         {
             float delta = 200f * Time.deltaTime; //스피드

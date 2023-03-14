@@ -21,8 +21,6 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
 
         if (isMov)
         {
-            pos.y = transform.position.y;
-
             if (moveCo != null)
             {
                 StopCoroutine(moveCo);
@@ -45,6 +43,7 @@ public class Character_Movement : Character_Property // 이동,회전,드랍
     // 무빙 코루틴
     IEnumerator Moving(Vector3 pos)
     {
+        pos.y = transform.position.y;
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
         dir.Normalize();

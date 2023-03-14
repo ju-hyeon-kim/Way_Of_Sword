@@ -11,13 +11,18 @@ public class CustomTool : MonoBehaviour
     [ContextMenu("함수실행")]
     void tool()
     {
-        for (int i = 0; i < slots.Length; i++)
+        GetComponent<InventorySlot_isQuantity>().QuantityArea = this.transform.GetChild(0).gameObject;
+        GetComponent<InventorySlot_isQuantity>().QuantityText = this.transform.GetChild(0).GetChild(0).GetComponent<TMP_Text>();
+
+
+
+        //for (int i = 0; i < slots.Length; i++)
         {
             //바인딩
             //slots[i].GetComponent<Inventory_Slot>().Quantity_Text = slots[i].GetChild(0).GetChild(0).GetComponent<TMP_Text>();
 
             //삭제
-            DestroyImmediate(slots[i].GetChild(0).gameObject);
+            //DestroyImmediate(slots[i].GetChild(0).gameObject);
 
             //생성
             /*GameObject X = Instantiate(Q, slots[i]);

@@ -11,7 +11,7 @@ public class Weapon_Slot : EquipmentSlot_ofPlayerWindow
 
     public float Get_WeaponAp()
     {
-        if (!isEmpty) // 슬롯이 비어있지 않다면
+        if (myItem != null) // 슬롯이 비어있지 않다면
         {
             Weapon_Data weaponData = (Weapon_Data)myWeapon.myData;
             return weaponData.Ap;
@@ -22,7 +22,7 @@ public class Weapon_Slot : EquipmentSlot_ofPlayerWindow
         }
     }
 
-    public override void OnDrop_ofChild(PointerEventData eventData)
+    /*public override void OnDrop_ofChild(PointerEventData eventData)
     {
         Weapon_2D weapon = myItem as Weapon_2D;
 
@@ -36,18 +36,17 @@ public class Weapon_Slot : EquipmentSlot_ofPlayerWindow
                 SwordObe_Slots[i].ReceiveObe_fromWeapon(Obe2D);
             }
         }
-    }
+    }*/
 
-    public override void isNone_Item()
+    public override void isNoneItem_ofChild()
     {
         for (int i = 0; i < SwordObe_Slots.Length; i++)
         {
-            if (!SwordObe_Slots[i].isEmpty)
+            if (SwordObe_Slots[i].myItem != null)
             {
                 SwordObe_Slots[i].Unequipment_Weapon();
             }
         }
-        isEmpty = true;
     }
 
     public override void Change_Item(Item_2D beforeItem, Item_2D newItem) // 슬롯에 이미 아이템이있는데 다른아이템을 드랍받으려 한다면

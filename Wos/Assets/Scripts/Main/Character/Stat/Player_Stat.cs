@@ -88,7 +88,7 @@ public class Player_Stat : Character_Stat
     }
     public float AddDp
     {
-        get { return Equipment_Tap.AddAp(); }
+        get { return Equipment_Tap.AddDp(); }
     }
 
     //Hp

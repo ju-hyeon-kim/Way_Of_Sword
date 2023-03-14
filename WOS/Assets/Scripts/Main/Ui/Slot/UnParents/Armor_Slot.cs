@@ -25,7 +25,7 @@ public class Armor_Slot : EquipmentSlot_ofPlayerWindow
 
     public float Get_ArmorDp()
     {
-        if (!isEmpty) // 슬롯이 비어있지 않다면
+        if (myItem != null) // 슬롯이 비어있지 않다면
         {
             Armor_Data weaponData = (Armor_Data)myItem.myData;
             return weaponData.Dp;

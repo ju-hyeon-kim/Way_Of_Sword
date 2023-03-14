@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Expendables_2D : MonoBehaviour
+public class Expendables_2D : Item2D_isQuantity
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void Reset_myDataWindow()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        myData_Window = Dont_Destroy_Data.Inst.ItemData_WindowSet.ExpendablesData_Window;
     }
 }

@@ -11,6 +11,10 @@ public class Manager_Gold : MonoBehaviour
         get => nowGold;
         set
         {
+            if(nowGold < value) // 돈을 얻으면
+            {
+                Dont_Destroy_Data.Inst.ItemAcuisition_Message.Get_Gold(value - nowGold); //메시지 표시;
+            }
             nowGold = value;
             NowGold_Text.Change_Gold(nowGold);
         }
@@ -18,18 +22,6 @@ public class Manager_Gold : MonoBehaviour
 
     private void Start()
     {
-        NowGold_Text.Change_Gold(nowGold);
-    }
-
-    public void PlusGold(int price)
-    {
-        nowGold += price;
-        NowGold_Text.Change_Gold(nowGold);
-    }
-
-    public void MinusGold(int price)
-    {
-        nowGold -= price;
         NowGold_Text.Change_Gold(nowGold);
     }
 }
