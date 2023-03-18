@@ -54,6 +54,8 @@ public class Bruno : Npc
 
     void Enhancement_Button()
     {
+        //상점윈도우 끄기
+        Store_Window.SetActive(false);
         //강화윈도우 키기 -> 위치설정(왼쪽)
         Strengthen_Window.SetActive(true);
         Strengthen_Window.GetComponent<RectTransform>().anchoredPosition = new Vector2(-350, 130);
@@ -65,6 +67,8 @@ public class Bruno : Npc
 
     void Store_Button()
     {
+        //강화윈도우 끄기
+        Strengthen_Window.SetActive(false);
         //상점윈도우 키기 -> 위치설정(왼쪽)
         Store_Window.SetActive(true);
         Store_Window.GetComponent<RectTransform>().anchoredPosition = new Vector2(-350, 130);

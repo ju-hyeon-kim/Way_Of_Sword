@@ -3,6 +3,7 @@ using System.Reflection.Emit;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Npc : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Npc : MonoBehaviour
     #region 마우스 포지션과 상호작용하는 함수
     private void OnMouseEnter() //마우스를 갖다 대었을 때
     {
-        if (!isTalking) // 대화중이 아니라면
+        if (!isTalking && !EventSystem.current.IsPointerOverGameObject()) // 대화중이 아니라면
         {
             //아웃라인 켜기
             Outline_SetActive(true);

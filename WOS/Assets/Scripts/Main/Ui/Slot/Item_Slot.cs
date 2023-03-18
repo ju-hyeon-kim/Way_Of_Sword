@@ -65,11 +65,6 @@ public class Item_Slot : MonoBehaviour, IDropHandler
         }
     }
 
-    public string Get_myItemName()
-    {
-        return myItem.myData.Name;
-    }
-
     public virtual void isNoneItem_ofChild() { }
 
     public virtual void Change_Item(Item_2D beforeItem, Item_2D newItem) { }

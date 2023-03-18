@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ingredient_2D : Item_2D
+public class Ingredient_2D : Item2D_isQuantity
 {
     public override void Reset_myDataWindow()
     {

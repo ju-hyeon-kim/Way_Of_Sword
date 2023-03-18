@@ -7,7 +7,6 @@ public class WeaponData_Window : ItemData_Window
     public Image ItemImage;
     public TMP_Text Name;
     public TMP_Text Strengthen;
-    public TMP_Text Type;
     public TMP_Text Ap;
     public TMP_Text Explanation;
     public TMP_Text Price;
@@ -18,9 +17,10 @@ public class WeaponData_Window : ItemData_Window
         ItemImage.sprite = item2D.GetComponent<Image>().sprite;
         Weapon_Data Wdata = item2D.myData as Weapon_Data;
         Name.text = Wdata.Name;
-        Strengthen.text = $"+{Wdata.Strengthen}";
-        Type.text = Wdata.EquipnetType_Text;
-        Ap.text = $"공격력: {Wdata.Ap}";
+
+        int strengthen = item2D.GetComponent<Item2D_isStrengthen>().Strengthen;
+        Strengthen.text = $"+{strengthen}";
+        Ap.text = $"공격력: {Wdata.Stat[strengthen]}";
         Explanation.text = Wdata.Explanation;
         Price.text = $"판매가격: {Wdata.SellPrice}G";
 

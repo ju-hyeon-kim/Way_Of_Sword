@@ -22,15 +22,16 @@ public class Skill_Slot : MonoBehaviour
         }
     }
 
-    public void OnSkillEffect(int i, Vector3 pos, EffectBin bin)
+    public void OnSkillEffect(int i, Vector3 pos, EffectBin bin) // 해당 함수가 발동되면 스킬 Effect가 발동됨
     {
-        if (bin.UsedEffects[i].Name == nowSkill.myData.Name)  // 쓰레기 통에 동일한 이름의 쓰레기가 있을 경우
+        if (bin.UsedEffects[i] != null && bin.UsedEffects[i].Name == nowSkill.myData.Name)  // 쓰레기 통에 동일한 이름의 쓰레기가 있을 경우
         {
+            // 재사용할 스킬 이펙트(쓰레기)의 위치와 방향을 지정해줌
             if (nowSkill.myData.SkillPoint.GetComponent<SkillPoint>().skilltype == SKILLTYPE.RANGE)
             {
                 bin.UsedEffects[i].transform.position = pos;
             }
-            else
+            else 
             {
                 bin.UsedEffects[i].transform.position = Dont_Destroy_Data.Inst.Player.transform.position + new Vector3(0, 1, 0);
                 pos.y = bin.UsedEffects[i].transform.position.y;
@@ -40,11 +41,10 @@ public class Skill_Slot : MonoBehaviour
             bin.UsedEffects[i].gameObject.SetActive(true);
             bin.UsedEffects[i].GetComponent<ParticleSystem>().Play();
         }
-        else // 없을 경우
+        else // 쓰레기 통에 동일한 이름의 쓰레기가 없을 경우
         {
-            Destroy(bin.UsedEffects[i].gameObject);
-
-            GameObject obj = Instantiate(nowSkill.myData.Effect, bin.transform) as GameObject;
+            // Effect 오브젝트를 새로 생성하고 위치와 방향을 지정해줌
+            GameObject obj = Instantiate(nowSkill.myData.Effect, bin.transform) as GameObject; 
             bin.UsedEffects[i] = obj.GetComponent<Skill_Effect>();
 
             if (nowSkill.myData.SkillPoint.GetComponent<SkillPoint>().skilltype == SKILLTYPE.RANGE)

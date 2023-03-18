@@ -1,7 +1,15 @@
+using UnityEngine;
+
 public class Inventory_Window : Window
 {
     public Inventory_Tab[] myTabs;
     public Manager_Gold Manager_Gold;
+
+    private void Start() // 테스트,마석15개 넣기
+    {
+        Debug.Log("스타트");
+        Put_Item(Dont_Destroy_Data.Inst.Manager_Item.ItemList[13].GetComponent<Item_2D>(), 15);
+    }
 
     public void Put_Item(Item_2D item, int Quantity = 1)
     {
@@ -26,5 +34,10 @@ public class Inventory_Window : Window
                 }
             }
         }
+    }
+
+    public int Get_HaveAmount_ofMagicStone()
+    {
+        return myTabs[3].GetComponent<Ingredient_Tab>().Get_HaveAmount_MagicStone();
     }
 }

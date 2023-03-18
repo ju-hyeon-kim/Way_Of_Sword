@@ -14,7 +14,8 @@ public class Weapon_Slot : EquipmentSlot_ofPlayerWindow
         if (myItem != null) // 슬롯이 비어있지 않다면
         {
             Weapon_Data weaponData = (Weapon_Data)myWeapon.myData;
-            return weaponData.Ap;
+            int strengthen = myItem.GetComponent<Item2D_isStrengthen>().Strengthen;
+            return weaponData.Stat[strengthen];
         }
         else
         {

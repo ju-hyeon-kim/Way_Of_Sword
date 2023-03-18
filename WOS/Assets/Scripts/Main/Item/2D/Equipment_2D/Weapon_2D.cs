@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Weapon_2D : Item_2D
+public class Weapon_2D : Item2D_isStrengthen
 {
     [Header("-----Weapon_2D-----")]
     public Transform[] Equipped_Obes = new Transform[4];

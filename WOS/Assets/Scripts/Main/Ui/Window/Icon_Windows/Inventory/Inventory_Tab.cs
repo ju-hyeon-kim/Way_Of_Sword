@@ -14,7 +14,7 @@ public class Inventory_Tab : MonoBehaviour
         {
             if (mySlots[i].myItem != null) // 비어있지않으면
             {
-                if (mySlots[i].Get_myItemName() == item.myData.Name) // 같은 아이템이 있다면
+                if (mySlots[i].myItem.myData.Name == item.myData.Name) // 같은 아이템이 있다면
                 {
                     if (myType == ItemType.Expendables || myType == ItemType.Ingredient) // 소모품or재료 타입이라면
                     {

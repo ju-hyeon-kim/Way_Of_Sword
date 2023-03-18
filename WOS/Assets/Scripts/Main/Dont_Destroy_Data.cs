@@ -41,6 +41,7 @@ public class Dont_Destroy_Data : MonoBehaviour
     public Transform Label_Windows;
     public Battle_Window BattleWindow_ofPlayer;
     public Question_Window Question_Window;
+    public Notice_Window Notice_Window;
 
     [Header("-----Etc-----")]
     public Transform Canvas;

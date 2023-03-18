@@ -6,6 +6,5 @@ using UnityEngine;
 public class Armor_Data : Equipment_Data
 {
     [Header("-----Armor_Data-----")]
-    public float Dp;
     public ArmorType ArmorType;
 }
