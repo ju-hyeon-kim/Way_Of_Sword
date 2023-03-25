@@ -14,7 +14,7 @@ public class Quest_Guide : MonoBehaviour
         int Q_Num = MQ.NowQuest.Quest_Number;
         while (true)
         {
-            Transform Target = MQ.Guide_Tartgets[Q_Num];
+            Transform Target = MQ.Guide_Targets[Q_Num];
 
             if (MiniMapCam_Controller.Target_inScreen(Target.gameObject) == false)
             {

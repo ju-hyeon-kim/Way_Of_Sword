@@ -11,9 +11,9 @@ public class Manager_Village : Manager_Place
         Play_Starter.Inst.Start_Call(this.transform); // Play_Starter가 없다면 Play_Starter 생성, 있다면 실행 안함
     }
 
-    private void Start()
+    public override void Start_ofChild()
     {
-        Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
+        Dont_Destroy_Data.Inst.Manager_Quest.Guide_Targets = Guide_Tartgets;
         Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(Mode.UNBATTLE);
         Manager_SceneChange.Inst.MiniMapCam_Controller.MiniMap_Icons = Minimap_Icons;
 

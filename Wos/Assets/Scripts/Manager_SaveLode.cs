@@ -1,41 +1,63 @@
+using System;
 using System.IO;
+using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
-
-[System.Serializable]
-public class SaveData
-{
-    public int QuestNum;
-}
+using UnityEngine.SceneManagement;
 
 public class Manager_SaveLode : Singleton<Manager_SaveLode>
 {
-    string path;
+    public bool isLoad = true;
 
-    public void JsonReady()
+    public void JsonLoad(int pagenum) // 로드: 로드한 데이터를 게임에 적용
     {
-        path = Path.Combine(Application.dataPath + "/SaveFile/", "SaveFile.json");
+        Debug.Log("제이슨 로드");
+        string loadJson = File.ReadAllText(Get_Path(pagenum));
+        SaveData savedata = JsonUtility.FromJson<SaveData>(loadJson);
+        Dont_Destroy_Data.Inst.Manager_Quest.LoadQuest(savedata.QuestName);
+        Dont_Destroy_Data.Inst.Manager_Gold.NowGold = savedata.Gold;
+        Dont_Destroy_Data.Inst.Player.GetComponent<Player_Stat>().Level = savedata.Level;
+
+        Dont_Destroy_Data.Inst.Inventory_Window.Load_ItemData(savedata);
     }
 
-    public void JsonLoad()
+    public void JsonSave(SavePage savepage)
     {
-        SaveData saveData = new SaveData();
+        string json = JsonUtility.ToJson(Make_NewSaveData(savepage), true);
+        File.WriteAllText(Get_Path(savepage.pagenum), json);
+    }
 
-        if (File.Exists(path)) //저장된 파일이 있으면
+    SaveData Make_NewSaveData(SavePage savepage) // 저장
+    {
+        SaveData savedata  = new SaveData();
+        savedata.QuestName = Dont_Destroy_Data.Inst.Manager_Quest.NowQuest.Name;
+        savedata.Gold = Dont_Destroy_Data.Inst.Manager_Gold.NowGold;
+        savedata.Time = savepage.Time.text;
+        savedata.Place = SceneManager.GetActiveScene().name;
+        savedata.Level = Dont_Destroy_Data.Inst.Player.GetComponent<Player_Stat>().Level;
+        Dont_Destroy_Data.Inst.Inventory_Window.Save_ItemData(savedata);
+        return savedata;
+    }
+
+    string Get_Path(int pagenum)
+    {
+        string path = Path.Combine(Application.dataPath + "/SaveFile/", $"SaveFile{pagenum}.json");
+        return path;
+    }
+
+    public bool isSaveFile_Exists(int pagenum)
+    {
+        if (File.Exists(Get_Path(pagenum))) // pagenum에 해당하는 저장파일이 있으면
         {
-            string loadJson = File.ReadAllText(path);
-            saveData = JsonUtility.FromJson<SaveData>(loadJson);
-
-            Dont_Destroy_Data.Inst.Manager_Quest.Quest_Num = saveData.QuestNum;
+            return true;
         }
+        return false;
     }
 
-    public void JsonSave()
+    public SaveData Get_SaveData(int pagenum)
     {
-        SaveData saveData = new SaveData();
-
-        saveData.QuestNum = Dont_Destroy_Data.Inst.Manager_Quest.NowQuest.Quest_Number;
-
-        string json = JsonUtility.ToJson(saveData, true);
-        File.WriteAllText(path, json);
+        string loadJson = File.ReadAllText(Get_Path(pagenum));
+        SaveData savedata = JsonUtility.FromJson<SaveData>(loadJson);
+        return savedata;
     }
 }

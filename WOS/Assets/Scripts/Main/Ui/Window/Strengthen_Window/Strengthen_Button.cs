@@ -8,6 +8,7 @@ public class Strengthen_Button : MonoBehaviour
 {
     public GameObject Lock;
     public Strengthen_Anim Strengthen_Anim;
+    public Combination_Formula Combination_Formula;
 
     Item_2D Item;
     int Price = 0;
@@ -33,19 +34,28 @@ public class Strengthen_Button : MonoBehaviour
 
     void Strengthen_Item() // Qustion_Window의 YesButton클릭시 발동
     {
+        //아이템 상태 변경
+        Item.canDrag = false;
+        Item.canViewData = false;
+
         //지불
         Pay();
 
+        //강화가 성공인지 실패인지 계산
+        bool result = Combination_Formula.Strengthen_Result(Item.GetComponent<Item2D_isStrengthen>().Strengthen);
+        if(result)
+        {
+            Item.GetComponent<Item2D_isStrengthen>().Strengthen++;
+        }
+
         //강화 애니메이션
         Strengthen_Anim.gameObject.SetActive(true);
-        Strengthen_Anim.OnAnim();
-
-        //Strengthen++
-        //Item.GetComponent<Item2D_isStrengthen>().Strengthen++;
+        Strengthen_Anim.OnAnim(result);
     }
 
     void Pay() // 아이템과 돈을 지불한다.
     {
+        Dont_Destroy_Data.Inst.Inventory_Window.Pay_MagicStone(Combination_Formula.Mstone_RrequiredQuantity);
         Dont_Destroy_Data.Inst.Manager_Gold.NowGold -= Price;
     }
 }

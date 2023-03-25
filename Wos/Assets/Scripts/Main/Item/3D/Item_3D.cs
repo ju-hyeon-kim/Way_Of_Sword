@@ -38,7 +38,7 @@ public class Item_3D : MonoBehaviour
         {
             if (other.gameObject.name == "DropRange")
             {
-                myLabel.transform.SetParent(Dont_Destroy_Data.Inst.Label_Windows);
+                myLabel.transform.SetParent(Dont_Destroy_Data.Inst.NowPlace_Manager.GetComponent<Manager_Dungeon>().Active_Area);
                 DropZone = other.GetComponent<DropRange>();
                 DropZone.DropItems.Add(this);
             }

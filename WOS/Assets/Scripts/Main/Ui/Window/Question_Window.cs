@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class Question_Window : MonoBehaviour
 {
-    public TMP_Text Text;
+    public TMP_Text Contant;
     public Button YButton;
     public Button NButton;
 
-    public void WindowSetting(string text, UnityAction Y_Onclick = null, UnityAction N_Onclick = null)
+    public void WindowSetting(string contant, UnityAction Y_Onclick = null, UnityAction N_Onclick = null)
     {
-        Text.text = text;
+        Contant.text = contant;
 
         YButton.onClick.RemoveAllListeners();
         if(Y_Onclick != null) YButton.onClick.AddListener(Y_Onclick);

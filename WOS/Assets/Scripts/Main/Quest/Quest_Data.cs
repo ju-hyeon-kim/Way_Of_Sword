@@ -27,6 +27,4 @@ public class Quest_Data : MonoBehaviour
     }
 
     public virtual void Add_Count() { }
-
-
 }

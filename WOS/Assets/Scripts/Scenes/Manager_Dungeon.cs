@@ -7,5 +7,6 @@ public class Manager_Dungeon : Manager_Place
     public BossEmergence BossEmergence;
     public Animator BossZone_Door;
     public Animator Boss_AppearEvent;
+    public Transform Active_Area;
     public Transform Unactive_Area;
 }

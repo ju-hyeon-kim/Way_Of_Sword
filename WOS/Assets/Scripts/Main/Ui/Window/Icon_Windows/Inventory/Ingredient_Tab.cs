@@ -29,4 +29,16 @@ public class Ingredient_Tab : Inventory_Tab
         }
         return HaveAmount;
     }
+
+    public void Pay_Mstone(int quantity)
+    {
+        for (int i = 0; i < mySlots.Length; i++)
+        {
+            if (mySlots[i].myItem.myData.Name == "마석") // 마석이 있다면
+            {
+                mySlots[i].GetComponent<ItemSlot_isQuantity>().Quantity -= quantity;
+                break;
+            }
+        }
+    }
 }

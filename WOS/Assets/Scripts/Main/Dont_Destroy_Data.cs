@@ -26,6 +26,8 @@ public class Dont_Destroy_Data : MonoBehaviour
         }
     }
     #endregion
+    public bool isLoad = false;
+    public int LoadSlotNum = 0;
 
     [Header("-----Managers-----")]
     public Manager_Cams Manager_Cams;
@@ -57,8 +59,8 @@ public class Dont_Destroy_Data : MonoBehaviour
     {
         NowPlace_Manager = PlaceManager;
 
-        Manager_SaveLode.Inst.JsonReady();
-        Manager_SaveLode.Inst.JsonLoad();
+        // 씬전환하기전에 '로드'를 예약했다면 '로드'한다.
+
 
         // 뉴 게임 시작시 플레이어의 위치를 설정 <- 메인카메라도 따라가게
         if (PlaceManager.TryGetComponent<Manager_Village>(out Manager_Village component))
@@ -72,5 +74,14 @@ public class Dont_Destroy_Data : MonoBehaviour
         }
         Manager_Cams.Start_Setting();
         Manager_Quest.Start_Setting(PlaceManager);
+    }
+
+    public void LodeData()
+    {
+        if(isLoad)
+        {
+            Manager_SaveLode.Inst.JsonLoad(LoadSlotNum);
+            isLoad = false;
+        }
     }
 }

@@ -1,7 +1,9 @@
+using System.Data;
 using UnityEngine;
 
 public class Player_Stat : Character_Stat
 {
+    public PlayerStat_Data StatData;
     public ParticleSystem LevelUp_Eff;
     public GameObject LevelUp_Event;
 
@@ -9,49 +11,39 @@ public class Player_Stat : Character_Stat
     public Equipment_Tap Equipment_Tap;
     public Skill_Set Skill_Set;
 
-    private void Start()
-    {
-        Status_Tap.Update_Status(); // Status_Tap 초기 세팅
-    }
+    
 
     //바뀌는 능력치
-
-    //Level
     int _Level = 1;
 
-    //Mspeed
     float _PlayerMspeed = 3.0f;
     float _AddMspeed = 0.0f;
 
-    //Ap
-    float _PlayerAp = 10.0f;
-
-    //Dp
-    float _PlayerDp = 10.0f;
-
-    //Hp
-    float _PlayerHp = 100.0f;
-    float _AddHp = 0.0f;
-    float _CurHp = 100.0f;
-
-    //Mp
-    float _PlayerMp = 100.0f;
-    float _AddMp = 0.0f;
-    float _CurMp = 100.0f;
-
-    //Xp
-    float _MaxXp = 100.0f; // 초기값은 100
-    float _CurXp = 0.0f;
+    float _CurHp = 0;
+    float _CurMp = 0;
+    float _CurXp = 0;
 
     //고정된 능력치
     float _Aspeed = 3.0f;
+
+    private void Start()
+    {
+        Status_Tap.Update_Status(); // Status_Tap 초기 세팅
+        CurHp = MaxHp;
+        CurMp = MaxMp;
+    }
 
     #region 프로퍼티
     //Level
     public int Level
     {
         get { return _Level; }
-        set { _Level = value; }
+        set 
+        {
+            _Level = value;
+            //UI연동: PlayerInterface, StatusTap
+            Status_Tap.Update_Status();
+        }
     }
 
     //Mspeed
@@ -71,8 +63,7 @@ public class Player_Stat : Character_Stat
     public float TotalAp_Attack { get { return PlayerAp + AddAp; } }
     public float PlayerAp
     {
-        get { return _PlayerAp; }
-        set { _PlayerAp = value; }
+        get { return StatData.Ap[_Level]; }
     }
     public float AddAp 
     { 
@@ -80,11 +71,10 @@ public class Player_Stat : Character_Stat
     }
 
     //Dp
-    public float TotalDp { get { return _PlayerDp + AddDp; } }
+    public float TotalDp { get { return PlayerDp + AddDp; } }
     public float PlayerDp
     {
-        get { return _PlayerDp; }
-        set { _PlayerDp = value; }
+        get { return StatData.Dp[_Level]; }
     }
     public float AddDp
     {
@@ -92,16 +82,14 @@ public class Player_Stat : Character_Stat
     }
 
     //Hp
-    public float MaxHp { get { return _PlayerHp + _AddHp; } }
+    public float MaxHp { get { return PlayerHp + AddHp; } }
     public float PlayerHp
     {
-        get { return _PlayerHp; }
-        set { _PlayerHp = value; }
+        get { return StatData.Hp[_Level]; }
     }
-    public float AddHp
+    public float AddHp // 장착한 아이템에서 가져오는 Hp
     {
-        get { return _AddHp; }
-        set { _AddHp = value; }
+        get { return 0; } 
     }
     public float CurHp
     {
@@ -110,16 +98,14 @@ public class Player_Stat : Character_Stat
     }
 
     //Mp
-    public float MaxMp { get { return _PlayerMp + _AddMp; } }
+    public float MaxMp { get { return PlayerMp + AddMp; } }
     public float PlayerMp
     {
-        get { return _PlayerMp; }
-        set { _PlayerMp = value; }
+        get { return StatData.Mp[_Level]; }
     }
-    public float AddMp
+    public float AddMp // 장착한 아이템에서 가져오는 Mp
     {
-        get { return _AddMp; }
-        set { _AddMp = value; }
+        get { return 0; } 
     }
     public float CurMp
     {
@@ -130,8 +116,7 @@ public class Player_Stat : Character_Stat
     //Xp
     public float MaxXp
     {
-        get { return _MaxXp; }
-        set { _MaxXp = value; }
+        get { return StatData.Xp[_Level]; }
     }
     public float CurXp
     {
@@ -145,6 +130,8 @@ public class Player_Stat : Character_Stat
         get { return _Aspeed; }
     }
     #endregion
+
+    
 
     #region 오버라이드
     public override float ap() { return TotalAp_Attack; }
@@ -161,20 +148,4 @@ public class Player_Stat : Character_Stat
 
     public override float aspeed() { return _Aspeed; }
     #endregion
-
-    public void Level_Up()
-    {
-        LevelUp_Eff.Play();
-        LevelUp_Event.SetActive(true);
-
-        ++Level;
-        PlayerMspeed += 0.1f;
-        PlayerAp += 5f;
-        PlayerDp += 5f;
-        PlayerHp += 30.0f;
-        PlayerMp += 30.0f;
-        MaxXp += 50.0f;
-
-        Status_Tap.Update_Status();
-    }
 }

@@ -1,10 +1,11 @@
  using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
 
 public class Item_Slot : MonoBehaviour, IDropHandler
 {
-    //[Header("-----Item_Slot-----")]
-    [HideInInspector]
+    [Header("-----Item_Slot-----")]
+    //[HideInInspector]
     public Item_2D myItem;
 
     protected Item_Slot BeforeSlot_ofItem;
@@ -12,24 +13,18 @@ public class Item_Slot : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Item_2D NewItem = eventData.pointerDrag.GetComponent<Item_2D>();
-        NewItem.isItem_inSlot = true;
-        BeforeSlot_ofItem = NewItem.Before_Slot;
 
-        if (!NewItem.isItem_inStore)
+        if(NewItem.canDrag)
         {
+            NewItem.isItem_OnSlot = true;
             if (isSameType(NewItem)) //슬롯타입과 아이템의 타입이 같다면
             {
                 if (myItem == null) // 슬롯이 비어있다면
                 {
                     //아이템을 받는다.
-                    myItem = NewItem;
-                    myItem.transform.SetParent(transform); // 내려놓은 오브제의 부모 = this 슬롯
-                    myItem.transform.SetAsFirstSibling();
-                    myItem.transform.localPosition = Vector3.zero; // 오브제의 포지션은 슬롯을 기준으로 가운데로 설정
-                    myItem.GetComponent<RectTransform>().sizeDelta = Vector2.zero; // 사이즈 슬롯에 맞게 설정
+                    Receive_Item(NewItem);
                     GetQuantity_fromBeforslot(BeforeSlot_ofItem);
                     OnDrop_ofChild();
-                    BeforeSlot_ofItem.isNoneItem(); // 전의 슬롯에게 아이템이 사라졌음을 알려줌
                 }
                 else // 슬롯에 이미 아이템이 들어 있다면
                 {
@@ -53,16 +48,30 @@ public class Item_Slot : MonoBehaviour, IDropHandler
         isNoneItem_ofChild();
     }
 
-    public void Put_NewItem(Item_2D item)
+    public void Put_NewItem(Item_2D item, int quantity = 1)
     {
-        GameObject Obj = Instantiate(item.gameObject, transform) as GameObject;
-        Obj.transform.SetAsFirstSibling(); // 첫번째 자식으로 변경
-        myItem = Obj.GetComponent<Item_2D>();
-        myItem.isItem_inStore = false;
-        if(myItem.GetComponent<Item2D_isQuantity>() != null)
+        GameObject obj = Instantiate(item.gameObject);
+        if (obj.GetComponent<Item2D_isQuantity>() != null)
         {
-            Put_NewQuantityItem();
+            ItemSlot_isQuantity QuantitySlot = GetComponent<ItemSlot_isQuantity>();
+            QuantitySlot.Quantity = quantity;
+            QuantitySlot.QuantityArea.SetActive(true);
         }
+        Receive_Item(obj.GetComponent<Item_2D>());
+    }
+
+    void Receive_Item(Item_2D item)
+    {
+        item.transform.SetParent(this.transform); // 부모를 this로 변경
+        item.transform.SetAsFirstSibling(); // 첫번째 자식으로 이동
+        item.transform.localPosition = Vector3.zero; // 위치 설정
+        item.GetComponent<RectTransform>().sizeDelta = Vector2.zero; // 사이즈 설정
+        if (item.Before_Slot != null)
+        {
+            item.Before_Slot.isNoneItem();// 전에 있던 슬롯의 myItem은 null;
+        }
+        myItem = item;
+        myItem.Before_Slot = this;
     }
 
     public virtual void isNoneItem_ofChild() { }
@@ -74,8 +83,6 @@ public class Item_Slot : MonoBehaviour, IDropHandler
     public virtual void isEquipment() { }
 
     public virtual void GetQuantity_fromBeforslot(Item_Slot BeforeSlot) { }
-
-    public virtual void Put_NewQuantityItem() { }
 
     public virtual void OnDrop_ofChild() { }
 }

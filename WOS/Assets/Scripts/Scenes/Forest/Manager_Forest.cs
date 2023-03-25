@@ -19,7 +19,7 @@ public class Manager_Forest : Manager_Dungeon
         Play_Starter.Inst.Start_Call(this.transform);
     }
 
-    void Start()
+    public override void Start_ofChild()
     {
         for (int i = 0; i < NomalMonster_Count; i++)
         {
@@ -42,7 +42,7 @@ public class Manager_Forest : Manager_Dungeon
         Manager_SceneChange.Inst.Before_Place = SceneManager.GetActiveScene().name;
 
         Dont_Destroy_Data.Inst.NowPlace_Manager = this.transform;
-        Dont_Destroy_Data.Inst.Manager_Quest.Guide_Tartgets = Guide_Tartgets;
+        Dont_Destroy_Data.Inst.Manager_Quest.Guide_Targets = Guide_Tartgets;
         Dont_Destroy_Data.Inst.Player.GetComponent<Player>().Change_Mode(Mode.BATTLE);
     }
 

@@ -16,7 +16,7 @@ public class Xp_Set : MonoBehaviour
         if (Stat.CurXp >= Stat.MaxXp)
         {
             Stat.CurXp -= Stat.MaxXp;
-            Stat.Level_Up();
+            Stat.Level++;
         }
         Update_Ui();
     }

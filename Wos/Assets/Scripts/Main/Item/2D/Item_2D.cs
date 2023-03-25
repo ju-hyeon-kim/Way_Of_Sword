@@ -8,8 +8,9 @@ public class Item_2D : MonoBehaviour,
 {
     [Header("-----Item_2D-----")]
     public Item_Data myData;
-    public bool isItem_inSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
-    public bool isItem_inStore = false; // 상점에서 판매하는 아이템의 경우 -> 드래그 불가능
+    public bool isItem_OnSlot = false; // 아이템이 슬롯위에 있는 알려주는 변수 -> 빈 화면에 아이템이 떨궈졌을 경우
+    public bool canDrag = true; //드래그를 할수 있는지
+    public bool canViewData = true; //데이타를 볼수 있는지
     [HideInInspector]
     public Item_Slot Before_Slot = null; // 전에 있던 부모 오브젝트
 
@@ -19,9 +20,12 @@ public class Item_2D : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData eventData) // 마우스 포지션이 아이콘 안으로 들어왔을때
     {
-        Reset_myDataWindow(); // myDataWindow 초기화 (자식에 맞게)
-        myData_Window.Data_Setting(this);
-        myData_Window.gameObject.SetActive(true);
+        if(canViewData)
+        {
+            Reset_myDataWindow(); // myDataWindow 초기화 (자식에 맞게)
+            myData_Window.Data_Setting(this);
+            myData_Window.gameObject.SetActive(true);
+        }
     }
 
     public void OnPointerMove(PointerEventData eventData) // 마우스 포지션이 아이콘 안에 있을때
@@ -36,12 +40,13 @@ public class Item_2D : MonoBehaviour,
 
     public void OnBeginDrag(PointerEventData eventData) // 아이템을 들어올림
     {
-        if(!isItem_inStore) // 상점에서 파는 아이템이 아니어야 드래그 가능
+        if(canDrag) // 상점에서 파는 아이템이 아니어야 드래그 가능
         {
-            isItem_inSlot = false; // 슬롯이 정해질 때까지 false로 초기화
+            isItem_OnSlot = false; // 슬롯이 정해질 때까지 false로 초기화
 
             //부모오브젝트 저장(슬롯에게 거부당할 경우를 위해)
             Before_Slot = transform.parent.GetComponent<Item_Slot>();
+            Before_Slot.myItem = null;
             QuantityOnOff_ofBeforeSlot(false);
 
             //들어올린 오브젝트는 Canvas의 가장 마지막 자식이 됨
@@ -54,7 +59,7 @@ public class Item_2D : MonoBehaviour,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!isItem_inStore)
+        if (canDrag)
         {
             transform.position = eventData.position + dragOffset; // 옮기기
         }
@@ -62,12 +67,12 @@ public class Item_2D : MonoBehaviour,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!isItem_inStore)
+        if (canDrag)
         {
             GetComponent<Image>().raycastTarget = true;
 
             // 아이템을 내려놓았을 때 받아줄 슬롯이 없다면 다시 돌아옴
-            if (isItem_inSlot == false)
+            if (isItem_OnSlot == false)
             {
                 QuantityOnOff_ofBeforeSlot(true);
                 transform.SetParent(Before_Slot.transform);

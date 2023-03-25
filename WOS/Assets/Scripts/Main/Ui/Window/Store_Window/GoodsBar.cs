@@ -21,7 +21,7 @@ public class GoodsBar : MonoBehaviour
         GameObject Item = Instantiate(Dont_Destroy_Data.Inst.Manager_Item.ItemList[ItemID_forSell], ItemSlot);
         Item.transform.SetAsFirstSibling();
         myItem = Item.GetComponent<Item_2D>();
-        myItem.isItem_inStore = true;
+        myItem.canDrag = false;
         ItemName.text = myItem.myData.Name;
         ItemPrice.text = $"가격: {myItem.myData.BuyPrice}G";
     }
@@ -47,7 +47,7 @@ public class GoodsBar : MonoBehaviour
             //계산
             Dont_Destroy_Data.Inst.Manager_Gold.NowGold -= myItem.myData.BuyPrice;
             //수량에 맞게 구매
-            Dont_Destroy_Data.Inst.Inventory_Window.Put_Item(myItem, Quantity);
+            Dont_Destroy_Data.Inst.Inventory_Window.PutItem_AfterCreate(myItem, Quantity);
         }
     }
 

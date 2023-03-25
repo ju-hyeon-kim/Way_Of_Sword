@@ -11,11 +11,19 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
 
     public void ChangeScene(string s)
     {
-
-        if (Dont_Destroy_Data.Inst != null)
+        if (SceneManager.GetActiveScene().name != "Title")
         {
-            //미니맵 아이콘 설정 변경
-            MiniMapCam_Controller.ChangeView_Setting(s);
+            Transform[] targets = Dont_Destroy_Data.Inst.Manager_Quest.Guide_Targets;
+            for (int i = 0; i < targets.Length; i++)
+            {
+                targets[i] = this.transform;
+            }
+
+            if (Dont_Destroy_Data.Inst != null)
+            {
+                //미니맵 아이콘 설정 변경
+                MiniMapCam_Controller.ChangeView_Setting(s);
+            }
         }
 
         //로딩 코루틴
@@ -23,8 +31,6 @@ public class Manager_SceneChange : Singleton<Manager_SceneChange>
         {
             StartCoroutine(Loading(s));
         }
-
-
     }
 
     IEnumerator Loading(string s)
