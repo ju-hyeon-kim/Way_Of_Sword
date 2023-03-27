@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Sword_Zone : MonoBehaviour
 {
-    public GmTalk_Window GmTalk_Window;
-    public bool InPlayer = false;
+    public Gm_Message Gm_Message;
+    public Item_Story Sword;
 
     private void OnTriggerEnter(Collider obj)
     {
-        GmTalk_Window.Talk.text = GmTalk_Window.ReadyContents[1].Content;
-        InPlayer = true;
+        Gm_Message.ShowMessage(1);
+        Sword.CanPickUp(true);
     }
 
     private void OnTriggerExit(Collider obj)
     {
-        GmTalk_Window.Talk.text = GmTalk_Window.ReadyContents[0].Content;
-        InPlayer = false;
+        Gm_Message.ShowMessage(0);
+        Sword.CanPickUp(false);
     }
 }

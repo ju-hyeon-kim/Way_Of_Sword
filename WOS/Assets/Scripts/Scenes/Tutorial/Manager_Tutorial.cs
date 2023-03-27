@@ -48,7 +48,7 @@ public class Manager_Tutorial : MonoBehaviour
                 Objects.BenderTalk_Window.SetActive(false);
                 //GM TAlk 켜기
                 Objects.GMTalk_Window.SetActive(true);
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().NextTalk();
+                //Objects.GMTalk_Window.GetComponent<Gm_Message>().NextTalk();
                 //더미 존 써클 키기
                 Objects.Zone_Circle.SetActive(true);
                 //플레이어 턴 키기
@@ -70,10 +70,8 @@ public class Manager_Tutorial : MonoBehaviour
                 //벤더 Talk 끄기
                 Objects.BenderTalk_Window.SetActive(false);
                 //GM TAlk 켜기
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Content_Num++;
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Talk.fontSize = 23;
                 Objects.GMTalk_Window.SetActive(true);
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().NextTalk();
+                //Objects.GMTalk_Window.GetComponent<Gm_Message>().NextTalk();
                 //더미 존 써클 키기
                 Objects.Zone_Circle.SetActive(true);
                 //플레이어 턴 키기
@@ -98,10 +96,8 @@ public class Manager_Tutorial : MonoBehaviour
                 //벤더 Talk 끄기
                 Objects.BenderTalk_Window.SetActive(false);
                 //GM TAlk 켜기
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Content_Num++;
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Talk.fontSize = 23;
                 Objects.GMTalk_Window.SetActive(true);
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().NextTalk();
+                //Objects.GMTalk_Window.GetComponent<Gm_Message>().NextTalk();
                 //더미 존 써클 키기
                 Objects.Zone_Circle.SetActive(true);
                 //플레이어 턴 키기
@@ -122,10 +118,8 @@ public class Manager_Tutorial : MonoBehaviour
                 //벤더 Talk 끄기
                 Objects.BenderTalk_Window.SetActive(false);
                 //GM TAlk 켜기
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Content_Num++;
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().Talk.fontSize = 25;
                 Objects.GMTalk_Window.SetActive(true);
-                Objects.GMTalk_Window.GetComponent<GmTalk_Window>().NextTalk();
+                //Objects.GMTalk_Window.GetComponent<Gm_Message>().NextTalk();
                 //더미 존 써클 키기
                 Objects.Zone_Circle.SetActive(true);
                 //플레이어 턴 키기

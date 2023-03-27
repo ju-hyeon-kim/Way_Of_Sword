@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class Player_Story1 : MonoBehaviour
 {
-    public GameObject Weapon_Back;
-    public bool PlayerTurn = false;
-    public bool PlayerTurn_rotdoor = false;
+    public Transform cube;
 
+    public TalkWindow_S1 TalkWindow;
+    public GameObject WakeUp_Icon;
+    public GameObject Weapon_Back;
+    
+    public bool PlayerTurn_rotdoor = false;
     public LayerMask pickMask = default;
-    public float MoveSpeed = 1.0f;
-    public float RotSpeed = 360.0f;
     public Transform Door_Zone;
+
+    bool PlayerTurn = false;
+    bool isTalk = true;
 
     Coroutine moveCo = null;
     Coroutine rotCo = null;
@@ -31,6 +35,7 @@ public class Player_Story1 : MonoBehaviour
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, pickMask))
                 {
+                    cube.transform.position = hit.point;
                     if (moveCo != null)
                     {
                         StopCoroutine(moveCo);
@@ -46,48 +51,76 @@ public class Player_Story1 : MonoBehaviour
                 }
             }
         }
+
         if (PlayerTurn_rotdoor)
         {
-            StartCoroutine(Rotating(Door_Zone.position));
             PlayerTurn_rotdoor = false;
+            PlayerTurn = false;
+            StartCoroutine(Rotating(Door_Zone.position));
+        }
+    }
+    
+    public void Sleep()
+    {
+        GetComponent<Animator>().SetTrigger("Sleep");
+    }
+
+    public void StopMove()
+    {
+        StopAllCoroutines();
+        GetComponent<Animator>().SetBool("Walk", false);
+    }
+
+    public void DownPos()
+    {
+        Vector3 pos = transform.position + (-transform.up * 0.15f);
+        StartCoroutine(Moving(pos, 1.0f, false));
+    }
+
+    #region AnimEvent
+    public void WakeUpIcon_On()
+    {
+        WakeUp_Icon.SetActive(true);
+    }
+
+    public void WakeUp()
+    {
+        WakeUp_Icon.SetActive(false);
+        Vector3 wakeup_pos = transform.position + (transform.right * 0.5f);
+        StartCoroutine(Moving(wakeup_pos, 0.5f, false));
+        StartCoroutine(Rotating(wakeup_pos, 50.0f));
+    }
+
+    public void Talk()
+    {
+        if(isTalk)
+        {
+            TalkWindow.gameObject.SetActive(true);
+            TalkWindow.StartTalking();
+            isTalk = false;
         }
     }
 
-    IEnumerator Rotating(Vector3 pos)
+    public void PlayerTurn_SetTrue()
     {
-        Vector3 dir = (pos - transform.position).normalized;
-        float Angle = Vector3.Angle(transform.forward, dir);
-        float rotDir = 1.0f;
-        if (Vector3.Dot(transform.right, dir) < 0.0f)
-        {
-            rotDir = -rotDir;
-        }
-
-        while (Angle > 0.0f)
-        {
-            float delta = RotSpeed * Time.deltaTime;
-            if (delta > Angle)
-            {
-                delta = Angle;
-            }
-            Angle -= delta;
-            transform.Rotate(Vector3.up * rotDir * delta, Space.World);
-
-            yield return null;
-        }
+        PlayerTurn = true;
     }
+    #endregion
 
-    IEnumerator Moving(Vector3 pos)
+    #region 이동/회전 코루틴
+    IEnumerator Moving(Vector3 pos, float movespeed = 1.0f, bool iswalk = true)
     {
+        pos.y = transform.position.y;
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
         dir.Normalize();
 
-        GetComponent<Animator>().SetBool("Walk", true);
+        if(iswalk) GetComponent<Animator>().SetBool("Walk", true);
 
         while (dist > 0.0f)
         {
-            float delta = MoveSpeed * Time.deltaTime;
+
+            float delta = movespeed * Time.deltaTime;
             if (delta > dist)
             {
                 delta = dist;
@@ -97,13 +130,11 @@ public class Player_Story1 : MonoBehaviour
             yield return null;
         }
 
-        GetComponent<Animator>().SetBool("Walk", false);
+        if(iswalk) GetComponent<Animator>().SetBool("Walk", false);
     }
 
-    IEnumerator Rotate_Door(Vector3 pos)
+    IEnumerator Rotating(Vector3 pos, float rotspeed = 360.0f)
     {
-        PlayerTurn_rotdoor = false; // 한번만 실행 되게
-
         Vector3 dir = (pos - transform.position).normalized;
         float Angle = Vector3.Angle(transform.forward, dir);
         float rotDir = 1.0f;
@@ -114,22 +145,15 @@ public class Player_Story1 : MonoBehaviour
 
         while (Angle > 0.0f)
         {
-
-            float delta = (RotSpeed * Time.deltaTime) * 0.5f; // 0.5f는 속도 조절
+            float delta = rotspeed * Time.deltaTime;
             if (delta > Angle)
             {
                 delta = Angle;
             }
             Angle -= delta;
-
             transform.Rotate(Vector3.up * rotDir * delta, Space.World);
             yield return null;
         }
     }
-
-    public void StopMove()
-    {
-        StopAllCoroutines();
-        GetComponent<Animator>().SetBool("Walk", false);
-    }
+    #endregion
 }
