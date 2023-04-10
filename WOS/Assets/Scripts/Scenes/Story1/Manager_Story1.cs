@@ -14,10 +14,6 @@ public class Manager_Story1 : MonoBehaviour
     public Gm_Message Gm_Message;
     public Sword_Zone Sword_Zone;
 
-    Vector3 IconPos;
-    float time = 0;
-    string Text;
-
     [SerializeField]
     STEP NowStep = STEP.None;
 

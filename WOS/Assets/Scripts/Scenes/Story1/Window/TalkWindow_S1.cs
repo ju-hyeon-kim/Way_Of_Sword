@@ -14,7 +14,6 @@ public class TalkWindow_S1 : MonoBehaviour
     public SpeechBubble SpeechBubble;
 
     int PNum = 0;
-    int SNum = 0;
     bool TalkEnd = false;
 
     private void Update()

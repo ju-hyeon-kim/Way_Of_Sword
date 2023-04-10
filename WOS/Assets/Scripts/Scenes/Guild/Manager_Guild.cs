@@ -12,6 +12,9 @@ public class Manager_Guild : Manager_Place
 
     private void Start()
     {
+        //Bgm
+        Manager_Sound.Inst.BgmSource.OnPlay(3);
+
         Dont_Destroy_Data.Inst.Manager_Quest.Guide_Targets = Guide_Tartgets;
 
         Dont_Destroy_Data.Inst.Player.position = SpawnPoint_Player.position;

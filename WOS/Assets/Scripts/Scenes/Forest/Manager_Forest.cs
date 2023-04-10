@@ -21,6 +21,9 @@ public class Manager_Forest : Manager_Dungeon
 
     public override void Start_ofChild()
     {
+        //Bgm
+        Manager_Sound.Inst.BgmSource.OnPlay(4);
+
         for (int i = 0; i < NomalMonster_Count; i++)
         {
             //몬스터 소환
